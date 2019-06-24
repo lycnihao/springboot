@@ -1,7 +1,7 @@
 package cn.hom1.app.service.impl;
 
 import cn.hom1.app.model.entity.Links;
-import cn.hom1.app.model.entity.enums.LinkTouchType;
+import cn.hom1.app.model.enums.LinkTouchType;
 import cn.hom1.app.repository.LinksRepository;
 import cn.hom1.app.service.LinksService;
 import org.springframework.beans.factory.annotation.Autowired;

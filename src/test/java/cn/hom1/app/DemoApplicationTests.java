@@ -1,6 +1,6 @@
 package cn.hom1.app;
 
-import cn.hom1.app.model.entity.enums.LinkTouchType;
+import cn.hom1.app.exception.NotFoundException;
 import cn.hom1.app.service.LinksService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,8 +16,8 @@ public class DemoApplicationTests {
 	private LinksService linksService;
 
 	@Test
-	public void contextLoads() {
-		System.out.println(linksService.findTouch());
+	public void contextLoads(){
+
 	}
 
 }
