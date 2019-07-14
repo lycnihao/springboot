@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("api")
 public class IndexController {
 
     @Autowired
@@ -22,6 +23,11 @@ public class IndexController {
 
     @RequestMapping("getTouch")
     public List<Links> getTouch(){
+        return linksService.findTouch();
+    }
+
+    @RequestMapping("getRecommend")
+    public List<Links> getRecommend(){
         return linksService.findTouch();
     }
 }
