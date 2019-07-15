@@ -1,22 +1,12 @@
 server:
-<<<<<<< HEAD
-  port: 8080
-
-=======
   port: 3302
->>>>>>> 200733f5bd5a0b3e5c97bf56a7551f1fb6aa10d9
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/hom1db?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-<<<<<<< HEAD
-    username: hom1
-    password: hom1
-=======
     username: root
     password: root
 
->>>>>>> b19842909d0f543024fa8d8cf5ba87b1757eb5fe
   jpa:
     hibernate:
       ddl-auto: update

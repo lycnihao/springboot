@@ -8,13 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-<<<<<<< HEAD:src/main/java/cn/hom1/app/controller/api/ApiController.java
-public class ApiController {
-=======
 @RequestMapping("api")
-public class IndexController {
->>>>>>> 200733f5bd5a0b3e5c97bf56a7551f1fb6aa10d9:src/main/java/cn/hom1/app/controller/IndexController.java
+public class ApiController {
 
     @Autowired
     private LinksService linksService;
