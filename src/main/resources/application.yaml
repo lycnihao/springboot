@@ -1,10 +1,5 @@
 server:
-<<<<<<< HEAD
-  port: 8080
-
-=======
   port: 3302
->>>>>>> 200733f5bd5a0b3e5c97bf56a7551f1fb6aa10d9
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
