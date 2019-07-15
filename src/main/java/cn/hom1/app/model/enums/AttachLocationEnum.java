@@ -1,4 +1,4 @@
-package cn.hom1.app.model.entity;
+package cn.hom1.app.model.enums;
 
 public enum AttachLocationEnum {
   /**

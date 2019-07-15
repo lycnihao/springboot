@@ -16,7 +16,7 @@ public class ApiController {
 
     @RequestMapping("getList")
     public List<Links> getList() {
-        return linksService.list();
+        return linksService.findSite();
     }
 
 

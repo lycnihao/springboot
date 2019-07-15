@@ -17,12 +17,17 @@ public class LinksServiceImpl implements LinksService {
 
 
     @Override
-    public List<Links> list() {
+    public List<Links> findSite() {
         return linksRepository.findByIsTouch(LinkTouchType.FALSE.getValue());
     }
 
     @Override
     public List<Links> findTouch() {
         return linksRepository.findByIsTouch(LinkTouchType.TRUE.getValue());
+    }
+
+    @Override
+    public List<Links> findAll() {
+        return linksRepository.findAll();
     }
 }

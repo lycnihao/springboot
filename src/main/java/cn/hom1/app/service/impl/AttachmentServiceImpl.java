@@ -1,6 +1,6 @@
 package cn.hom1.app.service.impl;
 
-import cn.hom1.app.model.entity.AttachLocationEnum;
+import cn.hom1.app.model.enums.AttachLocationEnum;
 import cn.hom1.app.service.AttachmentService;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrBuilder;

@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Data
 @Entity
-@Table(name = "halo_attachment")
+@Table(name = "attachment")
 @EntityListeners(AuditingEntityListener.class)
 public class Attachment implements Serializable {
 
