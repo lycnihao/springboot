@@ -1,6 +1,5 @@
 package cn.hom1.app.controller;
 
-import cn.hom1.app.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
