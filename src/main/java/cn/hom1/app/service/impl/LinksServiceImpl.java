@@ -18,7 +18,7 @@ public class LinksServiceImpl implements LinksService {
 
     @Override
     public List<Links> list() {
-        return linksRepository.findAll();
+        return linksRepository.findByIsTouch(LinkTouchType.FALSE.getValue());
     }
 
     @Override
