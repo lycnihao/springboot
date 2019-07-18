@@ -30,4 +30,9 @@ public class LinksServiceImpl implements LinksService {
     public List<Links> findAll() {
         return linksRepository.findAll();
     }
+
+    @Override
+    public Links findByLinksId(Integer linksId) {
+        return linksRepository.findByLinkId(linksId);
+    }
 }

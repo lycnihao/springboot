@@ -13,4 +13,6 @@ public interface LinksRepository extends JpaRepository<Links,String>, JpaSpecifi
      *查询为touch的站点
      */
     List<Links> findByIsTouch(Integer touch);
+
+    Links findByLinkId(Integer linkId);
 }

@@ -13,7 +13,7 @@ public class Links {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int linkId;
+    private Integer linkId;
 
 
     /**

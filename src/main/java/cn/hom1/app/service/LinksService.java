@@ -10,4 +10,6 @@ public interface LinksService {
     List<Links> findTouch();
 
     List<Links> findAll();
+
+    Links findByLinksId(Integer linksId);
 }
