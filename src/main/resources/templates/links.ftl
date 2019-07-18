@@ -72,12 +72,12 @@
                         <input type="number" class="form-control" id="u-ordered">
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="is-touch1" name="u-is-touch" class="custom-control-input">
-                        <label class="custom-control-label" for="is-touch1">设置</label>
+                        <input type="radio" id="is-touch0" name="u-is-touch" class="custom-control-input">
+                        <label class="custom-control-label" for="is-touch2">不设置</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="is-touch2" name="u-is-touch" class="custom-control-input">
-                        <label class="custom-control-label" for="is-touch2">不设置</label>
+                        <input type="radio" id="is-touch1" name="u-is-touch" class="custom-control-input">
+                        <label class="custom-control-label" for="is-touch1">设置</label>
                     </div>
                 </form>
             </div>
@@ -124,7 +124,7 @@
             $('#u-icon').val(result.icon);
             $('#u-summary').val(result.summary);
             $('#u-ordered').val(result.ordered);
-            /*$('input [name="is-touch"]').val(result.isTouch);*/
+            $('#is-touch'+result.isTouch).prop('checked', true)
         })
     });
     $('#deleteModal').on('show.bs.modal', function (event) {
