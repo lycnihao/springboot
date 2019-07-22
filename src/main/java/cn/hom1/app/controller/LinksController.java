@@ -1,5 +1,6 @@
 package cn.hom1.app.controller;
 
+import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.Links;
 import cn.hom1.app.service.LinksService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,24 @@ public class LinksController {
     private LinksService linksService;
 
     @RequestMapping()
-    public String links(ModelMap modelMap){
+    public String links(ModelMap modelMap) {
         List<Links> linkList = linksService.findAll();
-        modelMap.addAttribute("links",linkList);
+        modelMap.addAttribute("links", linkList);
         return "links";
     }
 
     @RequestMapping("updateData")
     @ResponseBody
-    public Links getLinks(Integer linkId){
+    public Links getLinks(Integer linkId) {
         return linksService.findByLinksId(linkId);
+    }
+
+    @RequestMapping("update")
+    @ResponseBody
+    public JsonResult update(Links link) {
+        System.out.println(link);
+        linksService.update(link);
+        return new JsonResult(200,"");
     }
 
 }

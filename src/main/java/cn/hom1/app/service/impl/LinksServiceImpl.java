@@ -35,4 +35,10 @@ public class LinksServiceImpl implements LinksService {
     public Links findByLinksId(Integer linksId) {
         return linksRepository.findByLinkId(linksId);
     }
+
+    @Override
+    public int update(Links link) {
+        linksRepository.save(link);
+        return 1;
+    }
 }

@@ -12,4 +12,6 @@ public interface LinksService {
     List<Links> findAll();
 
     Links findByLinksId(Integer linksId);
+
+    int update(Links link);
 }

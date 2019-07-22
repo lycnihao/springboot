@@ -51,6 +51,7 @@
             </div>
             <div class="modal-body">
                 <form>
+                    <input id="u-linkId" type="hidden">
                     <div class="form-group">
                         <label for="u-title" class="col-form-label">标题:</label>
                         <input type="text" class="form-control" id="u-title">
@@ -73,7 +74,7 @@
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="is-touch0" name="u-is-touch" class="custom-control-input">
-                        <label class="custom-control-label" for="is-touch2">不设置</label>
+                        <label class="custom-control-label" for="is-touch0">不设置</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="is-touch1" name="u-is-touch" class="custom-control-input">
@@ -119,6 +120,7 @@
         modal.find('.link-title').text(title);
         $.get('links/updateData',{'linkId':id},function (result) {
             console.log(result);
+            $('#u-linkId').val(result.linkId);
             $('#u-title').val(result.title);
             $('#u-url').val(result.url);
             $('#u-icon').val(result.icon);
@@ -133,11 +135,27 @@
         var title = button.data('title');
         var modal = $(this);
         modal.find('.link-title').text(title);
-
     });
 
 
     $("#update").click(function () {
+        var linkId = $('#u-linkId').val();
+        var title = $('#u-title').val();
+        var url =  $('#u-url').val();
+        var icon =  $('#u-icon').val();
+        var summary = $('#u-summary').val();
+        var ordered = $('#u-ordered').val();
+        /*var isTouch = $('input[name="u-is-touch"]:checked').val();*/
+        var isTouch = 1;
+        var data = {'linkId':linkId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'isTouch':isTouch};
+        $.ajax({
+            url:'links/update',
+            type:'post',
+            data:data,
+            success:function (result) {
+                alert("修改成功！");
+            }
+        });
 
     });
     $("#delete").click(function () {
