@@ -66,8 +66,8 @@ public class Links {
 
 
     /**
-     * 是否touch
+     * 网址类型
      */
-    @Column(name = "is_touch")
-    private int isTouch;
+    @Column(name = "type")
+    private int type;
 }

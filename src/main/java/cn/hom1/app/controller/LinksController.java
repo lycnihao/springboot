@@ -6,6 +6,7 @@ import cn.hom1.app.service.LinksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,12 +32,17 @@ public class LinksController {
         return linksService.findByLinksId(linkId);
     }
 
-    @RequestMapping("update")
+    @RequestMapping("save")
     @ResponseBody
-    public JsonResult update(Links link) {
-        System.out.println(link);
-        linksService.update(link);
+    public JsonResult add(Links link) {
+        linksService.save(link);
         return new JsonResult(200,"");
     }
 
+    @RequestMapping("delete/{linkId}")
+    @ResponseBody
+    public JsonResult delete(@PathVariable Integer linkId) {
+        linksService.delete(linkId);
+        return new JsonResult(200,"");
+    }
 }

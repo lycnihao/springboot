@@ -1,14 +1,15 @@
 package cn.hom1.app.model.enums;
 
-public enum  LinkTouchType {
+public enum SiteTypeEnum {
+    RECOMMEND(2),
 
-    TRUE(1),
+    TOUCH(1),
 
-    FALSE(0);
+    WEBSITE(0);
 
     private final int value;
 
-    LinkTouchType(int value) {
+    SiteTypeEnum(int value) {
         this.value = value;
     }
 

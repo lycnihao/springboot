@@ -1,7 +1,7 @@
 package cn.hom1.app.service.impl;
 
 import cn.hom1.app.model.entity.Links;
-import cn.hom1.app.model.enums.LinkTouchType;
+import cn.hom1.app.model.enums.SiteTypeEnum;
 import cn.hom1.app.repository.LinksRepository;
 import cn.hom1.app.service.LinksService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,8 @@ public class LinksServiceImpl implements LinksService {
 
 
     @Override
-    public List<Links> findSite() {
-        return linksRepository.findByIsTouch(LinkTouchType.FALSE.getValue());
-    }
-
-    @Override
-    public List<Links> findTouch() {
-        return linksRepository.findByIsTouch(LinkTouchType.TRUE.getValue());
+    public List<Links> findByType(SiteTypeEnum siteTypeEnum) {
+        return linksRepository.findByType(siteTypeEnum.getValue());
     }
 
     @Override
@@ -37,8 +32,13 @@ public class LinksServiceImpl implements LinksService {
     }
 
     @Override
-    public int update(Links link) {
+    public void save(Links link) {
         linksRepository.save(link);
-        return 1;
+    }
+
+    @Override
+    public void delete(Integer linkId) {
+        Links links = linksRepository.findByLinkId(linkId);
+        linksRepository.delete(links);
     }
 }
