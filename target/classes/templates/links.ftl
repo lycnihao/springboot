@@ -39,7 +39,7 @@
                 ${(link.type == 0)?string('<span class="badge badge-pill badge-info">网站</span>',
                 (link.type == 1)?string('<span class="badge badge-pill badge-warning">置顶</span>',
                 '<span class="badge badge-pill badge-primary">推荐</span>') )}
-              </td>
+            </td>
             <td>
                 <button data-id="${link.linkId}" data-title="${link.title}" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#updateModal">修改</button>
                 <button data-id="${link.linkId}" data-title="${link.title}" type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">删除</button>

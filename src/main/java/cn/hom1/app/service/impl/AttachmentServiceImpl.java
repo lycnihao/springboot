@@ -125,7 +125,7 @@ public class AttachmentServiceImpl implements AttachmentService {
 
       final String size = String.valueOf(new File(fullPath.toString()).length());
       final String wh = "**";
-
+      System.out.println(fileName);
       resultMap.put("fileName", fileName.toString());
       resultMap.put("filePath", filePath.toString());
       resultMap.put("smallPath", fileSmallPath.toString());

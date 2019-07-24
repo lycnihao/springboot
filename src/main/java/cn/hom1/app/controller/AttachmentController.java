@@ -2,8 +2,10 @@ package cn.hom1.app.controller;
 
 import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.service.AttachmentService;
+
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +22,7 @@ public class AttachmentController {
     private AttachmentService attachmentService;
 
     @RequestMapping("uploadModal")
-    public String uploadModal(){
+    public String uploadModal() {
         return "attachment-upload";
     }
 
@@ -28,13 +30,14 @@ public class AttachmentController {
     @PostMapping("upload")
     @ResponseBody
     public JsonResult upload(@RequestParam("file") MultipartFile file,
-        HttpServletRequest request){
-      if (!file.isEmpty()) {
-        Map<String, String> resultMap = attachmentService.upload(file,request);
-        for (String key : resultMap.keySet()) {
-          System.out.println(key+"-->"+resultMap.get("key"));
+                             HttpServletRequest request) {
+        Map<String, String> resultMap = null;
+        if (!file.isEmpty()) {
+            resultMap = attachmentService.upload(file, request);
+            for (String key : resultMap.keySet()) {
+                System.out.println(key + "-->" + resultMap.get(key));
+            }
         }
-      }
-      return new JsonResult();
+        return new JsonResult(200, resultMap);
     }
 }
