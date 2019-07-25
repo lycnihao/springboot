@@ -1,6 +1,8 @@
 package cn.hom1.app.service.impl;
 
+import cn.hom1.app.model.entity.Attachment;
 import cn.hom1.app.model.enums.AttachLocationEnum;
+import cn.hom1.app.repository.AttachmentRepository;
 import cn.hom1.app.service.AttachmentService;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrBuilder;
@@ -8,10 +10,12 @@ import cn.hutool.core.util.StrUtil;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import net.coobird.thumbnailator.Thumbnails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service
 public class AttachmentServiceImpl implements AttachmentService {
+
+  @Autowired
+  private AttachmentRepository attachmentRepository;
 
   @Override
   public Map<String, String> upload(MultipartFile file, HttpServletRequest request) {
@@ -137,5 +144,20 @@ public class AttachmentServiceImpl implements AttachmentService {
       e.printStackTrace();
     }
     return resultMap;
+  }
+
+  @Override
+  public List<Attachment> listAll() {
+    return attachmentRepository.findAll();
+  }
+
+  @Override
+  public void save(Attachment attachment) {
+    attachmentRepository.save(attachment);
+  }
+
+  @Override
+  public Attachment fetchById(long attachId) {
+    return attachmentRepository.findByAttachId(attachId);
   }
 }
