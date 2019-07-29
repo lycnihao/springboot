@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>附件管理</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <a href="/attachments/uploadModal">上传</a>
@@ -36,9 +36,9 @@
 </div>
 
 </body>
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/layer.js"></script>
+<script src="/static/plugins/jquery/jquery.min.js"></script>
+<script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/plugins/layer/layer.js"></script>
 <script>
     function layerModal(url, title) {
         layer.open({

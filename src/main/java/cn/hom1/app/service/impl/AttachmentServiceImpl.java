@@ -73,7 +73,7 @@ public class AttachmentServiceImpl implements AttachmentService {
       uploadPath.append("upload/");
 
       //获取当前年月以创建目录，如果没有该目录则创建
-      uploadPath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
+      /*uploadPath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");*/
       final File mediaPath = new File(uploadPath.toString());
       if (!mediaPath.exists()) {
         if (!mediaPath.mkdirs()) {
@@ -114,25 +114,24 @@ public class AttachmentServiceImpl implements AttachmentService {
 
       //映射路径
       final StrBuilder filePath = new StrBuilder("/upload/");
-      filePath.append(DateUtil.thisYear());
+/*      filePath.append(DateUtil.thisYear());
       filePath.append("/");
       filePath.append(DateUtil.thisMonth());
-      filePath.append("/");
+      filePath.append("/");*/
       filePath.append(fileName);
 
       //缩略图映射路径
       final StrBuilder fileSmallPath = new StrBuilder("/upload/");
-      fileSmallPath.append(DateUtil.thisYear());
+/*      fileSmallPath.append(DateUtil.thisYear());
       fileSmallPath.append("/");
       fileSmallPath.append(DateUtil.thisMonth());
-      fileSmallPath.append("/");
+      fileSmallPath.append("/");*/
       fileSmallPath.append(nameWithOutSuffix);
       fileSmallPath.append("_small.");
       fileSmallPath.append(fileSuffix);
 
       final String size = String.valueOf(new File(fullPath.toString()).length());
       final String wh = "**";
-      System.out.println(fileName);
       resultMap.put("fileName", fileName.toString());
       resultMap.put("filePath", filePath.toString());
       resultMap.put("smallPath", fileSmallPath.toString());

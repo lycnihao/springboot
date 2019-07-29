@@ -66,9 +66,9 @@
 </div>
 
 </body>
-<script src="/static/js/jquery.min.js"></script>
+<script src="/static/plugins/jquery/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/layer.js"></script>
+<script src="/static/plugins/layer/layer.js"></script>
 <script>
     function layerModal(url, title) {
         layer.open({
