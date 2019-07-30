@@ -1,35 +1,19 @@
 <#compress >
     <#include "module/_macro.ftl">
     <@head>小红衣后台管理 | 首页</@head>
-    <div class="main-content">
-        <#include "module/_header.ftl">
-        <div class="page-title">
-            <div class="title-env">
-                <h1 class="title">网站列表</h1>
-                <p class="description">所有导航网站信息列表</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <form method="get" action="" enctype="application/x-www-form-urlencoded">
-                    <input type="text" class="form-control input-lg" placeholder="Search..." name="s" />
-                    <button type="submit" class="btn-unstyled">
-                    </button>
-                </form>
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-black btn-lg">
-                    <span>Search</span>
-                </button>
-            </div>
-            <div class="col-md-4">
-                <a href="javascript:;" onclick="jQuery('#modal-6').modal('show', {backdrop: 'static'});" class="edit">
-                    <button class="btn btn-icon btn-secondary btn-warning pull-right btn-lg">
-                        <i class="fa-plus"></i>
-                    </button>
-                </a>
-            </div>
-        </div>
+    <div class="content-wrapper">
+      <section class="content-header" id="animated-header">
+        <h1 style="display: inline-block;">网站列表</h1>
+        <a class="btn btn-xs btn-info" id="btnNewPage" href="/admin/page/new">
+          <i class="fa fa-plus"></i>添加网站 </a>
+        <ol class="breadcrumb">
+          <li>
+            <a data-pjax="true" href="javascript:void(0)"><i class="fa fa-dashboard"></i> 首页</a>
+          </li>
+          <li class="active">网站列表</li>
+        </ol>
+      </section>
+      <section class="content" id="animated-content">
         <div class="row">
             <div class="col-md-12">
                 <div class="tab-pane active" id="all">
@@ -37,9 +21,9 @@
                         <thead>
                         <tr>
                             <th></th>
-                            <th class="hidden-xs hidden-sm"></th>
+                            <th></th>
                             <th>名称简介</th>
-                            <th class="hidden-xs hidden-sm">链接</th>
+                            <th>链接</th>
                             <th>分类</th>
                             <th>类型</th>
                             <th>标签</th>
@@ -53,16 +37,15 @@
                         <#list links as link>
                             <tr>
                                 <td class="user-cb">
-                                    <input type="checkbox" class="cbr" name="members-list[]" value="1" checked />
+                                    <input type="checkbox" name="ids" value="${link.linkId}"/>
                                 </td>
-                                <td class="user-image hidden-xs hidden-sm">
+                                <td>
                                     <a href="#">
-                                        <img src="${link.icon}" class="img-circle" alt="user-pic" />
+                                        <img src="${link.icon}" class="direct-chat-img" alt="user-pic" />
                                     </a>
                                 </td>
-                                <td class="user-name">
-                                    <a target="_blank" href="${link.url}" class="name">Adobe Photoshop</a>
-                                    <span>${link.title}</span>
+                                <td>
+                                    <a target="_blank" href="${link.url}" class="name">${link.title}</a>
                                 </td>
                                 <td class="hidden-xs hidden-sm">
                                     <span class="email">${link.url}</span>
@@ -76,17 +59,17 @@
                                     (link.isTouch == 1)?string('<div class="badge badge-blue pull-right">置顶</div>',
                                     '<div class="badge badge-success pull-right">推荐</div>')) )}</span>
                                 </td>
-                                <td class="hidden-xs hidden-sm">
+                                <td>
                                     <div class="label label-primary">tools</div>
                                     <div class="label label-primary">design</div>
                                 </td>
-                                <td class="hidden-xs hidden-sm">
+                                <td>
                                     <span class="email">${link.linkId}</span>
                                 </td>
-                                <td class="hidden-xs hidden-sm">
+                                <td>
                                     <span class="email">${link.createTime?string("yyyy-MM-dd")}</span>
                                 </td>
-                                <td class="hidden-xs hidden-sm">
+                                <td>
                                     <span class="email">Admin</span>
                                 </td>
                                 <td class="action-links">
@@ -100,6 +83,7 @@
                 </div>
             </div>
         </div>
+      </section>
         <#include "module/_footer.ftl">
     </div>
     <!-- Modal 1 (Basic)-->
@@ -164,78 +148,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label for="field-3" class="control-label">一级分类</label>
-                            </br>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-white">设计师</button>
-                                <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="caret"></i>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#">设计师</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">产品经理</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">产品策划</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">前端开发</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="field-3" class="control-label">二级分类</label>
-                            </br>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-white">设计工具</button>
-                                <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="caret"></i>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#">灵感收集</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">设计素材</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">icon下载</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">高清图库</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="field-3" class="control-label">三级分类</label>
-                            </br>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-white">三级分类没想好</button>
-                                <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="caret"></i>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#">三级分类</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">三级分类</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">三级分类</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -247,24 +160,6 @@
                                   </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                <button class="btn btn-black btn-xs">Tools</button>
-                                <button class="btn btn-black btn-xs">Design</button>
-                                <button class="btn btn-white btn-xs">Other</button>
-                            </div>
-                        </div>
-                      <div class="col-md-5">
-                        <div class="form-block">
-                          <label class="control-label">置顶</label>
-                          <input id="u-isTouch" type="checkbox" class="iswitch iswitch-primary">
-                          &nbsp;&nbsp;&nbsp;
-                          <label class="control-label">推荐</label>
-                          <input id="u-isRecommend" type="checkbox"  class="iswitch iswitch-primary">
-                        </div>
-                      </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
