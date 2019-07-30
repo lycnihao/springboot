@@ -1,8 +1,10 @@
 package cn.hom1.app.model.entity;
 
+import java.util.Date;
 import lombok.Data;
 
 import javax.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "links")
@@ -61,13 +63,18 @@ public class Links {
     /**
      * 创建时间
      */
-    @Column(name = "createTime")
-    private int createTime;
-
+    @CreatedDate
+    private Date createTime;
 
     /**
      * 网址类型
      */
-    @Column(name = "type")
-    private int type;
+    @Column(name = "isTouch")
+    private int isTouch;
+
+    /**
+     * 网址类型
+     */
+    @Column(name = "isRecommend")
+    private int isRecommend;
 }

@@ -14,4 +14,4 @@ spring:
     open-in-view: false
 
 cors:
-  url: http://www.hom1.cn:81
+  url: http://www.hom1.cn

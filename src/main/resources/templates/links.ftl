@@ -1,256 +1,417 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-size: 14px;
-        }
-        .icon {
-          width: 26px;
-          height: 26px;
-        }
-    </style>
-</head>
-<body>
-<table class="table table-hover">
-    <thead class="thead-dark">
-    <tr>
-        <th>标题</th>
-        <th>网址</th>
-        <th>图标</th>
-        <th>备注</th>
-        <th>序号</th>
-        <th>类型</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    <#list links as link>
-        <tr>
-            <td>${link.title}</td>
-            <td><a href="${link.url}">${link.url}</a></td>
-            <td><img src="${link.icon}" alt="${link.title}" class="icon rounded"></td>
-            <td>${link.summary}</td>
-            <td>${link.ordered}</td>
-            <td>
-                ${(link.type == 0)?string('<span class="badge badge-pill badge-info">网站</span>',
-                (link.type == 1)?string('<span class="badge badge-pill badge-warning">置顶</span>',
-                '<span class="badge badge-pill badge-primary">推荐</span>') )}
-            </td>
-            <td>
-                <button data-id="${link.linkId}" data-title="${link.title}" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#updateModal">修改</button>
-                <button data-id="${link.linkId}" data-title="${link.title}" type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">删除</button>
-            </td>
-        </tr>
-    </#list>
-    </tbody>
-</table>
-<button type="button" class="btn btn-info"  data-toggle="modal" data-target="#addModal">新增</button>
-
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">新增链接</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<#compress >
+    <#include "module/_macro.ftl">
+    <@head>小红衣后台管理 | 首页</@head>
+    <div class="main-content">
+        <#include "module/_header.ftl">
+        <div class="page-title">
+            <div class="title-env">
+                <h1 class="title">网站列表</h1>
+                <p class="description">所有导航网站信息列表</p>
             </div>
-            <div class="modal-body">
-                <form>
-                    <input id="u-linkId" type="hidden">
-                    <div class="form-group">
-                        <label for="title" class="col-form-label">标题:</label>
-                        <input type="text" class="form-control" id="title" name="title">
-                    </div>
-                    <div class="form-group">
-                        <label for="url" class="col-form-label">网址:</label>
-                        <input type="text" class="form-control" id="url" name="url">
-                    </div>
-                    <div class="form-group">
-                        <label for="icon" class="col-form-label">图标:</label>
-                        <input type="text" class="form-control" id="icon" name="icon">
-                    </div>
-                    <div class="form-group">
-                        <label for="summary" class="col-form-label">摘要:</label>
-                        <input type="text" class="form-control" id="summary" name="summary">
-                    </div>
-                    <div class="form-group">
-                        <label for="ordered" class="col-form-label">序号:</label>
-                        <input type="number" class="form-control" id="ordered" name="ordered">
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="type0" name="type" class="custom-control-input" value="0">
-                        <label class="custom-control-label" for="type0">普通</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="type1" name="type" class="custom-control-input" value="1">
-                        <label class="custom-control-label" for="type1">置顶</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="type2" name="type" class="custom-control-input" value="2">
-                        <label class="custom-control-label" for="type2">推荐</label>
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="get" action="" enctype="application/x-www-form-urlencoded">
+                    <input type="text" class="form-control input-lg" placeholder="Search..." name="s" />
+                    <button type="submit" class="btn-unstyled">
+                    </button>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button id="add" type="button" class="btn btn-warning">保存</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">修改链接[<span class="link-title"></span>]</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+            <div class="col-md-2">
+                <button class="btn btn-black btn-lg">
+                    <span>Search</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
-                    <input id="u-linkId" type="hidden">
-                    <div class="form-group">
-                        <label for="u-title" class="col-form-label">标题:</label>
-                        <input type="text" class="form-control" id="u-title">
-                    </div>
-                    <div class="form-group">
-                        <label for="u-url" class="col-form-label">网址:</label>
-                        <input type="text" class="form-control" id="u-url">
-                    </div>
-                    <div class="form-group">
-                        <label for="u-icon" class="col-form-label">图标:</label>
-                        <input type="text" class="form-control" id="u-icon">
-                    </div>
-                    <div class="form-group">
-                        <label for="u-summary" class="col-form-label">摘要:</label>
-                        <input type="text" class="form-control" id="u-summary">
-                    </div>
-                    <div class="form-group">
-                        <label for="u-ordered" class="col-form-label">序号:</label>
-                        <input type="number" class="form-control" id="u-ordered">
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="u-type0" name="u-type" class="custom-control-input" value="0">
-                        <label class="custom-control-label" for="u-type0">普通</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="u-type1" name="u-type" class="custom-control-input" value="1">
-                        <label class="custom-control-label" for="u-type1">置顶</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="u-type2" name="u-type" class="custom-control-input" value="2">
-                        <label class="custom-control-label" for="u-type2">推荐</label>
-                    </div>
-                </form>
+            <div class="col-md-4">
+                <a href="javascript:;" onclick="jQuery('#modal-6').modal('show', {backdrop: 'static'});" class="edit">
+                    <button class="btn btn-icon btn-secondary btn-warning pull-right btn-lg">
+                        <i class="fa-plus"></i>
+                    </button>
+                </a>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button id="update" type="button" class="btn btn-warning">保存</button>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tab-pane active" id="all">
+                    <table class="table table-hover members-table middle-align">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th class="hidden-xs hidden-sm"></th>
+                            <th>名称简介</th>
+                            <th class="hidden-xs hidden-sm">链接</th>
+                            <th>分类</th>
+                            <th>类型</th>
+                            <th>标签</th>
+                            <th>ID</th>
+                            <th>添加时间</th>
+                            <th>推荐者</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <#list links as link>
+                            <tr>
+                                <td class="user-cb">
+                                    <input type="checkbox" class="cbr" name="members-list[]" value="1" checked />
+                                </td>
+                                <td class="user-image hidden-xs hidden-sm">
+                                    <a href="#">
+                                        <img src="${link.icon}" class="img-circle" alt="user-pic" />
+                                    </a>
+                                </td>
+                                <td class="user-name">
+                                    <a target="_blank" href="${link.url}" class="name">Adobe Photoshop</a>
+                                    <span>${link.title}</span>
+                                </td>
+                                <td class="hidden-xs hidden-sm">
+                                    <span class="email">${link.url}</span>
+                                </td>
+                                <td class="hidden-xs hidden-sm">
+                                    <span class="email">设计师/设计工具</span>
+                                </td>
+                                <td class="hidden-xs hidden-sm">
+                                    <span class="email">${(link.isTouch == 0 && link.isRecommend == 0)?string('<div class="badge badge-black pull-right">网站</div>',
+                                    (link.isTouch == 1 && link.isRecommend == 1)?string('<div class="badge badge-success pull-right">推荐</div><div class="badge badge-blue pull-right">置顶</div>',
+                                    (link.isTouch == 1)?string('<div class="badge badge-blue pull-right">置顶</div>',
+                                    '<div class="badge badge-success pull-right">推荐</div>')) )}</span>
+                                </td>
+                                <td class="hidden-xs hidden-sm">
+                                    <div class="label label-primary">tools</div>
+                                    <div class="label label-primary">design</div>
+                                </td>
+                                <td class="hidden-xs hidden-sm">
+                                    <span class="email">${link.linkId}</span>
+                                </td>
+                                <td class="hidden-xs hidden-sm">
+                                    <span class="email">${link.createTime?string("yyyy-MM-dd")}</span>
+                                </td>
+                                <td class="hidden-xs hidden-sm">
+                                    <span class="email">Admin</span>
+                                </td>
+                                <td class="action-links">
+                                    <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId},title:'${link.title}'});" class="edit"><i class="linecons-pencil"></i>编辑</a>
+                                    <a href="javascript:;" onclick="jQuery('#modal-1').modal('show', {backdrop: 'static'});" class="delete"><i class="linecons-trash"></i>删除</a>
+                                </td>
+                            </tr>
+                        </#list>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <#include "module/_footer.ftl">
+    </div>
+    <!-- Modal 1 (Basic)-->
+    <div class="modal fade" id="modal-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">删除网站</h4>
+                </div>
+                <div class="modal-body">
+                    确定要删除这个网址吗!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-info">确定</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">删除提示</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h3 style="text-align: center">确认删除[<span class="link-title"></span>]吗？</h3>
-                <input id="link-id" type="hidden">
-            </div>
-            <div class="modal-footer">
-                <button id="delete" type="button" class="btn btn-danger">确认</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+    <!-- updateModal (Long Modal)-->
+    <div class="modal fade" id="updateModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">编辑网站</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-sm-4 text-center">
+                                <div id="u-icon" class="droppable-area dz-clickable">
+                                    选择图片
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="u-title" class="control-label">名称</label>
+                                            <input type="text" class="form-control" id="u-title" placeholder="网站名称">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group no-margin">
+                                            <label for="u-summary" class="control-label">简介</label>
+                                            <textarea class="form-control autogrow" id="u-summary" placeholder="对此标签页的简介文字"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="u-url" class="control-label">网址</label>
+                                <input type="text" class="form-control" id="u-url" placeholder="Https://">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="field-3" class="control-label">一级分类</label>
+                            </br>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-white">设计师</button>
+                                <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="caret"></i>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">设计师</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">产品经理</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">产品策划</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">前端开发</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="field-3" class="control-label">二级分类</label>
+                            </br>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-white">设计工具</button>
+                                <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="caret"></i>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">灵感收集</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">设计素材</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">icon下载</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">高清图库</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="field-3" class="control-label">三级分类</label>
+                            </br>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-white">三级分类没想好</button>
+                                <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="caret"></i>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">三级分类</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">三级分类</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">三级分类</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="tags" class="control-label">标签</label>
+                                  <select class="u-tags form-control" multiple="multiple">
+                                    <option selected="selected">orange</option>
+                                    <option>white</option>
+                                    <option selected="selected">purple</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <button class="btn btn-black btn-xs">Tools</button>
+                                <button class="btn btn-black btn-xs">Design</button>
+                                <button class="btn btn-white btn-xs">Other</button>
+                            </div>
+                        </div>
+                      <div class="col-md-5">
+                        <div class="form-block">
+                          <label class="control-label">置顶</label>
+                          <input id="u-isTouch" type="checkbox" class="iswitch iswitch-primary">
+                          &nbsp;&nbsp;&nbsp;
+                          <label class="control-label">推荐</label>
+                          <input id="u-isRecommend" type="checkbox"  class="iswitch iswitch-primary">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-3" class="control-label">添加时间</label>
+                                <input type="text" class="form-control" id="field-3" placeholder="2017-08-01">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-3" class="control-label">推荐人</label>
+                                <input type="text" class="form-control" id="field-3" placeholder="Admin">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-3" class="control-label">推荐人邮箱</label>
+                                <input type="text" class="form-control" id="field-3" placeholder="Admin">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="field-3" class="control-label">推荐人身份</label>
+                            </br>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-white">网站开发者</button>
+                                <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="caret"></i>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">网站管理者</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">网站发现者</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">管理员</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group no-margin">
+                                <label for="field-7" class="control-label">推荐人理由</label>
+                                <textarea class="form-control autogrow" id="field-7" placeholder="对此标签页的简介文字"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-info">保存</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</body>
-<script src="/static/plugins/jquery/jquery.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script>
-    $('#updateModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
-        var id = button.data('id');
-        var title = button.data('title');
-        var modal = $(this);
-        modal.find('.link-title').text(title);
-        $.get('links/updateData',{'linkId':id},function (result) {
-            console.log(result);
-            $('#u-linkId').val(result.linkId);
-            $('#u-title').val(result.title);
-            $('#u-url').val(result.url);
-            $('#u-icon').val(result.icon);
-            $('#u-summary').val(result.summary);
-            $('#u-ordered').val(result.ordered);
-            $('#u-type'+result.type).prop('checked', true)
-        })
-    });
-    $('#deleteModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
-        var id = button.data('id');
-        var title = button.data('title');
-        var modal = $(this);
-        modal.find('.link-title').text(title);
-        modal.find('#link-id').val(id);
-    });
+    <link rel="stylesheet" href="/static/plugins/select2/css/select2.css">
+    <link rel="stylesheet" href="/static/plugins/select2/css/select2-bootstrap.css">
+    <script src="/static/plugins/select2/js/select2.min.js"></script>
+    <@footer/>
+    <script>
+        $('#updateModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)[0];
+            var id = button.id;
+            $.get('links/updateData',{'linkId':id},function (result) {
+                console.log(result);
+              $(".u-tags").select2({
+                placeholder: 'Choose your favorite US Countries',
+                allowClear: true,
+                dropdownAutoWidth: true
+              });
+                $('#u-linkId').val(result.linkId);
+                $('#u-title').val(result.title);
+                $('#u-url').val(result.url);
+                /*$('#u-icon').css("background-image","url(" + result.icon +")");*/
+                $('#u-summary').val(result.summary);
+                $('#u-ordered').val(result.ordered);
+                $('#u-type'+result.type).prop('checked', true);
+                if(result.isTouch == 1){
+                  ('#u-isTouch').prop('checked', true)
+                }
+                if(result.isRecommend == 1){
+                  ('#u-isRecommend').prop('checked', true)
+                }
 
 
-    $("#update").click(function () {
-        var linkId = $('#u-linkId').val();
-        var title = $('#u-title').val();
-        var url =  $('#u-url').val();
-        var icon =  $('#u-icon').val();
-        var summary = $('#u-summary').val();
-        var ordered = $('#u-ordered').val();
-        var type = $('input[name="u-type"]:checked').val();
-        var data = {'linkId':linkId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'type':type};
-        $.ajax({
-            url:'links/save',
-            type:'post',
-            data:data,
-            success:function (result) {
-                alert("修改成功！");
-                window.location.reload();
-            }
+            })
         });
 
-    });
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var title = button.data('title');
+            var modal = $(this);
+            modal.find('.link-title').text(title);
+            modal.find('#link-id').val(id);
+        });
 
-    $("#add").click(function () {
-        $.ajax({
-            url:'links/save',
-            type:'post',
-            data:$("#addModal form").serialize(),
-            success:function (result) {
-                alert("新增成功！");
-                window.location.reload();
-            }
+
+        $("#update").click(function () {
+            var linkId = $('#u-linkId').val();
+            var title = $('#u-title').val();
+            var url =  $('#u-url').val();
+            var icon =  $('#u-icon').val();
+            var summary = $('#u-summary').val();
+            var ordered = $('#u-ordered').val();
+            var type = $('input[name="u-type"]:checked').val();
+            var data = {'linkId':linkId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'type':type};
+            $.ajax({
+                url:'links/save',
+                type:'post',
+                data:data,
+                success:function (result) {
+                    alert("修改成功！");
+                    window.location.reload();
+                }
+            });
+
         });
-    });
-    $("#delete").click(function () {
-        $.ajax({
-            url:'links/delete/'+$("#link-id").val(),
-            type:'post',
-            data:{},
-            success:function (result) {
-                alert("删除成功！");
-                window.location.reload();
-            }
+
+        $("#add").click(function () {
+            $.ajax({
+                url:'links/save',
+                type:'post',
+                data:$("#addModal form").serialize(),
+                success:function (result) {
+                    alert("新增成功！");
+                    window.location.reload();
+                }
+            });
         });
-    });
-</script>
-</html>
+
+        $("#delete").click(function () {
+            $.ajax({
+                url:'links/delete/'+$("#link-id").val(),
+                type:'post',
+                data:{},
+                success:function (result) {
+                    alert("删除成功！");
+                    window.location.reload();
+                }
+            });
+        });
+    </script>
+
+</#compress>
