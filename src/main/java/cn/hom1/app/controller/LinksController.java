@@ -23,7 +23,7 @@ public class LinksController {
     public String links(ModelMap modelMap) {
         List<Links> linkList = linksService.findAll();
         modelMap.addAttribute("links", linkList);
-        return "_links";
+        return "links";
     }
 
     @RequestMapping("updateData")
