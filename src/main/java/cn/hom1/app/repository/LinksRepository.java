@@ -15,7 +15,7 @@ public interface LinksRepository extends JpaRepository<Links,String> {
     /*
      * 获取普通网站
      */
-    @Query(value = "select * from links where is_touch = 0 and is_recommend = 0", nativeQuery = true)
+    @Query(value = "select * from links where is_touch = 0 and is_recommend = 0 order by ordered asc", nativeQuery = true)
     List<Links> findSite();
 
     /*

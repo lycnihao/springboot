@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <section class="content-header" id="animated-header">
         <h1 style="display: inline-block;">网站列表</h1>
-        <a class="btn btn-xs btn-info" id="btnNewPage" href="/admin/page/new">
+        <a class="btn btn-xs btn-info"  href="javascript:;" onclick="jQuery('#addModal').modal('show', {backdrop: 'static'});">
           <i class="fa fa-plus"></i>添加网站 </a>
         <ol class="breadcrumb">
           <li>
@@ -73,8 +73,8 @@
                                     <span class="email">Admin</span>
                                 </td>
                                 <td class="action-links">
-                                    <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId},title:'${link.title}'});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
-                                    <a href="javascript:;" onclick="jQuery('#modal-1').modal('show', {backdrop: 'static'});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
+                                    <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId}});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
+                                    <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${link.linkId}});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
                                 </td>
                             </tr>
                         </#list>
@@ -84,27 +84,98 @@
             </div>
         </div>
       </section>
-        <#include "module/_footer.ftl">
     </div>
-    <!-- Modal 1 (Basic)-->
-    <div class="modal fade" id="modal-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">删除网站</h4>
+
+
+    <!-- 新增 -->
+    <div class="modal fade" id="addModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">新增网站</h4>
+          </div>
+          <div class="modal-body">
+            <input id="icon" type="hidden" value="">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-sm-4 text-center">
+                  <div class="upload-img">
+                    <img class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
+                    <span class="upload-img-text">选择图片</span>
+                  </div>
                 </div>
-                <div class="modal-body">
-                    确定要删除这个网址吗!
+                <div class="col-sm-8">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="title" class="control-label">名称</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="网站名称">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group no-margin">
+                        <label for="summary" class="control-label">简介</label>
+                        <textarea class="form-control autogrow" id="summary" placeholder="对此标签页的简介文字"></textarea>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-info">确定</button>
-                </div>
+              </div>
             </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="url" class="control-label">网址</label>
+                  <input type="text" class="form-control" id="url" name="url" placeholder="Https://">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="tags" class="control-label">标签</label>
+                  <select class="tags form-control" multiple="multiple">
+                    <option selected="selected">orange</option>
+                    <option>white</option>
+                    <option selected="selected">purple</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="createTime" class="control-label">添加时间</label>
+                  <input type="text" class="form-control" id="createTime" name="createTime" placeholder="2017-08-01">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-5">
+                <label for="ordered" class="control-label">序号</label>
+                <input type="text" class="form-control" id="ordered" name="ordered" placeholder="序号">
+              </div>
+              <div class="form-group col-md-5">
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="isTouch" value="1"> 置顶
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" id="isRecommend" value="1"> 推荐
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-info" id="add">保存</button>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- updateModal (Long Modal)-->
+    <!-- 修改-->
     <div class="modal fade" id="updateModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -113,13 +184,15 @@
                     <h4 class="modal-title">编辑网站</h4>
                 </div>
                 <div class="modal-body">
+                  <input id="u-icon" type="hidden">
+                  <input id="u-linkId" type="hidden">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-sm-4 text-center">
-                                <div class="droppable-area dz-clickable">
-                                    <input id="u-icon" type="hidden">
-                                    选择图片
-                                </div>
+                              <div class="upload-img">
+                                <img id="u-img-icon" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
+                                <span class="upload-img-text">选择图片</span>
+                              </div>
                             </div>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -154,7 +227,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="tags" class="control-label">标签</label>
-                                  <select class="u-tags form-control" multiple="multiple">
+                                  <select class="tags form-control" multiple="multiple">
                                     <option selected="selected">orange</option>
                                     <option>white</option>
                                     <option selected="selected">purple</option>
@@ -171,15 +244,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" id="u-isTouch" value="1"> 置顶
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" id="u-isRecommend" value="1"> 推荐
-                                </label>
-                            </div>
+                        <div class="form-group col-md-5">
+                          <label for="u-ordered" class="control-label">序号</label>
+                          <input type="text" class="form-control" id="u-ordered" placeholder="序号">
+                        </div>
+                        <div class="form-group col-md-5">
+                          <label class="checkbox-inline">
+                            <input type="checkbox" id="u-isTouch" value="1"> 置顶
+                          </label>
+                          <label class="checkbox-inline">
+                            <input type="checkbox" id="u-isRecommend" value="1"> 推荐
+                          </label>
                         </div>
                     </div>
                 </div>
@@ -190,11 +265,38 @@
             </div>
         </div>
     </div>
+    <!-- 删除 -->
+    <div class="modal fade" id="deleteModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">删除网站</h4>
+          </div>
+          <div class="modal-body"><input id="link-id" type="hidden">
+            确定要删除这个网址吗!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-info" id="delete">确定</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <link rel="stylesheet" href="/static/plugins/select2/css/select2.css">
     <link rel="stylesheet" href="/static/plugins/select2/css/select2-bootstrap.css">
     <script src="/static/plugins/select2/js/select2.min.js"></script>
     <@footer/>
     <script>
+
+      $(function () {
+        $(".tags").select2({
+          placeholder: 'Choose your favorite US Countries',
+          allowClear: true,
+          dropdownAutoWidth: true
+        });
+      });
+
         $('#updateModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)[0];
             var id = button.id;
@@ -202,11 +304,7 @@
             $('#u-isTouch').prop('checked', false);
             $.get('links/updateData',{'linkId':id},function (result) {
                 console.log(result);
-              $(".u-tags").select2({
-                placeholder: 'Choose your favorite US Countries',
-                allowClear: true,
-                dropdownAutoWidth: true
-              });
+
                 $('#u-linkId').val(result.linkId);
                 $('#u-title').val(result.title);
                 $('#u-url').val(result.url);
@@ -214,6 +312,8 @@
                 $('#u-summary').val(result.summary);
                 $('#u-ordered').val(result.ordered);
                 $('#u-createTime').val(result.createTime);
+                $('#u-img-icon').attr('src',result.icon);;
+
                 if(result.isTouch == 1){
                   $('#u-isTouch').prop('checked', true)
                 }
@@ -226,11 +326,9 @@
         });
 
         $('#deleteModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var id = button.data('id');
-            var title = button.data('title');
+            var button = $(event.relatedTarget)[0];
+            var id = button.id;
             var modal = $(this);
-            modal.find('.link-title').text(title);
             modal.find('#link-id').val(id);
         });
 
@@ -245,7 +343,7 @@
             var createTime = $('#u-createTime').val();
             var isTouch = $('#u-isTouch').prop('checked');
             var isRecommend = $('#u-isRecommend').prop('checked');
-            var data = {'linkId':linkId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':createTime,'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0};
+            var data = {'linkId':linkId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0};
             $.ajax({
                 url:'links/save',
                 type:'post',
@@ -259,10 +357,19 @@
         });
 
         $("#add").click(function () {
+          var title = $('#title').val();
+          var url =  $('#url').val();
+          var icon =  $('#icon').val();
+          var summary = $('#summary').val();
+          var ordered = $('#ordered').val();
+          var createTime = $('#createTime').val();
+          var isTouch = $('#isTouch').prop('checked');
+          var isRecommend = $('#isRecommend').prop('checked');
+          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0};
             $.ajax({
                 url:'links/save',
                 type:'post',
-                data:$("#addModal form").serialize(),
+                data:data,
                 success:function (result) {
                     alert("新增成功！");
                     window.location.reload();

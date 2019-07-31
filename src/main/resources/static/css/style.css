@@ -1,0 +1,42 @@
+.profile-img {
+  display: inline-block;
+  background: #ededed;
+  border: 2px dashed #cbcbcb;
+  width: 150px;
+  min-height: 150px!important;
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+  font-size: 15px;
+  color: #646565;
+  margin-bottom: 30px;
+  -webkit-border-radius: 50%;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 50%;
+  -moz-background-clip: padding;
+  border-radius: 50%;
+  background-clip: padding-box;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.upload-img-text{
+  display: none;
+}
+.upload-img:hover img{
+  filter: brightness(60%);
+}
+.upload-img:hover .upload-img-text{
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 40px;
+}

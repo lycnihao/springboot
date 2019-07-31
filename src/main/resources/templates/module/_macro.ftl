@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/static/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="/static/plugins/dropzone/css/dropzone.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <script src="/static/plugins/jquery/jquery.min.js"></script>
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -27,6 +27,7 @@
 </#macro>
 
 <#macro footer>
+<#include "_footer.ftl">
 </div>
 
 <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>

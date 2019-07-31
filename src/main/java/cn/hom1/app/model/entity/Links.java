@@ -1,5 +1,6 @@
 package cn.hom1.app.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import lombok.Data;
 
@@ -77,4 +78,9 @@ public class Links {
      */
     @Column(name = "isRecommend")
     private int isRecommend;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    public Date getCreateTime() {
+        return createTime;
+    }
 }
