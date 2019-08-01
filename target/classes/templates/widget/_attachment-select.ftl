@@ -23,9 +23,9 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="allAttach">
                     <div class="row">
-                        <#list attachments as attachment>
+                        <#list attachments.content as attachment>
                             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 div-thumbnail">
-                                <a href="javascript:void(0)" class="thumbnail" onclick="doTransport('<#if !attachment.attachLocation?? || attachment.attachLocation! == 'server'>${options.blog_url!}</#if>${attachment.attachPath}')">
+                                <a href="javascript:void(0)" class="thumbnail" onclick="doTransport('${attachment.attachPath}')">
                                     <img src="${attachment.attachSmallPath}" class="img-responsive">
                                 </a>
                             </div>

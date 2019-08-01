@@ -96,7 +96,7 @@ public class AttachmentController {
         final Page<Attachment> attachments = attachmentService.listAll(pageable);
         model.addAttribute("attachments", attachments);
         model.addAttribute("id", id);
-        return "admin/widget/_attachment-select";
+        return "widget/_attachment-select";
     }
 
 }
