@@ -4,12 +4,17 @@ import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.Attachment;
 import cn.hom1.app.service.AttachmentService;
 
+import cn.hutool.core.util.StrUtil;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +36,7 @@ public class AttachmentController {
 
     @RequestMapping("uploadModal")
     public String uploadModal() {
-        return "attachment-upload";
+        return "widget/attachment-upload";
     }
 
 
@@ -72,8 +77,26 @@ public class AttachmentController {
      */
     @GetMapping(value = "/attachment")
     public String attachmentDetail(Model model, @RequestParam("attachId") Long attachId) {
-        Attachment attachment = attachmentService.fetchById(attachId);
+        Optional<Attachment> attachment = attachmentService.fetchById(attachId);
         model.addAttribute("attachment", attachment);
-        return "attachment-detail";
+        return "widget/attachment-detail";
     }
+
+    /**
+     * 跳转选择附件页面
+     *
+     * @param model model
+     * @return 模板路径admin/widget/_attachment-select
+     */
+    @GetMapping(value = "/select")
+    public String selectAttachment(Model model,
+        @PageableDefault(size = 18, sort = "attachId", direction = Sort.Direction.DESC) Pageable pageable,
+        @RequestParam(value = "id", defaultValue = "none") String id,
+        @RequestParam(value = "type", defaultValue = "normal") String type) {
+        final Page<Attachment> attachments = attachmentService.listAll(pageable);
+        model.addAttribute("attachments", attachments);
+        model.addAttribute("id", id);
+        return "admin/widget/_attachment-select";
+    }
+
 }

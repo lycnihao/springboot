@@ -3,7 +3,9 @@ package cn.hom1.app.service.impl;
 import cn.hom1.app.model.entity.Attachment;
 import cn.hom1.app.model.enums.AttachLocationEnum;
 import cn.hom1.app.repository.AttachmentRepository;
+import cn.hom1.app.repository.base.BaseRepository;
 import cn.hom1.app.service.AttachmentService;
+import cn.hom1.app.service.base.AbstractCrudService;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrBuilder;
 import cn.hutool.core.util.StrUtil;
@@ -12,10 +14,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,10 +32,14 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2019-07-15 14:22
  */
 @Service
-public class AttachmentServiceImpl implements AttachmentService {
+public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long> implements AttachmentService {
 
-  @Autowired
-  private AttachmentRepository attachmentRepository;
+  private final AttachmentRepository attachmentRepository;
+
+  public AttachmentServiceImpl(AttachmentRepository attachmentRepository) {
+    super(attachmentRepository);
+    this.attachmentRepository = attachmentRepository;
+  }
 
   @Override
   public Map<String, String> upload(MultipartFile file, HttpServletRequest request) {
@@ -145,9 +155,36 @@ public class AttachmentServiceImpl implements AttachmentService {
     return resultMap;
   }
 
+  /**
+   * 获取所有附件信息
+   *
+   * @return List
+   */
   @Override
   public List<Attachment> listAll() {
-    return attachmentRepository.findAll();
+    return super.listAll();
+  }
+
+  /**
+   * 获取所有附件信息 分页
+   *
+   * @param pageable pageable
+   * @return Page
+   */
+  @Override
+  public Page<Attachment> listAll(Pageable pageable) {
+    return attachmentRepository.findAll(pageable);
+  }
+
+  /**
+   * 根据附件id查询附件
+   *
+   * @param attachId attachId
+   * @return Optional
+   */
+  @Override
+  public Optional<Attachment> fetchById(Long attachId) {
+    return attachmentRepository.findById(attachId);
   }
 
   @Override
@@ -155,8 +192,4 @@ public class AttachmentServiceImpl implements AttachmentService {
     attachmentRepository.save(attachment);
   }
 
-  @Override
-  public Attachment fetchById(long attachId) {
-    return attachmentRepository.findByAttachId(attachId);
-  }
 }
