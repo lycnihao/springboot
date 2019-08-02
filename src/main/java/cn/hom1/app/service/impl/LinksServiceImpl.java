@@ -31,8 +31,8 @@ public class LinksServiceImpl implements LinksService {
     }
 
     @Override
-    public List<Links> findAll() {
-        return linksRepository.findAll();
+    public List<Links> findList() {
+        return linksRepository.findList();
     }
 
     @Override
@@ -42,6 +42,7 @@ public class LinksServiceImpl implements LinksService {
 
     @Override
     public void save(Links link) {
+        link.setOrdered(linksRepository.findMaxOrdered() + 1);
         linksRepository.save(link);
     }
 

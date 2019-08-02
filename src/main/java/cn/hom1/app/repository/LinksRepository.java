@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface LinksRepository extends JpaRepository<Links,String> {
 
+    @Query(value = "select * from links order by is_touch or is_recommend desc,ordered asc", nativeQuery = true)
+    List<Links>  findList();
     /*
      * 获取普通网站
      */
@@ -29,5 +31,8 @@ public interface LinksRepository extends JpaRepository<Links,String> {
     List<Links> findByIsRecommend(Integer type);
 
     Links findByLinkId(Integer linkId);
+
+  @Query(value = "select MAX(ordered) from links", nativeQuery = true)
+    Integer findMaxOrdered();
 
 }

@@ -72,7 +72,6 @@
 <script src="/static/plugins/fileinput/fileinput.min.js"></script>
 <script src="/static/plugins/fileinput/zh.min.js"></script>
 <script>
-    var halo = new $.halo();
     $('#uploadImg').fileinput({
         language: 'zh',
         uploadUrl: '/admin/attachments/upload',

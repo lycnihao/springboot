@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>附件管理</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/AdminLTE.min.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -67,7 +68,7 @@
 
 </body>
 <script src="/static/plugins/jquery/jquery.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/static/plugins/layer/layer.js"></script>
 <script>
     function layerModal(url, title) {

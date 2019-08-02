@@ -21,7 +21,7 @@ public interface LinksService {
      */
     List<Links> findRecommend();
 
-    List<Links> findAll();
+    List<Links> findList();
 
     Links findByLinksId(Integer linksId);
 

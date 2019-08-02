@@ -32,6 +32,7 @@
 
 <script src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/static/js/adminlte.min.js"></script>
+<script src="/static/plugins/layer/layer.js"></script>
 
 <#nested />
 </body>

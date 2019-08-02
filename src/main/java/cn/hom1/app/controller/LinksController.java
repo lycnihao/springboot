@@ -21,7 +21,7 @@ public class LinksController {
 
     @RequestMapping()
     public String links(ModelMap modelMap) {
-        List<Links> linkList = linksService.findAll();
+        List<Links> linkList = linksService.findList();
         modelMap.addAttribute("links", linkList);
         return "links";
     }

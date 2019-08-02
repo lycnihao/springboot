@@ -40,7 +40,7 @@
                                     <input type="checkbox" name="ids" value="${link.linkId}"/>
                                 </td>
                                 <td>
-                                    <a href="#">
+                                    <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId}});">
                                         <img src="${link.icon}" class="direct-chat-img" alt="user-pic" />
                                     </a>
                                 </td>
@@ -51,17 +51,17 @@
                                     <span class="email">${link.url}</span>
                                 </td>
                                 <td class="hidden-xs hidden-sm">
-                                    <span class="email">设计师/设计工具</span>
+                                  <div class="label label-primary">tools</div>
+                                  <div class="label label-primary">design</div>
                                 </td>
                                 <td class="text-center">
                                     <span class="email">${(link.isTouch == 0 && link.isRecommend == 0)?string('<div class="badge bg-light-blue">网站</div>',
-                                    (link.isTouch == 1 && link.isRecommend == 1)?string('<div class="badge bg-green">推荐</div><div class="badge bg-yellow">置顶</div>',
+                                    (link.isTouch == 1 && link.isRecommend == 1)?string('<div class="badge bg-yellow">置顶</div><div class="badge bg-green">推荐</div>',
                                     (link.isTouch == 1)?string('<div class="badge bg-yellow">置顶</div>',
                                     '<div class="badge bg-green">推荐</div>')) )}</span>
                                 </td>
                                 <td>
-                                    <div class="label label-primary">tools</div>
-                                    <div class="label label-primary">design</div>
+                                  <span class="email">设计师/设计工具</span>
                                 </td>
                                 <td>
                                     <span class="email">${link.linkId}</span>
@@ -96,13 +96,12 @@
             <h4 class="modal-title">新增网站</h4>
           </div>
           <div class="modal-body">
-            <input id="icon" type="hidden" value="">
             <div class="row">
               <div class="col-md-12">
                 <div class="col-sm-4 text-center">
                   <div class="upload-img">
-                    <img class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
-                    <span class="upload-img-text">选择图片</span>
+                    <img id="icon" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
+                    <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=icon','选择附件')">选择图片</span>
                   </div>
                 </div>
                 <div class="col-sm-8">
@@ -154,11 +153,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-5">
-                <label for="ordered" class="control-label">序号</label>
-                <input type="text" class="form-control" id="ordered" name="ordered" placeholder="序号">
-              </div>
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-12">
                 <label class="checkbox-inline">
                   <input type="checkbox" id="isTouch" value="1"> 置顶
                 </label>
@@ -184,14 +179,13 @@
                     <h4 class="modal-title">编辑网站</h4>
                 </div>
                 <div class="modal-body">
-                  <input id="u-icon" type="hidden">
                   <input id="u-linkId" type="hidden">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-sm-4 text-center">
                               <div class="upload-img">
-                                <img id="u-img-icon" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
-                                <span class="upload-img-text">选择图片</span>
+                                <img id="u-icon" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
+                                <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=u-icon','选择附件')">选择图片</span>
                               </div>
                             </div>
                             <div class="col-sm-8">
@@ -246,7 +240,7 @@
                     <div class="row">
                         <div class="form-group col-md-5">
                           <label for="u-ordered" class="control-label">序号</label>
-                          <input type="text" class="form-control" id="u-ordered" placeholder="序号">
+                          <input type="number" class="form-control" id="u-ordered" placeholder="序号">
                         </div>
                         <div class="form-group col-md-5">
                           <label class="checkbox-inline">
@@ -308,11 +302,10 @@
                 $('#u-linkId').val(result.linkId);
                 $('#u-title').val(result.title);
                 $('#u-url').val(result.url);
-                $('#u-icon').val(result.icon);
+                $('#u-icon').attr('src',result.icon);
                 $('#u-summary').val(result.summary);
                 $('#u-ordered').val(result.ordered);
                 $('#u-createTime').val(result.createTime);
-                $('#u-img-icon').attr('src',result.icon);;
 
                 if(result.isTouch == 1){
                   $('#u-isTouch').prop('checked', true)
@@ -332,12 +325,11 @@
             modal.find('#link-id').val(id);
         });
 
-
         $("#update").click(function () {
             var linkId = $('#u-linkId').val();
             var title = $('#u-title').val();
             var url =  $('#u-url').val();
-            var icon =  $('#u-icon').val();
+            var icon =  $('#u-icon').attr('src');
             var summary = $('#u-summary').val();
             var ordered = $('#u-ordered').val();
             var createTime = $('#u-createTime').val();
@@ -359,13 +351,12 @@
         $("#add").click(function () {
           var title = $('#title').val();
           var url =  $('#url').val();
-          var icon =  $('#icon').val();
+          var icon =  $('#icon').attr('src');
           var summary = $('#summary').val();
-          var ordered = $('#ordered').val();
           var createTime = $('#createTime').val();
           var isTouch = $('#isTouch').prop('checked');
           var isRecommend = $('#isRecommend').prop('checked');
-          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0};
+          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0};
             $.ajax({
                 url:'links/save',
                 type:'post',
@@ -388,6 +379,19 @@
                 }
             });
         });
+
+        function layerModal(url, title) {
+          layer.open({
+            type: 2,
+            title: title,
+            shadeClose: true,
+            shade: 0.5,
+            maxmin: true,
+            area: ['90%', '90%'],
+            content: url,
+            scrollbar: false
+          });
+        }
     </script>
 
 </#compress>

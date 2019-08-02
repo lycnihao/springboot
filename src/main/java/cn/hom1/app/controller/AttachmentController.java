@@ -21,24 +21,24 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@RequestMapping("attachments")
+@RequestMapping("/admin/attachments")
 public class AttachmentController {
 
     @Autowired
     private AttachmentService attachmentService;
 
+    /**
+     * 附件列表列表
+     *
+     * @param model model
+     * @return 模板路径/admin_attachment
+     */
     @RequestMapping
-    public String attachment(Model model) {
-        List<Attachment> attachments = attachmentService.listAll();
+    public String attachment(Model model,@PageableDefault(size = 18, sort = "attachId", direction = Sort.Direction.DESC) Pageable pageable) {
+        final Page<Attachment> attachments = attachmentService.listAll(pageable);
         model.addAttribute("attachments", attachments);
         return "attachment";
     }
-
-    @RequestMapping("uploadModal")
-    public String uploadModal() {
-        return "widget/attachment-upload";
-    }
-
 
     @PostMapping("upload")
     @ResponseBody
@@ -67,18 +67,17 @@ public class AttachmentController {
         return new JsonResult(200, resultMap);
     }
 
-
     /**
      * 处理获取附件详情的请求
      *
      * @param model    model
      * @param attachId 附件编号
-     * @return 模板路径
+     * @return 模板路径 widget/_attachment-detail
      */
     @GetMapping(value = "/attachment")
     public String attachmentDetail(Model model, @RequestParam("attachId") Long attachId) {
-        Optional<Attachment> attachment = attachmentService.fetchById(attachId);
-        model.addAttribute("attachment", attachment);
+        final Optional<Attachment> attachment = attachmentService.fetchById(attachId);
+        model.addAttribute("attachment", attachment.orElse(new Attachment()));
         return "widget/attachment-detail";
     }
 

@@ -16,31 +16,11 @@
           <span>仪表盘</span>
         </a>
       </li>
-      <li class="treeview">
-        <a data-pjax="true" href="javascript:void(0)" data-pjax-state="">
-          <i class="fa fa-book"></i>
-          <span>文章</span>
-          <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+      <li>
+        <a data-pjax="true" href="/admin/links" data-pjax-state="">
+          <i class="fa fa-external-link"></i>
+          <span>网站</span>
         </a>
-        <ul class="treeview-menu" style="">
-          <li><a data-pjax="true" href="/admin/posts" data-pjax-state=""><i class="fa fa-circle-o"></i>所有文章</a></li>
-          <li><a data-pjax="true" href="/admin/posts/write" data-pjax-state=""><i class="fa fa-circle-o"></i>写文章</a></li>
-          <li><a data-pjax="true" href="/admin/category" data-pjax-state=""><i class="fa fa-circle-o"></i>分类目录</a></li>
-          <li><a data-pjax="true" href="/admin/tag" data-pjax-state=""><i class="fa fa-circle-o"></i>标签</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a data-pjax="true" href="javascript:void(0)" data-pjax-state="">
-          <i class="fa fa-desktop"></i>
-          <span>页面</span>
-          <span class="pull-right-container">
-<i class="fa fa-angle-left pull-right"></i>
-</span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a data-pjax="true" href="/admin/page" data-pjax-state=""><i class="fa fa-circle-o"></i>所有页面</a></li>
-          <li><a data-pjax="true" href="/admin/page/new" data-pjax-state=""><i class="fa fa-circle-o"></i>新建页面</a></li>
-        </ul>
       </li>
       <li>
         <a data-pjax="true" href="/admin/attachments" data-pjax-state="">
