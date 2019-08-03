@@ -42,7 +42,8 @@ public class LinksServiceImpl implements LinksService {
 
     @Override
     public void save(Links link) {
-        link.setOrdered(linksRepository.findMaxOrdered() + 1);
+        Integer max = linksRepository.findMaxOrdered();
+        link.setOrdered(max != null ? max + 1 : 1);
         linksRepository.save(link);
     }
 
@@ -50,5 +51,11 @@ public class LinksServiceImpl implements LinksService {
     public void delete(Integer linkId) {
         Links links = linksRepository.findByLinkId(linkId);
         linksRepository.delete(links);
+    }
+
+    @Override
+    public void updateVisitsByLinkId(Integer linkId) {
+        System.out.println(linkId);
+        linksRepository.updateVisitsByLinkId(linkId);
     }
 }

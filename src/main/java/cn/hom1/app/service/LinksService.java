@@ -28,4 +28,6 @@ public interface LinksService {
     void save(Links link);
 
     void delete(Integer linkId);
+
+    void updateVisitsByLinkId(Integer linkId);
 }
