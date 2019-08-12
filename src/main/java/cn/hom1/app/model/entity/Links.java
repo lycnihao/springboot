@@ -1,7 +1,11 @@
 package cn.hom1.app.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 import javax.persistence.*;
@@ -78,6 +82,15 @@ public class Links {
      */
     @Column(name = "isRecommend")
     private int isRecommend;
+
+    /**
+     * 链接所属分类
+     */
+    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinTable(name = "links_categories",
+            joinColumns = {@JoinColumn(name = "link_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "cate_id", nullable = false)})
+    private List<Category> categories = new ArrayList<>();
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public Date getCreateTime() {

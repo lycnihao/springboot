@@ -120,7 +120,7 @@ public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long>
       fullSmallPath.append(fileSuffix);
 
       //压缩图片
-      Thumbnails.of(fullPath.toString()).size(256, 256).keepAspectRatio(false).toFile(fullSmallPath.toString());
+      Thumbnails.of(fullPath.toString()).size(256, 256).keepAspectRatio(true).toFile(fullSmallPath.toString());
 
       //映射路径
       final StrBuilder filePath = new StrBuilder("/upload/");

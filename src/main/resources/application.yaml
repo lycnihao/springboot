@@ -4,14 +4,14 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/hom1db?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: hom1
-    password: iksen22.
+    username: root
+    password: root
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: false
-    open-in-view: false
+    open-in-view: true
 
 cors:
   url: http://www.hom1.cn

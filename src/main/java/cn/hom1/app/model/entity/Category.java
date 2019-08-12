@@ -1,7 +1,15 @@
 package cn.hom1.app.model.entity;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "category")
+@Data
 public class Category {
     /**
      * 分类Id
@@ -30,5 +38,9 @@ public class Category {
      */
     @Column(name = "description")
     private String description;
+
+    @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
+    private List<Links> posts = new ArrayList<>();
 
 }
