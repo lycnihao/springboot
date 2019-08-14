@@ -41,6 +41,6 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     @JsonIgnore
-    private List<Links> posts = new ArrayList<>();
+    private List<Links> links = new ArrayList<>();
 
 }

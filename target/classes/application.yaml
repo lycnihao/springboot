@@ -11,7 +11,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: false
-    open-in-view: false
+    open-in-view: true
 
 cors:
   url: http://www.hom1.cn

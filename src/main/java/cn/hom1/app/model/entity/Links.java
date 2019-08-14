@@ -86,9 +86,9 @@ public class Links {
     /**
      * 链接所属分类
      */
-    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinTable(name = "links_categories",
-            joinColumns = {@JoinColumn(name = "link_id", nullable = false)},
+             joinColumns = {@JoinColumn(name = "link_id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "cate_id", nullable = false)})
     private List<Category> categories = new ArrayList<>();
 
