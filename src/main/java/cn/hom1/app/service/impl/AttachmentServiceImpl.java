@@ -3,7 +3,6 @@ package cn.hom1.app.service.impl;
 import cn.hom1.app.model.entity.Attachment;
 import cn.hom1.app.model.enums.AttachLocationEnum;
 import cn.hom1.app.repository.AttachmentRepository;
-import cn.hom1.app.repository.base.BaseRepository;
 import cn.hom1.app.service.AttachmentService;
 import cn.hom1.app.service.base.AbstractCrudService;
 import cn.hutool.core.date.DateUtil;
@@ -18,8 +17,8 @@ import java.util.Optional;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import net.coobird.thumbnailator.Thumbnails;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,9 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service
 public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long> implements AttachmentService {
+
+  private final static Logger logger = LoggerFactory.getLogger(AttachmentServiceImpl.class);
+
 
   private final AttachmentRepository attachmentRepository;
 
@@ -119,26 +121,23 @@ public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long>
       fullSmallPath.append("_small.");
       fullSmallPath.append(fileSuffix);
 
-      //压缩图片
-      Thumbnails.of(fullPath.toString()).size(256, 256).keepAspectRatio(true).toFile(fullSmallPath.toString());
-
       //映射路径
       final StrBuilder filePath = new StrBuilder("/upload/");
-/*      filePath.append(DateUtil.thisYear());
-      filePath.append("/");
-      filePath.append(DateUtil.thisMonth());
-      filePath.append("/");*/
       filePath.append(fileName);
 
       //缩略图映射路径
       final StrBuilder fileSmallPath = new StrBuilder("/upload/");
-/*      fileSmallPath.append(DateUtil.thisYear());
-      fileSmallPath.append("/");
-      fileSmallPath.append(DateUtil.thisMonth());
-      fileSmallPath.append("/");*/
       fileSmallPath.append(nameWithOutSuffix);
       fileSmallPath.append("_small.");
       fileSmallPath.append(fileSuffix);
+
+      try {
+        //压缩图片
+        Thumbnails.of(fullPath.toString()).size(256, 256).keepAspectRatio(true).toFile(fullSmallPath.toString());
+
+      } catch (Exception e){
+        logger.error(e.getMessage());
+      }
 
       final String size = String.valueOf(new File(fullPath.toString()).length());
       final String wh = "**";

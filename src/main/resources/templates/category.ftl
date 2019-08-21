@@ -21,24 +21,24 @@
                 <div class="box box-primary">
                     <#if updateCategory??>
                         <div class="box-header with-border">
-                            <h3 class="box-title">修改分类目录<#if updateCategory??>[${updateCategory.cateName}]</#if></h3>
+                            <h3 class="box-title">修改分类目录<#if updateCategory??>[${updateCategory.name}]</#if></h3>
                         </div>
                         <form role="form" id="cateSaveForm">
-                            <input type="hidden" name="cateId" value="${updateCategory.cateId?c}">
+                            <input type="hidden" name="categoryId" value="${updateCategory.categoryId?c}">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="cateName">名称：</label>
-                                    <input type="text" class="form-control" id="cateName" name="cateName" value="${updateCategory.cateName!}">
+                                    <label for="name">名称：</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="${updateCategory.name!}">
                                     <small>*页面上所显示的名称</small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="cateUrl">路径名称：</label>
-                                    <input type="text" class="form-control" id="cateUrl" name="cateUrl" value="${updateCategory.cateUrl!}">
+                                    <label for="slugName">路径名称：</label>
+                                    <input type="text" class="form-control" id="slugName" name="slugName" value="${updateCategory.slugName!}">
                                     <small>*这是文章路径上显示的名称，最好为英文</small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="cateDesc" class="control-label">描述：</label>
-                                    <textarea class="form-control" rows="3" id="cateDesc" name="cateDesc" style="resize: none">${updateCategory.cateDesc!}</textarea>
+                                    <label for="description" class="control-label">描述：</label>
+                                    <textarea class="form-control" rows="3" id="description" name="description" style="resize: none">${updateCategory.description!}</textarea>
                                     <small>*添加描述，部分页面可显示</small>
                                 </div>
                             </div>
@@ -54,18 +54,18 @@
                         <form role="form" id="cateSaveForm">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="cateName">名称：</label>
-                                    <input type="text" class="form-control" id="cateName" name="cateName">
+                                    <label for="name">名称：</label>
+                                    <input type="text" class="form-control" id="name" name="name">
                                     <small>*页面上所显示的名称</small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="cateUrl">路径名称：</label>
-                                    <input type="text" class="form-control" id="cateUrl" name="cateUrl">
+                                    <label for="slugName">路径名称：</label>
+                                    <input type="text" class="form-control" id="slugName" name="slugName">
                                     <small>*这是文章路径上显示的名称，最好为英文</small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="cateDesc" class="control-label">描述：</label>
-                                    <textarea class="form-control" rows="3" id="cateDesc" name="cateDesc" style="resize: none"></textarea>
+                                    <label for="description" class="control-label">描述：</label>
+                                    <textarea class="form-control" rows="3" id="description" name="description" style="resize: none"></textarea>
                                     <small>*添加描述，部分主题可显示</small>
                                 </div>
                             </div>
@@ -95,19 +95,19 @@
                                     <#if categories?? && categories?size gt 0>
                                         <#list categories as cate>
                                             <tr>
-                                                <td>${cate.cateName!}</td>
-                                                <td>${cate.cateUrl!}</td>
-                                                <td>${cate.cateDesc!}</td>
+                                                <td>${cate.name!}</td>
+                                                <td>${cate.slugName!}</td>
+                                                <td>${cate.description!}</td>
                                                 <td>
-                                                    <span class="label" style="background-color: #d6cdcd;">${cate.posts?size}</span>
+                                                    <span class="label" style="background-color: #d6cdcd;">${cate.links?size}</span>
                                                 </td>
                                                 <td>
-                                                    <#if updateCategory?? && updateCategory.cateId?c==cate.cateId?c>
-                                                        <a href="javascript:void(0)" class="btn btn-primary btn-xs " disabled><@spring.message code='common.btn.editing' /></a>
+                                                    <#if updateCategory?? && updateCategory.categoryId?c==cate.categoryId?c>
+                                                        <a href="javascript:void(0)" class="btn btn-primary btn-xs " disabled>修改中</a>
                                                     <#else >
-                                                        <a data-pjax="true" href="/admin/category/edit?cateId=${cate.cateId?c}" class="btn btn-primary btn-xs "><@spring.message code='common.btn.modify' /></a>
+                                                        <a data-pjax="true" href="/admin/category/edit?cateId=${cate.categoryId?c}" class="btn btn-primary btn-xs ">修改</a>
                                                     </#if>
-                                                    <button class="btn btn-danger btn-xs " onclick="modelShow('/admin/category/remove?cateId=${cate.cateId?c}')"><@spring.message code='common.btn.delete' /></button>
+                                                    <button class="btn btn-danger btn-xs " onclick="modelShow('/admin/category/remove?cateId=${cate.categoryId?c}')">删除</button>
                                                 </td>
                                             </tr>
                                         </#list>
@@ -150,7 +150,15 @@
 
     }
     function save() {
-
+      var param = $("#cateSaveForm").serialize();
+      $.post('/admin/category/save',param,function (data) {
+        if (data.code === 1) {
+            alert(data.msg);
+            window.location.reload();
+        } else {
+            alert(data.msg);
+        }
+      },'JSON');
     }
 </script>
 </@footer>

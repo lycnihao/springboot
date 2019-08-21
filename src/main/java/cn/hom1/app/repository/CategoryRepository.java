@@ -11,4 +11,6 @@ import java.util.List;
 public interface CategoryRepository extends BaseRepository<Category, Long> {
     @Query(value = "select * from category", nativeQuery = true)
     List<Category> findList();
+
+    Category findCategoryBySlugName(String slugName);
 }

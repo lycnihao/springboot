@@ -26,4 +26,9 @@ public class CategoryServiceImpl extends AbstractCrudService<Category, Long> imp
     public List<Category> findList() {
         return repository.findList();
     }
+
+    @Override
+    public Category findBySlugName(String slugName) {
+        return categoryRepository.findCategoryBySlugName(slugName);
+    }
 }
