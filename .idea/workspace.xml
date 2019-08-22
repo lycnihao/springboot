@@ -23,53 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CategoryController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/CategoryController.java">
+      <file leaf-file-name="category.ftl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/category.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_sidebar.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_sidebar.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AttachmentService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/AttachmentService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AttachmentServiceImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/AttachmentServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-783">
-              <caret line="133" column="11" lean-forward="true" selection-start-line="133" selection-start-column="11" selection-end-line="133" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HelloController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/HelloController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="11" column="37" selection-start-line="11" selection-end-line="12" />
+            <state relative-caret-position="129">
+              <caret line="149" column="6" selection-start-line="149" selection-start-column="6" selection-end-line="149" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -157,10 +115,10 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/CategoryService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/CategoryServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/category.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/CategoryController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/module/_sidebar.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/AttachmentServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/category.ftl" />
       </list>
     </option>
   </component>
@@ -189,6 +147,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -273,9 +234,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -364,12 +322,13 @@
       <workItem from="1565700224916" duration="5806000" />
       <workItem from="1565785894444" duration="3278000" />
       <workItem from="1566304906681" duration="3143000" />
-      <workItem from="1566371447654" duration="5080000" />
+      <workItem from="1566371447654" duration="5678000" />
+      <workItem from="1566460860430" duration="279000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101246000" />
+    <option name="totallyTimeSpent" value="102123000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -396,7 +355,7 @@
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2971506" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6888361" visible="true" weight="0.43380463" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6888361" visible="true" weight="0.4395887" />
       <window_info anchor="right" id="Bean Validation" order="4" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="10" />
@@ -479,9 +438,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -511,10 +467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
           <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
-          <folding>
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -615,10 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
           <caret line="31" column="67" lean-forward="true" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
-          <folding>
-            <element signature="e#811#812#0" expanded="true" />
-            <element signature="e#855#856#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -626,13 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/category.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3501">
-          <caret line="24" column="30" lean-forward="true" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -658,13 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_sidebar.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -686,7 +620,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/CategoryController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="1269">
           <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -720,11 +654,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/AttachmentServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-783">
-          <caret line="133" column="11" lean-forward="true" selection-start-line="133" selection-start-column="11" selection-end-line="133" selection-end-column="11" />
+        <state relative-caret-position="-459">
+          <caret line="133" column="11" selection-start-line="133" selection-start-column="11" selection-end-line="133" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_sidebar.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/category.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="149" column="6" selection-start-line="149" selection-start-column="6" selection-end-line="149" selection-end-column="6" />
         </state>
       </provider>
     </entry>

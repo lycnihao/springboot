@@ -92,7 +92,7 @@ public class CategoryController {
         } catch (Exception e) {
             System.out.println("Delete category failed: {}"+ e.getMessage());
         }
-        return "redirect:/category";
+        return "redirect:/admin/category";
     }
 
 }

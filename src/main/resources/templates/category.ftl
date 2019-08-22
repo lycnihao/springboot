@@ -105,7 +105,7 @@
                                                     <#if updateCategory?? && updateCategory.categoryId?c==cate.categoryId?c>
                                                         <a href="javascript:void(0)" class="btn btn-primary btn-xs " disabled>修改中</a>
                                                     <#else >
-                                                        <a data-pjax="true" href="/admin/category/edit?cateId=${cate.categoryId?c}" class="btn btn-primary btn-xs ">修改</a>
+                                                        <a href="/admin/category/edit?cateId=${cate.categoryId?c}" class="btn btn-primary btn-xs ">修改</a>
                                                     </#if>
                                                     <button class="btn btn-danger btn-xs " onclick="modelShow('/admin/category/remove?cateId=${cate.categoryId?c}')">删除</button>
                                                 </td>
@@ -147,7 +147,7 @@
         $('#removeCateModal').modal();
     }
     function removeIt(){
-
+      window.location.href = $.trim($("#url").val());
     }
     function save() {
       var param = $("#cateSaveForm").serialize();
