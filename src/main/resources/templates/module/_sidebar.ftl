@@ -23,6 +23,12 @@
         </a>
       </li>
       <li>
+        <a data-pjax="true" href="/admin/category" data-pjax-state="">
+          <i class="fa fa-external-link"></i>
+          <span>分类</span>
+        </a>
+      </li>
+      <li>
         <a data-pjax="true" href="/admin/attachments" data-pjax-state="">
           <i class="fa fa-picture-o"></i>
           <span>附件</span>

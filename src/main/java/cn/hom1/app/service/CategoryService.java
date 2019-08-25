@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CategoryService extends CrudService<Category, Long> {
     List<Category> findList();
+
+    Category findBySlugName(String slugName);
 }
