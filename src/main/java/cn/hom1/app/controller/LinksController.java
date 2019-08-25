@@ -1,7 +1,9 @@
 package cn.hom1.app.controller;
 
 import cn.hom1.app.model.dto.JsonResult;
+import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.Links;
+import cn.hom1.app.service.CategoryService;
 import cn.hom1.app.service.LinksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +21,15 @@ public class LinksController {
     @Autowired
     private LinksService linksService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping()
     public String links(ModelMap modelMap) {
         List<Links> linkList = linksService.findList();
+        List<Category> categories = categoryService.findList();
         modelMap.addAttribute("links", linkList);
+        modelMap.addAttribute("categories", categories);
         return "links";
     }
 

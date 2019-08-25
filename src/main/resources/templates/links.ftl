@@ -1,4 +1,5 @@
 <#compress >
+    <link rel="stylesheet" href="/static/plugins/select2/css/select2.min.css">
     <#include "module/_macro.ftl">
     <@head>小红衣后台管理 | 首页</@head>
     <div class="content-wrapper">
@@ -51,11 +52,12 @@
                                     <span class="email">${link.url}</span>
                                 </td>
                                 <td class="hidden-xs hidden-sm">
-                                  <div class="label label-primary">tools</div>
-                                  <div class="label label-primary">design</div>
+                                    <#list link.categories as cate>
+                                        <div class="label label-primary">${cate.name}</div>
+                                    </#list>
                                 </td>
-                                <td class="text-center">
-                                    <span class="email">${(link.isTouch == 0 && link.isRecommend == 0)?string('<div class="badge bg-light-blue">网站</div>',
+                                <td>
+                                    <span>${(link.isTouch == 0 && link.isRecommend == 0)?string('<div class="badge bg-light-blue">网站</div>',
                                     (link.isTouch == 1 && link.isRecommend == 1)?string('<div class="badge bg-yellow">置顶</div><div class="badge bg-green">推荐</div>',
                                     (link.isTouch == 1)?string('<div class="badge bg-yellow">置顶</div>',
                                     '<div class="badge bg-green">推荐</div>')) )}</span>
@@ -135,11 +137,11 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="tags" class="control-label">标签</label>
-                  <select class="tags form-control" multiple="multiple">
-                    <option selected="selected">orange</option>
-                    <option>white</option>
-                    <option selected="selected">purple</option>
+                  <label for="categories" class="control-label">分类</label>
+                  <select class="categories form-control" multiple="multiple" style="width: 100%;">
+                      <#list categories as categorie>
+                          <option value="${categorie.categoryId}">${categorie.name}</option>
+                      </#list>
                   </select>
                 </div>
               </div>
@@ -220,11 +222,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="tags" class="control-label">标签</label>
-                                  <select class="tags form-control" multiple="multiple">
-                                    <option selected="selected">orange</option>
-                                    <option>white</option>
-                                    <option selected="selected">purple</option>
+                                <label for="categories" class="control-label">分类</label>
+                                  <select class="categories form-control" multiple="multiple" style="width: 100%;">
+                                      <#list categories as categorie>
+                                          <option value="${categorie.categoryId}">${categorie.name}</option>
+                                      </#list>
                                   </select>
                             </div>
                         </div>
@@ -277,14 +279,12 @@
         </div>
       </div>
     </div>
-    <link rel="stylesheet" href="/static/plugins/select2/css/select2.css">
-    <link rel="stylesheet" href="/static/plugins/select2/css/select2-bootstrap.css">
     <script src="/static/plugins/select2/js/select2.min.js"></script>
     <@footer/>
     <script>
 
       $(function () {
-        $(".tags").select2({
+        $(".categories").select2({
           placeholder: 'Choose your favorite US Countries',
           allowClear: true,
           dropdownAutoWidth: true
