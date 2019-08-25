@@ -138,7 +138,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label for="categories" class="control-label">分类</label>
-                  <select class="categories form-control" multiple="multiple" style="width: 100%;">
+                  <select id="categories" class="categories form-control" multiple="multiple" style="width: 100%;">
                       <#list categories as categorie>
                           <option value="${categorie.categoryId}">${categorie.name}</option>
                       </#list>
@@ -223,7 +223,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="categories" class="control-label">分类</label>
-                                  <select class="categories form-control" multiple="multiple" style="width: 100%;">
+                                  <select id="u-categories" class="categories form-control" multiple="multiple" style="width: 100%;">
                                       <#list categories as categorie>
                                           <option value="${categorie.categoryId}">${categorie.name}</option>
                                       </#list>
@@ -307,6 +307,10 @@
                 $('#u-ordered').val(result.ordered);
                 $('#u-createTime').val(result.createTime);
 
+                $.each(result.categories, function(key, val) {
+                    console.log(val);
+                });
+
                 if(result.isTouch == 1){
                   $('#u-isTouch').prop('checked', true)
                 }
@@ -335,7 +339,8 @@
             var createTime = $('#u-createTime').val();
             var isTouch = $('#u-isTouch').prop('checked');
             var isRecommend = $('#u-isRecommend').prop('checked');
-            var data = {'linkId':linkId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0};
+            var cateList = $("#categories").val();
+            var data = {'linkId':linkId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateList':cateList};
             $.ajax({
                 url:'links/save',
                 type:'post',
@@ -356,7 +361,8 @@
           var createTime = $('#createTime').val();
           var isTouch = $('#isTouch').prop('checked');
           var isRecommend = $('#isRecommend').prop('checked');
-          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0};
+          var cateList = $("#u-categories").val();
+          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateList':cateList};
             $.ajax({
                 url:'links/save',
                 type:'post',

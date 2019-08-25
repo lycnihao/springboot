@@ -2,108 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffccc536-03eb-4cff-bba0-9fbff6c66548" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2-bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2-spinner.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2x2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/plugins/select2/js/select2.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/plugins/select2/js/select2.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/links.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/links.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/demo.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/logback.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/AdminLTE.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/_all-skins.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/_all-skins.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-black-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-black-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-black.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-black.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-blue-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-blue-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-blue.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-blue.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-green-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-green-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-green.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-green.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-purple-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-purple-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-purple.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-purple.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-red-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-red-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-red.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-red.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-yellow-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-yellow-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-yellow.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/skins/skin-yellow.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/images/user-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/images/user-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/images/user-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/images/user-4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/images/user-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/adminlte.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/bootstrap/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/bootstrap/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/bootstrap/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/bootstrap/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/bootstrap/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/fileinput/fileinput.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/fileinput/fileinput.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/fileinput/loading-sm.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/fileinput/loading.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/fileinput/zh.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/font-awesome/css/font-awesome.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/font-awesome/css/font-awesome.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/font-awesome/css/font-awesome.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/font-awesome/fonts/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/font-awesome/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/font-awesome/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/font-awesome/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/font-awesome/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/font-awesome/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/jquery-ui/external/jquery/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/jquery-ui/jquery-ui.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/jquery-ui/jquery-ui.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/jquery-ui/jquery-ui.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/jquery-ui/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/jquery-ui/jquery-ui.structure.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/jquery-ui/jquery-ui.structure.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/jquery/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/layer/layer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/layer/theme/default/icon-ext.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/layer/theme/default/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/layer/theme/default/layer.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/layer/theme/default/loading-0.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/layer/theme/default/loading-1.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/layer/theme/default/loading-2.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/select2/css/select2-bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/select2/css/select2-spinner.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/select2/css/select2.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/select2/css/select2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/select2/css/select2x2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/plugins/select2/js/select2.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/attachment.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/category.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/links.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/module/_footer.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/module/_header.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/module/_macro.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/module/_sidebar.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/widget/_attachment-select.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/widget/attachment-detail.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/links.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/links.ftl" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -118,33 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/links.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
-              <folding>
-                <element signature="e#7124#7144#0#HTML" expanded="true" />
-                <element signature="e#11446#11466#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/widget/_attachment-select.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="25" column="42" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AttachmentController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="95" column="53" selection-start-line="95" selection-start-column="42" selection-end-line="95" selection-end-column="53" />
+            <state relative-caret-position="493">
+              <caret line="310" column="41" selection-start-line="310" selection-start-column="32" selection-end-line="310" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -186,6 +70,8 @@
       <find>addAllAttributes</find>
       <find>tags</find>
       <find>myOptionalVar</find>
+      <find>categories</find>
+      <find>u-categories</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -202,7 +88,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/_links.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/module/_header.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/CrudService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/AbstractCrudService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/base/BaseRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/AttachmentRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/AttachmentService.java" />
@@ -218,24 +103,25 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/config/WebMvcConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/config/CORSConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/AttachmentServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yaml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/dto/LinksCateDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/CategoryServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/CategoryService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Category.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/module/_macro.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.css" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/links.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/widget/_attachment-select.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AttachmentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/AbstractCrudService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/links.ftl" />
       </list>
     </option>
   </component>
@@ -341,6 +227,25 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springboot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springboot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
@@ -479,12 +384,12 @@
       <workItem from="1565873649588" duration="1681000" />
       <workItem from="1566305436025" duration="673000" />
       <workItem from="1566699591528" duration="2588000" />
-      <workItem from="1566734168220" duration="5161000" />
+      <workItem from="1566734168220" duration="9657000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103126000" />
+    <option name="totallyTimeSpent" value="107622000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -530,15 +435,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/widget/attachment-detail.ftl" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/attachment.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="34" column="20" lean-forward="true" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Options.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.1.8.RELEASE/spring-data-jpa-2.1.8.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
@@ -616,13 +512,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Attachment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-488">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/dto/LinksCateDto.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/AttachmentRepository.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -648,53 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
-          <folding>
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/CategoryServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#689#690#0" expanded="true" />
-            <element signature="e#716#717#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.9.8/jackson-databind-2.9.8.jar!/com/fasterxml/jackson/databind/ser/BeanSerializer.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
@@ -703,23 +545,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/LinksCategory.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/CategoryService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -780,16 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Category.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/config/FreeMarkerAutoConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
@@ -804,42 +619,150 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/widget/_attachment-select.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="92" column="37" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="37" />
+        <state relative-caret-position="620">
+          <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+        <state relative-caret-position="80">
+          <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/links.ftl">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+        <state relative-caret-position="119">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-orm/5.1.7.RELEASE/spring-orm-5.1.7.RELEASE.jar!/org/springframework/orm/jpa/ExtendedEntityManagerCreator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="233" selection-start-line="233" selection-end-line="233" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/AbstractCrudService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="124" selection-start-line="124" selection-end-line="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/CategoryService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="68" />
           <folding>
-            <element signature="e#7124#7144#0#HTML" expanded="true" />
-            <element signature="e#11446#11466#0#HTML" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#603#604#0" expanded="true" />
+            <element signature="e#652#653#0" expanded="true" />
+            <element signature="e#704#705#0" expanded="true" />
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#842#843#0" expanded="true" />
+            <element signature="e#928#929#0" expanded="true" />
+            <element signature="e#979#980#0" expanded="true" />
+            <element signature="e#1028#1029#0" expanded="true" />
+            <element signature="e#1093#1094#0" expanded="true" />
+            <element signature="e#1153#1154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/CategoryServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-142">
+          <caret column="33" selection-start-column="33" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/CrudService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="34" column="48" lean-forward="true" selection-start-line="29" selection-start-column="12" selection-end-line="34" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AttachmentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="95" column="53" selection-start-line="95" selection-start-column="42" selection-end-line="95" selection-end-column="53" />
+        <state relative-caret-position="258">
+          <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/widget/_attachment-select.ftl">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Attachment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="25" column="42" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="42" />
+        <state relative-caret-position="20">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Category.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#1124#1125#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/links.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="310" column="41" selection-start-line="310" selection-start-column="32" selection-end-line="310" selection-end-column="41" />
         </state>
       </provider>
     </entry>
