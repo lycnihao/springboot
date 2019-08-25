@@ -34,6 +34,12 @@ public class Category {
 
 
     /**
+     * 分类图标
+     */
+    @Column(name = "icon")
+    private String icon;
+
+    /**
      * 分类描述
      */
     @Column(name = "description")
