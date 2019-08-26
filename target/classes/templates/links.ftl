@@ -156,12 +156,24 @@
             </div>
             <div class="row">
               <div class="form-group col-md-12">
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="isTouch" value="1"> 置顶
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" id="isRecommend" value="1"> 推荐
-                </label>
+                  <ul style="list-style: none;padding: 0px;margin: 0px;">
+                      <li style="padding: 0;margin: 0px;list-style: none;display: inline-block;">
+                          <div class="pretty p-default">
+                              <input name="isTouch" id="isTouch" type="checkbox" class="minimal" value="1">
+                              <div class="state p-primary">
+                                  <label>置顶</label>
+                              </div>
+                          </div>
+                      </li>
+                      <li style="padding: 0;margin: 0px;list-style: none;display: inline-block;">
+                          <div class="pretty p-default">
+                              <input name="isRecommend" id="isRecommend" type="checkbox" class="minimal" value="1">
+                              <div class="state p-primary">
+                                  <label>推荐</label>+
+                              </div>
+                          </div>
+                      </li>
+                  </ul>
               </div>
             </div>
           </div>
@@ -244,13 +256,25 @@
                           <label for="u-ordered" class="control-label">序号</label>
                           <input type="number" class="form-control" id="u-ordered" placeholder="序号">
                         </div>
-                        <div class="form-group col-md-5">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" id="u-isTouch" value="1"> 置顶
-                          </label>
-                          <label class="checkbox-inline">
-                            <input type="checkbox" id="u-isRecommend" value="1"> 推荐
-                          </label>
+                        <div class="form-group col-md-5" style="margin-top: 20px;">
+                            <ul style="list-style: none;padding: 0px;margin: 0px;">
+                                <li style="padding: 0;margin: 0px;list-style: none">
+                                    <div class="pretty p-default">
+                                        <input name="u-isTouch" id="u-isTouch" type="checkbox" class="minimal" value="1">
+                                        <div class="state p-primary">
+                                            <label>置顶</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li style="padding: 0;margin: 0px;list-style: none">
+                                    <div class="pretty p-default">
+                                        <input name="u-isRecommend" id="u-isRecommend" type="checkbox" class="minimal" value="1">
+                                        <div class="state p-primary">
+                                            <label>推荐</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -285,7 +309,7 @@
 
       $(function () {
         $(".categories").select2({
-          placeholder: 'Choose your favorite US Countries',
+          placeholder: '请选择分类',
           allowClear: true,
           dropdownAutoWidth: true
         });
@@ -363,8 +387,12 @@
           var createTime = $('#createTime').val();
           var isTouch = $('#isTouch').prop('checked');
           var isRecommend = $('#isRecommend').prop('checked');
-          var cateList = $("#u-categories").val();
-          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateList':cateList};
+          var cateList = $("#categories").val();
+            var cateIds = "";
+            for (var i in cateList){
+                cateIds += cateList[i] + ","
+            }
+          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateIds':cateIds};
             $.ajax({
                 url:'links/save',
                 type:'post',
