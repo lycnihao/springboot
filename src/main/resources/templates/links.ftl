@@ -285,7 +285,7 @@
 
       $(function () {
         $(".categories").select2({
-          placeholder: 'Choose your favorite US Countries',
+          placeholder: '请选择分类',
           allowClear: true,
           dropdownAutoWidth: true
         });
@@ -297,7 +297,6 @@
             $('#u-isRecommend').prop('checked', false);
             $('#u-isTouch').prop('checked', false);
             $.get('links/updateData',{'linkId':id},function (result) {
-                console.log(result);
 
                 $('#u-linkId').val(result.linkId);
                 $('#u-title').val(result.title);
@@ -307,19 +306,18 @@
                 $('#u-ordered').val(result.ordered);
                 $('#u-createTime').val(result.createTime);
 
-                $.each(result.categories, function(key, val) {
-                    console.log(val);
-                });
+                var arr = [];
+                $.each(result.categories, function(key, val) { arr.push(val.categoryId) });
+                $('#u-categories').val(arr).trigger('change');
 
-                if(result.isTouch == 1){
-                  $('#u-isTouch').prop('checked', true)
-                }
-                if(result.isRecommend == 1){
+                if(result.isTouch == 1)
+                    $('#u-isTouch').prop('checked', true);
+
+                if(result.isRecommend == 1)
                   $('#u-isRecommend').prop('checked', true)
-                }
 
 
-            })
+            });
         });
 
         $('#deleteModal').on('show.bs.modal', function (event) {
@@ -339,8 +337,12 @@
             var createTime = $('#u-createTime').val();
             var isTouch = $('#u-isTouch').prop('checked');
             var isRecommend = $('#u-isRecommend').prop('checked');
-            var cateList = $("#categories").val();
-            var data = {'linkId':linkId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateList':cateList};
+            var cateList = $("#u-categories").val();
+            var cateIds = "";
+            for (var i in cateList){
+                cateIds += cateList[i] + ","
+            }
+            var data = {'linkId':linkId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateIds':cateIds};
             $.ajax({
                 url:'links/save',
                 type:'post',
@@ -361,8 +363,12 @@
           var createTime = $('#createTime').val();
           var isTouch = $('#isTouch').prop('checked');
           var isRecommend = $('#isRecommend').prop('checked');
-          var cateList = $("#u-categories").val();
-          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateList':cateList};
+          var cateList = $("#categories").val();
+            var cateIds = "";
+            for (var i in cateList){
+                cateIds += cateList[i] + ","
+            }
+          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateIds':cateIds};
             $.ajax({
                 url:'links/save',
                 type:'post',

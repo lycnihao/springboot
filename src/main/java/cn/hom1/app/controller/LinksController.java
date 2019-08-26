@@ -40,7 +40,9 @@ public class LinksController {
     @RequestMapping("save")
     @ResponseBody
     public JsonResult add(@ModelAttribute Links link,
-                          @RequestParam("cateList") List<String> cateList) {
+                          @RequestParam("cateIds") String cateIds) {
+        System.out.println(cateIds);
+        String[] cateList = cateIds.split(",");
         List<Category> categories = new ArrayList<>();
         for (String str : cateList){
             categories.add(categoryService.getById(Long.parseLong(str)));
