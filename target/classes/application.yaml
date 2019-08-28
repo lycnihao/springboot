@@ -13,5 +13,10 @@ spring:
     show-sql: false
     open-in-view: true
 
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:/ehcache.xml
+
 cors:
   url: http://www.hom1.cn
