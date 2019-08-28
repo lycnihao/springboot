@@ -49,4 +49,10 @@ public class ApiController {
     public List<Links> getRecommend(){
         return linksService.findRecommend();
     }
+
+    @RequestMapping("getHotList")
+    public Object[] getHotList(){
+
+        return null;
+    }
 }

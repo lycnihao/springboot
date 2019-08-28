@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/static/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/static/css/AdminLTE.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/plugins/pretty-checkbox/pretty-checkbox.min.css">
     <script src="/static/plugins/jquery/jquery.min.js"></script>
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>

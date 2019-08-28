@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffccc536-03eb-4cff-bba0-9fbff6c66548" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/utils/RequestUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/links.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/links.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/links.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/links.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,12 +27,26 @@
               <caret line="90" column="34" lean-forward="true" selection-start-line="90" selection-start-column="34" selection-end-line="90" selection-end-column="34" />
 =======
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/links.ftl">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="498">
+              <caret line="54" selection-start-line="54" selection-end-line="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/utils/RequestUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="493">
               <caret line="310" column="41" selection-start-line="310" selection-start-column="32" selection-end-line="310" selection-end-column="41" />
 >>>>>>> c2585d367735e12c409795e3965124af3be521cc
+=======
+            <state relative-caret-position="40">
+              <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+>>>>>>> d7893c09b0a86a2447436113162e95987f43b6f3
             </state>
           </provider>
         </entry>
@@ -79,8 +88,9 @@
       <find>addAllAttributes</find>
       <find>tags</find>
       <find>myOptionalVar</find>
-      <find>categories</find>
       <find>u-categories</find>
+      <find>cateList</find>
+      <find>categories</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -100,7 +110,6 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/base/BaseRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/AttachmentRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/AttachmentService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/DemoApplication.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/module/_sidebar.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/widget/attachment-detail.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/attachment.ftl" />
@@ -117,7 +126,6 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/CategoryServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/CategoryService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Category.java" />
 <<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java" />
@@ -129,7 +137,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/module/_sidebar.ftl" />
 =======
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/module/_macro.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.css" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/widget/_attachment-select.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AttachmentController.java" />
@@ -138,9 +145,16 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/CategoryController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/DemoApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/module/_macro.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/links.ftl" />
+<<<<<<< HEAD
 >>>>>>> c2585d367735e12c409795e3965124af3be521cc
+=======
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java" />
+>>>>>>> d7893c09b0a86a2447436113162e95987f43b6f3
       </list>
     </option>
   </component>
@@ -204,11 +218,16 @@
     </navigator>
     <panes>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <pane id="PackagesPane" />
 >>>>>>> c2585d367735e12c409795e3965124af3be521cc
       <pane id="Scope" />
       <pane id="AndroidView" />
+=======
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+>>>>>>> d7893c09b0a86a2447436113162e95987f43b6f3
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,34 +266,6 @@
               <item name="springboot" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springboot" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springboot" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springboot" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -300,7 +291,20 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="pretty-checkbox" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springboot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="pretty-checkbox" type="462c0819:PsiDirectoryNode" />
+              <item name="maps" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
@@ -309,7 +313,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="widget" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -327,10 +330,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="D:/develop/DevelopmentCenter/VerifyDataProcessReport" />
 =======
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/plugins/select2/js" />
 >>>>>>> c2585d367735e12c409795e3965124af3be521cc
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../magnetW-master" />
+>>>>>>> d7893c09b0a86a2447436113162e95987f43b6f3
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -346,12 +353,8 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\MyProject\springboot\src\main\resources\static\plugins\select2\js" />
-      <recent name="F:\MyProject\springboot\src\main\resources\static\plugins\select2\css" />
-      <recent name="D:\iksen\个人git项目\springboot\src\main\java\cn\hom1\app\repository" />
-      <recent name="D:\iksen\个人git项目\springboot\src\main\java\cn\hom1\app\service" />
-      <recent name="D:\iksen\个人git项目\springboot\src\main\resources\static\plugins" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\iksen\个人git项目\springboot\src\main\resources\templates\widget" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.hom1.app.repository" />
@@ -359,8 +362,12 @@
       <recent name="cn.hom1.app.service.base" />
       <recent name="cn.hom1.app.model.enums" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\iksen\个人git项目\springboot\src\main\resources\templates\widget" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\MyProject\springboot\src\main\resources\static\plugins" />
+      <recent name="F:\MyProject\springboot\src\main\resources\static\plugins\select2\js" />
+      <recent name="F:\MyProject\springboot\src\main\resources\static\plugins\select2\css" />
+      <recent name="D:\iksen\个人git项目\springboot\src\main\java\cn\hom1\app\repository" />
+      <recent name="D:\iksen\个人git项目\springboot\src\main\java\cn\hom1\app\service" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -418,23 +425,33 @@
       <workItem from="1565873649588" duration="1681000" />
       <workItem from="1566305436025" duration="673000" />
       <workItem from="1566699591528" duration="2588000" />
+<<<<<<< HEAD
       <workItem from="1566734168220" duration="9657000" />
 >>>>>>> c2585d367735e12c409795e3965124af3be521cc
+=======
+      <workItem from="1566734168220" duration="10345000" />
+      <workItem from="1566822388955" duration="6237000" />
+      <workItem from="1566911917878" duration="2113000" />
+>>>>>>> d7893c09b0a86a2447436113162e95987f43b6f3
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="104620000" />
 =======
     <option name="totallyTimeSpent" value="107622000" />
 >>>>>>> c2585d367735e12c409795e3965124af3be521cc
+=======
+    <option name="totallyTimeSpent" value="116660000" />
+>>>>>>> d7893c09b0a86a2447436113162e95987f43b6f3
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6843818" visible="true" weight="0.2521322" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6843818" visible="true" weight="0.25746268" />
       <window_info id="Structure" order="1" sideWeight="0.31527627" side_tool="true" weight="0.2521322" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -444,8 +461,8 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.318872" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.318872" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -494,15 +511,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Options.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.1.8.RELEASE/spring-data-jpa-2.1.8.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logs/log.log.2019-08-02.log" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/widget/attachment-upload.ftl" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.1.8.RELEASE/spring-data-commons-2.1.8.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class">
@@ -558,16 +566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/DemoApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -631,38 +629,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_footer.ftl">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2-bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_macro.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="9" column="78" lean-forward="true" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="225" column="1" lean-forward="true" selection-start-line="225" selection-start-column="1" selection-end-line="225" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2-bootstrap.css" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.png" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.css" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/js/select2.min.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.min.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/CategoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="41" column="33" lean-forward="true" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/config/FreeMarkerAutoConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -775,6 +749,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -785,6 +760,8 @@
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/AttachmentService.java">
 =======
+=======
+>>>>>>> d7893c09b0a86a2447436113162e95987f43b6f3
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AttachmentController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -815,15 +792,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/CategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="46" column="68" lean-forward="true" selection-start-line="46" selection-start-column="68" selection-end-line="46" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        <state relative-caret-position="327">
+          <caret line="92" column="37" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_202/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="2420" column="11" lean-forward="true" selection-start-line="2420" selection-start-column="11" selection-end-line="2420" selection-end-column="19" />
+          <folding>
+            <element signature="e#94598#94599#0" expanded="true" />
+            <element signature="e#94636#94637#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/pretty-checkbox/maps/pretty-checkbox.css.map">
+      <provider editor-type-id="sourcemapFileViewerProvider" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/links.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1459">
+          <caret line="173" column="32" lean-forward="true" selection-start-line="173" selection-start-column="32" selection-end-line="173" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_macro.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="90" selection-start-line="14" selection-start-column="90" selection-end-line="14" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/DemoApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#599#600#0" expanded="true" />
+            <element signature="e#656#657#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="-459">
           <caret line="133" column="11" selection-start-line="133" selection-start-column="11" selection-end-line="133" selection-end-column="11" />
@@ -851,17 +877,34 @@
 =======
         <state relative-caret-position="458">
           <caret line="36" selection-start-line="36" selection-end-line="36" />
+=======
+        <state relative-caret-position="258">
+          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+>>>>>>> d7893c09b0a86a2447436113162e95987f43b6f3
           <folding>
+            <element signature="e#1073#1074#0" expanded="true" />
             <element signature="e#1124#1125#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/links.ftl">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/utils/RequestUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="493">
           <caret line="310" column="41" selection-start-line="310" selection-start-column="32" selection-end-line="310" selection-end-column="41" />
 >>>>>>> c2585d367735e12c409795e3965124af3be521cc
+=======
+        <state relative-caret-position="40">
+          <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+>>>>>>> d7893c09b0a86a2447436113162e95987f43b6f3
         </state>
       </provider>
     </entry>
