@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffccc536-03eb-4cff-bba0-9fbff6c66548" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/config/FreeMarkerAutoConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/CategoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/freemarker/CommonTagDirective.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/category.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/links.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/links.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/links.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/links.ftl" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,12 +23,21 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf>
       <file leaf-file-name="_sidebar.ftl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_sidebar.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="265">
               <caret line="90" column="34" lean-forward="true" selection-start-line="90" selection-start-column="34" selection-end-line="90" selection-end-column="34" />
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/links.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="310" column="41" selection-start-line="310" selection-start-column="32" selection-end-line="310" selection-end-column="41" />
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
             </state>
           </provider>
         </entry>
@@ -63,10 +73,14 @@
       <find>of</find>
       <find>No suitable</find>
       <find>employees</find>
-      <find>common.text.tips</find>
       <find>posts</find>
-      <find>cateId</find>
-      <find>cateSaveForm</find>
+      <find>select2</find>
+      <find>tip</find>
+      <find>addAllAttributes</find>
+      <find>tags</find>
+      <find>myOptionalVar</find>
+      <find>categories</find>
+      <find>u-categories</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -83,35 +97,29 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/_links.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/module/_header.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/CrudService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/AbstractCrudService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/base/BaseRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/AttachmentRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/AttachmentService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/DemoApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/module/_macro.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/module/_sidebar.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/widget/attachment-detail.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/attachment.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/widget/_attachment-select.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Options.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AttachmentController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/links.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/UrlController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/IndexController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/config/WebMvcConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/config/CORSConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/AttachmentServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yaml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/dto/LinksCateDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/CategoryServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/CategoryService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/freemarker/CommonTagDirective.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/config/FreeMarkerAutoConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Category.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/CategoryService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/CategoryServiceImpl.java" />
@@ -119,14 +127,22 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/category.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/CategoryController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/module/_sidebar.ftl" />
+=======
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/module/_macro.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/widget/_attachment-select.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AttachmentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/AbstractCrudService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/links.ftl" />
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -134,6 +150,46 @@
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+          <item name="jar" type="36feed69:MavenProjectsStructure$PluginNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+          <item name="resources" type="36feed69:MavenProjectsStructure$PluginNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+          <item name="spring-boot" type="36feed69:MavenProjectsStructure$PluginNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+          <item name="surefire" type="36feed69:MavenProjectsStructure$PluginNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -147,6 +203,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="PackagesPane" />
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
       <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
@@ -155,11 +215,6 @@
             <path>
               <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
               <item name="springboot" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springboot" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
@@ -210,7 +265,34 @@
               <item name="springboot" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springboot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springboot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springboot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
@@ -227,7 +309,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="widget" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -244,7 +326,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="D:/develop/DevelopmentCenter/VerifyDataProcessReport" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/plugins/select2/js" />
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -255,24 +341,23 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\项目源代码\个人git项目\springboot\src\main\resources\templates" />
+      <recent name="F:\MyProject\springboot\src\main\resources\static\plugins\select2\js" />
+      <recent name="F:\MyProject\springboot\src\main\resources\static\plugins\select2\css" />
       <recent name="D:\iksen\个人git项目\springboot\src\main\java\cn\hom1\app\repository" />
       <recent name="D:\iksen\个人git项目\springboot\src\main\java\cn\hom1\app\service" />
       <recent name="D:\iksen\个人git项目\springboot\src\main\resources\static\plugins" />
-      <recent name="D:\iksen\个人git项目\springboot\src\main\resources\templates" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="cn.hom1.app.config" />
-      <recent name="cn.hom1.app.model.freemarker" />
       <recent name="cn.hom1.app.repository" />
       <recent name="cn.hom1.app.model.entity" />
       <recent name="cn.hom1.app.service.base" />
+      <recent name="cn.hom1.app.model.enums" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\iksen\个人git项目\springboot\src\main\resources\templates\widget" />
@@ -294,6 +379,9 @@
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="cn.hom1.app.DemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
   </component>
   <component name="SvnConfiguration">
@@ -321,32 +409,47 @@
       <workItem from="1565613465316" duration="5345000" />
       <workItem from="1565700224916" duration="5806000" />
       <workItem from="1565785894444" duration="3278000" />
+<<<<<<< HEAD
       <workItem from="1566304906681" duration="3143000" />
       <workItem from="1566371447654" duration="5678000" />
       <workItem from="1566460860430" duration="1603000" />
       <workItem from="1566782851364" duration="1173000" />
+=======
+      <workItem from="1565873649588" duration="1681000" />
+      <workItem from="1566305436025" duration="673000" />
+      <workItem from="1566699591528" duration="2588000" />
+      <workItem from="1566734168220" duration="9657000" />
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="104620000" />
+=======
+    <option name="totallyTimeSpent" value="107622000" />
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="6" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6843818" visible="true" weight="0.2521322" />
+      <window_info id="Structure" order="1" sideWeight="0.31527627" side_tool="true" weight="0.2521322" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="8" />
-      <window_info id="Structure" order="1" sideWeight="0.3111639" side_tool="true" weight="0.24467354" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.318872" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32700136" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info id="Image Layers" order="3" />
@@ -354,8 +457,12 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Version Control" order="14" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2971506" />
+=======
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
       <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Java Enterprise" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6888361" visible="true" weight="0.44537276" />
       <window_info anchor="right" id="Bean Validation" order="4" />
       <window_info id="Web" order="7" side_tool="true" />
@@ -363,25 +470,31 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+=======
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" id="Maven" order="5" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3275488" />
+      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Bean Validation" order="4" />
+      <window_info anchor="right" id="Maven" order="5" weight="0.32995737" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info anchor="right" id="Theme Preview" order="10" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/Optional.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/widget/attachment-detail.ftl" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/widget/_attachment-select.ftl" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Options.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.1.8.RELEASE/spring-data-jpa-2.1.8.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -392,17 +505,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/logs/log.log.2019-08-02.log" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/widget/attachment-upload.ftl" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/links.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5548">
-          <caret line="96" column="16" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.1.8.RELEASE/spring-data-commons-2.1.8.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -420,7 +533,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../halo-0.4.4/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/../halo-0.4.4/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="60" column="23" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/cn/hom1/app/DemoApplicationTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -435,17 +554,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/DemoApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Attachment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-488">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -457,31 +579,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/AttachmentService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        <state relative-caret-position="80">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="72" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/AttachmentServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="18" />
+        <state relative-caret-position="203">
+          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -495,150 +606,225 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/LinksCategory.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="75" column="21" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="21" />
+        <state relative-caret-position="300">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AdminController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="120">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/config/FreeMarkerAutoConfiguration.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/attachment.ftl">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_sidebar.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-893">
-          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+        <state relative-caret-position="140">
+          <caret line="7" column="70" lean-forward="true" selection-start-line="7" selection-start-column="70" selection-end-line="7" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_header.ftl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_footer.ftl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2-bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_macro.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="9" column="78" lean-forward="true" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="225" column="1" lean-forward="true" selection-start-line="225" selection-start-column="1" selection-end-line="225" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/js/select2.min.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/plugins/select2/css/select2.min.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/CategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="41" column="33" lean-forward="true" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/config/FreeMarkerAutoConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/freemarker/CommonTagDirective.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="34" column="83" selection-start-line="34" selection-start-column="83" selection-end-line="34" selection-end-column="83" />
+        <state relative-caret-position="258">
+          <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/widget/_attachment-select.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+        <state relative-caret-position="620">
+          <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/LinksService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/LinksRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-orm/5.1.7.RELEASE/spring-orm-5.1.7.RELEASE.jar!/org/springframework/orm/jpa/ExtendedEntityManagerCreator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="233" selection-start-line="233" selection-end-line="233" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/AbstractCrudService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="121" column="28" selection-start-line="121" selection-start-column="28" selection-end-line="121" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/CrudService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="73" column="44" selection-start-line="73" selection-start-column="44" selection-end-line="73" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.7.RELEASE/spring-context-5.1.7.RELEASE.jar!/org/springframework/validation/BindingResult.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/CategoryServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="31" column="67" lean-forward="true" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
+        <state relative-caret-position="200">
+          <caret line="124" selection-start-line="124" selection-end-line="124" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/CategoryService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="43" />
+        <state relative-caret-position="140">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/LinksServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="270">
+          <caret line="39" column="30" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="30" />
+=======
+        <state relative-caret-position="240">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#603#604#0" expanded="true" />
+            <element signature="e#652#653#0" expanded="true" />
+            <element signature="e#704#705#0" expanded="true" />
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#842#843#0" expanded="true" />
+            <element signature="e#928#929#0" expanded="true" />
+            <element signature="e#979#980#0" expanded="true" />
+            <element signature="e#1028#1029#0" expanded="true" />
+            <element signature="e#1093#1094#0" expanded="true" />
+            <element signature="e#1153#1154#0" expanded="true" />
+          </folding>
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/CategoryServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-142">
+          <caret column="33" selection-start-column="33" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/CrudService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="34" column="48" lean-forward="true" selection-start-line="29" selection-start-column="12" selection-end-line="34" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/AttachmentService.java">
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AttachmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Attachment.java">
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Category.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="39" column="30" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="30" />
+<<<<<<< HEAD
+        <state relative-caret-position="-99">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+=======
+        <state relative-caret-position="260">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Links.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3888" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/module/_macro.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        <state relative-caret-position="260">
+          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/LinksController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="38" column="29" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/log.log.2019-08-21.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62081" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AttachmentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/AttachmentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-99">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/HelloController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="11" column="37" selection-start-line="11" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/AttachmentServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-459">
           <caret line="133" column="11" selection-start-line="133" selection-start-column="11" selection-end-line="133" selection-end-column="11" />
         </state>
@@ -662,6 +848,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="90" column="34" lean-forward="true" selection-start-line="90" selection-start-column="34" selection-end-line="90" selection-end-column="34" />
+=======
+        <state relative-caret-position="458">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#1124#1125#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/links.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="310" column="41" selection-start-line="310" selection-start-column="32" selection-end-line="310" selection-end-column="41" />
+>>>>>>> c2585d367735e12c409795e3965124af3be521cc
         </state>
       </provider>
     </entry>

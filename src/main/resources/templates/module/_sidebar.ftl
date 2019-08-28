@@ -86,11 +86,11 @@
   let start = url.lastIndexOf('/');
   let title = url.substring(start+1,url.length);
   let navs = document.getElementsByClassName("menu-item");
-  for(let card of navs){
-    let href = card.getElementsByTagName('a')[0].href;
+  for(let item of navs){
+    let href = item.getElementsByTagName('a')[0].href;
     let l_title = href.substring(href.lastIndexOf('/') + 1,href.length);
     if (l_title.indexOf(title) > -1){
-      card.classList.add("active");
+      item.classList.add("active");
     }
   }
 </script>

@@ -4,17 +4,21 @@ import cn.hom1.app.model.entity.Links;
 import cn.hom1.app.model.enums.TrueFalseEnum;
 import cn.hom1.app.repository.LinksRepository;
 import cn.hom1.app.service.LinksService;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.hom1.app.service.base.AbstractCrudService;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class LinksServiceImpl implements LinksService {
+public class LinksServiceImpl extends AbstractCrudService<Links , Long> implements LinksService {
 
-    @Autowired
-    private LinksRepository linksRepository;
+
+    private final LinksRepository linksRepository;
+
+    public LinksServiceImpl(LinksRepository linksRepository) {
+        super(linksRepository);
+        this.linksRepository = linksRepository;
+    }
 
     @Override
     public List<Links> findSite() {

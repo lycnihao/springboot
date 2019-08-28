@@ -1,10 +1,11 @@
 package cn.hom1.app.service;
 
 import cn.hom1.app.model.entity.Links;
+import cn.hom1.app.service.base.CrudService;
 
 import java.util.List;
 
-public interface LinksService {
+public interface LinksService  extends CrudService<Links, Long> {
 
     /*
      * 获取普通网站
