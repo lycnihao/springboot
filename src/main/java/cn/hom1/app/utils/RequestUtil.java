@@ -20,7 +20,6 @@ public class RequestUtil {
    */
   public static Document requestSite(String url, boolean isProxy, String userAgent)
       throws IOException {
-    System.out.println(url);
     Connection connect =  Jsoup.connect(url)
         .ignoreContentType(true)
         .timeout(100000);

@@ -5,13 +5,7 @@ import cn.hom1.app.model.entity.Links;
 import cn.hom1.app.service.CategoryService;
 import cn.hom1.app.service.LinksService;
 import cn.hom1.app.service.RequestService;
-import cn.hom1.app.utils.RequestUtil;
-import java.io.IOException;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,10 +31,11 @@ public class ApiController {
     public List<Map<String,Object>> getList() {
         List<Map<String,Object>> list = new ArrayList<>();
         for (Category category:categoryService.listAll()) {
-            Map<String,Object> map = new HashMap<>();
+            Map<String,Object> map = new HashMap<>(6);
             map.put("categoryId",category.getCategoryId());
             map.put("name",category.getName());
             map.put("slugName",category.getSlugName());
+            map.put("icon",category.getIcon());
             map.put("description",category.getDescription());
             map.put("list",category.getLinks());
             list.add(map);
