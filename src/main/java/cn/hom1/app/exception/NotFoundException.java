@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 /**
  * Exception of entity not found.
  *
- * @author johnniang
+ * @author liyuancheng
  */
 public class NotFoundException extends HomException {
 

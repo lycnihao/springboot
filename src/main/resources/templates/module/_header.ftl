@@ -33,7 +33,7 @@
           <ul class="dropdown-menu">
             <li class="user-header">
               <img src="/static/images/user-1.png" class="img-circle" alt="User Image">
-              <p>admin</p>
+              <p> admin</p>
             </li>
             <li class="user-footer">
               <div class="pull-left"><a data-pjax="true" href="/admin/profile" class="btn btn-default " data-pjax-state=""><i class="fa fa-user"></i>个人资料</a></div>
