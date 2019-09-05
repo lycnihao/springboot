@@ -38,3 +38,7 @@
 .modal-backdrop{
   z-index: 0;
 }
+
+.box{
+  border-top: none!important;
+}

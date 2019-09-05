@@ -1,12 +1,12 @@
 <#compress >
     <link rel="stylesheet" href="/static/plugins/select2/css/select2.min.css">
     <#include "module/_macro.ftl">
-    <@head>小红衣后台管理 | 首页</@head>
+    <@head>小红衣后台管理 | 用户管理</@head>
     <div class="content-wrapper">
       <section class="content-header" id="animated-header">
-        <h1 style="display: inline-block;">网站列表</h1>
+        <h1 style="display: inline-block;">用户</h1>
         <a class="btn btn-xs btn-info"  href="javascript:;" onclick="jQuery('#addModal').modal('show', {backdrop: 'static'});">
-          <i class="fa fa-plus"></i>添加网站 </a>
+          <i class="fa fa-plus"></i>添加用户 </a>
         <ol class="breadcrumb">
           <li>
             <a data-pjax="true" href="javascript:void(0)"><i class="fa fa-dashboard"></i> 首页</a>
@@ -18,89 +18,67 @@
         <div class="row">
             <div class="col-md-12">
               <div class="box">
-                    <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
                         <thead>
                         <tr>
-                          <th></th>
-                          <th>图标</th>
-                          <th>名称简介</th>
-                          <th>链接</th>
-                          <th>分类</th>
-                          <th>类型</th>
-                          <th>标签</th>
-                          <th>ID</th>
-                          <th>添加时间</th>
-                          <th>操作</th>
+                            <th></th>
+                            <th>头像</th>
+                            <th>用户名</th>
+                            <th>昵称</th>
+                            <th>邮箱</th>
+                            <th>ID</th>
+                            <th>用户状态</th>
+                            <th>最后登陆</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <#list links.content as link>
-                        <tr>
-                          <td class="user-cb">
-                            <input type="checkbox" name="ids" value="${link.linkId}"/>
-                          </td>
-                          <td>
-                            <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId}});">
-                              <img src="${link.icon}" class="direct-chat-img" alt="user-pic" />
-                            </a>
-                          </td>
-                          <td>
-                            <a target="_blank" href="${link.url}" class="name">${link.title}</a>
-                          </td>
-                          <td class="hidden-xs hidden-sm">
-                            <span class="email">${link.url}</span>
-                          </td>
-                          <td class="hidden-xs hidden-sm">
-                                    <#list link.categories as cate>
-                                      <div class="label label-primary">${cate.name}</div>
-                                    </#list>
-                          </td>
-                          <td>
-                                    <span>${(link.isTouch == 0 && link.isRecommend == 0)?string('<div class="badge bg-light-blue">网站</div>',
-                                    (link.isTouch == 1 && link.isRecommend == 1)?string('<div class="badge bg-yellow">置顶</div><div class="badge bg-green">推荐</div>',
-                                    (link.isTouch == 1)?string('<div class="badge bg-yellow">置顶</div>',
-                                    '<div class="badge bg-green">推荐</div>')) )}</span>
-                          </td>
-                          <td>
-                            <span class="email">设计师/设计工具</span>
-                          </td>
-                          <td>
-                            <span class="email">${link.linkId}</span>
-                          </td>
-                          <td>
-                            <span class="email">${link.createTime?string("yyyy-MM-dd")}</span>
-                          </td>
-                          <td class="action-links">
-                            <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId}});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
-                            <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${link.linkId}});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
-                          </td>
-                        </tr>
-                        </#list>
+                          <#list users as user>
+                          <tr>
+                            <td class="user-cb">
+                              <input type="checkbox" name="ids" value="${user.userId}"/>
+                            </td>
+                            <td>
+                              <a href="javascript:;">
+                                <img src="/static/images/user-5.png" class="direct-chat-img" alt="user-pic" />
+                              </a>
+                            </td>
+                            <td>
+                              ${user.username}
+                            </td>
+                            <td>
+                              ${user.nickname}
+                            </td>
+                            <td>
+                              ${user.email}
+                            </td>
+                            <td>
+                              ${user.userId}
+                            </td>
+                            <td>
+                              ${(user.status == 1) ?string ("<span class='text-green'><i class='fa fa-circle'></i>正常</span>","<span class='text-danger'><i class='fa fa-circle'></i>禁用</span>")}
+                            </td>
+                            <td>
+                              <#-- 判断是否为空 -->
+                              <#if user.lastLoginTime??>
+                                ${(user.lastLoginTime!"- -")?string("yyyy-MM-dd")}
+                              <#else>
+                                - -
+                              </#if>
+
+                            </td>
+                            <td class="action-links">
+                              <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${user.userId}});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>查看编辑</a>
+                              <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${user.userId}});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
+                            </td>
+                          </tr>
+                          </#list>
                         </tbody>
-                      </table>
-                    </div>
-                    <div class="box-footer">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="no-margin pull-left">
-                          第${links.number+1}/${links.totalPages}页
-                        </div>
-                        <div class="btn-group pull-right btn-group-sm" role="group">
-                          <a data-pjax="true" class="btn btn-default <#if !links.hasPrevious()>disabled</#if>" href="/admin/links" >
-                            首页
-                          </a>
-                          <a data-pjax="true" class="btn btn-default <#if !links.hasPrevious()>disabled</#if>" href="/admin/links?page=${links.number-1}" >
-                            上一页
-                          </a>
-                          <a data-pjax="true" class="btn btn-default <#if !links.hasNext()>disabled</#if>" href="/admin/links?page=${links.number+1}">
-                            下一页
-                          </a>
-                          <a data-pjax="true" class="btn btn-default <#if !links.hasNext()>disabled</#if>" href="/admin/links?page=${links.totalPages-1}">
-                            尾页
-                          </a>
-                        </div>
-                      </div>
-                    </div>
+                    </table>
+                </div>
+                <div class="box-footer">
+                </div>
               </div>
             </div>
         </div>
@@ -114,14 +92,14 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">新增网站</h4>
+            <h4 class="modal-title">新增用户</h4>
           </div>
           <div class="modal-body">
             <div class="row">
               <div class="col-md-12">
                 <div class="col-sm-4 text-center">
                   <div class="upload-img">
-                    <img id="icon" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
+                    <img id="userAvatar" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
                     <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=icon','选择附件')">选择图片</span>
                   </div>
                 </div>
@@ -129,16 +107,16 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="title" class="control-label">名称</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="网站名称">
+                        <label for="username" class="control-label">用户名</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="用户唯一凭证">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group no-margin">
-                        <label for="summary" class="control-label">简介</label>
-                        <textarea class="form-control autogrow" id="summary" placeholder="对此标签页的简介文字"></textarea>
+                        <label for="nickname" class="control-label">昵称</label>
+                        <textarea class="form-control autogrow" id="nickname" placeholder="昵称"></textarea>
                       </div>
                     </div>
                   </div>
@@ -148,51 +126,35 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="url" class="control-label">网址</label>
-                  <input type="text" class="form-control" id="url" name="url" placeholder="Https://">
+                  <label for="first-password" class="control-label">密码</label>
+                  <input type="text" class="form-control" id="first-password" placeholder="请输入密码">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="categories" class="control-label">分类</label>
+                  <label for="password" class="control-label">确认密码</label>
+                  <input type="text" class="form-control" id="password" name="password" placeholder="再次输入密码">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="email" class="control-label">邮箱</label>
+                  <input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="categories" class="control-label">角色</label>
                   <select id="categories" class="categories form-control" multiple="multiple" style="width: 100%;">
-                      <#list categories as categorie>
-                          <option value="${categorie.categoryId}">${categorie.name}</option>
-                      </#list>
+                    <option value="1">1</option>
                   </select>
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label for="createTime" class="control-label">添加时间</label>
-                  <input type="text" class="form-control" id="createTime" name="createTime" placeholder="2017-08-01">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-md-12">
-                  <ul style="list-style: none;padding: 0px;margin: 0px;">
-                      <li style="padding: 0;margin: 0px;list-style: none;display: inline-block;">
-                          <div class="pretty p-default">
-                              <input name="isTouch" id="isTouch" type="checkbox" class="minimal" value="1">
-                              <div class="state p-primary">
-                                  <label>置顶</label>
-                              </div>
-                          </div>
-                      </li>
-                      <li style="padding: 0;margin: 0px;list-style: none;display: inline-block;">
-                          <div class="pretty p-default">
-                              <input name="isRecommend" id="isRecommend" type="checkbox" class="minimal" value="1">
-                              <div class="state p-primary">
-                                  <label>推荐</label>+
-                              </div>
-                          </div>
-                      </li>
-                  </ul>
               </div>
             </div>
           </div>
@@ -255,9 +217,7 @@
                             <div class="form-group">
                                 <label for="categories" class="control-label">分类</label>
                                   <select id="u-categories" class="categories form-control" multiple="multiple" style="width: 100%;">
-                                      <#list categories as categorie>
-                                          <option value="${categorie.categoryId}">${categorie.name}</option>
-                                      </#list>
+                                    <option value="1">1</option>
                                   </select>
                             </div>
                         </div>
@@ -322,6 +282,7 @@
         </div>
       </div>
     </div>
+
     <script src="/static/plugins/select2/js/select2.min.js"></script>
     <@footer/>
     <script>
@@ -399,21 +360,14 @@
         });
 
         $("#add").click(function () {
-          var title = $('#title').val();
-          var url =  $('#url').val();
-          var icon =  $('#icon').attr('src');
-          var summary = $('#summary').val();
-          var createTime = $('#createTime').val();
-          var isTouch = $('#isTouch').prop('checked');
-          var isRecommend = $('#isRecommend').prop('checked');
-          var cateList = $("#categories").val();
-            var cateIds = "";
-            for (var i in cateList){
-                cateIds += cateList[i] + ","
-            }
-          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateIds':cateIds};
+          var username = $('#username').val();
+          var nickname =  $('#nickname').val();
+          var userAvatar =  $('#userAvatar').attr('src');
+          var password = $('#password').val();
+          var email = $('#email').val();
+          var data = {'username':username,'nickname':nickname,'userAvatar':userAvatar,'password':password,'email':email};
             $.ajax({
-                url:'links/save',
+                url:'user/save',
                 type:'post',
                 data:data,
                 success:function (result) {

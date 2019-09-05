@@ -73,7 +73,7 @@
       <img src="/static/images/user-5.png" alt="user image" class="img-circle"
            style="width: 100px;height: 100px;">
     </div>
-    <form class="login-form">
+    <form class="login-form" action="login" method="post">
       <div style="margin-bottom: 28px;" class="form-style">
         <input name="username" type="username" class="form-control" placeholder="用户名">
         <span class="fa fa-user form-control-style"></span>
@@ -94,7 +94,7 @@
           </div>
         </div>
         <div class="col-xs-4">
-          <button id="loginBtn" type="button" class="btn bg-green btn-block btn-flat">登陆</button>
+          <button id="loginBtn" type="submit" class="btn bg-green btn-block btn-flat">登陆</button>
         </div>
       </div>
     </form>
@@ -109,11 +109,11 @@
   $(function () {
     $("body").css("background-image", "url(/static/images/bg1.jpg)").css("background-size",
         "cover").css("background-position", "center");
-    $("#loginBtn").on('click', function () {
+   /* $("#loginBtn").on('click', function () {
       $("#loginBtn").html('<i class="fa fa-spin fa-refresh"></i> 登陆中...').attr('disabled', true);
       $.ajax({
         type: "POST",
-        url: "/login",
+        url: "/admin/login",
         data: $(".login-form").serialize(),
         dataType: "json",
         success: function (data) {
@@ -154,7 +154,7 @@
       if (event.keyCode == 13) {
         $("#loginBtn").click();
       }
-    });
+    });*/
   })
 </script>
 </body>

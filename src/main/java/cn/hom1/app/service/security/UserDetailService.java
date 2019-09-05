@@ -1,13 +1,18 @@
 package cn.hom1.app.service.security;
 
-import cn.hom1.app.exception.NotFoundUserDetailException;
-import cn.hom1.app.model.entity.User;
 import cn.hom1.app.service.UserService;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * 描述
@@ -15,7 +20,7 @@ import org.springframework.stereotype.Component;
  * @author iksen
  * @date 2019-09-04 16:10
  */
-/*@Component*/
+@Service
 public class UserDetailService  implements UserDetailsService {
 
   @Autowired
@@ -23,10 +28,13 @@ public class UserDetailService  implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-    User user = userService.findByUsername(s);
-    if (user == null){
-      throw new NotFoundUserDetailException("当前用户不存在");
-    }
-    return (UserDetails) user;
+
+    cn.hom1.app.model.entity.User us = userService.findByUsername(s);
+
+    //todo 用户权限
+    Collection<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
+    authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+    return new User(us.getUsername(),us.getPassword(),true,true,true,true,authList);
   }
 }

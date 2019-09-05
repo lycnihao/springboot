@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface LinksRepository extends BaseRepository<Links, Long> {
+public interface LinkRepository extends BaseRepository<Links, Long> {
 
     @Query(value = "select * from links order by is_touch or is_recommend desc,ordered asc", nativeQuery = true)
     List<Links>  findList();

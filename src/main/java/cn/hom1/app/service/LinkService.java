@@ -5,7 +5,7 @@ import cn.hom1.app.service.base.CrudService;
 
 import java.util.List;
 
-public interface LinksService  extends CrudService<Links, Long> {
+public interface LinkService  extends CrudService<Links, Long> {
 
     /*
      * 获取普通网站

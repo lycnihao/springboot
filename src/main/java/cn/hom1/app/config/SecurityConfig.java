@@ -1,7 +1,9 @@
 package cn.hom1.app.config;
 
+import cn.hom1.app.service.security.UserDetailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,22 +26,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   /*@Value("${admin.login.password}")*/
   private String password = "iksen22.";
 
+  @Autowired
+  private UserDetailService userService;
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     logger.info("username: {} password: {}", user, password);
-    auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder()).withUser(user).password(new BCryptPasswordEncoder().encode(password)).roles("USER");
+    //auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder()).withUser(user).password(new BCryptPasswordEncoder().encode(password)).roles("USER");
+
+    auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable()
         .authorizeRequests()
-          .antMatchers("/admin/**").hasRole("USER")
+          .antMatchers("/admin/**").hasRole("ADMIN")
           .antMatchers("/**","admin/login","/api/**", "/assets/**", "/css/**", "/js/**", "/images/**").permitAll()
-        /*.and()
+        .and()
           .formLogin()
-          .loginPage("/admin/login")
-          .permitAll()*/
+            .loginPage("/admin/login")
+          .permitAll()
         .and()
           .logout()
           .permitAll();

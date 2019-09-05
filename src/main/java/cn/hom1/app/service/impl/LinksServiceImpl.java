@@ -2,22 +2,22 @@ package cn.hom1.app.service.impl;
 
 import cn.hom1.app.model.entity.Links;
 import cn.hom1.app.model.enums.TrueFalseEnum;
-import cn.hom1.app.repository.LinksRepository;
-import cn.hom1.app.service.LinksService;
+import cn.hom1.app.repository.LinkRepository;
+import cn.hom1.app.service.LinkService;
 import cn.hom1.app.service.base.AbstractCrudService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class LinksServiceImpl extends AbstractCrudService<Links , Long> implements LinksService {
+public class LinksServiceImpl extends AbstractCrudService<Links , Long> implements LinkService {
 
 
-    private final LinksRepository linksRepository;
+    private final LinkRepository linksRepository;
 
-    public LinksServiceImpl(LinksRepository linksRepository) {
-        super(linksRepository);
-        this.linksRepository = linksRepository;
+    public LinksServiceImpl(LinkRepository linkRepository) {
+        super(linkRepository);
+        this.linksRepository = linkRepository;
     }
 
     @Override
@@ -47,8 +47,8 @@ public class LinksServiceImpl extends AbstractCrudService<Links , Long> implemen
 
     @Override
     public void save(Links link) {
-        Integer max = linksRepository.findMaxOrdered();
-        link.setOrdered(max != null ? max + 1 : 1);
+        System.out.println(link.getOrdered());
+        link.setOrdered(link.getOrdered() != 0 ? link.getOrdered() : linksRepository.findMaxOrdered() + 1);
         linksRepository.save(link);
     }
 

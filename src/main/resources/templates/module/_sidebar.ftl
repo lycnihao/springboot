@@ -17,6 +17,12 @@
         </a>
       </li>
       <li class="menu-item">
+        <a data-pjax="true" href="/admin/user" data-pjax-state="">
+          <i class="fa fa-users"></i>
+          <span>用户</span>
+        </a>
+      </li>
+      <li class="menu-item">
         <a data-pjax="true" href="/admin/links" data-pjax-state="">
           <i class="fa fa-external-link"></i>
           <span>网站</span>
@@ -84,12 +90,12 @@
 <script>
   let url = window.location.href;
   let start = url.lastIndexOf('/');
-  let title = url.substring(start+1,url.length);
+  let title = url.substring(start + 1,url.length);
   let navs = document.getElementsByClassName("menu-item");
   for(let item of navs){
     let href = item.getElementsByTagName('a')[0].href;
     let l_title = href.substring(href.lastIndexOf('/') + 1,href.length);
-    if (l_title.indexOf(title) > -1){
+    if (title.indexOf(l_title) > -1){
       item.classList.add("active");
     }
   }

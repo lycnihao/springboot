@@ -3,7 +3,7 @@ package cn.hom1.app.controller.api;
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.Links;
 import cn.hom1.app.service.CategoryService;
-import cn.hom1.app.service.LinksService;
+import cn.hom1.app.service.LinkService;
 import cn.hom1.app.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class ApiController {
 
     @Autowired
-    private LinksService linksService;
+    private LinkService linksService;
 
     @Autowired
     private CategoryService categoryService;
