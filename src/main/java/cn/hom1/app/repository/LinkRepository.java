@@ -37,6 +37,6 @@ public interface LinkRepository extends BaseRepository<Links, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "update links set  visits = visits + 1 where link_id = ?1",nativeQuery =true)
+    @Query(value = "update links set  visits = visits + 1 where link_id = ?",nativeQuery =true)
     Integer updateVisitsByLinkId(Integer linkId);
 }

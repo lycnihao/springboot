@@ -4,7 +4,6 @@ import cn.hom1.app.service.security.UserDetailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,20 +19,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
-  /*@Value("${admin.login.user}")*/
-  private String user = "admin";
-
-  /*@Value("${admin.login.password}")*/
-  private String password = "iksen22.";
-
   @Autowired
   private UserDetailService userService;
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    logger.info("username: {} password: {}", user, password);
-    //auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder()).withUser(user).password(new BCryptPasswordEncoder().encode(password)).roles("USER");
-
     auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
   }
 
@@ -46,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
           .formLogin()
             .loginPage("/admin/login")
+            .successForwardUrl("/admin")
           .permitAll()
         .and()
           .logout()

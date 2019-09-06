@@ -5,6 +5,7 @@ import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.Links;
 import cn.hom1.app.service.CategoryService;
 import cn.hom1.app.service.LinkService;
+import cn.hom1.app.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,9 @@ public class LinkController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private RequestService requestService;
 
     @RequestMapping()
     public String links(ModelMap modelMap,@PageableDefault(size = 10, sort = "linkId", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -64,4 +68,11 @@ public class LinkController {
         linkService.delete(linkId);
         return new JsonResult(200,"");
     }
+
+  @RequestMapping("get-title")
+  @ResponseBody
+  public JsonResult getTitle(String url) {
+    String title = requestService.getTitle(url);
+    return new JsonResult(1,title);
+  }
 }

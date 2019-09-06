@@ -7,4 +7,5 @@ public interface UserService  extends CrudService<User, Long> {
 
     User findByUsername(String username);
 
+    void updateLastLoginTime(Long userId);
 }

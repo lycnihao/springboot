@@ -13,8 +13,6 @@ import javax.annotation.PostConstruct;
  *     FreeMarker配置
  * </pre>
  *
- * @author : RYAN0UP
- * @date : 2018/4/26
  */
 @Slf4j
 @Configuration

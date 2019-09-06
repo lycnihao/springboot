@@ -24,7 +24,7 @@ public class User implements Serializable {
    */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer userId;
+  private Long userId;
 
   /**
    * 用户名
@@ -51,6 +51,10 @@ public class User implements Serializable {
    */
   private String email;
 
+  /**
+   * QQ
+   */
+  private Long qq;
 
   /**
    * 头像
@@ -66,11 +70,6 @@ public class User implements Serializable {
    * 创建时间
    */
   private Date createTime;
-
-  /**
-   * 更新时间
-   */
-  private Date updateTime;
 
   /**
    * 最后登录时间

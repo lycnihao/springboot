@@ -18,8 +18,9 @@ public class RequestUtil {
    * @param userAgent userAgent
    * @return
    */
-  public static Document requestSite(String url, boolean isProxy, String userAgent)
-      throws IOException {
+  public static Document requestSite(String url, boolean isProxy, String userAgent){
+    Document document = null;
+    try {
     Connection connect =  Jsoup.connect(url)
         .ignoreContentType(true)
         .timeout(100000);
@@ -34,6 +35,13 @@ public class RequestUtil {
       Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8080));
       connect.proxy(proxy);
     }
-    return connect.get();
+
+    document = connect.get();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+    return document;
   }
 }

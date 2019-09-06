@@ -37,7 +37,7 @@
             </li>
             <li class="user-footer">
               <div class="pull-left"><a data-pjax="true" href="/admin/profile" class="btn btn-default " data-pjax-state=""><i class="fa fa-user"></i>个人资料</a></div>
-              <div class="pull-right"><a href="/admin/logOut" class="btn btn-default "><i class="fa fa-sign-out"></i>退出登录</a></div>
+              <div class="pull-right"><a href="/logout" class="btn btn-default "><i class="fa fa-sign-out"></i>退出登录</a></div>
             </li>
           </ul>
         </li>

@@ -119,7 +119,7 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-12">
-                <div class="col-sm-4 text-center">
+                <div class="col-sm-4 text-center" style="margin-top: 28px">
                   <div class="upload-img">
                     <img id="icon" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
                     <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=icon','选择附件')">选择图片</span>
@@ -128,28 +128,23 @@
                 <div class="col-sm-8">
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="title" class="control-label">名称</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="网站名称">
+                      <label for="url" class="control-label">网址</label>
+                      <div class="input-group input-group-sm">
+                        <input id="url" name="url" type="text" class="form-control" placeholder="网址地址，如:http://www.baidu.com">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat" onclick="getTitle('#url','#title')">抓取标题</button>
+                      </span>
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group no-margin">
-                        <label for="summary" class="control-label">简介</label>
-                        <textarea class="form-control autogrow" id="summary" placeholder="对此标签页的简介文字"></textarea>
-                      </div>
-                    </div>
+                  <div class="form-group">
+                    <label for="title" class="control-label">名称</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="网站名称">
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label for="url" class="control-label">网址</label>
-                  <input type="text" class="form-control" id="url" name="url" placeholder="Https://">
+                  <div class="form-group no-margin">
+                    <label for="summary" class="control-label">简介</label>
+                    <textarea class="form-control autogrow" id="summary" placeholder="对此标签页的简介文字"></textarea>
+                  </div>
                 </div>
               </div>
             </div>
@@ -222,34 +217,31 @@
                               </div>
                             </div>
                             <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="u-title" class="control-label">名称</label>
-                                            <input type="text" class="form-control" id="u-title" placeholder="网站名称">
-                                        </div>
-                                    </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <label for="u-url" class="control-label">网址</label>
+                                  <div class="input-group input-group-sm">
+                                    <input id="u-url" name="u-url" type="text" class="form-control" placeholder="网址地址，如:http://www.baidu.com">
+                                    <span class="input-group-btn">
+                                      <button type="button" class="btn btn-info btn-flat"  onclick="getTitle('#u-url','#u-title')">抓取标题</button>
+                                    </span>
+                                  </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group no-margin">
-                                            <label for="u-summary" class="control-label">简介</label>
-                                            <textarea class="form-control autogrow" id="u-summary" placeholder="对此标签页的简介文字"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="u-url" class="control-label">网址</label>
-                                <input type="text" class="form-control" id="u-url" placeholder="Https://">
-                            </div>
-                        </div>
-                    </div>
+                              </div>
 
+                              <div class="form-group">
+                                <label for="u-title" class="control-label">名称</label>
+                                <input type="text" class="form-control" id="u-title" name="u-title" placeholder="网站名称">
+                              </div>
+
+
+                              <div class="form-group no-margin">
+                                <label for="u-summary" class="control-label">简介</label>
+                                <textarea class="form-control autogrow" id="u-summary" placeholder="对此标签页的简介文字"></textarea>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -445,6 +437,21 @@
             area: ['90%', '90%'],
             content: url,
             scrollbar: false
+          });
+        }
+
+        function getTitle(url,title) {
+          $.ajax({
+            url:'links/get-title/',
+            type:'GET',
+            data:{'url':$(url).val()},
+            success:function (result) {
+              if(result.code){
+                $(title).val(result.msg);
+              } else {
+                alert("获取发生了错误")
+              }
+            }
           });
         }
     </script>

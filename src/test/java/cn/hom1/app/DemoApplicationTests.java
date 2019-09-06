@@ -1,6 +1,7 @@
 package cn.hom1.app;
 
 import cn.hom1.app.service.LinkService;
+import cn.hom1.app.service.RequestService;
 import cn.hom1.app.utils.RequestUtil;
 import java.io.IOException;
 import org.junit.Test;
@@ -16,13 +17,13 @@ public class DemoApplicationTests {
 	@Autowired
 	private LinkService linksService;
 
+	@Autowired
+	private RequestService requestService;
+
 	@Test
 	public void contextLoads(){
-		try {
-			 RequestUtil.requestSite("http://top.baidu.com/buzz.php?p=top10",false, "");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    String title = requestService.getTitle("http://www.baidu.com/");
+    System.out.println(title);
 	}
 
 }

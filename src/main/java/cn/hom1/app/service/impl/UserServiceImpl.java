@@ -26,4 +26,9 @@ public class UserServiceImpl  extends AbstractCrudService<User, Long> implements
   public User findByUsername(String username) {
     return userRepository.findUserByUsername(username);
   }
+
+  @Override
+  public void updateLastLoginTime(Long userId) {
+    userRepository.updateLastLoginTime(userId);
+  }
 }

@@ -31,6 +31,10 @@ public class UserDetailService  implements UserDetailsService {
 
     cn.hom1.app.model.entity.User us = userService.findByUsername(s);
 
+    if (us != null){
+      userService.updateLastLoginTime(us.getUserId());
+    }
+
     //todo 用户权限
     Collection<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
     authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
