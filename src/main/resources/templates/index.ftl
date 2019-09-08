@@ -154,28 +154,28 @@
           </div>
           <div class="col-lg-3 col-xs-6" id="widgetPostCountBody">
             <div class="small-box bg-aqua">
-              <div class="inner"><h3>1</h3><p>网站</p></div>
+              <div class="inner"><h3><@articleTag method="linksCount">${linksCount!0}</@articleTag></h3><p>网站</p></div>
               <div class="icon"><i class="ion ion-bag"></i></div>
               <a data-pjax="true" href="/admin/links" class="small-box-footer" data-pjax-state="">查看所有 <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-xs-6" id="widgetCommentCountBody">
             <div class="small-box bg-green">
-              <div class="inner"><h3>1</h3><p>评论</p></div>
+              <div class="inner"><h3><@articleTag method="linksCount">${linksCount!0}</@articleTag></h3><p>评论</p></div>
               <div class="icon"><i class="ion ion-stats-bars"></i></div>
               <a data-pjax="true" href="/admin/comments" class="small-box-footer" data-pjax-state="">查看所有 <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-xs-6" id="widgetAttachmentCountBody">
             <div class="small-box bg-yellow">
-              <div class="inner"><h3>0</h3><p>附件</p></div>
+              <div class="inner"><h3><@articleTag method="linksCount">${linksCount!0}</@articleTag></h3><p>附件</p></div>
               <div class="icon"><i class="ion ion-person-add"></i></div>
               <a data-pjax="true" href="/admin/attachments" class="small-box-footer" data-pjax-state="">上传图片 <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-lg-3 col-xs-6" id="widgetDayCountBody">
             <div class="small-box bg-red">
-              <div class="inner"><h3 id="blogStart">0</h3><p>成立天数</p></div>
+              <div class="inner"><h3 id="blogStart"><@articleTag method="linksCount">${linksCount!0}</@articleTag></h3><p>成立天数</p></div>
               <div class="icon"><i class="ion ion-pie-graph"></i></div>
               <a href="javascript:void(0)" class="small-box-footer" data-toggle="modal" data-target="#blogInfo">2019-08-02 <i class="fa fa-star"></i></a>
             </div>

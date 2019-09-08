@@ -51,7 +51,7 @@
                               ${user.nickname}
                             </td>
                             <td>
-                              ${user.email}
+                              ${user.email!"- -"}
                             </td>
                             <td>
                               <#-- 判断是否为空 -->
@@ -102,7 +102,7 @@
                 <div class="col-sm-4 text-center">
                   <div class="upload-img">
                     <img id="userAvatar" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
-                    <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=icon','选择附件')">选择图片</span>
+                    <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=userAvatar','选择附件')">选择图片</span>
                   </div>
                 </div>
                 <div class="col-sm-8">
@@ -193,7 +193,7 @@
                     <div class="col-sm-4 text-center">
                       <div class="upload-img">
                         <img id="u-userAvatar" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
-                        <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=icon','选择附件')">选择图片</span>
+                        <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=u-userAvatar','选择附件')">选择图片</span>
                       </div>
                     </div>
                     <div class="col-sm-8">

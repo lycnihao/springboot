@@ -1,6 +1,7 @@
 package cn.hom1.app.config;
 
 
+import cn.hom1.app.model.freemarker.ArticleTagDirective;
 import cn.hom1.app.model.freemarker.CommonTagDirective;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,15 @@ public class FreeMarkerAutoConfiguration {
     @Autowired
     private CommonTagDirective commonTagDirective;
 
+    @Autowired
+    private ArticleTagDirective articleTagDirective;
+
     @PostConstruct
     public void setSharedVariable() {
         try {
             //自定义标签
             configuration.setSharedVariable("commonTag", commonTagDirective);
+            configuration.setSharedVariable("articleTag", articleTagDirective);
         } catch (Exception e) {
             log.error("Custom tags failed to load：{}", e.getMessage());
         }

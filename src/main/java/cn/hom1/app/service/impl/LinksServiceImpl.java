@@ -47,7 +47,6 @@ public class LinksServiceImpl extends AbstractCrudService<Links , Long> implemen
 
     @Override
     public void save(Links link) {
-        System.out.println(link.getOrdered());
         link.setOrdered(link.getOrdered() != 0 ? link.getOrdered() : linksRepository.findMaxOrdered() + 1);
         linksRepository.save(link);
     }

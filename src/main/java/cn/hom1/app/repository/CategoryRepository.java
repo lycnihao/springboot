@@ -13,4 +13,6 @@ public interface CategoryRepository extends BaseRepository<Category, Long> {
     List<Category> findList();
 
     Category findCategoryBySlugName(String slugName);
+
+    Category findCategoriesByName(String name);
 }

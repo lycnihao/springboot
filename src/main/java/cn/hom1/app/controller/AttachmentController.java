@@ -4,8 +4,6 @@ import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.Attachment;
 import cn.hom1.app.service.AttachmentService;
 
-import cn.hutool.core.util.StrUtil;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
@@ -93,9 +91,9 @@ public class AttachmentController {
         @RequestParam(value = "id", defaultValue = "none") String id,
         @RequestParam(value = "type", defaultValue = "normal") String type) {
         final Page<Attachment> attachments = attachmentService.listAll(pageable);
-        model.addAttribute("attachments", attachments);
         model.addAttribute("id", id);
-        return "widget/_attachment-select";
+        model.addAttribute("attachments", attachments);
+        return "widget/attachment-select";
     }
 
 }

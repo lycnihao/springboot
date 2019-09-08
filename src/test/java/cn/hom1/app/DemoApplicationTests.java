@@ -4,6 +4,8 @@ import cn.hom1.app.service.LinkService;
 import cn.hom1.app.service.RequestService;
 import cn.hom1.app.utils.RequestUtil;
 import java.io.IOException;
+
+import cn.hom1.app.utils.RequestWeb;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,12 @@ public class DemoApplicationTests {
 	@Autowired
 	private RequestService requestService;
 
+	@Autowired
+	private RequestWeb requestWeb;
+
 	@Test
 	public void contextLoads(){
-    String title = requestService.getTitle("http://www.baidu.com/");
-    System.out.println(title);
+		requestWeb.pust();
 	}
 
 }
