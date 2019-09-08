@@ -4,6 +4,7 @@ import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.Links;
 import cn.hom1.app.service.CategoryService;
 import cn.hom1.app.service.LinkService;
+import cn.hutool.core.text.StrBuilder;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -32,10 +33,16 @@ public class RequestWeb {
 
     public static void main(String[] args) {
         RequestWeb requestWeb = new RequestWeb();
-        requestWeb.pust();
+        requestWeb.push();
     }
 
     public void pull(){
+
+        //用户目录
+        final StrBuilder uploadPath = new StrBuilder(System.getProperties().getProperty("user.home"));
+        uploadPath.append("/hom1/");
+        uploadPath.append("upload/");
+
         String webUrl = "http://www.yechuang.top/";
         Document doc = RequestUtil.requestSite(webUrl,false, "");
         Elements mainElements = doc.select("body > div:nth-child(4) > div > div.left.pull-left.col-md-9 > .list-nav");
@@ -61,9 +68,10 @@ public class RequestWeb {
                 /*map.put("img",img);*/
                 map.put("logo",imgPrefix + imgSuffix);
                 map.put("category",category);
+                System.out.println(map);
                 jsonArray.add(map);
 
-                File file = new File("C:/Users/38707/Desktop/网站批量导入/网站图标/" + imgPrefix + imgSuffix);
+                File file = new File(uploadPath +"/"+ imgPrefix + imgSuffix);
 
                 try {
                     URL imgFileUrl = new URL(img);
@@ -71,11 +79,11 @@ public class RequestWeb {
 
                     InputStream inputStream = conn.getInputStream();
 
-                    FileOutputStream output = new FileOutputStream(file);
-
                     if (!file.exists()) {
                         file.createNewFile();
                     }
+
+                    FileOutputStream output = new FileOutputStream(file);
 
                     int index;
                     byte[] bytes = new byte[1024];
@@ -93,16 +101,15 @@ public class RequestWeb {
         System.out.println(jsonArray);
 
         //总结 写入text
-        File file = new File("C:/Users/38707/Desktop/网站批量导入/webSite.txt");
-        String content = jsonArray.toJSONString();
+        try {
+            String content = jsonArray.toJSONString();
 
-        try (FileOutputStream fop = new FileOutputStream(file)) {
-
-            // if file doesn't exists, then create it
+            File file = new File(uploadPath + "/webSite.txt");
             if (!file.exists()) {
                 file.createNewFile();
             }
 
+            FileOutputStream fop = new FileOutputStream(file);
             // get the content in bytes
             byte[] contentInBytes = content.getBytes();
 
@@ -118,9 +125,14 @@ public class RequestWeb {
         }
     }
 
-    public void pust(){
+    public void push(){
+        //用户目录
+        final StrBuilder uploadPath = new StrBuilder(System.getProperties().getProperty("user.home"));
+        uploadPath.append("/hom1/");
+        uploadPath.append("upload/");
+
         try {
-            BufferedReader in = new BufferedReader(new FileReader("C:/Users/38707/Desktop/网站批量导入/webSite.txt"));
+            BufferedReader in = new BufferedReader(new FileReader(uploadPath + "webSite.txt"));
             String str;
             while ((str = in.readLine()) != null) {
                 JSONArray jsonArray = (JSONArray) JSON.parse(str);
