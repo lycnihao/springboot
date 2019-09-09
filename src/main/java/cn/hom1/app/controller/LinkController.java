@@ -32,8 +32,8 @@ public class LinkController {
     private RequestService requestService;
 
     @RequestMapping()
-    public String links(ModelMap modelMap,@PageableDefault(size = 10, sort = "linkId", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<Links> linkList = linkService.listAll(pageable);
+    public String links(ModelMap modelMap,Links links,@PageableDefault(size = 10, sort = "linkId", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<Links> linkList = linkService.list(links,pageable);
         List<Category> categories = categoryService.findList();
         modelMap.addAttribute("links", linkList);
         modelMap.addAttribute("categories", categories);

@@ -15,95 +15,145 @@
         </ol>
       </section>
       <section class="content" id="animated-content">
-        <div class="row">
-            <div class="col-md-12">
-              <div class="box">
-                    <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                        <thead>
-                        <tr>
-                          <th></th>
-                          <th>图标</th>
-                          <th>名称简介</th>
-                          <th>链接</th>
-                          <th>分类</th>
-                          <th>类型</th>
-                          <th>标签</th>
-                          <th>ID</th>
-                          <th>添加时间</th>
-                          <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <#list links.content as link>
-                        <tr>
-                          <td class="user-cb">
-                            <input type="checkbox" name="ids" value="${link.linkId}"/>
-                          </td>
-                          <td>
-                            <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId}});">
-                              <img src="${link.icon}" class="direct-chat-img" alt="user-pic" />
-                            </a>
-                          </td>
-                          <td>
-                            <a target="_blank" href="${link.url}" class="name">${link.title}</a>
-                          </td>
-                          <td class="hidden-xs hidden-sm">
-                            <span class="email">${link.url}</span>
-                          </td>
-                          <td class="hidden-xs hidden-sm">
-                                    <#list link.categories as cate>
-                                      <div class="label label-primary">${cate.name}</div>
-                                    </#list>
-                          </td>
-                          <td>
-                                    <span>${(link.isTouch == 0 && link.isRecommend == 0)?string('<div class="badge bg-light-blue">网站</div>',
-                                    (link.isTouch == 1 && link.isRecommend == 1)?string('<div class="badge bg-yellow">置顶</div><div class="badge bg-green">推荐</div>',
-                                    (link.isTouch == 1)?string('<div class="badge bg-yellow">置顶</div>',
-                                    '<div class="badge bg-green">推荐</div>')) )}</span>
-                          </td>
-                          <td>
-                            <span class="email">设计师/设计工具</span>
-                          </td>
-                          <td>
-                            <span class="email">${link.linkId}</span>
-                          </td>
-                          <td>
-                            <span class="email">${link.createTime?string("yyyy-MM-dd")}</span>
-                          </td>
-                          <td class="action-links">
-                            <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId}});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
-                            <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${link.linkId}});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
-                          </td>
-                        </tr>
-                        </#list>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="box-footer">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="no-margin pull-left">
-                          第${links.number+1}/${links.totalPages}页
-                        </div>
-                        <div class="btn-group pull-right btn-group-sm" role="group">
-                          <a data-pjax="true" class="btn btn-default <#if !links.hasPrevious()>disabled</#if>" href="/admin/links" >
-                            首页
-                          </a>
-                          <a data-pjax="true" class="btn btn-default <#if !links.hasPrevious()>disabled</#if>" href="/admin/links?page=${links.number-1}" >
-                            上一页
-                          </a>
-                          <a data-pjax="true" class="btn btn-default <#if !links.hasNext()>disabled</#if>" href="/admin/links?page=${links.number+1}">
-                            下一页
-                          </a>
-                          <a data-pjax="true" class="btn btn-default <#if !links.hasNext()>disabled</#if>" href="/admin/links?page=${links.totalPages-1}">
-                            尾页
-                          </a>
-                        </div>
+          <div class="box">
+            <div class="box-body">
+                <div class="row" id="form-search" style="display: none">
+                  <form action="/admin/links" method="get">
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <div class="form-group">
+                        <label class="control-label">ID</label>
+                        <input class="form-control" type="text" name="id" placeholder="" value="">
                       </div>
                     </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <div class="form-group">
+                        <label class="control-label">网站名称</label>
+                        <input class="form-control" type="text" name="title" placeholder="" value="">
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <div class="form-group">
+                        <label class="control-label">网站网址</label>
+                        <input class="form-control" type="text" name="url" placeholder="" value="">
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <div class="form-group">
+                        <label class="control-label">网站分类</label>
+                        <select class="group form-control" name="group" data-url="example/bootstraptable/cxselect?type=group">
+                          <option value="">请选择</option>
+                          <option value="1">超级管理组</option>
+                          <option value="2">二级管理组</option>
+                          <option value="3">三级管理组</option>
+                          <option value="4">二级管理组2</option>
+                          <option value="5">三级管理组2</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <button type="submit" class="btn btn-primary">
+                        提交
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-left"></div>
+                    <div class="pull-right">
+                      <button id="search-toggle" type="button" class="btn btn-default" style="margin-top: 10px">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 table-responsive no-padding">
+                    <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th></th>
+                      <th>图标</th>
+                      <th>名称</th>
+                      <th>链接</th>
+                      <th>分类</th>
+                      <th>类型</th>
+                      <th>标签</th>
+                      <th>ID</th>
+                      <th>添加时间</th>
+                      <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <#list links.content as link>
+                    <tr>
+                      <td class="user-cb">
+                        <input type="checkbox" name="ids" value="${link.linkId}"/>
+                      </td>
+                      <td>
+                        <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId}});">
+                          <img src="${link.icon}" class="direct-chat-img" alt="user-pic" />
+                        </a>
+                      </td>
+                      <td>
+                        <a target="_blank" href="${link.url}" class="name">${link.title}</a>
+                      </td>
+                      <td class="hidden-xs hidden-sm">
+                        <span class="email">${link.url}</span>
+                      </td>
+                      <td class="hidden-xs hidden-sm">
+                                <#list link.categories as cate>
+                                  <div class="label label-primary">${cate.name}</div>
+                                </#list>
+                      </td>
+                      <td>
+                                <span>${(link.isTouch == 0 && link.isRecommend == 0)?string('<div class="badge bg-light-blue">网站</div>',
+                                (link.isTouch == 1 && link.isRecommend == 1)?string('<div class="badge bg-yellow">置顶</div><div class="badge bg-green">推荐</div>',
+                                (link.isTouch == 1)?string('<div class="badge bg-yellow">置顶</div>',
+                                '<div class="badge bg-green">推荐</div>')) )}</span>
+                      </td>
+                      <td>
+                        <span class="email">设计师/设计工具</span>
+                      </td>
+                      <td>
+                        <span class="email">${link.linkId}</span>
+                      </td>
+                      <td>
+                        <span class="email">${link.createTime?string("yyyy-MM-dd")}</span>
+                      </td>
+                      <td class="action-links">
+                        <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId}});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
+                        <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${link.linkId}});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
+                      </td>
+                    </tr>
+                    </#list>
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+            </div>
+            <div class="box-footer">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="no-margin pull-left">
+                  第${links.number+1}/${links.totalPages}页
+                </div>
+                <div class="btn-group pull-right btn-group-sm" role="group">
+                  <a data-pjax="true" class="btn btn-default <#if !links.hasPrevious()>disabled</#if>" href="/admin/links" >
+                    首页
+                  </a>
+                  <a data-pjax="true" class="btn btn-default <#if !links.hasPrevious()>disabled</#if>" href="/admin/links?page=${links.number-1}" >
+                    上一页
+                  </a>
+                  <a data-pjax="true" class="btn btn-default <#if !links.hasNext()>disabled</#if>" href="/admin/links?page=${links.number+1}">
+                    下一页
+                  </a>
+                  <a data-pjax="true" class="btn btn-default <#if !links.hasNext()>disabled</#if>" href="/admin/links?page=${links.totalPages-1}">
+                    尾页
+                  </a>
+                </div>
               </div>
             </div>
-        </div>
+          </div>
       </section>
     </div>
 
@@ -426,6 +476,10 @@
                 }
             });
         });
+
+        $("#search-toggle").click(function () {
+          $("#form-search").toggle();
+        })
 
         function layerModal(url, title) {
           layer.open({
