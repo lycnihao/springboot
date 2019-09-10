@@ -37,12 +37,13 @@ public class WebSiteCategoryServiceImpl extends AbstractCrudService<WebSiteCateg
   }
 
   @Override
-  public Map<Integer, List<Category>> listCategoryListMap(Collection<Integer> postIds) {
-    if (CollectionUtils.isEmpty(postIds)) {
+  public Map<Integer, List<Category>> listCategoryListMap(Collection<Integer> cateIds) {
+    if (CollectionUtils.isEmpty(cateIds)) {
       return Collections.emptyMap();
     }
+
     // Find all post categories
-    List<WebSiteCategory> webSiteCategories = webSiteCategoryRepository.findAllByWebsiteIdIn(postIds);
+    List<WebSiteCategory> webSiteCategories = webSiteCategoryRepository.findAllByWebsiteIdIn(cateIds);
 
     // Fetch category ids
     Set<Integer> categoryIds = ServiceUtils.fetchProperty(webSiteCategories, WebSiteCategory::getCategoryId);
@@ -55,7 +56,7 @@ public class WebSiteCategoryServiceImpl extends AbstractCrudService<WebSiteCateg
 
     // Create category list map
     Map<Integer, List<Category>> categoryListMap = new HashMap<>();
-    System.out.println(categoryListMap);
+
     // Foreach and collect
     webSiteCategories.forEach(webSite -> categoryListMap.computeIfAbsent(webSite.getWebsiteId(), websiteId -> new LinkedList<>())
         .add(categoryMap.get(webSite.getCategoryId())));

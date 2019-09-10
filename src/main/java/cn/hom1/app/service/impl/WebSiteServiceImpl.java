@@ -120,6 +120,7 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Long> imple
         List<WebSite> webSites = webSitePage.getContent();
         Set<Integer> webSiteIds = ServiceUtils.fetchProperty(webSites, WebSite::getWebsiteId);
         Map<Integer, List<Category>> categoryListMap = webSiteCategoryService.listCategoryListMap(webSiteIds);
+        System.out.println(categoryListMap);
         return null;
     }
 }
