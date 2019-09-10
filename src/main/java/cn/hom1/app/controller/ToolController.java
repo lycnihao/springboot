@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("admin/tool/links")
 public class ToolController {
 
-  @Autowired
   private RequestWeb requestWeb;
 
   @RequestMapping("pull")

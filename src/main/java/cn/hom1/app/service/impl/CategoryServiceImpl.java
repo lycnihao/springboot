@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategoryServiceImpl extends AbstractCrudService<Category, Long> implements CategoryService {
-
-    @Autowired
-    private CategoryRepository repository;
+public class CategoryServiceImpl extends AbstractCrudService<Category, Integer> implements CategoryService {
 
     private final CategoryRepository categoryRepository;
 
@@ -24,7 +21,7 @@ public class CategoryServiceImpl extends AbstractCrudService<Category, Long> imp
 
     @Override
     public List<Category> findList() {
-        return repository.findList();
+        return categoryRepository.findList();
     }
 
     @Override

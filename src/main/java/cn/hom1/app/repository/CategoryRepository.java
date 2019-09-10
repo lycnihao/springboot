@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CategoryRepository extends BaseRepository<Category, Long> {
+public interface CategoryRepository extends BaseRepository<Category, Integer> {
     @Query(value = "select * from category", nativeQuery = true)
     List<Category> findList();
 

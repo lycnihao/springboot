@@ -16,7 +16,7 @@ public class Category {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
+    private Integer categoryId;
 
 
     /**
@@ -44,9 +44,4 @@ public class Category {
      */
     @Column(name = "description")
     private String description;
-
-    @ManyToMany(mappedBy = "categories")
-    @JsonIgnore
-    private List<Links> links = new ArrayList<>();
-
 }

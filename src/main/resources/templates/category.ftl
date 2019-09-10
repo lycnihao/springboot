@@ -99,7 +99,7 @@
                                                 <td>${cate.slugName!}</td>
                                                 <td>${cate.description!}</td>
                                                 <td>
-                                                    <span class="label" style="background-color: #d6cdcd;">${cate.links?size}</span>
+                                                    <span class="label" style="background-color: #d6cdcd;">${cate.webSite?size}</span>
                                                 </td>
                                                 <td>
                                                     <#if updateCategory?? && updateCategory.categoryId?c==cate.categoryId?c>

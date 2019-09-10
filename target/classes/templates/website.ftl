@@ -18,11 +18,11 @@
           <div class="box">
             <div class="box-body">
                 <div class="row" id="form-search" style="display: none">
-                  <form action="/admin/links" method="get">
+                  <form action="/admin/website" method="get">
                     <div class="col-xs-12 col-sm-6 col-md-3">
                       <div class="form-group">
                         <label class="control-label">ID</label>
-                        <input class="form-control" type="text" name="id" placeholder="" value="">
+                        <input class="form-control" type="text" name="websiteId" placeholder="" value="">
                       </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
@@ -40,13 +40,11 @@
                     <div class="col-xs-12 col-sm-6 col-md-3">
                       <div class="form-group">
                         <label class="control-label">网站分类</label>
-                        <select class="group form-control" name="group" data-url="example/bootstraptable/cxselect?type=group">
+                        <select class="group form-control" name="category" data-url="example/bootstraptable/cxselect?type=group">
                           <option value="">请选择</option>
-                          <option value="1">超级管理组</option>
-                          <option value="2">二级管理组</option>
-                          <option value="3">三级管理组</option>
-                          <option value="4">二级管理组2</option>
-                          <option value="5">三级管理组2</option>
+                          <#list categories as categorie>
+                          <option value="${categorie.categoryId}">${categorie.name}</option>
+                          </#list>
                         </select>
                       </div>
                     </div>
@@ -85,45 +83,45 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <#list links.content as link>
+                    <#list website.content as website>
                     <tr>
                       <td class="user-cb">
-                        <input type="checkbox" name="ids" value="${link.linkId}"/>
+                        <input type="checkbox" name="ids" value="${website.websiteId}"/>
                       </td>
                       <td>
-                        <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId}});">
-                          <img src="${link.icon}" class="direct-chat-img" alt="user-pic" />
+                        <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${website.websiteId}});">
+                          <img src="${website.icon}" class="direct-chat-img" alt="user-pic" />
                         </a>
                       </td>
                       <td>
-                        <a target="_blank" href="${link.url}" class="name">${link.title}</a>
+                        <a target="_blank" href="${website.url}" class="name">${website.title}</a>
                       </td>
                       <td class="hidden-xs hidden-sm">
-                        <span class="email">${link.url}</span>
+                        <span class="email">${website.url}</span>
                       </td>
                       <td class="hidden-xs hidden-sm">
-                                <#list link.categories as cate>
+                                <#--<#list website.categories as cate>
                                   <div class="label label-primary">${cate.name}</div>
-                                </#list>
+                                </#list>-->
                       </td>
                       <td>
-                                <span>${(link.isTouch == 0 && link.isRecommend == 0)?string('<div class="badge bg-light-blue">网站</div>',
-                                (link.isTouch == 1 && link.isRecommend == 1)?string('<div class="badge bg-yellow">置顶</div><div class="badge bg-green">推荐</div>',
-                                (link.isTouch == 1)?string('<div class="badge bg-yellow">置顶</div>',
+                                <span>${(website.isTouch == 0 && website.isRecommend == 0)?string('<div class="badge bg-light-blue">网站</div>',
+                                (website.isTouch == 1 && website.isRecommend == 1)?string('<div class="badge bg-yellow">置顶</div><div class="badge bg-green">推荐</div>',
+                                (website.isTouch == 1)?string('<div class="badge bg-yellow">置顶</div>',
                                 '<div class="badge bg-green">推荐</div>')) )}</span>
                       </td>
                       <td>
                         <span class="email">设计师/设计工具</span>
                       </td>
                       <td>
-                        <span class="email">${link.linkId}</span>
+                        <span class="email">${website.websiteId}</span>
                       </td>
                       <td>
-                        <span class="email">${link.createTime?string("yyyy-MM-dd")}</span>
+                        <span class="email">${website.createTime?string("yyyy-MM-dd")}</span>
                       </td>
-                      <td class="action-links">
-                        <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${link.linkId}});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
-                        <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${link.linkId}});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
+                      <td class="action-website">
+                        <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${website.websiteId}});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
+                        <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${website.websiteId}});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
                       </td>
                     </tr>
                     </#list>
@@ -135,19 +133,19 @@
             <div class="box-footer">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="no-margin pull-left">
-                  第${links.number+1}/${links.totalPages}页
+                  第${website.number+1}/${website.totalPages}页
                 </div>
                 <div class="btn-group pull-right btn-group-sm" role="group">
-                  <a data-pjax="true" class="btn btn-default <#if !links.hasPrevious()>disabled</#if>" href="/admin/links" >
+                  <a data-pjax="true" class="btn btn-default <#if !website.hasPrevious()>disabled</#if>" href="/admin/website" >
                     首页
                   </a>
-                  <a data-pjax="true" class="btn btn-default <#if !links.hasPrevious()>disabled</#if>" href="/admin/links?page=${links.number-1}" >
+                  <a data-pjax="true" class="btn btn-default <#if !website.hasPrevious()>disabled</#if>" href="/admin/website?page=${website.number-1}" >
                     上一页
                   </a>
-                  <a data-pjax="true" class="btn btn-default <#if !links.hasNext()>disabled</#if>" href="/admin/links?page=${links.number+1}">
+                  <a data-pjax="true" class="btn btn-default <#if !website.hasNext()>disabled</#if>" href="/admin/website?page=${website.number+1}">
                     下一页
                   </a>
-                  <a data-pjax="true" class="btn btn-default <#if !links.hasNext()>disabled</#if>" href="/admin/links?page=${links.totalPages-1}">
+                  <a data-pjax="true" class="btn btn-default <#if !website.hasNext()>disabled</#if>" href="/admin/website?page=${website.totalPages-1}">
                     尾页
                   </a>
                 </div>
@@ -257,7 +255,7 @@
                     <h4 class="modal-title">编辑网站</h4>
                 </div>
                 <div class="modal-body">
-                  <input id="u-linkId" type="hidden">
+                  <input id="u-websiteId" type="hidden">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-sm-4 text-center">
@@ -354,7 +352,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title">删除网站</h4>
           </div>
-          <div class="modal-body"><input id="link-id" type="hidden">
+          <div class="modal-body"><input id="website-id" type="hidden">
             确定要删除这个网址吗!
           </div>
           <div class="modal-footer">
@@ -381,9 +379,9 @@
             var id = button.id;
             $('#u-isRecommend').prop('checked', false);
             $('#u-isTouch').prop('checked', false);
-            $.get('links/updateData',{'linkId':id},function (result) {
+            $.get('website/updateData',{'websiteId':id},function (result) {
 
-                $('#u-linkId').val(result.linkId);
+                $('#u-websiteId').val(result.websiteId);
                 $('#u-title').val(result.title);
                 $('#u-url').val(result.url);
                 $('#u-icon').attr('src',result.icon);
@@ -409,11 +407,11 @@
             var button = $(event.relatedTarget)[0];
             var id = button.id;
             var modal = $(this);
-            modal.find('#link-id').val(id);
+            modal.find('#website-id').val(id);
         });
 
         $("#update").click(function () {
-            var linkId = $('#u-linkId').val();
+            var websiteId = $('#u-websiteId').val();
             var title = $('#u-title').val();
             var url =  $('#u-url').val();
             var icon =  $('#u-icon').attr('src');
@@ -427,9 +425,9 @@
             for (var i in cateList){
                 cateIds += cateList[i] + ","
             }
-            var data = {'linkId':linkId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateIds':cateIds};
+            var data = {'websiteId':websiteId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateIds':cateIds};
             $.ajax({
-                url:'links/save',
+                url:'website/save',
                 type:'post',
                 data:data,
                 success:function (result) {
@@ -455,7 +453,7 @@
             }
           var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateIds':cateIds};
             $.ajax({
-                url:'links/save',
+                url:'website/save',
                 type:'post',
                 data:data,
                 success:function (result) {
@@ -467,7 +465,7 @@
 
         $("#delete").click(function () {
             $.ajax({
-                url:'links/delete/'+$("#link-id").val(),
+                url:'website/delete/'+$("#website-id").val(),
                 type:'post',
                 data:{},
                 success:function (result) {
@@ -496,7 +494,7 @@
 
         function getTitle(url,title) {
           $.ajax({
-            url:'links/get-title/',
+            url:'website/get-title/',
             type:'GET',
             data:{'url':$(url).val()},
             success:function (result) {

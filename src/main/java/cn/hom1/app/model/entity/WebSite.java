@@ -12,15 +12,15 @@ import javax.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
-@Table(name = "links")
+@Table(name = "website")
 @Data
-public class Links {
+public class WebSite {
     /**
      * 网址Id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long linkId;
+    private Integer websiteId;
 
 
     /**
@@ -82,15 +82,6 @@ public class Links {
      */
     @Column(name = "isRecommend")
     private int isRecommend;
-
-    /**
-     * 链接所属分类
-     */
-    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinTable(name = "links_categories",
-             joinColumns = {@JoinColumn(name = "link_id", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "cate_id", nullable = false)})
-    private List<Category> categories = new ArrayList<>();
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public Date getCreateTime() {

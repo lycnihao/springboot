@@ -23,7 +23,7 @@
         </a>
       </li>
       <li class="menu-item">
-        <a data-pjax="true" href="/admin/links" data-pjax-state="">
+        <a data-pjax="true" href="/admin/website" data-pjax-state="">
           <i class="fa fa-external-link"></i>
           <span>网站</span>
         </a>

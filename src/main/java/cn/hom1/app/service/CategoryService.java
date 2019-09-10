@@ -5,7 +5,7 @@ import cn.hom1.app.service.base.CrudService;
 
 import java.util.List;
 
-public interface CategoryService extends CrudService<Category, Long> {
+public interface CategoryService extends CrudService<Category, Integer> {
     List<Category> findList();
 
     Category findBySlugName(String slugName);

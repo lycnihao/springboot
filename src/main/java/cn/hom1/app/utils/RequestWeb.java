@@ -1,9 +1,9 @@
 package cn.hom1.app.utils;
 
 import cn.hom1.app.model.entity.Category;
-import cn.hom1.app.model.entity.Links;
+import cn.hom1.app.model.entity.WebSite;
 import cn.hom1.app.service.CategoryService;
-import cn.hom1.app.service.LinkService;
+import cn.hom1.app.service.WebSiteService;
 import cn.hutool.core.text.StrBuilder;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -25,15 +25,19 @@ import java.util.*;
 @Service
 public class RequestWeb {
 
-    @Autowired
-    private LinkService linkService;
+    private WebSiteService webSiteService;
 
-    @Autowired
     private CategoryService categoryService;
 
+    public RequestWeb(WebSiteService webSiteService,
+        CategoryService categoryService) {
+        this.webSiteService = webSiteService;
+        this.categoryService = categoryService;
+    }
+
     public static void main(String[] args) {
-        RequestWeb requestWeb = new RequestWeb();
-        requestWeb.push();
+        /*RequestWeb requestWeb = new RequestWeb();
+        requestWeb.push();*/
     }
 
     public void pull(){
@@ -138,15 +142,15 @@ public class RequestWeb {
                 JSONArray jsonArray = (JSONArray) JSON.parse(str);
                 for(int i=0;i<jsonArray.size();i++){
                     JSONObject object = jsonArray.getJSONObject(i);
-                    Links  links = new Links();
-                    links.setTitle(object.get("title").toString());
-                    links.setSummary(object.get("summary").toString());
-                    links.setIcon("http://47.106.84.166:3302/upload/" + object.get("logo").toString());
-                    links.setUrl(object.get("url").toString());
-                    links.setOrdered(0);
-                    links.setIsTouch(0);
-                    links.setIsRecommend(0);
-                    links.setCreateTime(new Date());
+                    WebSite webSite = new WebSite();
+                    webSite.setTitle(object.get("title").toString());
+                    webSite.setSummary(object.get("summary").toString());
+                    webSite.setIcon("http://47.106.84.166:3302/upload/" + object.get("logo").toString());
+                    webSite.setUrl(object.get("url").toString());
+                    webSite.setOrdered(0);
+                    webSite.setIsTouch(0);
+                    webSite.setIsRecommend(0);
+                    webSite.setCreateTime(new Date());
 
                     List<Category> categories = new ArrayList<>();
                     Category category = categoryService.findByName(object.get("category").toString());
@@ -158,8 +162,8 @@ public class RequestWeb {
                     }
                     categories.add(category);
 
-                    links.setCategories(categories);
-                    linkService.save(links);
+                    /*links.setCategories(categories);*/
+                    webSiteService.save(webSite);
                 }
             }
 

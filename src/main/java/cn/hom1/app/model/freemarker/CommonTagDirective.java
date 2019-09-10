@@ -22,7 +22,6 @@ public class CommonTagDirective implements TemplateDirectiveModel {
 
     private static final String METHOD_KEY = "method";
 
-    @Autowired
     private CategoryService categoryService;
 
     @Override

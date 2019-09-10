@@ -72,7 +72,7 @@ public class CategoryController {
      * @return 模板路径category
      */
     @GetMapping(value = "/edit")
-    public String toEditCategory(Model model, @RequestParam("cateId") Long cateId) {
+    public String toEditCategory(Model model, @RequestParam("cateId") Integer cateId) {
         final Optional<Category> category = categoryService.fetchById(cateId);
         model.addAttribute("updateCategory", category.orElse(new Category()));
         return "category";
@@ -86,7 +86,7 @@ public class CategoryController {
      * @return 重定向到/admin/category
      */
     @GetMapping(value = "/remove")
-    public String removeCategory(@RequestParam("cateId") Long cateId) {
+    public String removeCategory(@RequestParam("cateId") Integer cateId) {
         try {
             categoryService.removeById(cateId);
         } catch (Exception e) {

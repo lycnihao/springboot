@@ -19,10 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/admin/user")
 public class UserController {
 
-    @Autowired
     private UserService userService;
 
-    @RequestMapping()
+    public UserController(UserService userService) {
+      this.userService = userService;
+    }
+
+  @RequestMapping()
     public String links(ModelMap modelMap) {
         List<User> userList = userService.listAll();
         modelMap.addAttribute("users", userList);

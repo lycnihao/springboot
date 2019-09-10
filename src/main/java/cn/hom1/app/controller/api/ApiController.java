@@ -1,9 +1,9 @@
 package cn.hom1.app.controller.api;
 
 import cn.hom1.app.model.entity.Category;
-import cn.hom1.app.model.entity.Links;
+import cn.hom1.app.model.entity.WebSite;
 import cn.hom1.app.service.CategoryService;
-import cn.hom1.app.service.LinkService;
+import cn.hom1.app.service.WebSiteService;
 import cn.hom1.app.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class ApiController {
 
     @Autowired
-    private LinkService linksService;
+    private WebSiteService webSiteService;
 
     @Autowired
     private CategoryService categoryService;
@@ -37,7 +37,6 @@ public class ApiController {
             map.put("slugName",category.getSlugName());
             map.put("icon",category.getIcon());
             map.put("description",category.getDescription());
-            map.put("list",category.getLinks());
             list.add(map);
         }
         return list;
@@ -45,14 +44,14 @@ public class ApiController {
 
 
     @RequestMapping("getTouch")
-    public List<Links> getTouch(){
-        return linksService.findTouch();
+    public List<WebSite> getTouch(){
+        return webSiteService.findTouch();
     }
 
 
     @RequestMapping("getRecommend")
-    public List<Links> getRecommend(){
-        return linksService.findRecommend();
+    public List<WebSite> getRecommend(){
+        return webSiteService.findRecommend();
     }
 
     @RequestMapping("getHotList")

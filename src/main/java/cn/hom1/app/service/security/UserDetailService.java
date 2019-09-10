@@ -22,8 +22,11 @@ import org.springframework.util.StringUtils;
 @Service
 public class UserDetailService  implements UserDetailsService {
 
-  @Autowired
   private UserService userService;
+
+  public UserDetailService(UserService userService) {
+    this.userService = userService;
+  }
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
