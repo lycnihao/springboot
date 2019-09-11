@@ -87,4 +87,21 @@ public class WebSite {
     public Date getCreateTime() {
         return createTime;
     }
+
+    public WebSite() {
+    }
+
+    public WebSite(Integer websiteId,String title, String url, String icon, String summary, int ordered, int visits,
+        Date createTime, int isTouch, int isRecommend) {
+        this.websiteId = websiteId;
+        this.title = title;
+        this.url = url;
+        this.icon = icon;
+        this.summary = summary;
+        this.ordered = ordered;
+        this.visits = visits;
+        this.createTime = createTime;
+        this.isTouch = isTouch;
+        this.isRecommend = isRecommend;
+    }
 }

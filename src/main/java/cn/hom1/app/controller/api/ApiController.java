@@ -18,14 +18,18 @@ import java.util.Map;
 @RequestMapping("api")
 public class ApiController {
 
-    @Autowired
     private WebSiteService webSiteService;
 
-    @Autowired
     private CategoryService categoryService;
 
-    @Autowired
     private RequestService requestService;
+
+    public ApiController(WebSiteService webSiteService,
+        CategoryService categoryService, RequestService requestService) {
+        this.webSiteService = webSiteService;
+        this.categoryService = categoryService;
+        this.requestService = requestService;
+    }
 
     @RequestMapping("getList")
     public List<Map<String,Object>> getList() {

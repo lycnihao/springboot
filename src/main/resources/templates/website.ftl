@@ -42,9 +42,11 @@
                         <label class="control-label">网站分类</label>
                         <select class="group form-control" name="category" data-url="example/bootstraptable/cxselect?type=group">
                           <option value="">请选择</option>
-                          <#list categories as categorie>
-                          <option value="${categorie.categoryId}">${categorie.name}</option>
-                          </#list>
+                          <@commonTag method="categories">
+                            <#list categories as categorie>
+                            <option value="${categorie.categoryId}">${categorie.name}</option>
+                            </#list>
+                          </@commonTag>
                         </select>
                       </div>
                     </div>
@@ -100,9 +102,16 @@
                         <span class="email">${website.url}</span>
                       </td>
                       <td class="hidden-xs hidden-sm">
-                                <#--<#list website.categories as cate>
-                                  <div class="label label-primary">${cate.name}</div>
-                                </#list>-->
+                        <#list websiteCate?keys as key>
+                          <#if key?number == website.websiteId>
+                            <#list websiteCate[key] as item>
+                              <div class="label label-primary">${item.name}</div>
+                            </#list>
+                          <#else>
+                              <div class="label label-danger">未分类</div>
+                          </#if>
+
+                        </#list>
                       </td>
                       <td>
                                 <span>${(website.isTouch == 0 && website.isRecommend == 0)?string('<div class="badge bg-light-blue">网站</div>',
@@ -390,7 +399,7 @@
                 $('#u-createTime').val(result.createTime);
 
                 var arr = [];
-                $.each(result.categories, function(key, val) { arr.push(val.categoryId) });
+                $.each(result.webSiteCategories, function(key, val) { arr.push(val.categoryId) });
                 $('#u-categories').val(arr).trigger('change');
 
                 if(result.isTouch == 1)
@@ -420,12 +429,8 @@
             var createTime = $('#u-createTime').val();
             var isTouch = $('#u-isTouch').prop('checked');
             var isRecommend = $('#u-isRecommend').prop('checked');
-            var cateList = $("#u-categories").val();
-            var cateIds = "";
-            for (var i in cateList){
-                cateIds += cateList[i] + ","
-            }
-            var data = {'websiteId':websiteId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateIds':cateIds};
+            var categoryIds = $("#u-categories").val();
+            var data = {'websiteId':websiteId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'categoryIds':categoryIds};
             $.ajax({
                 url:'website/save',
                 type:'post',
@@ -446,12 +451,8 @@
           var createTime = $('#createTime').val();
           var isTouch = $('#isTouch').prop('checked');
           var isRecommend = $('#isRecommend').prop('checked');
-          var cateList = $("#categories").val();
-            var cateIds = "";
-            for (var i in cateList){
-                cateIds += cateList[i] + ","
-            }
-          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'cateIds':cateIds};
+          var categoryIds = $("#categories").val();
+          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'categoryIds[]':categoryIds};
             $.ajax({
                 url:'website/save',
                 type:'post',

@@ -2,20 +2,17 @@ package cn.hom1.app.service.impl;
 
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.WebSite;
+import cn.hom1.app.model.entity.WebSiteCategory;
 import cn.hom1.app.model.enums.TrueFalseEnum;
-import cn.hom1.app.model.vo.WebSiteListVo;
 import cn.hom1.app.repository.WebSiteRepository;
+import cn.hom1.app.service.CategoryService;
 import cn.hom1.app.service.WebSiteCategoryService;
 import cn.hom1.app.service.WebSiteService;
 import cn.hom1.app.service.base.AbstractCrudService;
 import cn.hom1.app.utils.ServiceUtils;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -30,17 +27,20 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 @Service
-public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Long> implements WebSiteService {
+public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> implements WebSiteService {
 
 
     private final WebSiteRepository webSiteRepository;
 
     private final WebSiteCategoryService webSiteCategoryService;
 
-    public WebSiteServiceImpl(WebSiteRepository webSiteRepository,WebSiteCategoryService webSiteCategoryService) {
+    private final CategoryService categoryService;
+
+    public WebSiteServiceImpl(WebSiteRepository webSiteRepository,WebSiteCategoryService webSiteCategoryService,CategoryService categoryService) {
         super(webSiteRepository);
         this.webSiteRepository = webSiteRepository;
         this.webSiteCategoryService = webSiteCategoryService;
+        this.categoryService = categoryService;
     }
 
     @Override
@@ -90,37 +90,40 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Long> imple
     }
 
     @Override
-    public void save(WebSite link) {
+    public void save(WebSite webSite, Set<Integer> categoryIds) {
 
-        if (link.getOrdered() == 0){
+        if (webSite.getOrdered() == 0){
              Integer max = webSiteRepository.findMaxOrdered();
              if (max != null){
-                 link.setOrdered(max);
+                 webSite.setOrdered(max);
              }else {
-                 link.setOrdered(0);
+                 webSite.setOrdered(0);
              }
         }
-        webSiteRepository.save(link);
+        WebSite  bWebSite = webSiteRepository.save(webSite);
+
+        List<Category> categories = categoryService.listAllByIds(categoryIds);
+
+        webSiteCategoryService.mergeOrCreateByIfAbsent(bWebSite.getWebsiteId(),ServiceUtils.fetchProperty(categories, Category::getCategoryId));
     }
 
     @Override
-    public void delete(Integer linkId) {
-        WebSite webSite = webSiteRepository.findByWebsiteId(linkId);
+    public void delete(Integer webSiteId) {
+        WebSite webSite = webSiteRepository.findByWebsiteId(webSiteId);
         webSiteRepository.delete(webSite);
+        webSiteCategoryService.removeWebsiteId(webSiteId);
     }
 
     @Override
-    public void updateVisitsByLinkId(Integer linkId) {
-        webSiteRepository.updateVisitsByLinkId(linkId);
+    public void updateVisitsByLinkId(Integer webSiteId) {
+        webSiteRepository.updateVisitsByLinkId(webSiteId);
     }
 
     @Override
-    public Page<WebSiteListVo> convertToListVo(Page<WebSite> webSitePage) {
+    public Map<Integer, List<Category>> convertToListMap(Page<WebSite> webSitePage) {
         Assert.notNull(webSitePage, "网站页面不能为空");
         List<WebSite> webSites = webSitePage.getContent();
         Set<Integer> webSiteIds = ServiceUtils.fetchProperty(webSites, WebSite::getWebsiteId);
-        Map<Integer, List<Category>> categoryListMap = webSiteCategoryService.listCategoryListMap(webSiteIds);
-        System.out.println(categoryListMap);
-        return null;
+        return webSiteCategoryService.listCategoryListMap(webSiteIds);
     }
 }

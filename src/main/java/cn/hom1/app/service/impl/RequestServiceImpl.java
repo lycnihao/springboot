@@ -60,6 +60,6 @@ public class RequestServiceImpl implements RequestService {
   @Override
   public String getTitle(String url) {
     Document doc = RequestUtil.requestSite(url,false, "");
-    return doc !=null ? doc.title() : "";
+    return doc != null ? doc.title() : "";
   }
 }

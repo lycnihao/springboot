@@ -19,7 +19,7 @@ public class RequestUtil {
    * @return
    */
   public static Document requestSite(String url, boolean isProxy, String userAgent){
-    Document document = null;
+    Document document;
     try {
     Connection connect =  Jsoup.connect(url)
         .ignoreContentType(true)

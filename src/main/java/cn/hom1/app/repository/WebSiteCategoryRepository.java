@@ -13,5 +13,11 @@ import org.springframework.lang.NonNull;
  */
 public interface WebSiteCategoryRepository  extends BaseRepository<WebSiteCategory, Integer> {
   @NonNull
-  List<WebSiteCategory> findAllByWebsiteIdIn(@NonNull Iterable<Integer> postIds);
+  List<WebSiteCategory> findAllByWebsiteIdIn(@NonNull Iterable<Integer> websiteIds);
+
+  @NonNull
+  List<WebSiteCategory> findByWebsiteId(@NonNull Integer websiteId);
+
+  @NonNull
+  List<WebSiteCategory> removeAllByWebsiteId(@NonNull Integer websiteId);
 }

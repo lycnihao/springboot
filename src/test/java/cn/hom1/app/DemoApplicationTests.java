@@ -18,9 +18,6 @@ public class DemoApplicationTests {
 	private WebSiteService webSiteService;
 
 	@Autowired
-	private RequestService requestService;
-
-	@Autowired
 	private RequestWeb requestWeb;
 
 	@Test

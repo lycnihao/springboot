@@ -24,6 +24,10 @@ public class CommonTagDirective implements TemplateDirectiveModel {
 
     private CategoryService categoryService;
 
+    public CommonTagDirective(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
+
     @Override
     public void execute(Environment environment, Map map, TemplateModel[] templateModels, TemplateDirectiveBody templateDirectiveBody) throws TemplateException, IOException {
         final DefaultObjectWrapperBuilder builder = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);

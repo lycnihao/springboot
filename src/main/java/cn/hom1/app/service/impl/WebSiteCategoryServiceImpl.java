@@ -14,7 +14,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
@@ -61,5 +63,53 @@ public class WebSiteCategoryServiceImpl extends AbstractCrudService<WebSiteCateg
     webSiteCategories.forEach(webSite -> categoryListMap.computeIfAbsent(webSite.getWebsiteId(), websiteId -> new LinkedList<>())
         .add(categoryMap.get(webSite.getCategoryId())));
     return categoryListMap;
+  }
+
+  @Override
+  public List<WebSiteCategory> mergeOrCreateByIfAbsent(Integer websiteId, Set<Integer> categoryIds) {
+    Assert.notNull(websiteId, "Post id must not be null");
+    if (CollectionUtils.isEmpty(categoryIds)) {
+      return Collections.emptyList();
+    }
+
+    // Build post categories
+    List<WebSiteCategory> webSiteCategories = categoryIds.stream().map(categoryId -> {
+      WebSiteCategory webSiteCategory = new WebSiteCategory();
+      webSiteCategory.setWebsiteId(websiteId);
+      webSiteCategory.setCategoryId(categoryId);
+      return webSiteCategory;
+    }).collect(Collectors.toList());
+
+    List<WebSiteCategory> webSiteCategoriesToCreate = new LinkedList<>();
+
+    List<WebSiteCategory> webSiteCategoriesToRemove = new LinkedList<>();
+
+    List<WebSiteCategory> webSiteCategoryList = webSiteCategoryRepository.findByWebsiteId(websiteId);
+    webSiteCategoryList.forEach(webSiteCategory -> {
+      if (!webSiteCategories.contains(webSiteCategory)) {
+        webSiteCategoriesToRemove.add(webSiteCategory);
+      }
+    });
+
+    webSiteCategories.forEach(webSiteCategoryStaging -> {
+      if (!webSiteCategoryList.contains(webSiteCategoryStaging)) {
+        webSiteCategoriesToCreate.add(webSiteCategoryStaging);
+      }
+    });
+
+    webSiteCategoryRepository.deleteInBatch(webSiteCategoriesToRemove);
+    webSiteCategoryRepository.saveAll(webSiteCategoriesToCreate);
+
+    return webSiteCategories;
+  }
+
+  @Override
+  public List<WebSiteCategory> findByWebsiteId(Integer websiteId) {
+    return webSiteCategoryRepository.findByWebsiteId(websiteId);
+  }
+
+  @Override
+  public List<WebSiteCategory> removeWebsiteId(Integer websiteId) {
+    return webSiteCategoryRepository.removeAllByWebsiteId(websiteId);
   }
 }

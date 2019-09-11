@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface WebSiteRepository extends BaseRepository<WebSite, Long> {
+public interface WebSiteRepository extends BaseRepository<WebSite, Integer> {
 
 
     //获取推荐touch列表
