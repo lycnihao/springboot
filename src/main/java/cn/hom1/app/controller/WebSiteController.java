@@ -4,6 +4,7 @@ import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.WebSite;
 import cn.hom1.app.model.entity.WebSiteCategory;
+import cn.hom1.app.model.params.WebSiteQuery;
 import cn.hom1.app.model.vo.WebSiteVo;
 import cn.hom1.app.service.CategoryService;
 import cn.hom1.app.service.WebSiteCategoryService;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -40,8 +42,9 @@ public class WebSiteController {
   }
 
   @RequestMapping()
-    public String webSite(ModelMap modelMap,@PageableDefault(size = 10, sort = "websiteId", direction = Sort.Direction.DESC) Pageable pageable) {
-      Page<WebSite> webSitePage = webSiteService.listAll(pageable);
+    public String webSite(ModelMap modelMap,@PageableDefault(size = 10, sort = "websiteId", direction = Sort.Direction.DESC) Pageable pageable,
+                          WebSiteQuery webSiteQuery) {
+      Page<WebSite> webSitePage = webSiteService.pageBy(webSiteQuery,pageable);
       Map<Integer, List<Category>> listMap = webSiteService.convertToListMap(webSitePage);
 
       // freemarker只支持key为字符串的Map对象
@@ -50,8 +53,17 @@ public class WebSiteController {
         websiteCateMap.put(key.toString(),listMap.get(key));
       }
 
+      StringBuilder sb = new StringBuilder();
+      if (!StringUtils.isEmpty(webSiteQuery.getKeyword())){
+        sb.append("&keyword=" + webSiteQuery.getKeyword());
+      }
+      if (!StringUtils.isEmpty(webSiteQuery.getCategoryId())){
+        sb.append("&categoryId=" + webSiteQuery.getCategoryId());
+      }
+      modelMap.addAttribute("url", sb.toString());
       modelMap.addAttribute("website", webSitePage);
       modelMap.addAttribute("websiteCate", websiteCateMap);
+
         return "webSite";
     }
 

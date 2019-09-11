@@ -3,7 +3,10 @@ package cn.hom1.app.repository;
 import cn.hom1.app.model.entity.WebSiteCategory;
 import cn.hom1.app.repository.base.BaseRepository;
 import java.util.List;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.lang.NonNull;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 描述
@@ -19,5 +22,7 @@ public interface WebSiteCategoryRepository  extends BaseRepository<WebSiteCatego
   List<WebSiteCategory> findByWebsiteId(@NonNull Integer websiteId);
 
   @NonNull
-  List<WebSiteCategory> removeAllByWebsiteId(@NonNull Integer websiteId);
+  @Transactional
+  @Modifying
+  void removeAllByWebsiteId(@NonNull Integer websiteId);
 }

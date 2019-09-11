@@ -21,26 +21,14 @@
                   <form action="/admin/website" method="get">
                     <div class="col-xs-12 col-sm-6 col-md-3">
                       <div class="form-group">
-                        <label class="control-label">ID</label>
-                        <input class="form-control" type="text" name="websiteId" placeholder="" value="">
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                      <div class="form-group">
                         <label class="control-label">网站名称</label>
-                        <input class="form-control" type="text" name="title" placeholder="" value="">
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                      <div class="form-group">
-                        <label class="control-label">网站网址</label>
-                        <input class="form-control" type="text" name="url" placeholder="" value="">
+                        <input class="form-control" type="text" name="keyword" placeholder="" value="">
                       </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                       <div class="form-group">
                         <label class="control-label">网站分类</label>
-                        <select class="group form-control" name="category" data-url="example/bootstraptable/cxselect?type=group">
+                        <select class="group form-control" name="categoryId" data-url="example/bootstraptable/cxselect?type=group">
                           <option value="">请选择</option>
                           <@commonTag method="categories">
                             <#list categories as categorie>
@@ -107,10 +95,7 @@
                             <#list websiteCate[key] as item>
                               <div class="label label-primary">${item.name}</div>
                             </#list>
-                          <#else>
-                              <div class="label label-danger">未分类</div>
                           </#if>
-
                         </#list>
                       </td>
                       <td>
@@ -129,8 +114,8 @@
                         <span class="email">${website.createTime?string("yyyy-MM-dd")}</span>
                       </td>
                       <td class="action-website">
-                        <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${website.websiteId}});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
-                        <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${website.websiteId}});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
+                        <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${website.websiteId ? c}});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
+                        <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${website.websiteId ? c}});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
                       </td>
                     </tr>
                     </#list>
@@ -145,16 +130,16 @@
                   第${website.number+1}/${website.totalPages}页
                 </div>
                 <div class="btn-group pull-right btn-group-sm" role="group">
-                  <a data-pjax="true" class="btn btn-default <#if !website.hasPrevious()>disabled</#if>" href="/admin/website" >
+                  <a data-pjax="true" class="btn btn-default <#if !website.hasPrevious()>disabled</#if>" href="/admin/website/" >
                     首页
                   </a>
-                  <a data-pjax="true" class="btn btn-default <#if !website.hasPrevious()>disabled</#if>" href="/admin/website?page=${website.number-1}" >
+                  <a data-pjax="true" class="btn btn-default <#if !website.hasPrevious()>disabled</#if>" href="/admin/website?page=${website.number-1}${url}" >
                     上一页
                   </a>
-                  <a data-pjax="true" class="btn btn-default <#if !website.hasNext()>disabled</#if>" href="/admin/website?page=${website.number+1}">
+                  <a data-pjax="true" class="btn btn-default <#if !website.hasNext()>disabled</#if>" href="/admin/website?page=${website.number+1}${url}">
                     下一页
                   </a>
-                  <a data-pjax="true" class="btn btn-default <#if !website.hasNext()>disabled</#if>" href="/admin/website?page=${website.totalPages-1}">
+                  <a data-pjax="true" class="btn btn-default <#if !website.hasNext()>disabled</#if>" href="/admin/website?page=${website.totalPages-1}${url}">
                     尾页
                   </a>
                 </div>

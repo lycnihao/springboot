@@ -110,6 +110,7 @@ public class WebSiteCategoryServiceImpl extends AbstractCrudService<WebSiteCateg
 
   @Override
   public List<WebSiteCategory> removeWebsiteId(Integer websiteId) {
-    return webSiteCategoryRepository.removeAllByWebsiteId(websiteId);
+    webSiteCategoryRepository.removeAllByWebsiteId(websiteId);
+    return null;
   }
 }
