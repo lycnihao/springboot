@@ -119,4 +119,11 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
         Set<Integer> webSiteIds = ServiceUtils.fetchProperty(webSites, WebSite::getWebsiteId);
         return webSiteCategoryService.listCategoryListMap(webSiteIds);
     }
+
+    @Override
+    public Map<Integer, List<WebSite>> convertToListMap(List<Category> categories) {
+        Assert.notNull(categories, "分类不能为空");
+        Set<Integer> categoryIds = ServiceUtils.fetchProperty(categories, Category::getCategoryId);
+        return webSiteCategoryService.listWebSiteListMap(categoryIds);
+    }
 }

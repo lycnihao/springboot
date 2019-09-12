@@ -30,4 +30,7 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
 
     @NonNull
     Map<Integer, List<Category>> convertToListMap(@NonNull Page<WebSite> webSitePage);
+
+    @NonNull
+    Map<Integer, List<WebSite>> convertToListMap(@NonNull List<Category> categories);
 }

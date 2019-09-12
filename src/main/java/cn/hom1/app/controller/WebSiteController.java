@@ -71,8 +71,8 @@ public class WebSiteController {
     @ResponseBody
     public WebSiteVo getWebSite(Integer websiteId) {
         WebSite webSite = webSiteService.getById(websiteId);
-        List<WebSiteCategory> webSiteCategories = webSiteCategoryService.findByWebsiteId(websiteId);
-        return new WebSiteVo(webSite,webSiteCategories);
+        List<Category> categories = categoryService.findByWebsiteId(websiteId);
+        return new WebSiteVo(webSite,categories);
     }
 
     @RequestMapping("save")

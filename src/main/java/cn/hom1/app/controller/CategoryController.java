@@ -3,11 +3,13 @@ package cn.hom1.app.controller;
 import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.service.CategoryService;
+import cn.hom1.app.service.WebSiteCategoryService;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +22,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/admin/category")
 public class CategoryController {
 
-    @Autowired
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
+
+    private final WebSiteCategoryService webSiteCategoryService;
+
+    public CategoryController(CategoryService categoryService,
+        WebSiteCategoryService webSiteCategoryService) {
+        this.categoryService = categoryService;
+        this.webSiteCategoryService = webSiteCategoryService;
+    }
 
     /**
      * 查询所有分类并渲染category页面
@@ -29,7 +38,8 @@ public class CategoryController {
      * @return 模板路径admin/admin_category
      */
     @GetMapping
-    public String categories() {
+    public String categories(ModelMap modelMap) {
+        modelMap.addAttribute("categories",categoryService.listCategoryWithWebSiteCount());
         return "category";
     }
 
@@ -74,6 +84,7 @@ public class CategoryController {
     @GetMapping(value = "/edit")
     public String toEditCategory(Model model, @RequestParam("cateId") Integer cateId) {
         final Optional<Category> category = categoryService.fetchById(cateId);
+        model.addAttribute("categories",categoryService.listCategoryWithWebSiteCount());
         model.addAttribute("updateCategory", category.orElse(new Category()));
         return "category";
     }
@@ -83,16 +94,17 @@ public class CategoryController {
      * 处理删除分类目录的请求
      *
      * @param cateId cateId
-     * @return 重定向到/admin/category
      */
-    @GetMapping(value = "/remove")
-    public String removeCategory(@RequestParam("cateId") Integer cateId) {
-        try {
+    @PostMapping(value = "/remove")
+    @ResponseBody
+    public JsonResult removeCategory(@RequestParam("cateId") Integer cateId) {
+        Integer websiteCount = webSiteCategoryService.findWebSiteCountByCategoryId(cateId);
+        if (websiteCount == 0){
             categoryService.removeById(cateId);
-        } catch (Exception e) {
-            System.out.println("Delete category failed: {}"+ e.getMessage());
+        } else {
+            return new JsonResult(0, "当前分类下存在资源，删除失败！");
         }
-        return "redirect:/admin/category";
+        return new JsonResult(1, "删除成功！");
     }
 
 }

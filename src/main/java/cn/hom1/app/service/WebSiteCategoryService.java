@@ -1,6 +1,8 @@
 package cn.hom1.app.service;
 
+import cn.hom1.app.model.dto.CategoryIdAndWebSiteCountDto;
 import cn.hom1.app.model.entity.Category;
+import cn.hom1.app.model.entity.WebSite;
 import cn.hom1.app.model.entity.WebSiteCategory;
 import cn.hom1.app.service.base.CrudService;
 import java.util.Collection;
@@ -21,6 +23,9 @@ public interface WebSiteCategoryService  extends CrudService<WebSiteCategory, In
   @NonNull
   Map<Integer, List<Category>> listCategoryListMap(@Nullable Collection<Integer> postIds);
 
+  @NonNull
+  Map<Integer, List<WebSite>> listWebSiteListMap(@Nullable Collection<Integer> webSiteIds);
+
   /**
    * Merges or creates post categories by post id and category id set if absent.
    *
@@ -35,5 +40,8 @@ public interface WebSiteCategoryService  extends CrudService<WebSiteCategory, In
   List<WebSiteCategory> findByWebsiteId(@NonNull Integer websiteId);
 
   @NonNull
-  List<WebSiteCategory> removeWebsiteId(@NonNull Integer websiteId);
+  void removeWebsiteId(@NonNull Integer websiteId);
+
+  @NonNull
+  Integer findWebSiteCountByCategoryId(@NonNull Integer categoryId);
 }

@@ -384,7 +384,7 @@
                 $('#u-createTime').val(result.createTime);
 
                 var arr = [];
-                $.each(result.webSiteCategories, function(key, val) { arr.push(val.categoryId) });
+                $.each(result.categories, function(key, val) { arr.push(val.categoryId) });
                 $('#u-categories').val(arr).trigger('change');
 
                 if(result.isTouch == 1)

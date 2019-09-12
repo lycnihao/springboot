@@ -21,6 +21,17 @@
         diskExpiryThreadIntervalSeconds="600"
         timeToIdleSeconds="0"
         timeToLiveSeconds="7200" />
+
+    <!-- 配置名为webSite的缓存区 -->
+    <cache name="webSite"
+      maxElementsInMemory="10000"
+      eternal="false"
+      overflowToDisk="false"
+      diskSpoolBufferSizeMB="300"
+      diskPersistent="true"
+      diskExpiryThreadIntervalSeconds="600"
+      timeToIdleSeconds="0"
+      timeToLiveSeconds="7200" />
 </ehcache>
     <!--
     <diskStore>==========当内存缓存中对象数量超过maxElementsInMemory时,将缓存对象写到磁盘缓存中(需对象实现序列化接口)
