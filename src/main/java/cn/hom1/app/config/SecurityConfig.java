@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           .antMatchers("/**","admin/login","/api/**", "/assets/**", "/css/**", "/js/**", "/images/**").permitAll()
         .and()
           .formLogin()
-            .loginPage("/admin/login")
+            /*.loginPage("/admin/login")*/
             .successForwardUrl("/admin")
           .permitAll()
         .and()

@@ -23,7 +23,9 @@ public class DemoApplicationTests {
 	@Test
 	public void contextLoads(){
 		/*System.out.println(new BCryptPasswordEncoder().encode("iksen22."));*/
-		requestWeb.push();
+		/*requestWeb.push();*/
+		System.out.println(webSiteService.listWebSiteListByUserId(1));
+
 	}
 
 }

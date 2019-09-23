@@ -3,7 +3,6 @@ package cn.hom1.app.controller;
 import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.WebSite;
-import cn.hom1.app.model.entity.WebSiteCategory;
 import cn.hom1.app.model.params.WebSiteQuery;
 import cn.hom1.app.model.vo.WebSiteVo;
 import cn.hom1.app.service.CategoryService;
@@ -45,8 +44,7 @@ public class WebSiteController {
     public String webSite(ModelMap modelMap,@PageableDefault(size = 10, sort = "websiteId", direction = Sort.Direction.DESC) Pageable pageable,
                           WebSiteQuery webSiteQuery) {
       Page<WebSite> webSitePage = webSiteService.pageBy(webSiteQuery,pageable);
-      Map<Integer, List<Category>> listMap = webSiteService.convertToListMap(webSitePage);
-
+      Map<Integer, List<Category>> listMap = webSiteService.convertToListMapByWebSite(webSitePage);
       // freemarker只支持key为字符串的Map对象
       Map<String, List<Category>> websiteCateMap = new HashMap<>(listMap.size());
       for (Integer key : listMap.keySet()){
@@ -55,10 +53,10 @@ public class WebSiteController {
 
       StringBuilder sb = new StringBuilder();
       if (!StringUtils.isEmpty(webSiteQuery.getKeyword())){
-        sb.append("&keyword=" + webSiteQuery.getKeyword());
+        sb.append("&keyword=").append(webSiteQuery.getKeyword());
       }
       if (!StringUtils.isEmpty(webSiteQuery.getCategoryId())){
-        sb.append("&categoryId=" + webSiteQuery.getCategoryId());
+        sb.append("&categoryId=").append(webSiteQuery.getCategoryId());
       }
       modelMap.addAttribute("url", sb.toString());
       modelMap.addAttribute("website", webSitePage);

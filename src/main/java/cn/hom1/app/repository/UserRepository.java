@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface UserRepository extends BaseRepository<User, Long> {
 
-  User findUserByUsername(String username);
+  User findByUsername(String username);
+
+  User findByEmail(String email);
 
   @Transactional
   @Modifying

@@ -11,20 +11,20 @@ import lombok.Data;
  * 描述
  *
  * @author iksen
- * @date 2019-09-10 13:52
+ * @date 2019-09-23 09:23
  */
-@Entity(name = "websiteCategory")
+@Entity(name = "websiteUser")
 @Data
-public class WebSiteCategory {
+public class WebSiteUser {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   /**
-   * Category id.
+   * User id.
    */
-  @Column(name = "category_id")
-  private Integer categoryId;
+  @Column(name = "user_id")
+  private Integer userId;
 
   /**
    * Website id.

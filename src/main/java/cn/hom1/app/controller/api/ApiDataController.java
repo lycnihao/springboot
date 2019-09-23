@@ -8,8 +8,11 @@ import cn.hom1.app.service.CategoryService;
 import cn.hom1.app.service.WebSiteCategoryService;
 import cn.hom1.app.service.WebSiteService;
 import cn.hom1.app.service.RequestService;
+import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +23,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("api")
-public class ApiController {
+public class ApiDataController {
 
     private WebSiteService webSiteService;
 
@@ -28,7 +31,7 @@ public class ApiController {
 
     private RequestService requestService;
 
-    public ApiController(WebSiteService webSiteService, CategoryService categoryService,
+    public ApiDataController(WebSiteService webSiteService, CategoryService categoryService,
                   RequestService requestService) {
         this.webSiteService = webSiteService;
         this.categoryService = categoryService;
@@ -39,10 +42,14 @@ public class ApiController {
     @Cacheable(value="webSite",key="'webSite'")
     public CategoryWebSiteVo getList() {
         List<Category> categories = categoryService.listAll();
-        Map<Integer, List<WebSite>> webSites = webSiteService.convertToListMap(categories);
+        Map<Integer, List<WebSite>> webSites = webSiteService.convertToListMapByCategory(categories);
         return new CategoryWebSiteVo(categories,webSites);
     }
 
+    @RequestMapping("getUserWebSite/{user}")
+    public List<WebSite> getUserWebSite(@PathVariable("user") String userId) {
+        return webSiteService.listWebSiteListByUserId(Integer.valueOf(userId));
+    }
 
     @RequestMapping("getTouch")
     public List<WebSite> getTouch(){

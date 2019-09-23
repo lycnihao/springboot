@@ -29,8 +29,13 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
     void updateVisitsByLinkId(Integer webSiteId);
 
     @NonNull
-    Map<Integer, List<Category>> convertToListMap(@NonNull Page<WebSite> webSitePage);
+    Map<Integer, List<Category>> convertToListMapByWebSite(@NonNull Page<WebSite> webSitePage);
 
     @NonNull
-    Map<Integer, List<WebSite>> convertToListMap(@NonNull List<Category> categories);
+    Map<Integer, List<WebSite>> convertToListMapByCategory(@NonNull List<Category> categories);
+
+    @NonNull
+    List<WebSite> listWebSiteListByUserId(@NonNull Integer userId);
+
+
 }

@@ -2,9 +2,7 @@ package cn.hom1.app.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import lombok.Data;
 
@@ -57,6 +55,13 @@ public class WebSite {
     @Column(name = "ordered")
     private int ordered;
 
+    /**
+     * 网站类型
+     * public(大众) or private(用户)
+     */
+    @Column(name = "type")
+    private String type;
+
 
     /**
      * 访问次数
@@ -72,13 +77,13 @@ public class WebSite {
     private Date createTime;
 
     /**
-     * 网址类型
+     * 是否Touch
      */
     @Column(name = "isTouch")
     private int isTouch;
 
     /**
-     * 网址类型
+     * 是否推荐
      */
     @Column(name = "isRecommend")
     private int isRecommend;
