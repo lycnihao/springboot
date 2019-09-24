@@ -42,7 +42,7 @@ public class UserController {
     @ResponseBody
     public JsonResult add(@ModelAttribute User user) {
 
-        User uUser = userService.findByUsername(user.getUsername());
+        User uUser = userService.findByName(user.getUsername());
         if (uUser != null){
           return new JsonResult(0,"用户名已存在");
         }
@@ -59,7 +59,7 @@ public class UserController {
     @ResponseBody
     public JsonResult update(@ModelAttribute User user) {
 
-      User uUser = userService.findByUsername(user.getUsername());
+      User uUser = userService.findByName(user.getUsername());
       if (uUser != null && !uUser.getUserId().equals(user.getUserId())){
         return new JsonResult(0,"用户名已存在");
       }
@@ -79,7 +79,7 @@ public class UserController {
   @RequestMapping("repeat")
   @ResponseBody
   public JsonResult repeat(@RequestParam(value = "username") String username,@RequestParam(value = "userId",required = false) Long userId) {
-    User user = userService.findByUsername(username);
+    User user = userService.findByName(username);
     if (user == null){
       return new JsonResult(1,"可用");
     }

@@ -27,7 +27,7 @@ public class WebSiteCategory {
   private Integer categoryId;
 
   /**
-   * Post id.
+   * Website id.
    */
   @Column(name = "website_id")
   private Integer websiteId;

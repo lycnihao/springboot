@@ -1,14 +1,9 @@
 package cn.hom1.app.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import lombok.Data;
-
 import javax.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -16,6 +11,7 @@ import org.springframework.data.annotation.CreatedDate;
 @Table(name = "website")
 @Data
 public class WebSite implements Serializable {
+
     /**
      * 网址Id
      */
@@ -58,6 +54,13 @@ public class WebSite implements Serializable {
     @Column(name = "ordered")
     private int ordered;
 
+    /**
+     * 网站类型
+     * public(大众) or private(用户)
+     */
+    @Column(name = "type")
+    private String type;
+
 
     /**
      * 访问次数
@@ -73,13 +76,13 @@ public class WebSite implements Serializable {
     private Date createTime;
 
     /**
-     * 网址类型
+     * 是否Touch
      */
     @Column(name = "isTouch")
     private int isTouch;
 
     /**
-     * 网址类型
+     * 是否推荐
      */
     @Column(name = "isRecommend")
     private int isRecommend;

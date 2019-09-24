@@ -3,12 +3,15 @@ package cn.hom1.app.service.impl;
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.WebSite;
 import cn.hom1.app.model.entity.WebSiteCategory;
+import cn.hom1.app.model.entity.WebSiteUser;
 import cn.hom1.app.model.enums.TrueFalseEnum;
+import cn.hom1.app.model.enums.WebsiteTypeEnum;
 import cn.hom1.app.model.params.WebSiteQuery;
 import cn.hom1.app.repository.WebSiteRepository;
 import cn.hom1.app.service.CategoryService;
 import cn.hom1.app.service.WebSiteCategoryService;
 import cn.hom1.app.service.WebSiteService;
+import cn.hom1.app.service.WebSiteUserService;
 import cn.hom1.app.service.base.AbstractCrudService;
 import cn.hom1.app.utils.ServiceUtils;
 import java.util.ArrayList;
@@ -31,15 +34,18 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
 
     private final WebSiteRepository webSiteRepository;
 
-    private final WebSiteCategoryService webSiteCategoryService;
-
     private final CategoryService categoryService;
 
-    public WebSiteServiceImpl(WebSiteRepository webSiteRepository,WebSiteCategoryService webSiteCategoryService,CategoryService categoryService) {
+    private final WebSiteCategoryService webSiteCategoryService;
+
+    private final WebSiteUserService webSiteUserService;
+
+    public WebSiteServiceImpl(WebSiteRepository webSiteRepository,WebSiteCategoryService webSiteCategoryService,CategoryService categoryService,WebSiteUserService webSiteUserService) {
         super(webSiteRepository);
         this.webSiteRepository = webSiteRepository;
         this.webSiteCategoryService = webSiteCategoryService;
         this.categoryService = categoryService;
+        this.webSiteUserService = webSiteUserService;
     }
 
     @Override
@@ -49,6 +55,7 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
             @Override
             public Predicate toPredicate(Root<WebSite> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicates = new ArrayList<Predicate>();
+                predicates.add(cb.equal(root.get("type"), WebsiteTypeEnum.PUBLIC.getDesc()));
                 if (!StringUtils.isEmpty(webSiteQuery.getKeyword())) {
                     predicates.add(cb.like(root.get("title"),  "%%" + webSiteQuery.getKeyword() + "%%"));
                 }
@@ -113,7 +120,7 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
     }
 
     @Override
-    public Map<Integer, List<Category>> convertToListMap(Page<WebSite> webSitePage) {
+    public Map<Integer, List<Category>> convertToListMapByWebSite(Page<WebSite> webSitePage) {
         Assert.notNull(webSitePage, "网站页面不能为空");
         List<WebSite> webSites = webSitePage.getContent();
         Set<Integer> webSiteIds = ServiceUtils.fetchProperty(webSites, WebSite::getWebsiteId);
@@ -121,9 +128,16 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
     }
 
     @Override
-    public Map<Integer, List<WebSite>> convertToListMap(List<Category> categories) {
+    public Map<Integer, List<WebSite>> convertToListMapByCategory(List<Category> categories) {
         Assert.notNull(categories, "分类不能为空");
         Set<Integer> categoryIds = ServiceUtils.fetchProperty(categories, Category::getCategoryId);
         return webSiteCategoryService.listWebSiteListMap(categoryIds);
+    }
+
+    @Override
+    public  List<WebSite> listWebSiteListByUserId(Integer userId) {
+        List<WebSiteUser> webSiteUserList = webSiteUserService.ListByUserId(userId);
+        Set<Integer> websiteIds = ServiceUtils.fetchProperty(webSiteUserList,WebSiteUser::getWebsiteId);
+        return webSiteRepository.findAllById(websiteIds);
     }
 }

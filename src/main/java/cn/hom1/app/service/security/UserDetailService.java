@@ -35,7 +35,7 @@ public class UserDetailService  implements UserDetailsService {
       throw new UsernameNotFoundException("用户名不能为空！");
     }
 
-    cn.hom1.app.model.entity.User us = userService.findByUsername(username);
+    cn.hom1.app.model.entity.User us = userService.findByName(username);
     if (us != null){
       userService.updateLastLoginTime(us.getUserId());
     }

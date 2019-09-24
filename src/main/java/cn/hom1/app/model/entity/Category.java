@@ -1,12 +1,9 @@
 package cn.hom1.app.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Data;
+import javax.persistence.*;
+
 
 @Entity
 @Table(name = "category")

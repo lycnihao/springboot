@@ -4,6 +4,7 @@ import cn.hom1.app.model.entity.User;
 import cn.hom1.app.repository.UserRepository;
 import cn.hom1.app.service.UserService;
 import cn.hom1.app.service.base.AbstractCrudService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,8 +24,13 @@ public class UserServiceImpl  extends AbstractCrudService<User, Long> implements
   }
 
   @Override
-  public User findByUsername(String username) {
-    return userRepository.findUserByUsername(username);
+  public User findByName(String username) {
+    return userRepository.findByUsername(username);
+  }
+
+  @Override
+  public User findByEmail(String email) {
+    return userRepository.findByEmail(email);
   }
 
   @Override
