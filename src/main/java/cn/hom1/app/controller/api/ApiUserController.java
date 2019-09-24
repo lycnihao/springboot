@@ -45,7 +45,7 @@ public class ApiUserController {
   @RequestMapping("/login")
   public JsonResult login(LoginQuery loginQuery, HttpServletResponse response,
       HttpSession session) {
-    
+
     String username = loginQuery.getUsername();
     String password = loginQuery.getPassword();
 
