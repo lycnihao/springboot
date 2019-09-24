@@ -2,6 +2,7 @@ package cn.hom1.app.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,7 @@ import org.springframework.data.annotation.CreatedDate;
 @Entity
 @Table(name = "website")
 @Data
-public class WebSite {
+public class WebSite implements Serializable {
     /**
      * 网址Id
      */

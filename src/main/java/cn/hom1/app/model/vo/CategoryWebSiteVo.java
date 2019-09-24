@@ -2,6 +2,8 @@ package cn.hom1.app.model.vo;
 
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.WebSite;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CategoryWebSiteVo {
+public class CategoryWebSiteVo implements Serializable {
   List<Category> categories;
   Map<Integer, List<WebSite>> webSites;
 }
