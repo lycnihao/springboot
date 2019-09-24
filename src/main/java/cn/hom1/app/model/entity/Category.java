@@ -1,6 +1,7 @@
 package cn.hom1.app.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "category")
 @Data
-public class Category {
+public class Category implements Serializable {
     /**
      * 分类Id
      */

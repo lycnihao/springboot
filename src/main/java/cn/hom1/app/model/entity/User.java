@@ -76,10 +76,4 @@ public class User implements Serializable {
    */
   private Date lastLoginTime;
 
-  /**
-   * 重写获取盐值方法，自定义realm使用
-   */
-  public String getCredentialsSalt() {
-    return username + "hom1.cn" + salt;
-  }
 }
