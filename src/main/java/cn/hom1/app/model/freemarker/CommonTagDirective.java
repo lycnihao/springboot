@@ -35,7 +35,7 @@ public class CommonTagDirective implements TemplateDirectiveModel {
             String method = map.get(METHOD_KEY).toString();
             switch (method) {
                 case "categories":
-                    environment.setVariable("categories", builder.build().wrap(categoryService.listAll()));
+                    environment.setVariable("categories", builder.build().wrap(categoryService.listCategoryWithWebSiteCount()));
                     break;
                 default:
                     break;

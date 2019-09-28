@@ -100,6 +100,7 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
                  webSite.setOrdered(0);
              }
         }
+        webSite.setType(WebsiteTypeEnum.PUBLIC.getDesc());
         WebSite  bWebSite = webSiteRepository.save(webSite);
 
         List<Category> categories = categoryService.listAllByIds(categoryIds);
