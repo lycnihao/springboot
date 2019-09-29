@@ -11,6 +11,11 @@ import java.util.List;
 
 @Repository
 public interface CategoryRepository extends BaseRepository<Category, Integer> {
+
+    @Query("from Category order by ordered asc ")
+    @NonNull
+    List<Category> list();
+
     Category findCategoryBySlugName(String slugName);
 
     Category findCategoriesByName(String name);

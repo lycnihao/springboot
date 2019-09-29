@@ -1,1619 +1,1634 @@
--- phpMyAdmin SQL Dump
--- version 4.4.15.10
--- https://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: 2019-09-23 11:38:41
--- 服务器版本： 5.5.62-log
--- PHP Version: 5.4.45
+/*
+ Navicat Premium Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50720
+ Source Host           : localhost:3306
+ Source Schema         : hom1db
 
+ Target Server Type    : MySQL
+ Target Server Version : 50720
+ File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+ Date: 29/09/2019 22:26:32
+*/
 
---
--- Database: `hom1db`
---
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
--- --------------------------------------------------------
-
---
--- 表的结构 `attachment`
---
-
-CREATE TABLE IF NOT EXISTS `attachment` (
+-- ----------------------------
+-- Table structure for attachment
+-- ----------------------------
+DROP TABLE IF EXISTS `attachment`;
+CREATE TABLE `attachment`  (
   `attach_id` bigint(20) NOT NULL,
-  `attach_created` datetime DEFAULT NULL,
-  `attach_location` varchar(255) DEFAULT NULL,
-  `attach_name` varchar(255) DEFAULT NULL,
-  `attach_origin` int(11) DEFAULT NULL,
-  `attach_path` varchar(255) DEFAULT NULL,
-  `attach_size` varchar(255) DEFAULT NULL,
-  `attach_small_path` varchar(255) DEFAULT NULL,
-  `attach_suffix` varchar(255) DEFAULT NULL,
-  `attach_type` varchar(255) DEFAULT NULL,
-  `attach_wh` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `attach_created` datetime(0) NULL DEFAULT NULL,
+  `attach_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `attach_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `attach_origin` int(11) NULL DEFAULT NULL,
+  `attach_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `attach_size` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `attach_small_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `attach_suffix` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `attach_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `attach_wh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  PRIMARY KEY (`attach_id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
---
--- 转存表中的数据 `attachment`
---
+-- ----------------------------
+-- Records of attachment
+-- ----------------------------
+INSERT INTO `attachment` VALUES (13, '2019-08-11 18:13:55', 'server', '1120190811181355840.jpg', 0, '/upload/1120190811181355840.jpg', '68107', '/upload/1120190811181355840_small.jpg', 'jpg', 'image/jpeg', '**');
 
-INSERT INTO `attachment` (`attach_id`, `attach_created`, `attach_location`, `attach_name`, `attach_origin`, `attach_path`, `attach_size`, `attach_small_path`, `attach_suffix`, `attach_type`, `attach_wh`) VALUES
-(1, '2019-08-07 08:54:01', 'server', 'www_jokerps_com.jpg', 0, '/upload/www_jokerps_com20190726112554540.jpg', '27655', '/upload/www_jokerps_com20190726112554540_small.jpg', 'png', 'image/png', '**'),
-(2, '2019-08-07 08:54:01', 'server', 'tophub_today.png', 0, '/upload/tophub_today20190728095544547.png', '27655', '/upload/tophub_today20190728095544547.png', 'png', 'image/png', '**'),
-(3, '2019-08-07 08:54:01', 'server', 'tophub_today.png', 0, '/upload/tool_lu.png', '27655', '/upload/tool_lu.png', 'png', 'image/png', '**'),
-(4, '2019-08-07 08:54:01', 'server', 'css_tricks.png', 0, '/upload/css_tricks.png', '27655', '/upload/css_tricks.png', 'png', 'image/png', '**'),
-(5, '2019-08-07 08:54:01', 'server', 'color_adobe_com.png', 0, '/upload/color_adobe_com.png', '27655', '/upload/color_adobe_com.png', 'png', 'image/png', '**'),
-(6, '2019-08-07 08:54:01', 'server', '79xj_cn20190807085401933.png', 0, '/upload/79xj_cn20190807085401933.png', '27655', '/upload/79xj_cn20190807085401933.png', 'png', 'image/png', '**'),
-(7, '2019-08-08 21:29:55', 'server', 'panzoid_com20190808213147236.jpg', 0, '/upload/panzoid_com20190808213147236.jpg', '27655', '/upload/panzoid_com20190808213147236.jpg', 'jpg', 'image/png', '**'),
-(8, '2019-08-08 21:29:55', 'server', 'www_zitijia_com20190808214511515.png', 0, '/upload/www_zitijia_com20190808214511515.png', '27655', '/upload/www_zitijia_com20190808214511515.png', 'png', 'image/png', '**'),
-(9, '2019-08-08 21:29:55', 'server', 'www_smallpdf_com20190808215135931.png', 0, '/upload/www_smallpdf_com20190808215135931.png', '27655', '/upload/www_smallpdf_com20190808215135931.png', 'png', 'image/png', '**');
+-- ----------------------------
+-- Table structure for category
+-- ----------------------------
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category`  (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `parent_id` int(11) NULL DEFAULT NULL,
+  `slug_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `ordered` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`category_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 105 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of category
+-- ----------------------------
+INSERT INTO `category` VALUES (1, NULL, NULL, '设计网站', 0, 'sheji', 1);
+INSERT INTO `category` VALUES (2, NULL, NULL, '设计师社区', 1, '设计师社区', 3);
+INSERT INTO `category` VALUES (3, NULL, NULL, '手绘插画', 1, '手绘插画', 4);
+INSERT INTO `category` VALUES (4, NULL, NULL, 'LOGO设计', 1, 'LOGO设计', 6);
+INSERT INTO `category` VALUES (5, NULL, NULL, '灵感创意', 1, '灵感创意', 5);
+INSERT INTO `category` VALUES (6, NULL, NULL, 'APP设计', 1, 'APP设计', 2);
+INSERT INTO `category` VALUES (7, NULL, NULL, 'ui设计', 1, 'ui设计', 1);
+INSERT INTO `category` VALUES (8, NULL, NULL, '字体设计', 1, '字体设计', 7);
+INSERT INTO `category` VALUES (9, NULL, NULL, '产品经理', 0, 'pm', 2);
+INSERT INTO `category` VALUES (10, NULL, NULL, '产品社区', 9, '产品社区', 1);
+INSERT INTO `category` VALUES (11, NULL, NULL, '原型工具', 9, '原型工具', 2);
+INSERT INTO `category` VALUES (12, NULL, NULL, '前端web', 0, 'web', 3);
+INSERT INTO `category` VALUES (13, NULL, NULL, '前端手册', 12, '前端手册', 2);
+INSERT INTO `category` VALUES (14, NULL, NULL, 'css动效', 12, 'css动效', 6);
+INSERT INTO `category` VALUES (15, NULL, NULL, 'js框架库', 12, 'js框架库', 7);
+INSERT INTO `category` VALUES (16, NULL, NULL, 'htmlh5', 12, 'htmlh5', 3);
+INSERT INTO `category` VALUES (17, NULL, NULL, 'Javascript', 12, 'Javascript', 5);
+INSERT INTO `category` VALUES (18, NULL, NULL, 'css/css3', 12, 'css/css3', 4);
+INSERT INTO `category` VALUES (19, NULL, NULL, '前端社区', 12, '前端社区', 1);
+INSERT INTO `category` VALUES (20, NULL, NULL, '前端框架库', 12, '前端框架库', 9);
+INSERT INTO `category` VALUES (21, NULL, NULL, '前端CDN', 12, '前端CDN', 8);
+INSERT INTO `category` VALUES (22, NULL, NULL, '移动UI框架', 12, '移动UI框架', 10);
+INSERT INTO `category` VALUES (23, NULL, NULL, 'PC UI框架', 12, 'PC UI框架', 11);
+INSERT INTO `category` VALUES (24, NULL, NULL, '运营', 0, 'yunying', 4);
+INSERT INTO `category` VALUES (25, NULL, NULL, '运营资讯', 24, '运营资讯', 1);
+INSERT INTO `category` VALUES (26, NULL, NULL, '广告联盟', 24, '广告联盟', 4);
+INSERT INTO `category` VALUES (27, NULL, NULL, '网站统计', 24, '网站统计', 5);
+INSERT INTO `category` VALUES (28, NULL, NULL, '广告营销', 24, '广告营销', 7);
+INSERT INTO `category` VALUES (29, NULL, NULL, 'SEO', 24, 'SEO', 3);
+INSERT INTO `category` VALUES (30, NULL, NULL, '运营助手', 24, '运营助手', 6);
+INSERT INTO `category` VALUES (31, NULL, NULL, '网站收录', 24, '网站收录', 2);
+INSERT INTO `category` VALUES (32, NULL, NULL, '工具类', 0, 'tools', 5);
+INSERT INTO `category` VALUES (33, NULL, NULL, '在线配色', 32, '在线配色', 1);
+INSERT INTO `category` VALUES (34, NULL, NULL, '文档处理', 32, '文档处理', 6);
+INSERT INTO `category` VALUES (35, NULL, NULL, '图文排版', 32, '图文排版', 4);
+INSERT INTO `category` VALUES (36, NULL, NULL, '标注', 32, '标注', 3);
+INSERT INTO `category` VALUES (37, NULL, NULL, '切图', 32, '切图', 2);
+INSERT INTO `category` VALUES (38, NULL, NULL, '二维码', 32, '二维码', 5);
+INSERT INTO `category` VALUES (39, NULL, NULL, '建站系统', 0, 'cms', 6);
+INSERT INTO `category` VALUES (40, NULL, NULL, '淘宝客建站', 39, '淘宝客建站', 4);
+INSERT INTO `category` VALUES (41, NULL, NULL, '下载系统', 39, '下载系统', 6);
+INSERT INTO `category` VALUES (42, NULL, NULL, '电商建站', 39, '电商建站', 5);
+INSERT INTO `category` VALUES (43, NULL, NULL, '图片系统', 39, '图片系统', 7);
+INSERT INTO `category` VALUES (44, NULL, NULL, '社区论坛', 39, '社区论坛', 3);
+INSERT INTO `category` VALUES (45, NULL, NULL, '问答系统', 39, '问答系统', 2);
+INSERT INTO `category` VALUES (46, NULL, NULL, '内容管理', 39, '内容管理', 1);
+INSERT INTO `category` VALUES (47, NULL, NULL, '数据分析', 0, 'shuju', 7);
+INSERT INTO `category` VALUES (48, NULL, NULL, '新媒体数据', 47, '新媒体数据', 4);
+INSERT INTO `category` VALUES (49, NULL, NULL, '搜索指数', 47, '搜索指数', 2);
+INSERT INTO `category` VALUES (50, NULL, NULL, '排行榜单', 47, '排行榜单', 3);
+INSERT INTO `category` VALUES (51, NULL, NULL, '数据中心', 47, '数据中心', 1);
+INSERT INTO `category` VALUES (52, NULL, NULL, '素材资源', 0, 'sucai', 8);
+INSERT INTO `category` VALUES (53, NULL, NULL, '图标', 52, '图标', 3);
+INSERT INTO `category` VALUES (54, NULL, NULL, 'PPT', 52, 'PPT', 5);
+INSERT INTO `category` VALUES (55, NULL, NULL, '字体', 52, '字体', 4);
+INSERT INTO `category` VALUES (56, NULL, NULL, '网站模板', 52, '网站模板', 6);
+INSERT INTO `category` VALUES (57, NULL, NULL, '素材', 52, '素材', 1);
+INSERT INTO `category` VALUES (58, NULL, NULL, '图库', 52, '图库', 2);
+INSERT INTO `category` VALUES (59, NULL, NULL, '求职网站', 0, 'qiuzhi', 9);
+INSERT INTO `category` VALUES (60, NULL, NULL, '校园招聘', 59, '校园招聘', 2);
+INSERT INTO `category` VALUES (61, NULL, NULL, '综合招聘', 59, '综合招聘', 1);
+INSERT INTO `category` VALUES (62, NULL, NULL, '企业信用', 59, '企业信用', 5);
+INSERT INTO `category` VALUES (63, NULL, NULL, '兼职平台', 59, '兼职平台', 6);
+INSERT INTO `category` VALUES (64, NULL, NULL, '电商招聘', 59, '电商招聘', 3);
+INSERT INTO `category` VALUES (65, NULL, NULL, '猎头招聘', 59, '猎头招聘', 4);
+INSERT INTO `category` VALUES (66, NULL, NULL, '简历模板', 59, '简历模板', 7);
+INSERT INTO `category` VALUES (67, NULL, NULL, '媒体博客', 0, 'meiti', 10);
+INSERT INTO `category` VALUES (68, NULL, NULL, '新闻名站', 67, '新闻名站', 4);
+INSERT INTO `category` VALUES (69, NULL, NULL, 'IT资讯', 67, 'IT资讯', 2);
+INSERT INTO `category` VALUES (70, NULL, NULL, '地方', 67, '地方', 12);
+INSERT INTO `category` VALUES (71, NULL, NULL, '新闻报刊', 67, '新闻报刊', 7);
+INSERT INTO `category` VALUES (72, NULL, NULL, '论坛', 67, '论坛', 5);
+INSERT INTO `category` VALUES (73, NULL, NULL, '社区', 67, '社区', 13);
+INSERT INTO `category` VALUES (74, NULL, NULL, '娱乐', 67, '娱乐', 11);
+INSERT INTO `category` VALUES (75, NULL, NULL, '外媒', 67, '外媒', 0);
+INSERT INTO `category` VALUES (76, NULL, NULL, '权威门户', 67, '权威门户', 9);
+INSERT INTO `category` VALUES (77, NULL, NULL, '自媒体', 67, '自媒体', 3);
+INSERT INTO `category` VALUES (78, NULL, NULL, '视频资讯', 67, '视频资讯', 6);
+INSERT INTO `category` VALUES (79, NULL, NULL, '军事', 67, '军事', 10);
+INSERT INTO `category` VALUES (80, NULL, NULL, '经济财经', 67, '经济财经', 8);
+INSERT INTO `category` VALUES (81, NULL, NULL, '行业名博', 67, '行业名博', 1);
+INSERT INTO `category` VALUES (82, NULL, NULL, '学习课程', 0, 'jiaoyu', 11);
+INSERT INTO `category` VALUES (83, NULL, NULL, '语言课程', 82, '语言课程', 3);
+INSERT INTO `category` VALUES (84, NULL, NULL, '公开课', 82, '公开课', 2);
+INSERT INTO `category` VALUES (85, NULL, NULL, 'IT教育', 82, 'IT教育', 1);
+INSERT INTO `category` VALUES (86, NULL, NULL, '租房平台', 0, 'zufang', 12);
+INSERT INTO `category` VALUES (87, NULL, NULL, '公寓直租', 86, '公寓直租', 2);
+INSERT INTO `category` VALUES (88, NULL, NULL, '短租民宿', 86, '短租民宿', 3);
+INSERT INTO `category` VALUES (89, NULL, NULL, '综合租房', 86, '综合租房', 1);
+INSERT INTO `category` VALUES (90, NULL, NULL, '创业服务', 0, 'chuangye', 13);
+INSERT INTO `category` VALUES (91, NULL, NULL, '孵化器', 90, '孵化器', 4);
+INSERT INTO `category` VALUES (92, NULL, NULL, '融资', 90, '融资', 3);
+INSERT INTO `category` VALUES (93, NULL, NULL, '众筹', 90, '众筹', 2);
+INSERT INTO `category` VALUES (94, NULL, NULL, '线下活动', 90, '线下活动', 5);
+INSERT INTO `category` VALUES (95, NULL, NULL, '创业社区', 90, '创业社区', 1);
+INSERT INTO `category` VALUES (96, NULL, NULL, '网址导航', 0, 'daohang', 14);
+INSERT INTO `category` VALUES (97, NULL, NULL, '产品导航', 96, '产品导航', 2);
+INSERT INTO `category` VALUES (98, NULL, NULL, '前端导航', 96, '前端导航', 3);
+INSERT INTO `category` VALUES (99, NULL, NULL, '自媒体导航', 96, '自媒体导航', 5);
+INSERT INTO `category` VALUES (100, NULL, NULL, 'HR导航', 96, 'HR导航', 8);
+INSERT INTO `category` VALUES (101, NULL, NULL, '运营导航', 96, '运营导航', 4);
+INSERT INTO `category` VALUES (102, NULL, NULL, '设计导航', 96, '设计导航', 1);
+INSERT INTO `category` VALUES (103, NULL, NULL, '创业导航', 96, '创业导航', 6);
+INSERT INTO `category` VALUES (104, NULL, NULL, '小程序导航', 96, '小程序导航', 7);
 
---
--- 表的结构 `category`
---
+-- ----------------------------
+-- Table structure for hibernate_sequence
+-- ----------------------------
+DROP TABLE IF EXISTS `hibernate_sequence`;
+CREATE TABLE `hibernate_sequence`  (
+  `next_val` bigint(20) NULL DEFAULT NULL
+) ENGINE = MyISAM CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Fixed;
 
-CREATE TABLE IF NOT EXISTS `category` (
-  `category_id` bigint(20) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `slug_name` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+-- ----------------------------
+-- Records of hibernate_sequence
+-- ----------------------------
+INSERT INTO `hibernate_sequence` VALUES (15);
 
---
--- 转存表中的数据 `category`
---
+-- ----------------------------
+-- Table structure for options
+-- ----------------------------
+DROP TABLE IF EXISTS `options`;
+CREATE TABLE `options`  (
+  `option_name` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `option_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL,
+  PRIMARY KEY (`option_name`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
-INSERT INTO `category` (`category_id`, `description`, `icon`, `name`, `slug_name`) VALUES
-(23, '', NULL, '设计网站', 'sheji'),
-(24, '', NULL, '产品经理', 'chanpin'),
-(25, '', NULL, '前端web', 'qianduan'),
-(26, '', NULL, '运营', 'yunying'),
-(27, '', NULL, '工具类', 'tools'),
-(28, '', NULL, '建站系统', 'jianzhan'),
-(29, '', NULL, '数据分析', 'shuju'),
-(30, '', NULL, '素材资源', 'sucai'),
-(33, '', NULL, '学习课程', 'xuexi'),
-(34, '', NULL, '租房平台', 'zufang'),
-(36, '', NULL, '网址导航', 'daohang'),
-(31, '', NULL, '求职网站', 'qiuzhi'),
-(32, '', NULL, '媒体博客', 'blog'),
-(35, '', NULL, '创业服务', 'chuangye'),
-(17, '', NULL, '推荐', '');
+-- ----------------------------
+-- Table structure for tags
+-- ----------------------------
+DROP TABLE IF EXISTS `tags`;
+CREATE TABLE `tags`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `slug_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `last_login_time` datetime(0) NULL DEFAULT NULL,
+  `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `qq` bigint(20) NULL DEFAULT NULL,
+  `salt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `status` int(11) NULL DEFAULT NULL,
+  `user_avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
---
--- 表的结构 `hibernate_sequence`
---
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, '2019-09-07 20:56:36', NULL, '2019-09-28 20:46:05', '艾森', '$2a$10$exzd80mFazRt98IOF1I59Ox.D0IHXDFoVTTCFeog02xWUtmjV7svO', 38707145, NULL, 1, '/static/images/user-5.png', 'iksen');
 
-CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
-  `next_val` bigint(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+-- ----------------------------
+-- Table structure for website
+-- ----------------------------
+DROP TABLE IF EXISTS `website`;
+CREATE TABLE `website`  (
+  `website_id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `is_recommend` int(11) NULL DEFAULT NULL,
+  `is_touch` int(11) NULL DEFAULT NULL,
+  `ordered` int(11) NULL DEFAULT NULL,
+  `summary` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `visits` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`website_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 681 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
---
--- 转存表中的数据 `hibernate_sequence`
---
+-- ----------------------------
+-- Records of website
+-- ----------------------------
+INSERT INTO `website` VALUES (1, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yiihuu_com.jpg', 0, 0, 0, '数字艺术在线教育平台,', '翼狐网', 'public', 'http://www.yiihuu.com', 0);
+INSERT INTO `website` VALUES (2, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_huakewang_com.jpg', 0, 0, 0, '中国知名平面网页界面', '画客网', 'public', 'http://www.huakewang.com', 0);
+INSERT INTO `website` VALUES (3, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zcool_com_cn.jpg', 0, 0, 0, '设计师互动平台', '站酷', 'public', 'http://www.zcool.com.cn', 0);
+INSERT INTO `website` VALUES (4, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/shijue_me.jpg', 0, 0, 0, '最专业的设计师平台', '视觉中国设计师', 'public', 'http://shijue.me', 0);
+INSERT INTO `website` VALUES (5, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/dribbble_com.jpg', 0, 0, 0, '全球设计师必去的网站', 'Dribbble', 'public', 'http://dribbble.com', 0);
+INSERT INTO `website` VALUES (6, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_huimengya_com.jpg', 0, 0, 0, '免费绘画教程学习交流平台', '绘萌芽', 'public', 'http://www.huimengya.com', 0);
+INSERT INTO `website` VALUES (7, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_logodashi_com.jpg', 0, 0, 0, '高端LOGO设计定制第一平台', 'LOGO大师', 'public', 'http://www.logodashi.com', 0);
+INSERT INTO `website` VALUES (8, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_logoshe_com.jpg', 0, 0, 0, '设计欣赏为主的标志设计分享网站', 'logo社', 'public', 'http://www.logoshe.com', 0);
+INSERT INTO `website` VALUES (9, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/logonc_com.jpg', 0, 0, 0, 'LOGO设计分享灵感平台', '藏标网', 'public', 'http://logonc.com', 0);
+INSERT INTO `website` VALUES (10, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_logozj_com.jpg', 0, 0, 0, '为设计爱好者提供学习和创作的灵感', 'LOGO之家', 'public', 'http://www.logozj.com', 0);
+INSERT INTO `website` VALUES (11, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/logopond_com.jpg', 0, 0, 0, '国外LOGO展示社区', 'Logopond', 'public', 'http://logopond.com', 0);
+INSERT INTO `website` VALUES (12, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_logomoose_com.jpg', 0, 0, 0, '国外logo欣赏网站', 'LogoMoose', 'public', 'http://www.logomoose.com', 0);
+INSERT INTO `website` VALUES (13, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/thedesigninspiration_com.jpg', 0, 0, 0, '国外LOGO设计网站', 'Logo Design', 'public', 'http://thedesigninspiration.com', 0);
+INSERT INTO `website` VALUES (14, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/logospire_com.jpg', 0, 0, 0, '一个标志灵感画廊', 'Logospire', 'public', 'http://logospire.com', 0);
+INSERT INTO `website` VALUES (15, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/logofaves_com.jpg', 0, 0, 0, '国外LOGO设计欣赏', 'Logo Faves', 'public', 'http://logofaves.com', 0);
+INSERT INTO `website` VALUES (16, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/logofury_com.jpg', 0, 0, 0, '国外LOGO资源欣赏', 'LogoFury', 'public', 'http://logofury.com', 0);
+INSERT INTO `website` VALUES (17, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_logosc_cn.jpg', 0, 0, 0, '国内最早最全面的专业LOGO资源标志设计', 'LOGO收藏家', 'public', 'http://www.logosc.cn', 0);
+INSERT INTO `website` VALUES (18, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_pinterest_com.png', 0, 0, 0, '世界设计灵感收集地', 'Pinterest', 'public', 'http://www.pinterest.com', 0);
+INSERT INTO `website` VALUES (19, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_behance_net.jpg', 0, 0, 0, '展示和发现全球创意', 'Behance', 'public', 'http://www.behance.net', 0);
+INSERT INTO `website` VALUES (20, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/pixid_cn.jpg', 0, 0, 0, '分享顶尖的html5网站', '全球酷站中心', 'public', 'http://pixid.cn', 0);
+INSERT INTO `website` VALUES (21, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ifavart_com.jpg', 0, 0, 0, '最出色的视觉艺术分享', 'ifavart', 'public', 'http://www.ifavart.com', 0);
+INSERT INTO `website` VALUES (22, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/huaban_com.jpg', 0, 0, 0, '灵感天堂/图片素材领导者', '花瓣网', 'public', 'http://huaban.com', 0);
+INSERT INTO `website` VALUES (23, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/arting365_com.jpg', 0, 0, 0, '最具价值导向的设计新媒体', 'Arting365', 'public', 'http://arting365.com', 0);
+INSERT INTO `website` VALUES (24, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_topys_cn.jpg', 0, 0, 0, '全球顶尖创意分享', 'TOPYS', 'public', 'http://www.topys.cn', 0);
+INSERT INTO `website` VALUES (25, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/malikafavre_com.jpg', 0, 0, 0, '玛莉卡法夫尔图形艺术家', 'Malika Favre', 'public', 'http://malikafavre.com', 0);
+INSERT INTO `website` VALUES (26, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ui4app_com.jpg', 0, 0, 0, '免费优质的素材资源', 'UI4App', 'public', 'http://www.ui4app.com', 0);
+INSERT INTO `website` VALUES (27, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_mobileui_cn.jpg', 0, 0, 0, '移动设备界面设计专业网站', '莫贝网', 'public', 'http://www.mobileui.cn', 0);
+INSERT INTO `website` VALUES (28, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_25xt_com.jpg', 0, 0, 0, '专注APP设计', '25学堂', 'public', 'http://www.25xt.com', 0);
+INSERT INTO `website` VALUES (29, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_xueui_cn.jpg', 0, 0, 0, '高质量免费的UI学习平台', '学ui网', 'public', 'http://www.xueui.cn', 0);
+INSERT INTO `website` VALUES (30, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zhisheji_com.jpg', 0, 0, 0, '中国最大的电商设计师交流平台', '致设计', 'public', 'http://www.zhisheji.com', 0);
+INSERT INTO `website` VALUES (31, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_17xsj_com.jpg', 0, 0, 0, '设计综合学习平台', '一起学设计', 'public', 'http://www.17xsj.com', 0);
+INSERT INTO `website` VALUES (32, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_iguoguo_net.jpg', 0, 0, 0, '酷站模版素材欣赏下载', '爱果果', 'public', 'http://www.iguoguo.net', 0);
+INSERT INTO `website` VALUES (33, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/90sheji_com.jpg', 0, 0, 0, '电商设计/淘宝素材库', '90设计网', 'public', 'http://90sheji.com', 0);
+INSERT INTO `website` VALUES (34, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_shui-mai_com.jpg', 0, 0, 0, '免费自学UI设计APP', 'UI设计者', 'public', 'http://www.shui-mai.com', 0);
+INSERT INTO `website` VALUES (35, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ui_cn.jpg', 0, 0, 0, '中国人气最高的图形界面交互设计平台', 'UI中国', 'public', 'http://www.ui.cn', 0);
+INSERT INTO `website` VALUES (36, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_uigreat_com.jpg', 0, 0, 0, '设计师互动交流学习社区', '优阁网', 'public', 'http://www.uigreat.com', 0);
+INSERT INTO `website` VALUES (37, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tuyiyi_com.jpg', 0, 0, 0, '优秀UI设计师互动平台', '图翼网', 'public', 'http://www.tuyiyi.com', 0);
+INSERT INTO `website` VALUES (38, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_uisdc_com.jpg', 0, 0, 0, '最专业的网页设计交流平台', '优设-UISDC', 'public', 'http://www.uisdc.com', 0);
+INSERT INTO `website` VALUES (39, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_uimaker_com.jpg', 0, 0, 0, 'UI界面软件设计欣赏', 'Uimaker', 'public', 'http://www.uimaker.com', 0);
+INSERT INTO `website` VALUES (40, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/97ui_com.png', 0, 0, 0, '国内专业的UI设计师灵感社区', '优界网', 'public', 'http://97ui.com', 0);
+INSERT INTO `website` VALUES (41, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_sj520_cn.jpg', 0, 0, 0, '中国设计师交流平台', '520设计网', 'public', 'http://www.sj520.cn', 0);
+INSERT INTO `website` VALUES (42, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_boxui_com.jpg', 0, 0, 0, '以用户体验为中心的设计', '盒子UI', 'public', 'http://www.boxui.com', 0);
+INSERT INTO `website` VALUES (43, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_uisheji_com.jpg', 0, 0, 0, '专业的ui设计师交流学习分享平台', 'UI设计网', 'public', 'http://www.uisheji.com', 0);
+INSERT INTO `website` VALUES (44, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_uishe_cn.jpg', 0, 0, 0, '中国最好的UI设计素材资源网站', 'UI社', 'public', 'http://www.uishe.cn', 0);
+INSERT INTO `website` VALUES (45, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/chinaui_com.jpg', 0, 0, 0, '人机界面设计门户网站', '优艾网', 'public', 'http://chinaui.com', 0);
+INSERT INTO `website` VALUES (46, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_uiimg_com.jpg', 0, 0, 0, 'UI设计师交流平台', 'UI图', 'public', 'http://www.uiimg.com', 0);
+INSERT INTO `website` VALUES (47, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_uilover_com.jpg', 0, 0, 0, '学UI最佳平台', 'UI设计爱好者', 'public', 'http://www.uilover.com', 0);
+INSERT INTO `website` VALUES (48, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jiawin_com.jpg', 0, 0, 0, '用户体验设计分享平台', '觉唯设计', 'public', 'http://www.jiawin.com', 0);
+INSERT INTO `website` VALUES (49, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ziti_cndesign_com.png', 0, 0, 0, '字体设计及欣赏交流平台', '中国字体设计网', 'public', 'http://ziti.cndesign.com', 0);
+INSERT INTO `website` VALUES (50, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_missku_com.png', 0, 0, 0, '设计，素材原创平台', '思酷', 'public', 'http://www.missku.com', 0);
+INSERT INTO `website` VALUES (51, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ziticq_com.jpg', 0, 0, 0, '首个字体品牌设计师交流网', '字体传奇网', 'public', 'http://www.ziticq.com', 0);
+INSERT INTO `website` VALUES (52, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ipmtalk_com.png', 0, 0, 0, '产品经理爱好者社区', 'PMTalk', 'public', 'http://www.ipmtalk.com/', 0);
+INSERT INTO `website` VALUES (53, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_pmyes_com.gif', 0, 0, 0, '互联网产品经理的交流社区', 'PMYES', 'public', 'https://www.pmyes.com/', 0);
+INSERT INTO `website` VALUES (54, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_imspm_com.jpg', 0, 0, 0, '互联网产品工作者和创业者社区', '超级产品经理', 'public', 'http://www.imspm.com', 0);
+INSERT INTO `website` VALUES (55, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_masterchat_cn.png', 0, 0, 0, '互联网产品经理门户网站', '产品邦', 'public', 'http://www.masterchat.cn', 0);
+INSERT INTO `website` VALUES (56, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chanpin100_com.png', 0, 0, 0, '最真实的PM学习网站', '产品壹佰', 'public', 'http://www.chanpin100.com', 0);
+INSERT INTO `website` VALUES (57, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_woshipm_com.jpg', 0, 0, 0, '产品爱好者学习交流平台', '人人都是PM', 'public', 'http://www.woshipm.com', 0);
+INSERT INTO `website` VALUES (58, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/pmcaff_com.png', 0, 0, 0, '国内最早的产品经理社区', 'PMCAFF', 'public', 'http://pmcaff.com', 0);
+INSERT INTO `website` VALUES (59, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_pmtoo_com.jpg', 0, 0, 0, '产品经理门户/产品第一媒体', 'Pmtoo', 'public', 'http://www.pmtoo.com', 0);
+INSERT INTO `website` VALUES (60, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/idoc_mockplus_cn.gif', 0, 0, 0, '更快更简单的产品设计协同软件', '摹客iDoc', 'public', 'https://idoc.mockplus.cn/', 0);
+INSERT INTO `website` VALUES (61, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_axureux_com.png', 0, 0, 0, 'Axure高质量原创模板及元件库', 'AxureUX', 'public', 'http://www.axureux.com/', 0);
+INSERT INTO `website` VALUES (62, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/pro_modao_cc.jpg', 0, 0, 0, '强大易用的原型设计与协同工具', '墨刀', 'public', 'https://pro.modao.cc/?code', 0);
+INSERT INTO `website` VALUES (63, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/xiaopiu_com--i.png', 0, 0, 0, '优雅高效的在线APP原型工具', 'xiaopiu', 'public', 'https://xiaopiu.com/i/kUyQdZ', 0);
+INSERT INTO `website` VALUES (64, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_pmdaniu_com.jpg', 0, 0, 0, 'PM工具+社区的平台', '产品大牛', 'public', 'http://www.pmdaniu.com', 0);
+INSERT INTO `website` VALUES (65, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_axure_com_cn.jpg', 0, 0, 0, 'Axure使用者必上的网站', 'Axure中文网', 'public', 'http://www.axure.com.cn', 0);
+INSERT INTO `website` VALUES (66, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yuanxingku_com.jpg', 0, 0, 0, '高保真原型案例实战', '原型库', 'public', 'http://www.yuanxingku.com', 0);
+INSERT INTO `website` VALUES (67, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_webppd_com.jpg', 0, 0, 0, 'WebPPD产品原型设计', 'WebPPD', 'public', 'http://www.webppd.com', 0);
+INSERT INTO `website` VALUES (68, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/wf_uisdc_com.jpg', 0, 0, 0, '网站开发基础知识，最佳实践手册', 'WEB开发基础', 'public', 'http://wf.uisdc.com', 0);
+INSERT INTO `website` VALUES (69, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jb51_net--onlineread.gif', 0, 0, 0, 'HTML特殊字符编码对照表汇总大全', 'HTML特殊字符编码对照表', 'public', 'http://www.jb51.net/onlineread/htmlchar.htm', 0);
+INSERT INTO `website` VALUES (70, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/api_jquery_com.jpg', 0, 0, 0, 'jQuery API 英文参考手册', 'jQuery API', 'public', 'http://api.jquery.com', 0);
+INSERT INTO `website` VALUES (71, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_css88_com.jpg', 0, 0, 0, '高效、精简、功能丰富的 JavaScript 工具库', 'jQuery中文', 'public', 'http://www.css88.com/jqapi-1.9', 0);
+INSERT INTO `website` VALUES (72, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/hemin_cn.gif', 0, 0, 0, 'jQuery API 中文手册', 'jquery 在线手册', 'public', 'http://hemin.cn/jq', 0);
+INSERT INTO `website` VALUES (73, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_css88_com--book.gif', 0, 0, 0, '最新最全的CSS参考手册', 'CSS3参考手册', 'public', 'http://www.css88.com/book/css', 0);
+INSERT INTO `website` VALUES (74, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_css88_com.jpg', 0, 0, 0, 'jQuery UI API中文文档', 'jQuery UI API', 'public', 'http://www.css88.com/jquery-ui-api', 0);
+INSERT INTO `website` VALUES (75, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_css88_com--doc.jpg', 0, 0, 0, '轻量级的现代高级浏览器的JavaScript库', 'Zepto.js', 'public', 'http://www.css88.com/doc/zeptojs_api', 0);
+INSERT INTO `website` VALUES (76, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_css88_com--doc.jpg', 0, 0, 0, 'CSS 的扩展', 'Sass中文文档', 'public', 'http://www.css88.com/doc/sass', 0);
+INSERT INTO `website` VALUES (77, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_css88_com--doc--jsdoc.gif', 0, 0, 0, '根据js注释信息,生成js应用程序或库、模块的API文档工具', 'JSDoc', 'public', 'http://www.css88.com/doc/jsdoc/index.html', 0);
+INSERT INTO `website` VALUES (78, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_css88_com--doc.jpg', 0, 0, 0, 'Css 预编译器', 'Less.js 中文文档', 'public', 'http://www.css88.com/doc/less', 0);
+INSERT INTO `website` VALUES (79, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/isux_tencent_com.jpg', 0, 0, 0, 'css3动画手册及动画工具', '动画手册[Guide]', 'public', 'http://isux.tencent.com/css3', 0);
+INSERT INTO `website` VALUES (80, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zybuluo_com--codeep--note.gif', 0, 0, 0, 'Cmd Markdown 编辑阅读器', 'Markdown', 'public', 'http://www.zybuluo.com/codeep/note/163962', 0);
+INSERT INTO `website` VALUES (81, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/devdocs_io.gif', 0, 0, 0, '一站式程序员文档', 'DevDocs', 'public', 'http://devdocs.io', 0);
+INSERT INTO `website` VALUES (82, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/nej_netease_com.png', 0, 0, 0, '网易前端JS库', 'NEJ（网易）', 'public', 'http://nej.netease.com', 0);
+INSERT INTO `website` VALUES (83, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/github_com--BaiduFE.gif', 0, 0, 0, '百度JS库，简单可依赖的Javascript库，适合开发互联网产品。', 'Tangram', 'public', 'http://github.com/BaiduFE/Tangram-base', 0);
+INSERT INTO `website` VALUES (84, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/github_com--AlloyTeam.gif', 0, 0, 0, '模块化、非侵入式Web前端框架', 'JX(腾讯js库)', 'public', 'http://github.com/AlloyTeam/JX', 0);
+INSERT INTO `website` VALUES (85, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jq22_com.jpg', 0, 0, 0, '收集最全最新最好的jQuery插件', 'jQuery插件库', 'public', 'http://www.jq22.com', 0);
+INSERT INTO `website` VALUES (86, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ui3g_com.jpg', 0, 0, 0, '最全jquery插件下载', '优设记', 'public', 'http://www.ui3g.com', 0);
+INSERT INTO `website` VALUES (87, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_htmleaf_com.jpg', 0, 0, 0, '最全面的网页开发素材', 'jQuery之家', 'public', 'http://www.htmleaf.com', 0);
+INSERT INTO `website` VALUES (88, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_divcss5_com.jpg', 0, 0, 0, 'DIV+CSS布局教程学习与分享平台', 'DIVCSS5', 'public', 'http://www.divcss5.com', 0);
+INSERT INTO `website` VALUES (89, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_h5course_com.jpg', 0, 0, 0, '提供关于HTML5的学习资料和技术知识', 'HTML5学堂', 'public', 'http://www.h5course.com', 0);
+INSERT INTO `website` VALUES (90, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_html5cn_org.jpg', 0, 0, 0, '中国最大的HTML5中文门户', 'HTML5中国', 'public', 'http://www.html5cn.org', 0);
+INSERT INTO `website` VALUES (91, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/runjs_cn.jpg', 0, 0, 0, '在线编辑、交流JavaScript 代码', 'RunJS', 'public', 'http://runjs.cn', 0);
+INSERT INTO `website` VALUES (92, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jq-school_com.jpg', 0, 0, 0, '国内最大的jquery原创分享社区', 'jQueryschool', 'public', 'http://www.jq-school.com', 0);
+INSERT INTO `website` VALUES (93, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_sharejs_com.jpg', 0, 0, 0, '免费的JS资源分享网站', 'JS脚本', 'public', 'http://www.sharejs.com', 0);
+INSERT INTO `website` VALUES (94, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wufangbo_com.jpg', 0, 0, 0, '专业编程开发技术网站', '编程开发', 'public', 'http://www.wufangbo.com', 0);
+INSERT INTO `website` VALUES (95, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/caibaojian_com.gif', 0, 0, 0, '注于前端开发', '前端开发博客', 'public', 'http://caibaojian.com/', 0);
+INSERT INTO `website` VALUES (96, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_web-tinker_com.gif', 0, 0, 0, '最新 Web 技术 + 原创文章 + 每日更新', 'Web技术研究所', 'public', 'http://www.web-tinker.com', 0);
+INSERT INTO `website` VALUES (97, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_qdfuns_com.jpg', 0, 0, 0, '人气爆棚的知识分享专业社区', '前端网 QDFuns', 'public', 'http://www.qdfuns.com', 0);
+INSERT INTO `website` VALUES (98, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_w3cmark_com.jpg', 0, 0, 0, '专注前端开发资源整合和学习网站', 'w3cmark', 'public', 'http://www.w3cmark.com', 0);
+INSERT INTO `website` VALUES (99, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yyyweb_com.jpg', 0, 0, 0, '专注 Web 开发技术', '前端里', 'public', 'http://www.yyyweb.com', 0);
+INSERT INTO `website` VALUES (100, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_css88_com.jpg', 0, 0, 0, '专注前端开发，关注用户体验', 'WEB前端开发', 'public', 'http://www.css88.com', 0);
+INSERT INTO `website` VALUES (101, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_html-js_com.jpg', 0, 0, 0, '专业的前端技术内容社区', '前端乱炖', 'public', 'http://www.html-js.com', 0);
+INSERT INTO `website` VALUES (102, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_imweb_io.jpg', 0, 0, 0, 'Web前端 腾讯IMWeb 团队社区', '腾讯IMWeb', 'public', 'http://www.imweb.io', 0);
+INSERT INTO `website` VALUES (103, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_58img_com.jpg', 0, 0, 0, '打造国内最好、最专业的前端资源站', '前端资源网', 'public', 'http://www.58img.com', 0);
+INSERT INTO `website` VALUES (104, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_daqianduan_com.jpg', 0, 0, 0, '关注前端开发的独立博客', '大前端', 'public', 'http://www.daqianduan.com', 0);
+INSERT INTO `website` VALUES (105, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_w3ctech_com.jpg', 0, 0, 0, '最大的前端技术社区', 'w3ctech', 'public', 'http://www.w3ctech.com', 0);
+INSERT INTO `website` VALUES (106, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_w3cplus_com.jpg', 0, 0, 0, '提供大量最新前端技术文章', 'w3cplus', 'public', 'http://www.w3cplus.com', 0);
+INSERT INTO `website` VALUES (107, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_swiper_com_cn.png', 0, 0, 0, '应用较广泛的移动端网页触摸内容滑动js插件', 'Swiper中文', 'public', 'http://www.swiper.com.cn', 0);
+INSERT INTO `website` VALUES (108, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_awesomes_cn.jpg', 0, 0, 0, '高质量前端库、框架和插件', 'Awesomes', 'public', 'http://www.awesomes.cn', 0);
+INSERT INTO `website` VALUES (109, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jeasyui_net.png', 0, 0, 0, '一组基于jQuery的UI插件集合', 'EasyUI', 'public', 'http://www.jeasyui.net', 0);
+INSERT INTO `website` VALUES (110, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/css3lib_alloyteam_com.gif', 0, 0, 0, 'CSS3 UI 库', 'CSS3 UI Lib', 'public', 'http://css3lib.alloyteam.com', 0);
+INSERT INTO `website` VALUES (111, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/seajs_org.jpg', 0, 0, 0, '简单、极致的模块化开发体验', 'Sea.js', 'public', 'http://seajs.org/docs', 0);
+INSERT INTO `website` VALUES (112, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/jslite_io.gif', 0, 0, 0, '兼容jQuery的API简约的JavaScript库', 'JSLite', 'public', 'http://jslite.io', 0);
+INSERT INTO `website` VALUES (113, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_apjs_net.jpg', 0, 0, 0, '克服HTML在构建应用上的不足', 'AngularJS', 'public', 'http://www.apjs.net', 0);
+INSERT INTO `website` VALUES (114, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/anicollection_github_io--#.gif', 0, 0, 0, 'AniCollection动画库', 'AniCollection动画库', 'public', 'http://anicollection.github.io/#/', 0);
+INSERT INTO `website` VALUES (115, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/leaverou_github_io--animatable.gif', 0, 0, 0, '动画效果网址（英文）', 'animatable', 'public', 'http://leaverou.github.io/animatable/#', 0);
+INSERT INTO `website` VALUES (116, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/dynamicsjs_com.png', 0, 0, 0, 'Dynamics.js动画库', 'Dynamics.js', 'public', 'http://dynamicsjs.com', 0);
+INSERT INTO `website` VALUES (117, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/npm_taobao_org.png', 0, 0, 0, '淘宝开放的NPM资源库', '淘宝NPM', 'public', 'https://npm.taobao.org/', 0);
+INSERT INTO `website` VALUES (118, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_javascripting_com.png', 0, 0, 0, 'JavaScript静态资源库', 'JavaScripting', 'public', 'http://www.javascripting.com/', 0);
+INSERT INTO `website` VALUES (119, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cdn_baomitu_com.gif', 0, 0, 0, '首个支持 HTTP/2 的 CDN 服务', '360前端CDN', 'public', 'https://cdn.baomitu.com/', 0);
+INSERT INTO `website` VALUES (120, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/microjs_com.gif', 0, 0, 0, '神奇迷你的微型框架和微型库', 'Microjs', 'public', 'http://microjs.com/', 0);
+INSERT INTO `website` VALUES (121, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_bootcdn_cn.gif', 0, 0, 0, '中文网开源项目免费 CDN 加速服务', 'BootCDN', 'public', 'https://www.bootcdn.cn/', 0);
+INSERT INTO `website` VALUES (122, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cdn_code_baidu_com.gif', 0, 0, 0, '百度静态资源公共库', '百度CDN', 'public', 'http://cdn.code.baidu.com/', 0);
+INSERT INTO `website` VALUES (123, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/purecss_io.gif', 0, 0, 0, '雅虎开发的响应式css前端框架', 'Pure', 'public', 'https://purecss.io/', 0);
+INSERT INTO `website` VALUES (124, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ionicframework_com.gif', 0, 0, 0, '面向Web开发人员的应用程序平台', 'ionicframework', 'public', 'https://ionicframework.com/', 0);
+INSERT INTO `website` VALUES (125, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_auicss_com.png', 0, 0, 0, '靠谱的移动前端框架', 'AUI', 'public', 'http://www.auicss.com/', 0);
+INSERT INTO `website` VALUES (126, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/dev_dcloud_net_cn--mui.gif', 0, 0, 0, '最接近原生APP体验的高性能前端框架', 'MUI', 'public', 'http://dev.dcloud.net.cn/mui/', 0);
+INSERT INTO `website` VALUES (127, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/vycool_com--Jingle.gif', 0, 0, 0, '用来开发移动端的html5应用框架', 'Jingle', 'public', 'http://vycool.com/Jingle/', 0);
+INSERT INTO `website` VALUES (128, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/m_sui_taobao_org.gif', 0, 0, 0, '轻量，小巧且精美的UI库', 'SUI', 'public', 'http://m.sui.taobao.org/', 0);
+INSERT INTO `website` VALUES (129, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/frozenui_github_io.gif', 0, 0, 0, '专注于移动web的UI框架，基于腾讯手机QQ规范.', 'FrozenUI', 'public', 'http://frozenui.github.io/', 0);
+INSERT INTO `website` VALUES (130, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/yo_doyoe_com--doc.gif', 0, 0, 0, '专注于移动开发的UI框架', 'Yo', 'public', 'http://yo.doyoe.com/doc/index.html', 0);
+INSERT INTO `website` VALUES (131, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/weui_io.gif', 0, 0, 0, '微信原生视觉体验一致的基础样式库', 'WeUI', 'public', 'https://weui.io/', 0);
+INSERT INTO `website` VALUES (132, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_iviewui_com.gif', 0, 0, 0, '一套基于 Vue.js 的高质量UI 组件库', 'iView', 'public', 'https://www.iviewui.com/', 0);
+INSERT INTO `website` VALUES (133, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/sui_taobao_org--sui--docs.gif', 0, 0, 0, '简单易用、功能强大的UI库', 'SUI', 'public', 'http://sui.taobao.org/sui/docs/', 0);
+INSERT INTO `website` VALUES (134, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_mdui_org.gif', 0, 0, 0, '网页的前端框架', 'MDUI', 'public', 'https://www.mdui.org/', 0);
+INSERT INTO `website` VALUES (135, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/qmuiteam_com--web--page.gif', 0, 0, 0, '快速产生项目 UI 的前端框架', 'QMUI', 'public', 'http://qmuiteam.com/web/page/index.html', 0);
+INSERT INTO `website` VALUES (136, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_mdui_org.gif', 0, 0, 0, '用于开发 Material Design 网页的前端框架', 'MDUI', 'public', 'https://www.mdui.org/', 0);
+INSERT INTO `website` VALUES (137, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_bootcss_com--p--flat-ui.png', 0, 0, 0, '免费的WEB界面工具组件库', 'Flat UI', 'public', 'http://www.bootcss.com/p/flat-ui/', 0);
+INSERT INTO `website` VALUES (138, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/zui_sexy.gif', 0, 0, 0, '开源HTML5跨屏框架', 'ZUI', 'public', 'http://zui.sexy/', 0);
+INSERT INTO `website` VALUES (139, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/foundation_zurb_com.gif', 0, 0, 0, '强大灵活易用的前端框架', 'Foundation', 'public', 'https://foundation.zurb.com/', 0);
+INSERT INTO `website` VALUES (140, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/semantic-ui_com.png', 0, 0, 0, '全语义化前端界面开发框架', 'Semantic UI', 'public', 'https://semantic-ui.com/', 0);
+INSERT INTO `website` VALUES (141, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_layui_com.gif', 0, 0, 0, '经典模块化前端UI框架', 'layui', 'public', 'http://www.layui.com/', 0);
+INSERT INTO `website` VALUES (142, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/amazeui_org.jpg', 0, 0, 0, '移动优先的跨屏前端框架', 'Amaze UI', 'public', 'http://amazeui.org', 0);
+INSERT INTO `website` VALUES (143, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_bootcss_com.png', 0, 0, 0, '前端开发的开源工具包', 'Bootstrap中文网', 'public', 'http://www.bootcss.com', 0);
+INSERT INTO `website` VALUES (144, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/getuikit_net.jpg', 0, 0, 0, '轻量级、模块化的前端框架', 'UIkit', 'public', 'http://getuikit.net', 0);
+INSERT INTO `website` VALUES (145, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yymiao_cn.png', 0, 0, 0, '网络运营人学习交流乐园', '运营喵', 'public', 'https://www.yymiao.cn/', 0);
+INSERT INTO `website` VALUES (146, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_niaogebiji_com.png', 0, 0, 0, '分享移动互联网运营推广干货', '鸟哥笔记', 'public', 'http://www.niaogebiji.com/', 0);
+INSERT INTO `website` VALUES (147, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_91yunying_com.gif', 0, 0, 0, '分享互联网产品策划', '91运营网', 'public', 'http://www.91yunying.com/', 0);
+INSERT INTO `website` VALUES (148, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_iyunying_org.png', 0, 0, 0, '网站运营人员学习交流', '爱运营', 'public', 'http://www.iyunying.org/', 0);
+INSERT INTO `website` VALUES (149, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yunyingxuetang_com.gif', 0, 0, 0, '互联网产品运营知识学习分享网站', '运营学堂', 'public', 'http://www.yunyingxuetang.com/', 0);
+INSERT INTO `website` VALUES (150, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/media_jd_com.png', 0, 0, 0, '面向全网的广告交易平台', '京东联盟', 'public', 'http://media.jd.com', 0);
+INSERT INTO `website` VALUES (151, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/e_qq_com.png', 0, 0, 0, '腾讯公司核心广告业务', '腾讯社交广告', 'public', 'http://e.qq.com', 0);
+INSERT INTO `website` VALUES (152, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_youmi_net.png', 0, 0, 0, '技术效果卓越的专业移动广告平台', '有米广告', 'public', 'http://www.youmi.net', 0);
+INSERT INTO `website` VALUES (153, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_miidi_net.gif', 0, 0, 0, '米迪手机广告平台', '米迪', 'public', 'http://www.miidi.net', 0);
+INSERT INTO `website` VALUES (154, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_adwo_com.png', 0, 0, 0, '中国先进的智能移动广告平台', '安沃传媒', 'public', 'http://www.adwo.com', 0);
+INSERT INTO `website` VALUES (155, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_dianru_com.gif', 0, 0, 0, '中国移动广告大数据营销平台', '点入移动', 'public', 'http://www.dianru.com', 0);
+INSERT INTO `website` VALUES (156, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/offer-wow_com.gif', 0, 0, 0, '目前国外最火爆、效果最好的推广形式。', 'offerWoW', 'public', 'http://offer-wow.com', 0);
+INSERT INTO `website` VALUES (157, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/union_baidu_com.jpg', 0, 0, 0, '最具竞争力的互联网流量变现专业服务', '百度联盟', 'public', 'http://union.baidu.com', 0);
+INSERT INTO `website` VALUES (158, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/union_360_cn.jpg', 0, 0, 0, '创造巨大的用户流量和商业价值', '360联盟', 'public', 'http://union.360.cn', 0);
+INSERT INTO `website` VALUES (159, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_duomai_com.jpg', 0, 0, 0, '提供专业、共赢的网络营销服务的平台', '多麦CPS广告联盟', 'public', 'http://www.duomai.com', 0);
+INSERT INTO `website` VALUES (160, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/union_114la_com.jpg', 0, 0, 0, '向会员提供互联网流量变现业务服务', '114啦网站联盟', 'public', 'http://union.114la.com', 0);
+INSERT INTO `website` VALUES (161, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_domob_cn.jpg', 0, 0, 0, '中国第一智能手机广告平台', '多盟', 'public', 'http://www.domob.cn', 0);
+INSERT INTO `website` VALUES (162, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_alimama_com.gif', 0, 0, 0, '帮助客户实现高效率的营销推广', '阿里妈妈', 'public', 'http://www.alimama.com', 0);
+INSERT INTO `website` VALUES (163, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/u_ctrip_com.jpg', 0, 0, 0, '基于携程旅行网自主推出的分销站点', '携程网站联盟', 'public', 'http://u.ctrip.com', 0);
+INSERT INTO `website` VALUES (164, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yinxiangma_com.jpg', 0, 0, 0, '国内第一家验证码广告平台', '印象码', 'public', 'http://www.yinxiangma.com', 0);
+INSERT INTO `website` VALUES (165, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/front_yiqifa_com.jpg', 0, 0, 0, '中国电子商务效果营销广告联盟', '亿起发', 'public', 'http://front.yiqifa.com', 0);
+INSERT INTO `website` VALUES (166, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chanet_com_cn.gif', 0, 0, 0, '报酬型网络广告平台', 'CHANet成果网', 'public', 'http://www.chanet.com.cn', 0);
+INSERT INTO `website` VALUES (167, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/union_163_com.jpg', 0, 0, 0, '专注于网易游戏及其他产品的网盟推广', '网易联盟', 'public', 'http://union.163.com', 0);
+INSERT INTO `website` VALUES (168, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/union_sogou_com.jpg', 0, 0, 0, '致力于通过搜索引擎入口和网盟广告流量资源整合的方式', '搜狗联盟', 'public', 'http://union.sogou.com', 0);
+INSERT INTO `website` VALUES (169, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yigao_com.jpg', 0, 0, 0, '行业内最具实力的网络营销', '亿告', 'public', 'http://www.yigao.com', 0);
+INSERT INTO `website` VALUES (170, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_google_cn--analytics.gif', 0, 0, 0, '网站分析和报告', 'Google Analytics', 'public', 'http://www.google.cn/analytics/', 0);
+INSERT INTO `website` VALUES (171, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_51_la.gif', 0, 0, 0, '免费的、完善的、人性化的网站流量统计分析', '51统计', 'public', 'http://www.51.la', 0);
+INSERT INTO `website` VALUES (172, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/tongji_baidu_com.jpg', 0, 0, 0, '最大的中文网站分析平台', '百度统计', 'public', 'http://tongji.baidu.com', 0);
+INSERT INTO `website` VALUES (173, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_umeng_com.jpg', 0, 0, 0, '第三方全域大数据服务提供商', '友盟统计', 'public', 'http://www.umeng.com', 0);
+INSERT INTO `website` VALUES (174, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_myunmei_com.jpg', 0, 0, 0, '海量一手媒体资源交易平台', '云自媒', 'public', 'http://www.myunmei.com/', 0);
+INSERT INTO `website` VALUES (175, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chuanboyi_com.gif', 0, 0, 0, '广告投放平台', '传播易', 'public', 'https://www.chuanboyi.com/', 0);
+INSERT INTO `website` VALUES (176, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_weiboyi_com.png', 0, 0, 0, '短视频智能营销平台', '微播易', 'public', 'http://www.weiboyi.com/', 0);
+INSERT INTO `website` VALUES (177, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yidao_info.gif', 0, 0, 0, '提供自媒体营销服务方案', '一道自媒体', 'public', 'http://www.yidao.info/', 0);
+INSERT INTO `website` VALUES (178, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_weimob_net.gif', 0, 0, 0, '智能商业服务提供商', '微盟', 'public', 'http://www.weimob.net/', 0);
+INSERT INTO `website` VALUES (179, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_xueseo_com.jpg', 0, 0, 0, 'SEO优化网', '学SEO', 'public', 'http://www.xueseo.com', 0);
+INSERT INTO `website` VALUES (180, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/bbs_moonseo_cn.jpg', 0, 0, 0, '互联网最大的搜索引擎优化研究中心', 'SEO研究中心', 'public', 'http://bbs.moonseo.cn', 0);
+INSERT INTO `website` VALUES (181, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_seo_cn.jpg', 0, 0, 0, 'SEO培训入门教程', 'SEO.cn', 'public', 'http://www.seo.cn', 0);
+INSERT INTO `website` VALUES (182, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ourseo_net.gif', 0, 0, 0, '关注搜索、站长、创业、运营的SEO门', '众优网', 'public', 'http://www.ourseo.net', 0);
+INSERT INTO `website` VALUES (183, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_seowhy_com.jpg', 0, 0, 0, '从SEO到互联网营销的在线视频课程', '搜外网', 'public', 'http://www.seowhy.com', 0);
+INSERT INTO `website` VALUES (184, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/yiban_io.png', 0, 0, 0, '简单好用的公众号效率工具', '壹伴', 'public', 'https://yiban.io/', 0);
+INSERT INTO `website` VALUES (185, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/drip_im.png', 0, 0, 0, '轻巧、智能的微信公众号管理平台', '水滴微信平台', 'public', 'https://drip.im/', 0);
+INSERT INTO `website` VALUES (186, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_xiguaji_com.png', 0, 0, 0, '让公众号运营更简单', '西瓜助手', 'public', 'http://www.xiguaji.com/', 0);
+INSERT INTO `website` VALUES (187, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wxb_com.png', 0, 0, 0, '自媒体公众号助手', '微小宝', 'public', 'http://www.wxb.com/', 0);
+INSERT INTO `website` VALUES (188, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ejianmedia_com.gif', 0, 0, 0, '新媒体一键发布运营平台', '简媒', 'public', 'http://www.ejianmedia.com/', 0);
+INSERT INTO `website` VALUES (189, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/xmt_cn.png', 0, 0, 0, '运营从未如此性感', '新媒体管家', 'public', 'https://xmt.cn/', 0);
+INSERT INTO `website` VALUES (190, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/info_so_360_cn.gif', 0, 0, 0, '提交网站到360搜索', '360搜索网站收录', 'public', 'http://info.so.360.cn/site_submit.html', 0);
+INSERT INTO `website` VALUES (191, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/123_sogou_com--about.jpg', 0, 0, 0, '收录申请 - 搜狗网址导航', '搜狗导航收录', 'public', 'http://123.sogou.com/about/shoulu.html', 0);
+INSERT INTO `website` VALUES (192, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/submit_hao123_com--static--auditSys.jpg', 0, 0, 0, 'hao123网址之家--网站提交', 'hao123收录', 'public', 'http://submit.hao123.com/static/auditSys/wztj.htm', 0);
+INSERT INTO `website` VALUES (193, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_duba_com.jpg', 0, 0, 0, '毒霸网址大全 - 最安全实用的网址导航', '毒霸网址收录', 'public', 'http://www.duba.com/apply', 0);
+INSERT INTO `website` VALUES (194, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/url_114la_com.jpg', 0, 0, 0, '114啦网址导航收录', '114啦收录', 'public', 'http://url.114la.com', 0);
+INSERT INTO `website` VALUES (195, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_bing_com--toolbox.jpg', 0, 0, 0, '将您的网站提交到必应Bing', 'Bing收录', 'public', 'http://www.bing.com/toolbox/submit-site-url', 0);
+INSERT INTO `website` VALUES (196, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/zhanzhang_baidu_com--linksubmit.jpg', 0, 0, 0, '优化PC和移动搜索收录', '百度链接提交', 'public', 'http://zhanzhang.baidu.com/linksubmit/url', 0);
+INSERT INTO `website` VALUES (197, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/fankui_help_sogou_com.jpg', 0, 0, 0, '搜狗搜索收录提交', '搜狗搜索收录', 'public', 'http://fankui.help.sogou.com', 0);
+INSERT INTO `website` VALUES (198, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_mbalib_com.gif', 0, 0, 0, '第一个在线创建经济管理百科平台。', 'MBA智库', 'public', 'http://www.mbalib.com', 0);
+INSERT INTO `website` VALUES (199, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/color_uisdc_com.gif', 0, 0, 0, '中国传统色彩', '中国传统色彩', 'public', 'http://color.uisdc.com', 0);
+INSERT INTO `website` VALUES (200, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_colordic_org.gif', 0, 0, 0, '日本传统色', '日本和色大辞典', 'public', 'http://www.colordic.org/w', 0);
+INSERT INTO `website` VALUES (201, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_colordic_org.gif', 0, 0, 0, '原色大辞典', '原色大辞典', 'public', 'http://www.colordic.org', 0);
+INSERT INTO `website` VALUES (202, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_peise_net.gif', 0, 0, 0, '致力色彩搭配方案的交流与学习', '配色网', 'public', 'http://www.peise.net', 0);
+INSERT INTO `website` VALUES (203, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/color_uisdc_com.gif', 0, 0, 0, '实用网页配色工具', '日本传统色', 'public', 'http://color.uisdc.com/jp', 0);
+INSERT INTO `website` VALUES (204, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/color_adobe_com.gif', 0, 0, 0, 'Aobobe专业配色工具', 'Adobe Color CC', 'public', 'http://color.adobe.com', 0);
+INSERT INTO `website` VALUES (205, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/tool_c7sky_com.gif', 0, 0, 0, '网页设计常用色彩搭配表 - 配色表 | 小影的工具箱', '配色表', 'public', 'http://tool.c7sky.com/webcolor', 0);
+INSERT INTO `website` VALUES (206, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_pdf365_cn.png', 0, 0, 0, 'PDF在线转换处理平台', 'PDF365', 'public', 'http://www.pdf365.cn/', 0);
+INSERT INTO `website` VALUES (207, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/app_xunjiepdf_com.png', 0, 0, 0, '文档在线转换', '迅捷在线转换', 'public', 'http://app.xunjiepdf.com/', 0);
+INSERT INTO `website` VALUES (208, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/smallpdf_com.gif', 0, 0, 0, '免费PDF转换工具', 'Smallpdf', 'public', 'http://smallpdf.com/cn', 0);
+INSERT INTO `website` VALUES (209, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/xiumi_us.png', 0, 0, 0, '原创模板素材，精选风格排版', '秀米', 'public', 'https://xiumi.us/', 0);
+INSERT INTO `website` VALUES (210, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/edit_newrank_cn.gif', 0, 0, 0, '全中国最好用的微信编辑器', '新榜编辑器', 'public', 'http://edit.newrank.cn', 0);
+INSERT INTO `website` VALUES (211, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_17bjq_com.jpg', 0, 0, 0, '免费、简洁、易用的编辑器', '17编辑器', 'public', 'http://www.17bjq.com', 0);
+INSERT INTO `website` VALUES (212, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/bj_weixin005_com.jpg', 0, 0, 0, '完全免费的微信编辑器', '005编辑器', 'public', 'http://bj.weixin005.com', 0);
+INSERT INTO `website` VALUES (213, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_videaba_com.jpg', 0, 0, 0, '免费在线微信公众平台图文排版工具', '微助点', 'public', 'http://www.videaba.com', 0);
+INSERT INTO `website` VALUES (214, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/bj_91join_com.jpg', 0, 0, 0, '免费提供美化微信图文功能', '91微信编辑器', 'public', 'http://bj.91join.com', 0);
+INSERT INTO `website` VALUES (215, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_135editor_com.png', 0, 0, 0, '简洁的图文排版网站', '135编辑器', 'public', 'http://www.135editor.com', 0);
+INSERT INTO `website` VALUES (216, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/paiban_xmt_cn.png', 0, 0, 0, '排版效率高、界面简洁', '新媒体排版', 'public', 'http://paiban.xmt.cn', 0);
+INSERT INTO `website` VALUES (217, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/wx_bzrw_net.gif', 0, 0, 0, '线排版工具', '微信排版工具', 'public', 'http://wx.bzrw.net', 0);
+INSERT INTO `website` VALUES (218, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/http:.png', 0, 0, 0, '图文排版简单易用', '乐推微-Editor', 'public', 'http://http://tui.younle.com/Home/Index/wemdiaEdit.shtml', 0);
+INSERT INTO `website` VALUES (219, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/http:.png', 0, 0, 0, '简介易用微信排版工具', '爱美编', 'public', 'http://http://www.imeibian.com/main.html', 0);
+INSERT INTO `website` VALUES (220, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_e7wei_cn.gif', 0, 0, 0, '一站式微信营销平台', '易企微', 'public', 'http://www.e7wei.cn', 0);
+INSERT INTO `website` VALUES (221, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_xmyeditor_com.png', 0, 0, 0, '微信在线排版小助手', '小蚂蚁微信编辑', 'public', 'http://www.xmyeditor.com', 0);
+INSERT INTO `website` VALUES (222, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/bj_96weixin_com.png', 0, 0, 0, '提供手机预览功能', '96微信编辑器', 'public', 'http://bj.96weixin.com', 0);
+INSERT INTO `website` VALUES (223, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wxeditor_com.jpg', 0, 0, 0, '文章排版神器', '易点微信编辑器', 'public', 'http://www.wxeditor.com', 0);
+INSERT INTO `website` VALUES (224, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_getmarkman_com.jpg', 0, 0, 0, '高效的设计稿标注、测量工具', '马克鳗', 'public', 'http://www.getmarkman.com', 0);
+INSERT INTO `website` VALUES (225, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_biaonimeia_com.jpg', 0, 0, 0, 'UI自动标注工具，一键生成iOS、android、网页标注神器！', '标你妹啊', 'public', 'http://www.biaonimeia.com', 0);
+INSERT INTO `website` VALUES (226, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_fancynode_com_cn.png', 0, 0, 0, '像素大厨，标注切图', 'PxCook', 'public', 'http://www.fancynode.com.cn/pxcook', 0);
+INSERT INTO `website` VALUES (227, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/qietu_net.jpg', 0, 0, 0, '要切图就上切图网', '切图网', 'public', 'http://qietu.net', 0);
+INSERT INTO `website` VALUES (228, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_9thws_com.png', 0, 0, 0, '艺术二维码设计', '第九工场', 'public', 'http://www.9thws.com/', 0);
+INSERT INTO `website` VALUES (229, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_imayan_net.gif', 0, 0, 0, '国内首家开创二维码DIY功能的平台', '码眼无界', 'public', 'http://www.imayan.net', 0);
+INSERT INTO `website` VALUES (230, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cli_im.gif', 0, 0, 0, '在线生成二维码', '草料二维码', 'public', 'http://cli.im', 0);
+INSERT INTO `website` VALUES (231, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_uuask_cn.gif', 0, 0, 0, '优优问答程序系统', 'UUASK', 'public', 'http://www.uuask.cn/', 0);
+INSERT INTO `website` VALUES (232, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tipask_com.gif', 0, 0, 0, '最强大的问答系统', 'Tipask', 'public', 'https://www.tipask.com/', 0);
+INSERT INTO `website` VALUES (233, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_opensns_cn.gif', 0, 0, 0, '开源社交建站系统', 'OpenSNS', 'public', 'http://www.opensns.cn/', 0);
+INSERT INTO `website` VALUES (234, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_whatsns_com.gif', 0, 0, 0, '全新开源语音内容付费问答系统', 'whatsns', 'public', 'https://www.whatsns.com/', 0);
+INSERT INTO `website` VALUES (235, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_thinksns_com.gif', 0, 0, 0, '开源社交系统', 'ThinkSNS', 'public', 'http://www.thinksns.com/', 0);
+INSERT INTO `website` VALUES (236, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wecenter_com.gif', 0, 0, 0, '一款开源知识社区问答程序', 'WeCente', 'public', 'http://www.wecenter.com/', 0);
+INSERT INTO `website` VALUES (237, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_thinksaas_cn.gif', 0, 0, 0, '轻量级的php开源社区系统', 'ThinkSAAS', 'public', 'https://www.thinksaas.cn/', 0);
+INSERT INTO `website` VALUES (238, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jinhusns_com.gif', 0, 0, 0, '最强大的SNS社区软件', '近乎', 'public', 'http://www.jinhusns.com/', 0);
+INSERT INTO `website` VALUES (239, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_uuask_cn.gif', 0, 0, 0, '优优问答程序系统', 'UUASK', 'public', 'http://www.uuask.cn/', 0);
+INSERT INTO `website` VALUES (240, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tipask_com.gif', 0, 0, 0, '最强大的问答系统', 'Tipask', 'public', 'https://www.tipask.com/', 0);
+INSERT INTO `website` VALUES (241, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_opensns_cn.gif', 0, 0, 0, '开源社交建站系统', 'OpenSNS', 'public', 'http://www.opensns.cn/', 0);
+INSERT INTO `website` VALUES (242, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_whatsns_com.gif', 0, 0, 0, '全新开源语音内容付费问答系统', 'whatsns', 'public', 'https://www.whatsns.com/', 0);
+INSERT INTO `website` VALUES (243, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_thinksns_com.gif', 0, 0, 0, '开源社交系统', 'ThinkSNS', 'public', 'http://www.thinksns.com/', 0);
+INSERT INTO `website` VALUES (244, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wecenter_com.gif', 0, 0, 0, '一款开源知识社区问答程序', 'WeCente', 'public', 'http://www.wecenter.com/', 0);
+INSERT INTO `website` VALUES (245, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_siteserver_cn.png', 0, 0, 0, '企业级开源CMS系统', 'SiteServer CMS', 'public', 'https://www.siteserver.cn/', 0);
+INSERT INTO `website` VALUES (246, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_phpok_com.png', 0, 0, 0, '专业的企业网站建设系统', 'PHPOK', 'public', 'https://www.phpok.com/', 0);
+INSERT INTO `website` VALUES (247, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/hexo_io.png', 0, 0, 0, '一个快速、简单和强大的博客框架', 'Hexo', 'public', 'https://hexo.io/', 0);
+INSERT INTO `website` VALUES (248, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_mipcms_com.gif', 0, 0, 0, '基于百度MIP移动加速器SEO优化后的网站系统', 'MIPCMS', 'public', 'http://www.mipcms.com', 0);
+INSERT INTO `website` VALUES (249, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tpt360_com.gif', 0, 0, 0, '专注模块化网站内容管理系统开发', 'TPTCMS', 'public', 'http://www.tpt360.com', 0);
+INSERT INTO `website` VALUES (250, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/typecho_org.gif', 0, 0, 0, '轻量级开源博客程序', 'Typecho', 'public', 'http://typecho.org', 0);
+INSERT INTO `website` VALUES (251, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/gohugo_io.png', 0, 0, 0, '世界上最快的框架来构建网站', 'HUGO', 'public', 'https://gohugo.io/', 0);
+INSERT INTO `website` VALUES (252, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_metinfo_cn.jpg', 0, 0, 0, '最适合企业网站建设的cms系统', '米拓', 'public', 'http://www.metinfo.cn', 0);
+INSERT INTO `website` VALUES (253, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wopus_org.jpg', 0, 0, 0, '最流行的一款PHP+Mysql类博客程序', 'WordPress', 'public', 'http://www.wopus.org', 0);
+INSERT INTO `website` VALUES (254, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_phome_net.jpg', 0, 0, 0, '超高安全、超高稳定的开源CMS系统', '帝国CMS', 'public', 'http://www.phome.net', 0);
+INSERT INTO `website` VALUES (255, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/open_114la_com.jpg', 0, 0, 0, '智能的网址导航建站系统', '114开源导航', 'public', 'http://open.114la.com', 0);
+INSERT INTO `website` VALUES (256, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/kaiyuan_hudong_com.jpg', 0, 0, 0, '一家全球领先的社会化知识媒体平台', 'HDwiki', 'public', 'http://kaiyuan.hudong.com', 0);
+INSERT INTO `website` VALUES (257, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_phpcms_cn.jpg', 0, 0, 0, '国内主流CMS系统之一', 'phpcms', 'public', 'http://www.phpcms.cn', 0);
+INSERT INTO `website` VALUES (258, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_dedecms_com.jpg', 0, 0, 0, '国内开源CMS的领先品牌', '织梦CMS', 'public', 'http://www.dedecms.com', 0);
+INSERT INTO `website` VALUES (259, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ecisp_cn.jpg', 0, 0, 0, '企业网站管理系统PHP', '易思ESPCMS', 'public', 'http://www.ecisp.cn', 0);
+INSERT INTO `website` VALUES (260, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_phpwind_net.jpg', 0, 0, 0, '通用型建站软件', 'PHPWind', 'public', 'http://www.phpwind.net', 0);
+INSERT INTO `website` VALUES (261, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_discuz_net.jpg', 0, 0, 0, '一个以社区为基础的专业建站平台', 'Discuz', 'public', 'http://www.discuz.net', 0);
+INSERT INTO `website` VALUES (262, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ecshop_com.jpg', 0, 0, 0, '免费开源网店系统', 'ECSHO', 'public', 'http://www.ecshop.com', 0);
+INSERT INTO `website` VALUES (263, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zblogcn_com.jpg', 0, 0, 0, 'PHP版本和ASP版本的博客程序', 'Z-Blog', 'public', 'http://www.zblogcn.com', 0);
+INSERT INTO `website` VALUES (264, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_biweb_cn.jpg', 0, 0, 0, '开源WEBAPP手机网站系统', 'BIWEB', 'public', 'http://www.biweb.cn', 0);
+INSERT INTO `website` VALUES (265, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_gsdata_cn.png', 0, 0, 0, '中国新媒体大数据权威平台', '清博大数据', 'public', 'http://www.gsdata.cn/', 0);
+INSERT INTO `website` VALUES (266, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_weizhishu_com.png', 0, 0, 0, '新媒体大数据领导者', '微指数', 'public', 'http://www.weizhishu.com/', 0);
+INSERT INTO `website` VALUES (267, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/data_xiguaji_com.png', 0, 0, 0, '公众号大数据服务商', '西瓜数据', 'public', 'http://data.xiguaji.com/', 0);
+INSERT INTO `website` VALUES (268, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/data_weibo_com.gif', 0, 0, 0, '新浪微博搜索指数分析', '微博指数', 'public', 'http://data.weibo.com/index', 0);
+INSERT INTO `website` VALUES (269, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/index_1688_com.jpg', 0, 0, 0, '最权威专业的行业价格、供应、采购趋势分析', '阿里指数', 'public', 'http://index.1688.com', 0);
+INSERT INTO `website` VALUES (270, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/top_taobao_com.gif', 0, 0, 0, '对商品性价比排行的一种导航', '淘宝排行榜', 'public', 'http://top.taobao.com', 0);
+INSERT INTO `website` VALUES (271, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/index_toutiao_com.jpg', 0, 0, 0, '今日头条一款数据公共服务产品', '头条指数', 'public', 'http://index.toutiao.com', 0);
+INSERT INTO `website` VALUES (272, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/research_antgroup_com--research.gif', 0, 0, 0, '居民网络消费指数', '网络消费指数', 'public', 'http://research.antgroup.com/research/consumeScale.htm', 0);
+INSERT INTO `website` VALUES (273, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/tbi_tencent_com.gif', 0, 0, 0, '洞察用户和塑造品牌的权威平台', '腾讯浏览指数', 'public', 'http://tbi.tencent.com', 0);
+INSERT INTO `website` VALUES (274, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/index_baidu_com.jpg', 0, 0, 0, '以百度海量网民行为数据为基础的数据分享平台', '百度指数', 'public', 'http://index.baidu.com', 0);
+INSERT INTO `website` VALUES (275, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/top_taobao_com.gif', 0, 0, 0, '淘宝搜索排行榜，实时查看热门关键字', '淘宝搜索', 'public', 'http://top.taobao.com', 0);
+INSERT INTO `website` VALUES (276, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/index_youku_com.gif', 0, 0, 0, '网络视频收视数据分析平台', '网络视频指数', 'public', 'http://index.youku.com', 0);
+INSERT INTO `website` VALUES (277, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_umindex_com.jpg', 0, 0, 0, '全球领先的第三方全域大数据服务提供商', '友盟指数', 'public', 'http://www.umindex.com', 0);
+INSERT INTO `website` VALUES (278, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/index_so_com.jpg', 0, 0, 0, '搜索大数据分享平台', '360趋势', 'public', 'http://index.so.com', 0);
+INSERT INTO `website` VALUES (279, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/top_baidu_com.jpg', 0, 0, 0, '权威的关键词排行榜与分类热点门户', '百度搜索风云榜', 'public', 'http://top.baidu.com', 0);
+INSERT INTO `website` VALUES (280, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chandashi_com.png', 0, 0, 0, '关键词大数据分析平台', '蝉大师', 'public', 'https://www.chandashi.com/', 0);
+INSERT INTO `website` VALUES (281, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_qimai_cn.png', 0, 0, 0, '专业移动推广数据分析平台', '七麦数据', 'public', 'https://www.qimai.cn/', 0);
+INSERT INTO `website` VALUES (282, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/top_sogou_com.jpg', 0, 0, 0, '时事热点，尽在搜狗热搜榜', '搜狗热搜榜', 'public', 'http://top.sogou.com/', 0);
+INSERT INTO `website` VALUES (283, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cbooo_cn.png', 0, 0, 0, '专注于票房数据', '中国票房', 'public', 'http://www.cbooo.cn/', 0);
+INSERT INTO `website` VALUES (284, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/top_jd_com.gif', 0, 0, 0, '全品类排名信息实时发布', '京东排行榜', 'public', 'http://top.jd.com/', 0);
+INSERT INTO `website` VALUES (285, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/zmt_yizhuan5_com.png', 0, 0, 0, '提供最全自媒体素材数据', '易撰', 'public', 'http://zmt.yizhuan5.com/', 0);
+INSERT INTO `website` VALUES (286, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mi_talkingdata_com.png', 0, 0, 0, '全球领先免费公开数据实时查询平台', 'TalkingData移动观象台', 'public', 'http://mi.talkingdata.com/', 0);
+INSERT INTO `website` VALUES (287, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_myfans_cc.gif', 0, 0, 0, '最大的微社区。公众号首选微信社区', '粉丝圈', 'public', 'https://www.myfans.cc/', 0);
+INSERT INTO `website` VALUES (288, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_iresearch_cn.png', 0, 0, 0, '互联网数据资讯聚合平台', '艾瑞网', 'public', 'http://www.iresearch.cn', 0);
+INSERT INTO `website` VALUES (289, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cnidp_cn.gif', 0, 0, 0, '免费提供互联网统计数据', 'CNNIC 互联网数据平台', 'public', 'http://www.cnidp.cn', 0);
+INSERT INTO `website` VALUES (290, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_stats_gov_cn.jpg', 0, 0, 0, '中华人民共和国国家统计局', '国家统计数据', 'public', 'http://www.stats.gov.cn/tjsj', 0);
+INSERT INTO `website` VALUES (291, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/tongji_baidu_com--data.jpg', 0, 0, 0, '浏览器市场份额', '百度流量研究院', 'public', 'http://tongji.baidu.com/data/browser', 0);
+INSERT INTO `website` VALUES (292, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_199it_com.gif', 0, 0, 0, '中文互联网数据研究资讯中心', '199IT互联网数据中心', 'public', 'http://www.199it.com', 0);
+INSERT INTO `website` VALUES (293, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_itongji_cn.jpg', 0, 0, 0, '数据分析与数据挖掘从这开始', '中国统计网', 'public', 'http://www.itongji.cn', 0);
+INSERT INTO `website` VALUES (294, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_analysys_cn.jpg', 0, 0, 0, '实时分析驱动用户资产成长', '易观', 'public', 'http://www.analysys.cn', 0);
+INSERT INTO `website` VALUES (295, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/datatang_com.jpg', 0, 0, 0, '国内首家大数据交易平台', '数据堂', 'public', 'http://datatang.com', 0);
+INSERT INTO `website` VALUES (296, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_iconfont_cn.jpg', 0, 0, 0, '阿里巴巴矢量图标库', 'Iconfont', 'public', 'http://www.iconfont.cn', 0);
+INSERT INTO `website` VALUES (297, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/iconka_com.jpg', 0, 0, 0, '插画/动漫/图标设计/', 'Iconka.com', 'public', 'http://iconka.com', 0);
+INSERT INTO `website` VALUES (298, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/icons8_com.jpg', 0, 0, 0, '有史以来最大的图标包', 'Icons8', 'public', 'http://icons8.com', 0);
+INSERT INTO `website` VALUES (299, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ionicons_com.png', 0, 0, 0, '包含超过 430 个免费漂亮的程序图标。', 'Ionicons', 'public', 'http://ionicons.com', 0);
+INSERT INTO `website` VALUES (300, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_flaticon_com_cn.jpg', 0, 0, 0, '打造中国最好下载图标平台之一', '扁平图标', 'public', 'http://www.flaticon.com.cn', 0);
+INSERT INTO `website` VALUES (301, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/flattyshadow_com.jpg', 0, 0, 0, '阴影的创造者,在线图像阴影创造', 'Flattyshadow', 'public', 'http://flattyshadow.com', 0);
+INSERT INTO `website` VALUES (302, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/app-icons_net.jpg', 0, 0, 0, '可爱的APP图标画廊网站', 'APP icons', 'public', 'http://app-icons.net', 0);
+INSERT INTO `website` VALUES (303, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/iconutopia_com.jpg', 0, 0, 0, '免费图标集', 'Icon Utopia', 'public', 'http://iconutopia.com', 0);
+INSERT INTO `website` VALUES (304, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_iconfinder_com.jpg', 0, 0, 0, '1275000 +免费图标', 'Iconfinder', 'public', 'http://www.iconfinder.com', 0);
+INSERT INTO `website` VALUES (305, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/thenounproject_com.jpg', 0, 0, 0, '项目图标管理Icons for Everything', 'Noun Project', 'public', 'http://thenounproject.com', 0);
+INSERT INTO `website` VALUES (306, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/icomoon_io.jpg', 0, 0, 0, 'SVG字体，图标PNG，PDF生成器', 'IcoMoon App', 'public', 'http://icomoon.io/app', 0);
+INSERT INTO `website` VALUES (307, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/iconmonstr_com.jpg', 0, 0, 0, '免费下载一个项目的简单图标', 'iconmonstr', 'public', 'http://iconmonstr.com', 0);
+INSERT INTO `website` VALUES (308, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/dryicons_com.jpg', 0, 0, 0, '图标和矢量图形', 'DryIcons.com', 'public', 'http://dryicons.com', 0);
+INSERT INTO `website` VALUES (309, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/iosicongallery_com.png', 0, 0, 0, 'iOS图标库', 'iOS Icon Gallery', 'public', 'http://iosicongallery.com', 0);
+INSERT INTO `website` VALUES (310, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_flaticon_com.jpg', 0, 0, 0, '免费矢量图标', 'FLATICON', 'public', 'http://www.flaticon.com', 0);
+INSERT INTO `website` VALUES (311, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/smallicons_net.jpg', 0, 0, 0, '图标集', 'SMALLICONS', 'public', 'http://smallicons.net', 0);
+INSERT INTO `website` VALUES (312, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_easyicon_net.png', 0, 0, 0, '图标搜索下载', 'EASYICON', 'public', 'http://www.easyicon.net', 0);
+INSERT INTO `website` VALUES (313, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_islide_cc.gif', 0, 0, 0, '让PPT设计简单起来', 'iSlide', 'public', 'https://www.islide.cc/', 0);
+INSERT INTO `website` VALUES (314, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_myanshi_com.gif', 0, 0, 0, 'PPT模板下载制作平台', '演示设计铺', 'public', 'http://www.myanshi.com', 0);
+INSERT INTO `website` VALUES (315, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_pptxok_com.gif', 0, 0, 0, '综合互联网PPT下载服务平台', '欧酷PPT', 'public', 'http://www.pptxok.com', 0);
+INSERT INTO `website` VALUES (316, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/muzi_info.jpg', 0, 0, 0, 'PPT教程，PPT素材，PPT模板', 'MUZI 木子PPT', 'public', 'http://muzi.info', 0);
+INSERT INTO `website` VALUES (317, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_pptstore_net.jpg', 0, 0, 0, '顶级原创PPT模板和KEYNOTE模板下载', 'PPTSTORE', 'public', 'http://www.pptstore.net', 0);
+INSERT INTO `website` VALUES (318, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ypppt_com.jpg', 0, 0, 0, '精美免费PPT模板下载', '优品PPT', 'public', 'http://www.ypppt.com', 0);
+INSERT INTO `website` VALUES (319, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tretars_com.jpg', 0, 0, 0, '免费ppt模板下载_免费ppt模板_ppt模板', '逼格PPT', 'public', 'http://www.tretars.com', 0);
+INSERT INTO `website` VALUES (320, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_51ppt_com_cn.jpg', 0, 0, 0, '精美PPT模板大全', '无忧PPT', 'public', 'http://www.51ppt.com.cn', 0);
+INSERT INTO `website` VALUES (321, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_rapidbbs_cn.jpg', 0, 0, 0, '中国PPT高手必收藏的网站', '锐普PPT', 'public', 'http://www.rapidbbs.cn', 0);
+INSERT INTO `website` VALUES (322, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ztxz_org.png', 0, 0, 0, '设计师常用字体', '字体下载大全', 'public', 'http://ztxz.org', 0);
+INSERT INTO `website` VALUES (323, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_font5_com_cn.jpg', 0, 0, 0, '专业的免费字体下载网站', '字体量贩', 'public', 'http://www.font5.com.cn', 0);
+INSERT INTO `website` VALUES (324, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zhaozi_cn.jpg', 0, 0, 0, '中英文原创字体在线预览下载', '找字网', 'public', 'http://www.zhaozi.cn', 0);
+INSERT INTO `website` VALUES (325, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_youziku_com.jpg', 0, 0, 0, '全球第一中文web font（在线字体）', '有字库', 'public', 'http://www.youziku.com', 0);
+INSERT INTO `website` VALUES (326, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/sicangziti_com.jpg', 0, 0, 0, '优质字体免费下载', '私藏字体', 'public', 'http://sicangziti.com', 0);
+INSERT INTO `website` VALUES (327, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/zh_fonts2u_com.jpg', 0, 0, 0, '提供大量的免费字体', 'Fonts2u.com', 'public', 'http://zh.fonts2u.com', 0);
+INSERT INTO `website` VALUES (328, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_shufaziti_com.jpg', 0, 0, 0, '书法字典在线查询工具收集整理', '书法字体', 'public', 'http://www.shufaziti.com', 0);
+INSERT INTO `website` VALUES (329, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_diyiziti_com.jpg', 0, 0, 0, '字体转换器在线转换', '第一字体网', 'public', 'http://www.diyiziti.com', 0);
+INSERT INTO `website` VALUES (330, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/wytype_com.png', 0, 0, 0, '文悦科技', '文悦字形', 'public', 'http://wytype.com', 0);
+INSERT INTO `website` VALUES (331, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zitikoudai_com.jpg', 0, 0, 0, '在线预览和下载中英文字体', '字体口袋', 'public', 'http://www.zitikoudai.com', 0);
+INSERT INTO `website` VALUES (332, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_akuziti_com.gif', 0, 0, 0, '字体转换器在线转换', '字体在线转换', 'public', 'http://www.akuziti.com', 0);
+INSERT INTO `website` VALUES (333, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_qiuziti_com.png', 0, 0, 0, '识图找字/字体下载', '求字体', 'public', 'http://www.qiuziti.com', 0);
+INSERT INTO `website` VALUES (334, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_17ziti_com.png', 0, 0, 0, '最全的免费字体打包下载', '字体之家', 'public', 'http://www.17ziti.com', 0);
+INSERT INTO `website` VALUES (335, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cssmoban_com.gif', 0, 0, 0, '网页模板,网站模板,DIV+CSS模板,企业网站模板下载', '模板之家', 'public', 'http://www.cssmoban.com', 0);
+INSERT INTO `website` VALUES (336, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_mobanku_com.gif', 0, 0, 0, '专注于网页模板、网站模板设计开发，企业建站最好选择-', '模板库', 'public', 'http://www.mobanku.com', 0);
+INSERT INTO `website` VALUES (337, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_mobantu_com.jpg', 0, 0, 0, 'wordpress主题免费下载', '模板兔', 'public', 'http://www.mobantu.com', 0);
+INSERT INTO `website` VALUES (338, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_mb5u_com.jpg', 0, 0, 0, '国内最具人气的网站模板下载', '模板无忧', 'public', 'http://www.mb5u.com', 0);
+INSERT INTO `website` VALUES (339, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_mobanwang_com.jpg', 0, 0, 0, '网页模板免费下载', '模板王', 'public', 'http://www.mobanwang.com', 0);
+INSERT INTO `website` VALUES (340, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_moke8_com.jpg', 0, 0, 0, '网页模板下载,建站资源共享平台', '魔客吧', 'public', 'http://www.moke8.com', 0);
+INSERT INTO `website` VALUES (341, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_58pic_com.jpg', 0, 0, 0, '免费设计素材下载', '千图网', 'public', 'http://www.58pic.com', 0);
+INSERT INTO `website` VALUES (342, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cn_vectorhq_com.jpg', 0, 0, 0, '免费矢量和PSD图片', 'VectorHQ.com', 'public', 'http://cn.vectorhq.com', 0);
+INSERT INTO `website` VALUES (343, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_daimg_com.jpg', 0, 0, 0, '优质的影楼素材和设计素材', '大图网', 'public', 'http://www.daimg.com', 0);
+INSERT INTO `website` VALUES (344, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zcool_com_cn.jpg', 0, 0, 0, '站酷免费素材下载', '站酷素材', 'public', 'http://www.zcool.com.cn/gfxs', 0);
+INSERT INTO `website` VALUES (345, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/woofeng_cn.jpg', 0, 0, 0, '收罗优质干货素材', '黄蜂网', 'public', 'http://woofeng.cn', 0);
+INSERT INTO `website` VALUES (346, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_lanrentuku_com.jpg', 0, 0, 0, '专注于提供网页素材下载', '懒人图库', 'public', 'http://www.lanrentuku.com', 0);
+INSERT INTO `website` VALUES (347, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/psefan_com.jpg', 0, 0, 0, '精选设计师高逼格素材', 'PS饭团网', 'public', 'http://psefan.com', 0);
+INSERT INTO `website` VALUES (348, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_teapic_com.jpg', 0, 0, 0, '专业中国素材下载分享平台', '茶图素材网', 'public', 'http://www.teapic.com', 0);
+INSERT INTO `website` VALUES (349, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/momi8_com.jpg', 0, 0, 0, '网页背景图片素材免费下载', '末米吧', 'public', 'http://momi8.com', 0);
+INSERT INTO `website` VALUES (350, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_16sucai_com.jpg', 0, 0, 0, '海量免费网页素材', '16素材网', 'public', 'http://www.16sucai.com', 0);
+INSERT INTO `website` VALUES (351, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tooopen_com.jpg', 0, 0, 0, '免费和共享下载资源', '素材公社', 'public', 'http://www.tooopen.com', 0);
+INSERT INTO `website` VALUES (352, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/niutuku_com.jpg', 0, 0, 0, '设计素材免费下载', '牛图库', 'public', 'http://niutuku.com', 0);
+INSERT INTO `website` VALUES (353, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_aiimg_com.jpg', 0, 0, 0, '免费提供资源的网站', '爱图', 'public', 'http://www.aiimg.com', 0);
+INSERT INTO `website` VALUES (354, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cn_clipart_me.jpg', 0, 0, 0, '免费矢量和PSD图片', 'Clipart.me', 'public', 'http://cn.clipart.me', 0);
+INSERT INTO `website` VALUES (355, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_sucai888_com.jpg', 0, 0, 0, '分享网页特效、界面素材', '素材吧', 'public', 'http://www.sucai888.com', 0);
+INSERT INTO `website` VALUES (356, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_17sucai_com.png', 0, 0, 0, '一流的中国素材网站', '17素材网', 'public', 'http://www.17sucai.com', 0);
+INSERT INTO `website` VALUES (357, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/unsplash_com.jpg', 0, 0, 0, '免费的高品质图片素材', 'Unsplash', 'public', 'http://unsplash.com', 0);
+INSERT INTO `website` VALUES (358, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_photophoto_cn.jpg', 0, 0, 0, '免费设计图库素材分享下载平台', '图行天下图库', 'public', 'http://www.photophoto.cn', 0);
+INSERT INTO `website` VALUES (359, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/img_zhongsou_com.jpg', 0, 0, 0, '中文图片搜索', '中搜图片', 'public', 'http://img.zhongsou.com', 0);
+INSERT INTO `website` VALUES (360, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_vcg_com.jpg', 0, 0, 0, '中国领先的图片供应商', '视觉中国官网', 'public', 'http://www.vcg.com', 0);
+INSERT INTO `website` VALUES (361, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cn_freeimages_com.jpg', 0, 0, 0, '超过 389690 张免费照片和图片', 'FreeImages.com', 'public', 'http://cn.freeimages.com', 0);
+INSERT INTO `website` VALUES (362, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_hellorf_com.jpg', 0, 0, 0, '正版图片,视频,音乐素材交易平台', '站酷海洛创意', 'public', 'http://www.hellorf.com', 0);
+INSERT INTO `website` VALUES (363, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_quanjing_com.jpg', 0, 0, 0, '中国最大的图片库和图片素材网站', '全景网', 'public', 'http://www.quanjing.com', 0);
+INSERT INTO `website` VALUES (364, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/pixabay_com.jpg', 0, 0, 0, '免费的高清图片', 'Pixabay', 'public', 'http://pixabay.com', 0);
+INSERT INTO `website` VALUES (365, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/image_baidu_com.jpg', 0, 0, 0, '海量的高清美图', '百度图片', 'public', 'http://image.baidu.com', 0);
+INSERT INTO `website` VALUES (366, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yestone_com.jpg', 0, 0, 0, '专业的版权视觉内容提供商', 'Yestone邑石网', 'public', 'http://www.yestone.com', 0);
+INSERT INTO `website` VALUES (367, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/500px_com.jpg', 0, 0, 0, '致力于摄影分享、发现、售卖', '500px', 'public', 'http://500px.com', 0);
+INSERT INTO `website` VALUES (368, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/eput_com.jpg', 0, 0, 0, '中国领先的高品质图片分享与售卖平台', 'Eput', 'public', 'http://eput.com', 0);
+INSERT INTO `website` VALUES (369, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_123rf_com_cn.jpg', 0, 0, 0, '中国领先商业图片素材网', '123RF图库', 'public', 'http://www.123rf.com.cn', 0);
+INSERT INTO `website` VALUES (370, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cn_forwallpaper_com.jpg', 0, 0, 0, '精美图片网站', 'Wallpaper', 'public', 'http://cn.forwallpaper.com', 0);
+INSERT INTO `website` VALUES (371, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_shixiseng_com.jpg', 0, 0, 0, '国内领先的实习生招聘网站', '实习僧', 'public', 'http://www.shixiseng.com', 0);
+INSERT INTO `website` VALUES (372, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cimo_cn.jpg', 0, 0, 0, '帮助大学生走出校园玩转职场', '青苜网', 'public', 'http://www.cimo.cn', 0);
+INSERT INTO `website` VALUES (373, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zheyibu_com.jpg', 0, 0, 0, '供最新最全的校园招聘信息', '这一步', 'public', 'http://www.zheyibu.com', 0);
+INSERT INTO `website` VALUES (374, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_horsehr_com.jpg', 0, 0, 0, '专注校园求职招聘的专业网站', '千里马校园网', 'public', 'http://www.horsehr.com', 0);
+INSERT INTO `website` VALUES (375, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_haitou_cc.jpg', 0, 0, 0, '大学生求职搜索引擎', '海投网', 'public', 'http://www.haitou.cc', 0);
+INSERT INTO `website` VALUES (376, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_211zph_com.jpg', 0, 0, 0, '为毕业生和企业开展校园招聘', '211校招网', 'public', 'http://www.211zph.com', 0);
+INSERT INTO `website` VALUES (377, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wutongguo_com.jpg', 0, 0, 0, '高校应届毕业生的专业网申平台', '梧桐果', 'public', 'http://www.wutongguo.com', 0);
+INSERT INTO `website` VALUES (378, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cn_linkedin_com.jpg', 0, 0, 0, '全球领先的职业社交网站', '领英', 'public', 'http://cn.linkedin.com', 0);
+INSERT INTO `website` VALUES (379, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wealink_com.png', 0, 0, 0, '全行业在线招聘模式领导者', '若邻网', 'public', 'http://www.wealink.com', 0);
+INSERT INTO `website` VALUES (380, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/100offer_com.png', 0, 0, 0, '和好机会来个偶遇吧', '100offer', 'public', 'http://100offer.com', 0);
+INSERT INTO `website` VALUES (381, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chinahr_com.jpg', 0, 0, 0, '专注人力资源领域,服务广大企业用户和求职者', '中华英才网', 'public', 'http://www.chinahr.com', 0);
+INSERT INTO `website` VALUES (382, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_nashangban_com.png', 0, 0, 0, '高质量互联网人才', '哪上班', 'public', 'http://www.nashangban.com', 0);
+INSERT INTO `website` VALUES (383, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/shixian_com.png', 0, 0, 0, 'BAT工程师兼职预约平台', '实现网', 'public', 'http://shixian.com', 0);
+INSERT INTO `website` VALUES (384, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_lagou_com.jpg', 0, 0, 0, '最专业的互联网招聘平台', '拉勾网', 'public', 'http://www.lagou.com', 0);
+INSERT INTO `website` VALUES (385, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jobtong_com.jpg', 0, 0, 0, '最靠谱的移动互联网招聘社区', '周伯通', 'public', 'http://www.jobtong.com', 0);
+INSERT INTO `website` VALUES (386, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_neitui_me.png', 0, 0, 0, '互联网招聘内部推荐直招平台', '内推网', 'public', 'http://www.neitui.me', 0);
+INSERT INTO `website` VALUES (387, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zhaopin_com.jpg', 0, 0, 0, '全国性权威人才网站', '智联招聘', 'public', 'http://www.zhaopin.com', 0);
+INSERT INTO `website` VALUES (388, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_51job_com.jpg', 0, 0, 0, '最全最准确的招聘网站', '前程无忧', 'public', 'http://www.51job.com', 0);
+INSERT INTO `website` VALUES (389, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jobdiy_cn.jpg', 0, 0, 0, '国内领先的兼职招聘平台', '兼职达人', 'public', 'http://www.jobdiy.cn', 0);
+INSERT INTO `website` VALUES (390, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jianke_cc.jpg', 0, 0, 0, '安全靠谱的网上兼职服务平台', '兼客兼职', 'public', 'http://www.jianke.cc', 0);
+INSERT INTO `website` VALUES (391, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jianzhimao_com.jpg', 0, 0, 0, '国内领先的兼职招聘网站', '兼职猫', 'public', 'http://www.jianzhimao.com', 0);
+INSERT INTO `website` VALUES (392, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_kdjz_com.jpg', 0, 0, 0, '提供最安全、可靠、免费的兼职招聘服务', '口袋兼职', 'public', 'http://www.kdjz.com', 0);
+INSERT INTO `website` VALUES (393, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jzdd_com.jpg', 0, 0, 0, '服务规模最大的兼职平台', '兼职招聘网', 'public', 'http://www.jzdd.com', 0);
+INSERT INTO `website` VALUES (394, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jianzhiq_com.jpg', 0, 0, 0, '中国最大的大学生兼职平台', '兼职圈', 'public', 'http://www.jianzhiq.com', 0);
+INSERT INTO `website` VALUES (395, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_doumi_com.jpg', 0, 0, 0, '免费提供大量最新兼职招聘信息', '斗米兼职', 'public', 'http://www.doumi.com', 0);
+INSERT INTO `website` VALUES (396, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_juxiangyou_com.jpg', 0, 0, 0, '一个网络兼职平台', '聚享游', 'public', 'http://www.juxiangyou.com', 0);
+INSERT INTO `website` VALUES (397, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_taojianz_com.jpg', 0, 0, 0, '领先靠谱的大学生兼职招聘网', '淘兼职', 'public', 'http://www.taojianz.com', 0);
+INSERT INTO `website` VALUES (398, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_taocaizi_com.png', 0, 0, 0, '专业电商人才求职招聘网', '淘才子', 'public', 'http://www.taocaizi.com/', 0);
+INSERT INTO `website` VALUES (399, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ecjobhome_com.png', 0, 0, 0, '专业电商人才求职招聘网站平台', '电商之家', 'public', 'http://www.ecjobhome.com/', 0);
+INSERT INTO `website` VALUES (400, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_alizhaopin_com.png', 0, 0, 0, '阿里巴巴旗下电商招聘平台', '淘工作', 'public', 'https://www.alizhaopin.com/', 0);
+INSERT INTO `website` VALUES (401, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_dianshangren_cn.png', 0, 0, 0, '专业的电子商务人才网', '电商人才网', 'public', 'http://www.dianshangren.cn/', 0);
+INSERT INTO `website` VALUES (402, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_dianhou_com.jpg', 0, 0, 0, '专业的电商招聘平台', '电猴网', 'public', 'http://www.dianhou.com/', 0);
+INSERT INTO `website` VALUES (403, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_lieluobo_com.png', 0, 0, 0, '互联网猎头平台', '猎萝卜', 'public', 'https://www.lieluobo.com/', 0);
+INSERT INTO `website` VALUES (404, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_highpin_cn.jpg', 0, 0, 0, '智联招聘旗下中高端人才求职平台！', '智联卓聘', 'public', 'http://www.highpin.cn', 0);
+INSERT INTO `website` VALUES (405, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_lietou007_com.jpg', 0, 0, 0, '目前国内最大的猎头行业网站', '猎头007', 'public', 'http://www.lietou007.com', 0);
+INSERT INTO `website` VALUES (406, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_hunteron_com.jpg', 0, 0, 0, '中高端人才跳槽神器', '猎上网', 'public', 'http://www.hunteron.com', 0);
+INSERT INTO `website` VALUES (407, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_liepin_com.png', 0, 0, 0, '招聘_找工作_精英职业发展平台', '猎聘网', 'public', 'http://www.liepin.com', 0);
+INSERT INTO `website` VALUES (408, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cv_utrainee_com.png', 0, 0, 0, '名校学生都在用的专业简历制作工具', '职徒简历 - 名校学生都在用的专业简历工具', 'public', 'https://cv.utrainee.com', 0);
+INSERT INTO `website` VALUES (409, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/qiaobutang_com.gif', 0, 0, 0, '中英文个人求职简历模板表格免费下载', '乔布简历', 'public', 'http://qiaobutang.com', 0);
+INSERT INTO `website` VALUES (410, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jianlipro_com.jpg', 0, 0, 0, '专业的在线简历制作网站', '简历计划', 'public', 'http://www.jianlipro.com', 0);
+INSERT INTO `website` VALUES (411, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_500d_me.jpg', 0, 0, 0, '中国领先的在线简历制作平台', '五百丁', 'public', 'http://www.500d.me', 0);
+INSERT INTO `website` VALUES (412, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yidianzixun_com.png', 0, 0, 0, '私人定制的资讯客户端', '一点资讯', 'public', 'http://www.yidianzixun.com', 0);
+INSERT INTO `website` VALUES (413, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cri_cn.gif', 0, 0, 0, '中央重点新闻网站', '国际在线', 'public', 'http://www.cri.cn', 0);
+INSERT INTO `website` VALUES (414, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_china_com.gif', 0, 0, 0, '国家级门户网站', '中华网', 'public', 'http://www.china.com', 0);
+INSERT INTO `website` VALUES (415, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_thepaper_cn.jpg', 0, 0, 0, '专注时政与思想', '澎湃新闻', 'public', 'http://www.thepaper.cn', 0);
+INSERT INTO `website` VALUES (416, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cnr_cn.jpg', 0, 0, 0, '中央重点新闻网站', '央广网', 'public', 'http://www.cnr.cn', 0);
+INSERT INTO `website` VALUES (417, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_huanqiu_com.jpg', 0, 0, 0, '中国领先的国际资讯门户', '环球网', 'public', 'http://www.huanqiu.com', 0);
+INSERT INTO `website` VALUES (418, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chinanews_com.gif', 0, 0, 0, '中新社，梳理天下新闻', '中国新闻网', 'public', 'http://www.chinanews.com', 0);
+INSERT INTO `website` VALUES (419, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/news_cctv_com.png', 0, 0, 0, '面向全球,多语种,多终端', '央视新闻网', 'public', 'http://news.cctv.com', 0);
+INSERT INTO `website` VALUES (420, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_xinhuanet_com.jpg', 0, 0, 0, '综合新闻信息服务门户网站', '新华网', 'public', 'http://www.xinhuanet.com', 0);
+INSERT INTO `website` VALUES (421, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/news_baidu_com.jpg', 0, 0, 0, '全球最大的中文新闻平台', '百度新闻', 'public', 'http://news.baidu.com', 0);
+INSERT INTO `website` VALUES (422, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/news_sohu_com.png', 0, 0, 0, '24小时不间断的最新资讯', '搜狐新闻', 'public', 'http://news.sohu.com', 0);
+INSERT INTO `website` VALUES (423, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/news_qq_com.png', 0, 0, 0, '腾讯新闻，事实派', '腾讯新闻', 'public', 'http://news.qq.com', 0);
+INSERT INTO `website` VALUES (424, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/news_ifeng_com.png', 0, 0, 0, '提供大智慧和犀利观点', '凤凰资讯', 'public', 'http://news.ifeng.com', 0);
+INSERT INTO `website` VALUES (425, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/news_sina_com_cn.png', 0, 0, 0, '24小时滚动报道国内、国际及社会新闻', '新浪新闻', 'public', 'http://news.sina.com.cn', 0);
+INSERT INTO `website` VALUES (426, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/news_163_com.png', 0, 0, 0, '专业时事报道门户网站', '网易新闻', 'public', 'http://news.163.com', 0);
+INSERT INTO `website` VALUES (427, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/newseed_pedaily_cn.jpg', 0, 0, 0, '离资本最近的创业服务平台！', '新芽', 'public', 'http://newseed.pedaily.cn', 0);
+INSERT INTO `website` VALUES (428, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_lieyunwang_com.png', 0, 0, 0, '用心服务创业者_互联网创业项目推荐和创业创新资讯', '猎云网', 'public', 'http://www.lieyunwang.com', 0);
+INSERT INTO `website` VALUES (429, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cn_engadget_com.jpg', 0, 0, 0, '消费性电子产品新闻和评测', 'Engadget', 'public', 'http://cn.engadget.com', 0);
+INSERT INTO `website` VALUES (430, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ittime_com_cn.png', 0, 0, 0, '解读信息时代的商业变革', 'IT时代网', 'public', 'http://www.ittime.com.cn', 0);
+INSERT INTO `website` VALUES (431, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zaodula_com.jpg', 0, 0, 0, '专注分享产品、用研、交互、运营、市场等专业产品知识', '互联网早读课', 'public', 'http://www.zaodula.com', 0);
+INSERT INTO `website` VALUES (432, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ifanr_com.jpg', 0, 0, 0, '报道未来，服务新生活引领者', '爱范儿', 'public', 'http://www.ifanr.com', 0);
+INSERT INTO `website` VALUES (433, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_donews_com.jpg', 0, 0, 0, '中国互联网行业的风向标', 'Donews', 'public', 'http://www.donews.com', 0);
+INSERT INTO `website` VALUES (434, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tmtforum_com.jpg', 0, 0, 0, '分享国内外最新最前沿的科技创新、创业项目、创业公司', 'TMTforum', 'public', 'http://www.tmtforum.com', 0);
+INSERT INTO `website` VALUES (435, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_qdaily_com.jpg', 0, 0, 0, '好奇驱动你的世界', '好奇心日报', 'public', 'http://www.qdaily.com', 0);
+INSERT INTO `website` VALUES (436, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_huxiu_com.jpg', 0, 0, 0, '聚合优质创新信息与人群的新媒体平台', '虎嗅网', 'public', 'http://www.huxiu.com', 0);
+INSERT INTO `website` VALUES (437, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yixieshi_com.jpg', 0, 0, 0, '最有料的互联网资讯', '互联网的一些事', 'public', 'http://www.yixieshi.com', 0);
+INSERT INTO `website` VALUES (438, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_alibuybuy_com.jpg', 0, 0, 0, '聚焦互联网前沿资讯', '互联网的那点事', 'public', 'http://www.alibuybuy.com', 0);
+INSERT INTO `website` VALUES (439, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_geekpark_net.jpg', 0, 0, 0, '互联网热门趋势、热点产品的深度分析，发掘产品和趋势的价值。', '极客公园', 'public', 'http://www.geekpark.net', 0);
+INSERT INTO `website` VALUES (440, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cninin_com.jpg', 0, 0, 0, '分享最新、最快的互联网资讯!', '中文互联网资讯', 'public', 'http://www.cninin.com', 0);
+INSERT INTO `website` VALUES (441, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tmtpost_com.jpg', 0, 0, 0, '国内首家TMT公司人社群媒体', '钛媒体', 'public', 'http://www.tmtpost.com', 0);
+INSERT INTO `website` VALUES (442, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_kejilie_com.jpg', 0, 0, 0, '帮你高效阅读最新科技资讯的工具', '科技猎', 'public', 'http://www.kejilie.com', 0);
+INSERT INTO `website` VALUES (443, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/tech2ipo_com.jpg', 0, 0, 0, '专注互联网创业与创新', 'TECH2IPO', 'public', 'http://tech2ipo.com', 0);
+INSERT INTO `website` VALUES (444, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_bukop_com.jpg', 0, 0, 0, '关注全球商业新模式、新趋势', '商业不靠谱', 'public', 'http://www.bukop.com', 0);
+INSERT INTO `website` VALUES (445, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ccw_com_cn.jpg', 0, 0, 0, '中国最权威的IT专业网站', '计世', 'public', 'http://www.ccw.com.cn', 0);
+INSERT INTO `website` VALUES (446, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ctocio_com_cn.jpg', 0, 0, 0, '专门服务于企业IT专业人士以及IT系统采购决策者', 'IT专家网', 'public', 'http://www.ctocio.com.cn', 0);
+INSERT INTO `website` VALUES (447, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_dahe_cn.jpg', 0, 0, 0, '河南首家重点新闻网站', '大河网', 'public', 'http://www.dahe.cn', 0);
+INSERT INTO `website` VALUES (448, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_gxnews_com_cn.jpg', 0, 0, 0, '权威的综合新闻信息报道', '广西新闻网', 'public', 'http://www.gxnews.com.cn', 0);
+INSERT INTO `website` VALUES (449, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ycwb_com.jpg', 0, 0, 0, '华南地区最出色的新闻网站', '金羊网', 'public', 'http://www.ycwb.com', 0);
+INSERT INTO `website` VALUES (450, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_dbw_cn.jpg', 0, 0, 0, '最全面的黑龙江信息', '东北网', 'public', 'http://www.dbw.cn', 0);
+INSERT INTO `website` VALUES (451, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_fjsen_com.jpg', 0, 0, 0, '福建官方新闻门户', '东南网', 'public', 'http://www.fjsen.com', 0);
+INSERT INTO `website` VALUES (452, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_dzwww_com.jpg', 0, 0, 0, '山东新闻信息权威发布平台', '大众日报', 'public', 'http://www.dzwww.com', 0);
+INSERT INTO `website` VALUES (453, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cqnews_net.jpg', 0, 0, 0, '重庆首个全媒体网站', '华龙网', 'public', 'http://www.cqnews.net', 0);
+INSERT INTO `website` VALUES (454, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_southcn_com.jpg', 0, 0, 0, '政府批准建设的新闻宣传网站', '南方网', 'public', 'http://www.southcn.com', 0);
+INSERT INTO `website` VALUES (455, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_takungpao_com.gif', 0, 0, 0, '百年大公报的新媒体平台', '大公网', 'public', 'http://www.takungpao.com', 0);
+INSERT INTO `website` VALUES (456, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_infzm_com.gif', 0, 0, 0, '发行量最大的综合性周报', '南方周末', 'public', 'http://www.infzm.com', 0);
+INSERT INTO `website` VALUES (457, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cyol_net.gif', 0, 0, 0, '中国青年报官网', '中青在线', 'public', 'http://www.cyol.net', 0);
+INSERT INTO `website` VALUES (458, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_bjnews_com_cn.gif', 0, 0, 0, '精品新闻网站', '新京报网', 'public', 'http://www.bjnews.com.cn', 0);
+INSERT INTO `website` VALUES (459, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_gmw_cn.gif', 0, 0, 0, '思想理论领域的中央重点新闻网站', '光明网', 'public', 'http://www.gmw.cn', 0);
+INSERT INTO `website` VALUES (460, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/hsb_hsw_cn.jpg', 0, 0, 0, '陕西权威综合类城市生活报', '华商报', 'public', 'http://hsb.hsw.cn', 0);
+INSERT INTO `website` VALUES (461, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_nfcmag_com.jpg', 0, 0, 0, '隶属于广州日报报业集团', '南风窗网', 'public', 'http://www.nfcmag.com', 0);
+INSERT INTO `website` VALUES (462, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cn_chinadaily_com_cn.jpg', 0, 0, 0, '中国最优质的新闻发布平台', '中国日报', 'public', 'http://cn.chinadaily.com.cn', 0);
+INSERT INTO `website` VALUES (463, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_xfrb_com_cn.gif', 0, 0, 0, '消费领域中全国性的综合性日报', '消费日报', 'public', 'http://www.xfrb.com.cn', 0);
+INSERT INTO `website` VALUES (464, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ctdsb_cnhubei_com.gif', 0, 0, 0, '楚天都市报在线阅读体验', '楚天都市报', 'public', 'http://ctdsb.cnhubei.com', 0);
+INSERT INTO `website` VALUES (465, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_oeeee_com.jpg', 0, 0, 0, '南方都市报官方网站-奥一网', '南方都市报', 'public', 'http://www.oeeee.com', 0);
+INSERT INTO `website` VALUES (466, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_inewsweek_cn.gif', 0, 0, 0, '中央重点新闻网站', '中国新闻周刊', 'public', 'http://www.inewsweek.cn', 0);
+INSERT INTO `website` VALUES (467, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yangtse_com.gif', 0, 0, 0, '江苏省重点新闻网站', '扬子晚报', 'public', 'http://www.yangtse.com', 0);
+INSERT INTO `website` VALUES (468, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_lifeweek_com_cn.gif', 0, 0, 0, '最受尊敬的周刊品牌之一', '三联生活周刊', 'public', 'http://www.lifeweek.com.cn', 0);
+INSERT INTO `website` VALUES (469, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_banyuetan_org.jpg', 0, 0, 0, '中国最具影响力时政新闻评论专业网', '半月谈', 'public', 'http://www.banyuetan.org', 0);
+INSERT INTO `website` VALUES (470, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cnautonews_com.gif', 0, 0, 0, '《中国汽车报》社唯一官方网站', '中国汽车报', 'public', 'http://www.cnautonews.com', 0);
+INSERT INTO `website` VALUES (471, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ifengweekly_com.jpg', 0, 0, 0, '高端人群阅读的时政刊物', '凤凰周刊', 'public', 'http://www.ifengweekly.com', 0);
+INSERT INTO `website` VALUES (472, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jinghua_cn.jpg', 0, 0, 0, '新闻类综合性都市报', '京华时报', 'public', 'http://www.jinghua.cn', 0);
+INSERT INTO `website` VALUES (473, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cankaoxiaoxi_com.jpg', 0, 0, 0, '中国发行量最大的日报', '参考消息', 'public', 'http://www.cankaoxiaoxi.com', 0);
+INSERT INTO `website` VALUES (474, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zaobao_com.gif', 0, 0, 0, '新加坡国际即时早报', '联合早报', 'public', 'http://www.zaobao.com', 0);
+INSERT INTO `website` VALUES (475, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wenming_cn.jpg', 0, 0, 0, '宣传思想战线和精神文明建设', '中国文明网', 'public', 'http://www.wenming.cn', 0);
+INSERT INTO `website` VALUES (476, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_71_cn.jpg', 0, 0, 0, '提高思想理论素养', '宣讲家网', 'public', 'http://www.71.cn', 0);
+INSERT INTO `website` VALUES (477, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_k618_cn.png', 0, 0, 0, '青少年教育类垂直新闻资讯', '未来网', 'public', 'http://www.k618.cn', 0);
+INSERT INTO `website` VALUES (478, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_haiwainet_cn.gif', 0, 0, 0, '人民日报海外版官方网站', '海外网', 'public', 'http://www.haiwainet.cn', 0);
+INSERT INTO `website` VALUES (479, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_youth_cn.gif', 0, 0, 0, '共青团中央主办的中央重点新闻网站', '中国青年网', 'public', 'http://www.youth.cn', 0);
+INSERT INTO `website` VALUES (480, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_stnn_cc.jpg', 0, 0, 0, '综合性门户网站', '星岛环球', 'public', 'http://www.stnn.cc', 0);
+INSERT INTO `website` VALUES (481, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/tieba_baidu_com.png', 0, 0, 0, '全球最大的中文社区。', '百度贴吧', 'public', 'http://tieba.baidu.com', 0);
+INSERT INTO `website` VALUES (482, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tianya_cn.gif', 0, 0, 0, '高端人文论坛', '天涯社区', 'public', 'http://www.tianya.cn', 0);
+INSERT INTO `website` VALUES (483, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/dzh_mop_com.gif', 0, 0, 0, '公众舆论的策源地和扩散平台', '猫扑网', 'public', 'http://dzh.mop.com', 0);
+INSERT INTO `website` VALUES (484, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/bbs_sina_com_cn.png', 0, 0, 0, '全球最大华人中文社区', '新浪论坛', 'public', 'http://bbs.sina.com.cn', 0);
+INSERT INTO `website` VALUES (485, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/bbs_voc_com_cn.gif', 0, 0, 0, '国内最著名大型社区之一', '华声论坛', 'public', 'http://bbs.voc.com.cn', 0);
+INSERT INTO `website` VALUES (486, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_kdnet_net.gif', 0, 0, 0, '中国最具代表性的互联网UGC平台之一', '凯迪网络', 'public', 'http://www.kdnet.net', 0);
+INSERT INTO `website` VALUES (487, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_xici_net.gif', 0, 0, 0, '国内首创“自行开版、自行管理、自行发展”的开放式社区平台', '西祠胡同', 'public', 'http://www.xici.net', 0);
+INSERT INTO `website` VALUES (488, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/bbs1_people_com_cn.gif', 0, 0, 0, '全球最著名的中文时政社区', '强国社区', 'public', 'http://bbs1.people.com.cn', 0);
+INSERT INTO `website` VALUES (489, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/forum_home_news_cn.gif', 0, 0, 0, '新华网发展论坛', '发展论坛', 'public', 'http://forum.home.news.cn', 0);
+INSERT INTO `website` VALUES (490, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_xilu_com.gif', 0, 0, 0, '中国第一军事门户网站', '西陆网', 'public', 'http://www.xilu.com', 0);
+INSERT INTO `website` VALUES (491, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ltaaa_com.gif', 0, 0, 0, '各国草根真实世界', '龙腾网', 'public', 'http://www.ltaaa.com', 0);
+INSERT INTO `website` VALUES (492, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/bbs_taobao_com.gif', 0, 0, 0, '淘宝网论坛', '淘宝论坛', 'public', 'http://bbs.taobao.com', 0);
+INSERT INTO `website` VALUES (493, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/club_china_com.gif', 0, 0, 0, '全国最大社区媒体', '中华网社区', 'public', 'http://club.china.com', 0);
+INSERT INTO `website` VALUES (494, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tom_com.gif', 0, 0, 0, '全面及时中文资讯', 'TOM.COM', 'public', 'http://www.tom.com', 0);
+INSERT INTO `website` VALUES (495, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_kaixin001_com.gif', 0, 0, 0, '在线社区', '开心网', 'public', 'http://www.kaixin001.com', 0);
+INSERT INTO `website` VALUES (496, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/qzone_qq_com.gif', 0, 0, 0, '分享生活，留住感动', 'QQ空间', 'public', 'http://qzone.qq.com', 0);
+INSERT INTO `website` VALUES (497, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/weibo_com.jpg', 0, 0, 0, '随时随地发现新鲜事', '新浪微博', 'public', 'http://weibo.com', 0);
+INSERT INTO `website` VALUES (498, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/t_qq_com.gif', 0, 0, 0, '腾讯微博', '腾讯微博', 'public', 'http://t.qq.com', 0);
+INSERT INTO `website` VALUES (499, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zhihu_com.gif', 0, 0, 0, '分享知识、经验和见解', '知乎', 'public', 'http://www.zhihu.com', 0);
+INSERT INTO `website` VALUES (500, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/blog_sina_com_cn.png', 0, 0, 0, '最具人气的博客频道', '新浪博客', 'public', 'http://blog.sina.com.cn', 0);
+INSERT INTO `website` VALUES (501, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/sputniknews_cn.jpg', 0, 0, 0, '新生的大型媒体品牌网站', '俄罗斯卫星通讯社', 'public', 'http://sputniknews.cn', 0);
+INSERT INTO `website` VALUES (502, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ftchinese_com.png', 0, 0, 0, '《金融时报》唯一非英语网站', 'FT中文网', 'public', 'http://www.ftchinese.com', 0);
+INSERT INTO `website` VALUES (503, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_un_org--chinese.jpg', 0, 0, 0, '报道联合国及各地办事机构', '联合国新闻', 'public', 'http://www.un.org/chinese/News', 0);
+INSERT INTO `website` VALUES (504, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cnn_com.png', 0, 0, 0, '美国有线电视新闻网', 'CNN', 'public', 'http://www.cnn.com', 0);
+INSERT INTO `website` VALUES (505, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_gov_cn.gif', 0, 0, 0, '中央人民政府门户网站', '中国政府网', 'public', 'http://www.gov.cn', 0);
+INSERT INTO `website` VALUES (506, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_legaldaily_com_cn.jpg', 0, 0, 0, '法制类新闻门户网站', '法制网', 'public', 'http://www.legaldaily.com.cn', 0);
+INSERT INTO `website` VALUES (507, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_12371_cn.png', 0, 0, 0, '央视网承办的党员教育平台', '共产党员网', 'public', 'http://www.12371.cn', 0);
+INSERT INTO `website` VALUES (508, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cpd_com_cn.jpg', 0, 0, 0, '最权威的警务资讯综合门户网站', '中国警察网', 'public', 'http://www.cpd.com.cn', 0);
+INSERT INTO `website` VALUES (509, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_gov_cn.png', 0, 0, 0, '国务院办公厅主办', '中国政府网', 'public', 'http://www.gov.cn', 0);
+INSERT INTO `website` VALUES (510, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mp_iqiyi_com.jpg', 0, 0, 0, '爱奇艺的视频自媒体平台', '爱奇艺号', 'public', 'http://mp.iqiyi.com', 0);
+INSERT INTO `website` VALUES (511, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mp_eastday_com.jpg', 0, 0, 0, '东方网全新打造的分类内容的自媒体平台', '东方号', 'public', 'http://mp.eastday.com', 0);
+INSERT INTO `website` VALUES (512, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mp_wifi_com.gif', 0, 0, 0, 'wifi万能钥匙自媒体', 'wifi万能钥匙自媒体', 'public', 'http://mp.wifi.com', 0);
+INSERT INTO `website` VALUES (513, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/dr_jd_com.jpg', 0, 0, 0, '京东商城旗下的第三方导购平台', '京东达人', 'public', 'http://dr.jd.com', 0);
+INSERT INTO `website` VALUES (514, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/baijiahao_baidu_com.jpg', 0, 0, 0, '帮助内容创作者“在这里影响世界”', '百家号', 'public', 'http://baijiahao.baidu.com', 0);
+INSERT INTO `website` VALUES (515, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mp_btime_com.jpg', 0, 0, 0, '北京时间媒体平台', '北京时间号', 'public', 'http://mp.btime.com', 0);
+INSERT INTO `website` VALUES (516, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mp_weixin_qq_com.jpg', 0, 0, 0, '提供业务服务与用户管理能力的全新服务平台', '微信公众平台', 'public', 'http://mp.weixin.qq.com', 0);
+INSERT INTO `website` VALUES (517, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mp_sina_com_cn.png', 0, 0, 0, '为自媒体提供的优质原创内容生产平台', '新浪看点平台', 'public', 'http://mp.sina.com.cn', 0);
+INSERT INTO `website` VALUES (518, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/zhuanlan_zhihu_com.jpg', 0, 0, 0, '一个从知乎问答社区催生的自媒体平台', '知乎专栏', 'public', 'http://zhuanlan.zhihu.com', 0);
+INSERT INTO `website` VALUES (519, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mp_dayu_com.jpg', 0, 0, 0, '阿里文娱体系为内容创作者提供的统一账号', '大鱼号', 'public', 'http://mp.dayu.com', 0);
+INSERT INTO `website` VALUES (520, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/zmt_ifeng_com.jpg', 0, 0, 0, '凤凰网自媒体平台', '凤凰号', 'public', 'http://zmt.ifeng.com', 0);
+INSERT INTO `website` VALUES (521, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jianshu_com.jpg', 0, 0, 0, '一个优质的创作社区', '简书', 'public', 'http://www.jianshu.com', 0);
+INSERT INTO `website` VALUES (522, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mp_yidianzixun_com.jpg', 0, 0, 0, '一点资讯旗下自媒体号', '一点号', 'public', 'http://mp.yidianzixun.com', 0);
+INSERT INTO `website` VALUES (523, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/om_qq_com.jpg', 0, 0, 0, '全网流量开放', '企鹅号', 'public', 'http://om.qq.com', 0);
+INSERT INTO `website` VALUES (524, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cm_thecover_cn.jpg', 0, 0, 0, '第一个年轻人的自媒体平台', '封面号', 'public', 'http://cm.thecover.cn', 0);
+INSERT INTO `website` VALUES (525, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/zm_look_360_cn.jpg', 0, 0, 0, '360公司旗下的自媒体平台', '众媒聚合平台', 'public', 'http://zm.look.360.cn', 0);
+INSERT INTO `website` VALUES (526, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mp_toutiao_com.jpg', 0, 0, 0, '今日头条旗下媒体/自媒体平台', '头条号', 'public', 'http://mp.toutiao.com', 0);
+INSERT INTO `website` VALUES (527, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/plus_yixin_im.jpg', 0, 0, 0, '网易与中国电信推出的“易信”', '易信号', 'public', 'http://plus.yixin.im', 0);
+INSERT INTO `website` VALUES (528, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/we_taobao_com.jpg', 0, 0, 0, '通过阿里创作平台入驻', '微淘号', 'public', 'http://we.taobao.com', 0);
+INSERT INTO `website` VALUES (529, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/me_weibo_com.jpg', 0, 0, 0, '帮助持续贡献优质内容的中小博主', '微博自媒体', 'public', 'http://me.weibo.com', 0);
+INSERT INTO `website` VALUES (530, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/yixi_tv.gif', 0, 0, 0, '分享见解、体验和对未来的想象，做有价值的传播', '一席', 'public', 'http://yixi.tv', 0);
+INSERT INTO `website` VALUES (531, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_kankanews_com.gif', 0, 0, 0, '国内专业的视频新闻网站', '看看新闻', 'public', 'http://www.kankanews.com', 0);
+INSERT INTO `website` VALUES (532, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ted_com.gif', 0, 0, 0, '专家发言的有影响力的视频', 'TED', 'public', 'http://www.ted.com', 0);
+INSERT INTO `website` VALUES (533, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/military_china_com.gif', 0, 0, 0, '最具资深权威的军事门户', '中华军事网', 'public', 'http://military.china.com/', 0);
+INSERT INTO `website` VALUES (534, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mil_huanqiu_com.gif', 0, 0, 0, '环球网军事频道', '环球军事', 'public', 'http://mil.huanqiu.com/', 0);
+INSERT INTO `website` VALUES (535, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_miercn_com.gif', 0, 0, 0, '中国最具特色军事社区', '米尔网', 'public', 'http://www.miercn.com/', 0);
+INSERT INTO `website` VALUES (536, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/news_ifeng_com--mil.gif', 0, 0, 0, '凤凰网旗下军事频道', '凤凰军事', 'public', 'http://news.ifeng.com/mil/', 0);
+INSERT INTO `website` VALUES (537, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/bbs_tiexue_net.gif', 0, 0, 0, '关心中国国防建设、关注世界军事发展', '铁血社区', 'public', 'http://bbs.tiexue.net', 0);
+INSERT INTO `website` VALUES (538, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_81_cn.jpg', 0, 0, 0, '中国人民解放军官方军事新闻门户', '中国军网', 'public', 'http://www.81.cn', 0);
+INSERT INTO `website` VALUES (539, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/finance_china_com_cn.jpg', 0, 0, 0, '提供国内外财经新闻服务；', '中国财经', 'public', 'http://finance.china.com.cn', 0);
+INSERT INTO `website` VALUES (540, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_financeun_com.jpg', 0, 0, 0, '全球最大的中文金融门户', '中国金融', 'public', 'http://www.financeun.com', 0);
+INSERT INTO `website` VALUES (541, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_stcn_com.gif', 0, 0, 0, '中国证监会指定创业板、沪港通信息披露网站', '《证券时报》', 'public', 'http://www.stcn.com', 0);
+INSERT INTO `website` VALUES (542, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yicai_com.gif', 0, 0, 0, '7X24小时提供股市行情、经济大势、金融政策、行业动态、专家分析等财经资讯；', '第一财经', 'public', 'http://www.yicai.com', 0);
+INSERT INTO `website` VALUES (543, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cs_com_cn.png', 0, 0, 0, '中国最权威的证券财经资讯网站', '中证网', 'public', 'http://www.cs.com.cn', 0);
+INSERT INTO `website` VALUES (544, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_10jqka_com_cn.jpg', 0, 0, 0, '一家专业的互联网金融数据服务商', '同花顺财经', 'public', 'http://www.10jqka.com.cn', 0);
+INSERT INTO `website` VALUES (545, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/finance_ifeng_com.jpg', 0, 0, 0, '离用户最近的财经媒体', '凤凰财经', 'public', 'http://finance.ifeng.com', 0);
+INSERT INTO `website` VALUES (546, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cnstock_com.jpg', 0, 0, 0, '中国资本市场信息披露平台', '中国证券网', 'public', 'http://www.cnstock.com', 0);
+INSERT INTO `website` VALUES (547, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_p5w_net.gif', 0, 0, 0, '权威财经资讯网站', '全景', 'public', 'http://www.p5w.net', 0);
+INSERT INTO `website` VALUES (548, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jrj_com_cn.gif', 0, 0, 0, '投资者首选财经金融门户网站，以证券交易为核心的互联网综合理财平台', '金融界', 'public', 'http://www.jrj.com.cn', 0);
+INSERT INTO `website` VALUES (549, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/money_163_com.jpg', 0, 0, 0, '全球金融市场数据更新和实时解读', '网易财经', 'public', 'http://money.163.com', 0);
+INSERT INTO `website` VALUES (550, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_caixin_com.jpg', 0, 0, 0, '原创财经新媒体', '财新网', 'public', 'http://www.caixin.com', 0);
+INSERT INTO `website` VALUES (551, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_hexun_com.gif', 0, 0, 0, '中国财经网络领袖和中产阶级网络家园', '和讯网', 'public', 'http://www.hexun.com', 0);
+INSERT INTO `website` VALUES (552, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_caijing_com_cn.gif', 0, 0, 0, '全方位的新闻、分析、评论与可信赖的信息源', '财经网', 'public', 'http://www.caijing.com.cn', 0);
+INSERT INTO `website` VALUES (553, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_eastmoney_com.jpg', 0, 0, 0, '专业的互联网财经媒体', '东方财富网', 'public', 'http://www.eastmoney.com', 0);
+INSERT INTO `website` VALUES (554, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/finance_sina_com_cn.png', 0, 0, 0, '财经资讯及全球金融市场报价', '新浪财经', 'public', 'http://finance.sina.com.cn', 0);
+INSERT INTO `website` VALUES (555, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_bashan_com.gif', 0, 0, 0, '财经资讯的今日头条', '巴山财经', 'public', 'http://www.bashan.com', 0);
+INSERT INTO `website` VALUES (556, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cn_nikkei_com.jpg', 0, 0, 0, '日本经济新闻社', '日经中文网', 'public', 'http://cn.nikkei.com', 0);
+INSERT INTO `website` VALUES (557, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cued_xunlei_com.jpg', 0, 0, 0, '迅雷用户体验设计中心', 'CUED', 'public', 'http://cued.xunlei.com', 0);
+INSERT INTO `website` VALUES (558, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ue_baidu_com.png', 0, 0, 0, '最专业的在线设计学习平台', '百度UE讲堂', 'public', 'http://ue.baidu.com', 0);
+INSERT INTO `website` VALUES (559, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/vc_changyou_com.jpg', 0, 0, 0, '搜狐畅游视觉设计中心团队', '畅游视觉设计中心', 'public', 'http://vc.changyou.com', 0);
+INSERT INTO `website` VALUES (560, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cdc_tencent_com.jpg', 0, 0, 0, '腾讯用户研究与体验设计部', '腾讯CDC', 'public', 'http://cdc.tencent.com', 0);
+INSERT INTO `website` VALUES (561, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ued_sina_com.jpg', 0, 0, 0, '用户为中心的设计理念', '新浪UED', 'public', 'http://ued.sina.com', 0);
+INSERT INTO `website` VALUES (562, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/f2e_souche_com.jpg', 0, 0, 0, '大搜车前端团队博客', '大搜车前端团队博客', 'public', 'http://f2e.souche.com/blog', 0);
+INSERT INTO `website` VALUES (563, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/tech_meituan_com.jpg', 0, 0, 0, '美团点评技术团队', '美团点评技术团队', 'public', 'http://tech.meituan.com', 0);
+INSERT INTO `website` VALUES (564, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/gux_163_com.jpg', 0, 0, 0, '网易GUX游戏用户体验中心', '网易GUX', 'public', 'http://gux.163.com', 0);
+INSERT INTO `website` VALUES (565, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ixdc_org.jpg', 0, 0, 0, '国际体验设计协会', 'IXDC', 'public', 'http://ixdc.org', 0);
+INSERT INTO `website` VALUES (566, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/uec_nq_com.jpg', 0, 0, 0, '网秦用户体验中心', 'NQ UEC', 'public', 'http://uec.nq.com', 0);
+INSERT INTO `website` VALUES (567, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/tgideas_qq_com.jpg', 0, 0, 0, '腾讯游戏官方设计团队', 'TGideas', 'public', 'http://tgideas.qq.com', 0);
+INSERT INTO `website` VALUES (568, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mux_alimama_com.jpg', 0, 0, 0, '阿里妈妈体验工作平台', '阿里妈妈MUX', 'public', 'http://mux.alimama.com', 0);
+INSERT INTO `website` VALUES (569, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ued_baidu_com.jpg', 0, 0, 0, '百度用户体验中心', '百度用户体验中心', 'public', 'http://ued.baidu.com', 0);
+INSERT INTO `website` VALUES (570, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/isux_tencent_com.jpg', 0, 0, 0, '社交用户体验设计', '腾讯ISUX', 'public', 'http://isux.tencent.com', 0);
+INSERT INTO `website` VALUES (571, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/mxd_tencent_com.jpg', 0, 0, 0, '腾讯MXD移动互联网设计中心', '腾讯MXD', 'public', 'http://mxd.tencent.com', 0);
+INSERT INTO `website` VALUES (572, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ued_koubei_com.jpg', 0, 0, 0, '口碑用户体验设计', '口碑UED', 'public', 'http://ued.koubei.com', 0);
+INSERT INTO `website` VALUES (573, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/uedc_163_com.jpg', 0, 0, 0, '网易用户体验设计中心', '网易UEDC', 'public', 'http://uedc.163.com', 0);
+INSERT INTO `website` VALUES (574, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_aliued_cn.jpg', 0, 0, 0, '阿里巴巴用户体验设计部', '阿里UED', 'public', 'http://www.aliued.cn', 0);
+INSERT INTO `website` VALUES (575, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/fex_baidu_com.jpg', 0, 0, 0, '百度web前端研发部', '百度FEX', 'public', 'http://fex.baidu.com', 0);
+INSERT INTO `website` VALUES (576, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_shanbay_com.gif', 0, 0, 0, '提升英语词汇及听说读写能力', '扇贝', 'public', 'http://www.shanbay.com', 0);
+INSERT INTO `website` VALUES (577, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_usbgabc_com.gif', 0, 0, 0, '青少儿英语，在线美国外教。', '博根英语', 'public', 'http://www.usbgabc.com', 0);
+INSERT INTO `website` VALUES (578, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_91waijiao_com.gif', 0, 0, 0, '全外教在线互动口语学习', '91外教', 'public', 'http://www.91waijiao.com', 0);
+INSERT INTO `website` VALUES (579, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_hujiang_com.jpg', 0, 0, 0, '专业的互联网学习平台', '沪江网校', 'public', 'http://www.hujiang.com', 0);
+INSERT INTO `website` VALUES (580, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/open_163_com.jpg', 0, 0, 0, '传播属于全人类的知识和智慧', '网易公开课', 'public', 'http://open.163.com', 0);
+INSERT INTO `website` VALUES (581, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/opencla_cctv_com.jpg', 0, 0, 0, '央视网在线教育平台', '中国公开课', 'public', 'http://opencla.cctv.com', 0);
+INSERT INTO `website` VALUES (582, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/open_sina_com_cn.gif', 0, 0, 0, '全世界各大名校的著名教授视频课程', '新浪公开课', 'public', 'http://open.sina.com.cn', 0);
+INSERT INTO `website` VALUES (583, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/v_ifeng_com.jpg', 0, 0, 0, '最具媒体价值的综合视频门户', '凤凰公开课', 'public', 'http://v.ifeng.com/gongkaike', 0);
+INSERT INTO `website` VALUES (584, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_qiaojiang_tv.gif', 0, 0, 0, '免费的设计视频教程平台', '巧匠课堂', 'public', 'http://www.qiaojiang.tv/', 0);
+INSERT INTO `website` VALUES (585, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_jisuanke_com.gif', 0, 0, 0, '学习面向未来的计算机科学', '计蒜客', 'public', 'http://www.jisuanke.com', 0);
+INSERT INTO `website` VALUES (586, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_maiziedu_com.gif', 0, 0, 0, '专业IT职业教育平台', '麦子学院', 'public', 'http://www.maiziedu.com', 0);
+INSERT INTO `website` VALUES (587, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_kaikeba_com.gif', 0, 0, 0, '互联网热门职业课程与在线教育服务', '开课吧', 'public', 'http://www.kaikeba.com', 0);
+INSERT INTO `website` VALUES (588, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_shiyanlou_com.gif', 0, 0, 0, '采用创新的“在线实验”学习模式', '实验楼', 'public', 'http://www.shiyanlou.com', 0);
+INSERT INTO `website` VALUES (589, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wyzc_com.gif', 0, 0, 0, '中国原创IT在线教育品牌', '我赢职场', 'public', 'http://www.wyzc.com', 0);
+INSERT INTO `website` VALUES (590, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_hubwiz_com.gif', 0, 0, 0, '学习最前沿编程技术', '汇智网', 'public', 'http://www.hubwiz.com', 0);
+INSERT INTO `website` VALUES (591, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_osforce_cn.gif', 0, 0, 0, '国内最全面、最实战的IT在线教育培训网站', '开源力量', 'public', 'http://www.osforce.cn', 0);
+INSERT INTO `website` VALUES (592, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_xuetangx_com.gif', 0, 0, 0, '最大的中文慕课(MOOC)平台', '学堂在线', 'public', 'http://www.xuetangx.com', 0);
+INSERT INTO `website` VALUES (593, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/boolan_com.gif', 0, 0, 0, '专注做高端IT互联网教育平台', '博览网', 'public', 'http://boolan.com', 0);
+INSERT INTO `website` VALUES (594, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ablesky_com.gif', 0, 0, 0, '聚合万家培训机构的在线网校大课堂', '能力天空', 'public', 'http://www.ablesky.com', 0);
+INSERT INTO `website` VALUES (595, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/class_qq_com.png', 0, 0, 0, '专注知识分享的在线学习平台', '腾讯精品课', 'public', 'http://class.qq.com', 0);
+INSERT INTO `website` VALUES (596, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/xue_taobao_com.gif', 0, 0, 0, '学习精品课程就来淘宝教育（淘宝同学）', '淘宝教育', 'public', 'http://xue.taobao.com', 0);
+INSERT INTO `website` VALUES (597, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/study_163_com.jpg', 0, 0, 0, '领先的实用技能学习平台', '网易云课堂', 'public', 'http://study.163.com', 0);
+INSERT INTO `website` VALUES (598, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_imooc_com.jpg', 0, 0, 0, '免费优质的IT技能学习平台', '慕课网', 'public', 'http://www.imooc.com', 0);
+INSERT INTO `website` VALUES (599, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/xue_zbj_com.jpg', 0, 0, 0, '最靠谱的职业技能学习平台', '八戒教育', 'public', 'http://xue.zbj.com', 0);
+INSERT INTO `website` VALUES (600, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_52mf_com_cn.jpg', 0, 0, 0, '中国首家连锁集中式长租公寓运营商', '魔方公寓', 'public', 'http://www.52mf.com.cn/', 0);
+INSERT INTO `website` VALUES (601, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_iguanyu_com.jpg', 0, 0, 0, '龙湖集团集中式长租公寓品牌', '冠寓', 'public', 'http://www.iguanyu.com/', 0);
+INSERT INTO `website` VALUES (602, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_inboyu_com.png', 0, 0, 0, '为青年群体提供着优质的租住空间', '泊寓', 'public', 'https://www.inboyu.com/', 0);
+INSERT INTO `website` VALUES (603, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_homeplus_cn.jpg', 0, 0, 0, '上市公司旗下高品质租住公寓', '红璞公寓', 'public', 'http://www.homeplus.cn/', 0);
+INSERT INTO `website` VALUES (604, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_mayi_com.jpg', 0, 0, 0, '家庭出游首选', '蚂蚁短租', 'public', 'http://www.mayi.com', 0);
+INSERT INTO `website` VALUES (605, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tujia_com.jpg', 0, 0, 0, '全球公寓民宿预订平台', '途家网', 'public', 'http://www.tujia.com', 0);
+INSERT INTO `website` VALUES (606, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_xiaozhu_com.jpg', 0, 0, 0, '短租民宿预订首选,独一无二的社交住宿体验', '小猪', 'public', 'http://www.xiaozhu.com', 0);
+INSERT INTO `website` VALUES (607, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_baletu_com.jpg', 0, 0, 0, '一款在线租房手机应用', '巴乐兔', 'public', 'http://www.baletu.com/', 0);
+INSERT INTO `website` VALUES (608, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/58_com.jpg', 0, 0, 0, '每天更新数万条优质租房信息', '58租房', 'public', 'http://58.com/chuzu', 0);
+INSERT INTO `website` VALUES (609, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/ganji_com.jpg', 0, 0, 0, '提供最专业的租房交易服务', '赶集网租房', 'public', 'http://ganji.com/zufang', 0);
+INSERT INTO `website` VALUES (610, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_youtx_com.png', 0, 0, 0, '中国领先的房屋短租日租网站', '游天下', 'public', 'http://www.youtx.com', 0);
+INSERT INTO `website` VALUES (611, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_douban_com--group.gif', 0, 0, 0, '整租、转租、求租、找室友', '豆瓣租房', 'public', 'http://www.douban.com/group/search?cat', 0);
+INSERT INTO `website` VALUES (612, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ziroom_com.jpg', 0, 0, 0, '提供高品质租住产品和超期望服务的O2O互联网公司', '自如租房', 'public', 'http://www.ziroom.com', 0);
+INSERT INTO `website` VALUES (613, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chuangxin_com.jpg', 0, 0, 0, '为创业者提供全方位的创业服务', '创新工场', 'public', 'http://www.chuangxin.com', 0);
+INSERT INTO `website` VALUES (614, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_people-squared_com.jpg', 0, 0, 0, '为创业团队提供办公场地、空间服务和活动对接', '联合创业办公社', 'public', 'http://www.people-squared.com', 0);
+INSERT INTO `website` VALUES (615, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chuangyechang_com.jpg', 0, 0, 0, '成都创业团队核心聚集地', '天府软件园', 'public', 'http://www.chuangyechang.com', 0);
+INSERT INTO `website` VALUES (616, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_sznsibi_org.gif', 0, 0, 0, '深圳市南山区科技创业服务中心', '深圳市创业服务', 'public', 'http://www.sznsibi.org', 0);
+INSERT INTO `website` VALUES (617, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zjsaibo_com.jpg', 0, 0, 0, '杭州市江干区大学生创业园', '赛博创业工场', 'public', 'http://www.zjsaibo.com', 0);
+INSERT INTO `website` VALUES (618, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_linkstartup_com.jpg', 0, 0, 0, '专注早中期融资', 'LinkStartup', 'public', 'http://www.linkstartup.com', 0);
+INSERT INTO `website` VALUES (619, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_innovation-camp_com.jpg', 0, 0, 0, '专注于移动互联网新型应用的创业孵化器和加速器', '快创营', 'public', 'http://www.innovation-camp.com', 0);
+INSERT INTO `website` VALUES (620, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ybc_org_cn.gif', 0, 0, 0, '中国青年创业国际计划', 'YBC', 'public', 'http://www.ybc.org.cn', 0);
+INSERT INTO `website` VALUES (621, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_stefg_org.jpg', 0, 0, 0, '上海市大学生科技创业基金会', '创业基金会', 'public', 'http://www.stefg.org', 0);
+INSERT INTO `website` VALUES (622, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/innospring_net.jpg', 0, 0, 0, '深谙科技改变世界之道', '创源', 'public', 'http://innospring.net', 0);
+INSERT INTO `website` VALUES (623, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_sequoiacap_com.png', 0, 0, 0, '创业者背后的创业者', 'Sequoia红杉资本', 'public', 'http://www.sequoiacap.com', 0);
+INSERT INTO `website` VALUES (624, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_nlightvc_com.png', 0, 0, 0, '专注于投资早期、科技创新项目', '北极光创投', 'public', 'http://www.nlightvc.com', 0);
+INSERT INTO `website` VALUES (625, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chinae_net.jpg', 0, 0, 0, '天使众投平台--快速找到天使投资人,创业项目线上股权众筹', '创业易', 'public', 'http://www.chinae.net', 0);
+INSERT INTO `website` VALUES (626, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/rong_36kr_com.jpg', 0, 0, 0, '为创业者提供最好的产品和服务。', '36氪-融资', 'public', 'http://rong.36kr.com', 0);
+INSERT INTO `website` VALUES (627, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/angelcrunch_com.jpg', 0, 0, 0, '中国天使合投第一平台', '天使汇', 'public', 'http://angelcrunch.com', 0);
+INSERT INTO `website` VALUES (628, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tisiwi_com.jpg', 0, 0, 0, '中国领先的互联网天使投资机构', '天使湾', 'public', 'http://www.tisiwi.com', 0);
+INSERT INTO `website` VALUES (629, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_dreamore_com.jpg', 0, 0, 0, '最方便、简单、快捷的筹款工具', '追梦筹', 'public', 'http://www.dreamore.com', 0);
+INSERT INTO `website` VALUES (630, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_thecapital_com_cn.jpg', 0, 0, 0, '中国股权投资综合服务平台', '融资中国', 'public', 'http://www.thecapital.com.cn', 0);
+INSERT INTO `website` VALUES (631, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_feimalv_com.jpg', 0, 0, 0, '中国首家创业项目专业管理支持机构', '飞马旅', 'public', 'http://www.feimalv.com', 0);
+INSERT INTO `website` VALUES (632, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cybernaut_com_cn.jpg', 0, 0, 0, '专注中国科技产业化投资，培育全球领先新兴产业领跑者', 'Cybernaut', 'public', 'http://www.cybernaut.com.cn', 0);
+INSERT INTO `website` VALUES (633, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chinaventure_com_cn.jpg', 0, 0, 0, '中国股权投资行业第一新闻门户', '投资中网', 'public', 'http://www.chinaventure.com.cn', 0);
+INSERT INTO `website` VALUES (634, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cye_com_cn.jpg', 0, 0, 0, '中国创业门户网站', '创业网', 'public', 'http://www.cye.com.cn', 0);
+INSERT INTO `website` VALUES (635, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_pedaily_cn.jpg', 0, 0, 0, '中国创业与投资第一门户', '投资界', 'public', 'http://www.pedaily.cn', 0);
+INSERT INTO `website` VALUES (636, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/http:.png', 0, 0, 0, '最快的速度传递筹款，用最有爱的方式完成筹款', '柠檬生活金融', 'public', 'http://http://www.lemonfinance.cn/', 0);
+INSERT INTO `website` VALUES (637, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_tmeng_cn.jpg', 0, 0, 0, '国内领先的互联网影视平台', '淘梦网', 'public', 'http://www.tmeng.cn', 0);
+INSERT INTO `website` VALUES (638, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yunchou_com.jpg', 0, 0, 0, '中国领先的众筹网站，影视众筹平台、收益众筹平台首选', '云筹', 'public', 'http://www.yunchou.com', 0);
+INSERT INTO `website` VALUES (639, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_zhongchou_com.jpg', 0, 0, 0, '中国专业的一站式综合众筹融资服务平台', '众筹', 'public', 'http://www.zhongchou.com', 0);
+INSERT INTO `website` VALUES (640, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_demohour_com.jpg', 0, 0, 0, '一个支持创新的众筹平台', '点名时间', 'public', 'http://www.demohour.com', 0);
+INSERT INTO `website` VALUES (641, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_dajiatou_com.jpg', 0, 0, 0, '股权众筹平台|影视众筹网站', '大家投', 'public', 'http://www.dajiatou.com', 0);
+INSERT INTO `website` VALUES (642, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_hdb_com.jpg', 0, 0, 0, '免费提供活动发布、传播、收款、报名统计、验票签到等全环节服务', '互动吧', 'public', 'http://www.hdb.com', 0);
+INSERT INTO `website` VALUES (643, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_huodongxing_com.jpg', 0, 0, 0, '全球最大中文活动平台', '活动行', 'public', 'http://www.huodongxing.com', 0);
+INSERT INTO `website` VALUES (644, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/club_alibabatech_org.jpg', 0, 0, 0, '一个倡导“享技术聚朋友”的互动、交流的平台', '阿里技术沙龙', 'public', 'http://club.alibabatech.org', 0);
+INSERT INTO `website` VALUES (645, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_infoq_com--cn--zones.jpg', 0, 0, 0, '百度和极客邦科技共同举办的线下技术交流活动', '百度技术沙龙', 'public', 'http://www.infoq.com/cn/zones/baidu-salon', 0);
+INSERT INTO `website` VALUES (646, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_lanhan_cn.jpg', 0, 0, 0, '最新最全的互联网聚会活动', '懒汉互联', 'public', 'http://www.lanhan.cn', 0);
+INSERT INTO `website` VALUES (647, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_eventdove_com.jpg', 0, 0, 0, '找活动、办活动，上会鸽', 'Eventdove会鸽', 'public', 'http://www.eventdove.com', 0);
+INSERT INTO `website` VALUES (648, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/tech_163_com--special.jpg', 0, 0, 0, '联合知名IT博客，每月举办一次', '五道口沙龙', 'public', 'http://tech.163.com/special/wudaokou', 0);
+INSERT INTO `website` VALUES (649, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_iheima_com.jpg', 0, 0, 0, '创业创新服务平台', 'i黑马', 'public', 'http://www.iheima.com', 0);
+INSERT INTO `website` VALUES (650, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cyz_org_cn.jpg', 0, 0, 0, '清华大学旗下的创业教育大型公益平台', '创业者', 'public', 'http://www.cyz.org.cn', 0);
+INSERT INTO `website` VALUES (651, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/17startup_com.jpg', 0, 0, 0, '一起创业吧--让创业不再孤单', '17Startup', 'public', 'http://17startup.com', 0);
+INSERT INTO `website` VALUES (652, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_cyzone_cn.jpg', 0, 0, 0, '全维度创业者服务平台', '创业邦', 'public', 'http://www.cyzone.cn', 0);
+INSERT INTO `website` VALUES (653, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_wabei_cn.jpg', 0, 0, 0, '新三板生态价值发现平台', '挖贝网', 'public', 'http://www.wabei.cn', 0);
+INSERT INTO `website` VALUES (654, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cy_ncss_org_cn.jpg', 0, 0, 0, '宣传、鼓励、引导、帮助大学生创业', '全国大学生创业服务网', 'public', 'http://cy.ncss.org.cn', 0);
+INSERT INTO `website` VALUES (655, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/dh_woshipm_com.png', 0, 0, 0, '产品经理和运营人必备的导航站', '阿猫阿狗网址导航', 'public', 'http://dh.woshipm.com/', 0);
+INSERT INTO `website` VALUES (656, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_pm265_com.png', 0, 0, 0, '及时收录产品相关优秀网站', 'PM265', 'public', 'http://www.pm265.com/', 0);
+INSERT INTO `website` VALUES (657, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_pmdaniu_com.png', 0, 0, 0, '让产品工作更简单', '产品大牛导航', 'public', 'http://www.pmdaniu.com/navigate', 0);
+INSERT INTO `website` VALUES (658, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_daqianduan_com.jpg', 0, 0, 0, '大前端的前端开发网址导航', '大前端网址导航', 'public', 'http://www.daqianduan.com/nav', 0);
+INSERT INTO `website` VALUES (659, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_h-ui_net.gif', 0, 0, 0, 'H-ui前端框架前端网址导航', '前端网址导航', 'public', 'http://www.h-ui.net/site.shtml', 0);
+INSERT INTO `website` VALUES (660, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/123_jser_us.gif', 0, 0, 0, '前端工程师专用的导航站', '前端导航站', 'public', 'http://123.jser.us/', 0);
+INSERT INTO `website` VALUES (661, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/daohangcom_com.gif', 0, 0, 0, '设计师和前端开发工程师的网址导航', 'com导航', 'public', 'http://daohangcom.com/', 0);
+INSERT INTO `website` VALUES (662, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_alloyteam_com--nav.gif', 0, 0, 0, '腾讯AlloyTeam-Web前端导航', 'Web前端导航', 'public', 'http://www.alloyteam.com/nav/', 0);
+INSERT INTO `website` VALUES (663, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ziliao6_com.gif', 0, 0, 0, '只推荐好的工具/资源', '牛资料导航', 'public', 'http://www.ziliao6.com/', 0);
+INSERT INTO `website` VALUES (664, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_doo123_com.png', 0, 0, 0, '自媒体平台收集最全', '新媒体导航', 'public', 'http://www.doo123.com/', 0);
+INSERT INTO `website` VALUES (665, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/zmt_yundaohang_com.png', 0, 0, 0, '专业的自媒体人资源平台', '自媒体导航', 'public', 'http://zmt.yundaohang.com/', 0);
+INSERT INTO `website` VALUES (666, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/hao_chochina_com.png', 0, 0, 0, 'HR网站网址导航大全', 'HR网址之家', 'public', 'http://hao.chochina.com', 0);
+INSERT INTO `website` VALUES (667, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/cho_icxo_com--hrweb.png', 0, 0, 0, '中国HR管理第一网址大全', 'HR网址大全', 'public', 'http://cho.icxo.com/hrweb/', 0);
+INSERT INTO `website` VALUES (668, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_yunyingxuetang_com.gif', 0, 0, 0, '互联网运营人员都在用的工具网址导航', '新媒体运营网址导航', 'public', 'http://www.yunyingxuetang.com/daohang.html', 0);
+INSERT INTO `website` VALUES (669, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/qiachu_com.gif', 0, 0, 0, '从心出发，预见未来', '洽初导航', 'public', 'http://qiachu.com/', 0);
+INSERT INTO `website` VALUES (670, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/daohangwan_com--board.gif', 0, 0, 0, '产品运营、电商运营、新媒体运营', '运营/新媒体导航', 'public', 'http://daohangwan.com/board/erEd', 0);
+INSERT INTO `website` VALUES (671, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_koudaiyunying_com.png', 0, 0, 0, '服务新媒体运营者的免费工具导航', '口袋运营', 'public', 'http://www.koudaiyunying.com/', 0);
+INSERT INTO `website` VALUES (672, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_iyunying_org.png', 0, 0, 0, '网站产品运营网址工具导航', '产品运营导航', 'public', 'http://www.iyunying.org/daohang.html', 0);
+INSERT INTO `website` VALUES (673, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/web_geekji_cn.png', 0, 0, 0, '运营工作者专业导航网站', '钛导航', 'public', 'https://web.geekji.cn/', 0);
+INSERT INTO `website` VALUES (674, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/so_yyyydh_com.gif', 0, 0, 0, '提升上网效率，友友悠游导航旗下网站', '友友搜索', 'public', 'http://so.yyyydh.com/', 0);
+INSERT INTO `website` VALUES (675, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/zhuye_kim.gif', 0, 0, 0, '主页从未如此惊艳', 'KIM主页', 'public', 'http://zhuye.kim', 0);
+INSERT INTO `website` VALUES (676, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_ubuuk_com.png', 0, 0, 0, '发现优秀的设计与网站', '优波', 'public', 'https://www.ubuuk.com/', 0);
+INSERT INTO `website` VALUES (677, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_chuangzaoshi_com.png', 0, 0, 0, '创意工作者导航', '创造狮', 'public', 'http://www.chuangzaoshi.com/', 0);
+INSERT INTO `website` VALUES (678, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/hao_psefan_com.png', 0, 0, 0, 'PS饭团旗下导航 | 精选素材站导航', '饭团导航', 'public', 'http://hao.psefan.com/', 0);
+INSERT INTO `website` VALUES (679, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/www_niudana_com.png', 0, 0, 0, '精选国内外优秀 UI/UX 网站', '牛大拿', 'public', 'http://www.niudana.com/', 0);
+INSERT INTO `website` VALUES (680, '2019-09-29 21:58:56', 'http://47.106.84.166:3302/upload/wz_cndesign_com.png', 0, 0, 0, '优秀设计网站排名大全', '中国设计网址导航', 'public', 'http://wz.cndesign.com/', 0);
 
-INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(8);
+-- ----------------------------
+-- Table structure for website_category
+-- ----------------------------
+DROP TABLE IF EXISTS `website_category`;
+CREATE TABLE `website_category`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NULL DEFAULT NULL,
+  `website_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 681 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Fixed;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of website_category
+-- ----------------------------
+INSERT INTO `website_category` VALUES (1, 2, 1);
+INSERT INTO `website_category` VALUES (2, 2, 2);
+INSERT INTO `website_category` VALUES (3, 2, 3);
+INSERT INTO `website_category` VALUES (4, 2, 4);
+INSERT INTO `website_category` VALUES (5, 2, 5);
+INSERT INTO `website_category` VALUES (6, 3, 6);
+INSERT INTO `website_category` VALUES (7, 4, 7);
+INSERT INTO `website_category` VALUES (8, 4, 8);
+INSERT INTO `website_category` VALUES (9, 4, 9);
+INSERT INTO `website_category` VALUES (10, 4, 10);
+INSERT INTO `website_category` VALUES (11, 4, 11);
+INSERT INTO `website_category` VALUES (12, 4, 12);
+INSERT INTO `website_category` VALUES (13, 4, 13);
+INSERT INTO `website_category` VALUES (14, 4, 14);
+INSERT INTO `website_category` VALUES (15, 4, 15);
+INSERT INTO `website_category` VALUES (16, 4, 16);
+INSERT INTO `website_category` VALUES (17, 4, 17);
+INSERT INTO `website_category` VALUES (18, 5, 18);
+INSERT INTO `website_category` VALUES (19, 5, 19);
+INSERT INTO `website_category` VALUES (20, 5, 20);
+INSERT INTO `website_category` VALUES (21, 5, 21);
+INSERT INTO `website_category` VALUES (22, 5, 22);
+INSERT INTO `website_category` VALUES (23, 5, 23);
+INSERT INTO `website_category` VALUES (24, 5, 24);
+INSERT INTO `website_category` VALUES (25, 5, 25);
+INSERT INTO `website_category` VALUES (26, 6, 26);
+INSERT INTO `website_category` VALUES (27, 6, 27);
+INSERT INTO `website_category` VALUES (28, 6, 28);
+INSERT INTO `website_category` VALUES (29, 7, 29);
+INSERT INTO `website_category` VALUES (30, 7, 30);
+INSERT INTO `website_category` VALUES (31, 7, 31);
+INSERT INTO `website_category` VALUES (32, 7, 32);
+INSERT INTO `website_category` VALUES (33, 7, 33);
+INSERT INTO `website_category` VALUES (34, 7, 34);
+INSERT INTO `website_category` VALUES (35, 7, 35);
+INSERT INTO `website_category` VALUES (36, 7, 36);
+INSERT INTO `website_category` VALUES (37, 7, 37);
+INSERT INTO `website_category` VALUES (38, 7, 38);
+INSERT INTO `website_category` VALUES (39, 7, 39);
+INSERT INTO `website_category` VALUES (40, 7, 40);
+INSERT INTO `website_category` VALUES (41, 7, 41);
+INSERT INTO `website_category` VALUES (42, 7, 42);
+INSERT INTO `website_category` VALUES (43, 7, 43);
+INSERT INTO `website_category` VALUES (44, 7, 44);
+INSERT INTO `website_category` VALUES (45, 7, 45);
+INSERT INTO `website_category` VALUES (46, 7, 46);
+INSERT INTO `website_category` VALUES (47, 7, 47);
+INSERT INTO `website_category` VALUES (48, 7, 48);
+INSERT INTO `website_category` VALUES (49, 8, 49);
+INSERT INTO `website_category` VALUES (50, 8, 50);
+INSERT INTO `website_category` VALUES (51, 8, 51);
+INSERT INTO `website_category` VALUES (52, 10, 52);
+INSERT INTO `website_category` VALUES (53, 10, 53);
+INSERT INTO `website_category` VALUES (54, 10, 54);
+INSERT INTO `website_category` VALUES (55, 10, 55);
+INSERT INTO `website_category` VALUES (56, 10, 56);
+INSERT INTO `website_category` VALUES (57, 10, 57);
+INSERT INTO `website_category` VALUES (58, 10, 58);
+INSERT INTO `website_category` VALUES (59, 10, 59);
+INSERT INTO `website_category` VALUES (60, 11, 60);
+INSERT INTO `website_category` VALUES (61, 11, 61);
+INSERT INTO `website_category` VALUES (62, 11, 62);
+INSERT INTO `website_category` VALUES (63, 11, 63);
+INSERT INTO `website_category` VALUES (64, 11, 64);
+INSERT INTO `website_category` VALUES (65, 11, 65);
+INSERT INTO `website_category` VALUES (66, 11, 66);
+INSERT INTO `website_category` VALUES (67, 11, 67);
+INSERT INTO `website_category` VALUES (68, 13, 68);
+INSERT INTO `website_category` VALUES (69, 13, 69);
+INSERT INTO `website_category` VALUES (70, 13, 70);
+INSERT INTO `website_category` VALUES (71, 13, 71);
+INSERT INTO `website_category` VALUES (72, 13, 72);
+INSERT INTO `website_category` VALUES (73, 13, 73);
+INSERT INTO `website_category` VALUES (74, 13, 74);
+INSERT INTO `website_category` VALUES (75, 13, 75);
+INSERT INTO `website_category` VALUES (76, 13, 76);
+INSERT INTO `website_category` VALUES (77, 13, 77);
+INSERT INTO `website_category` VALUES (78, 13, 78);
+INSERT INTO `website_category` VALUES (79, 13, 79);
+INSERT INTO `website_category` VALUES (80, 13, 80);
+INSERT INTO `website_category` VALUES (81, 13, 81);
+INSERT INTO `website_category` VALUES (82, 15, 82);
+INSERT INTO `website_category` VALUES (83, 15, 83);
+INSERT INTO `website_category` VALUES (84, 15, 84);
+INSERT INTO `website_category` VALUES (85, 15, 85);
+INSERT INTO `website_category` VALUES (86, 15, 86);
+INSERT INTO `website_category` VALUES (87, 15, 87);
+INSERT INTO `website_category` VALUES (88, 16, 88);
+INSERT INTO `website_category` VALUES (89, 16, 89);
+INSERT INTO `website_category` VALUES (90, 16, 90);
+INSERT INTO `website_category` VALUES (91, 17, 91);
+INSERT INTO `website_category` VALUES (92, 17, 92);
+INSERT INTO `website_category` VALUES (93, 17, 93);
+INSERT INTO `website_category` VALUES (94, 19, 94);
+INSERT INTO `website_category` VALUES (95, 19, 95);
+INSERT INTO `website_category` VALUES (96, 19, 96);
+INSERT INTO `website_category` VALUES (97, 19, 97);
+INSERT INTO `website_category` VALUES (98, 19, 98);
+INSERT INTO `website_category` VALUES (99, 19, 99);
+INSERT INTO `website_category` VALUES (100, 19, 100);
+INSERT INTO `website_category` VALUES (101, 19, 101);
+INSERT INTO `website_category` VALUES (102, 19, 102);
+INSERT INTO `website_category` VALUES (103, 19, 103);
+INSERT INTO `website_category` VALUES (104, 19, 104);
+INSERT INTO `website_category` VALUES (105, 19, 105);
+INSERT INTO `website_category` VALUES (106, 19, 106);
+INSERT INTO `website_category` VALUES (107, 20, 107);
+INSERT INTO `website_category` VALUES (108, 20, 108);
+INSERT INTO `website_category` VALUES (109, 20, 109);
+INSERT INTO `website_category` VALUES (110, 20, 110);
+INSERT INTO `website_category` VALUES (111, 20, 111);
+INSERT INTO `website_category` VALUES (112, 20, 112);
+INSERT INTO `website_category` VALUES (113, 20, 113);
+INSERT INTO `website_category` VALUES (114, 20, 114);
+INSERT INTO `website_category` VALUES (115, 20, 115);
+INSERT INTO `website_category` VALUES (116, 20, 116);
+INSERT INTO `website_category` VALUES (117, 21, 117);
+INSERT INTO `website_category` VALUES (118, 21, 118);
+INSERT INTO `website_category` VALUES (119, 21, 119);
+INSERT INTO `website_category` VALUES (120, 21, 120);
+INSERT INTO `website_category` VALUES (121, 21, 121);
+INSERT INTO `website_category` VALUES (122, 21, 122);
+INSERT INTO `website_category` VALUES (123, 22, 123);
+INSERT INTO `website_category` VALUES (124, 22, 124);
+INSERT INTO `website_category` VALUES (125, 22, 125);
+INSERT INTO `website_category` VALUES (126, 22, 126);
+INSERT INTO `website_category` VALUES (127, 22, 127);
+INSERT INTO `website_category` VALUES (128, 22, 128);
+INSERT INTO `website_category` VALUES (129, 22, 129);
+INSERT INTO `website_category` VALUES (130, 22, 130);
+INSERT INTO `website_category` VALUES (131, 22, 131);
+INSERT INTO `website_category` VALUES (132, 23, 132);
+INSERT INTO `website_category` VALUES (133, 23, 133);
+INSERT INTO `website_category` VALUES (134, 23, 134);
+INSERT INTO `website_category` VALUES (135, 23, 135);
+INSERT INTO `website_category` VALUES (136, 23, 136);
+INSERT INTO `website_category` VALUES (137, 23, 137);
+INSERT INTO `website_category` VALUES (138, 23, 138);
+INSERT INTO `website_category` VALUES (139, 23, 139);
+INSERT INTO `website_category` VALUES (140, 23, 140);
+INSERT INTO `website_category` VALUES (141, 23, 141);
+INSERT INTO `website_category` VALUES (142, 23, 142);
+INSERT INTO `website_category` VALUES (143, 23, 143);
+INSERT INTO `website_category` VALUES (144, 23, 144);
+INSERT INTO `website_category` VALUES (145, 25, 145);
+INSERT INTO `website_category` VALUES (146, 25, 146);
+INSERT INTO `website_category` VALUES (147, 25, 147);
+INSERT INTO `website_category` VALUES (148, 25, 148);
+INSERT INTO `website_category` VALUES (149, 25, 149);
+INSERT INTO `website_category` VALUES (150, 26, 150);
+INSERT INTO `website_category` VALUES (151, 26, 151);
+INSERT INTO `website_category` VALUES (152, 26, 152);
+INSERT INTO `website_category` VALUES (153, 26, 153);
+INSERT INTO `website_category` VALUES (154, 26, 154);
+INSERT INTO `website_category` VALUES (155, 26, 155);
+INSERT INTO `website_category` VALUES (156, 26, 156);
+INSERT INTO `website_category` VALUES (157, 26, 157);
+INSERT INTO `website_category` VALUES (158, 26, 158);
+INSERT INTO `website_category` VALUES (159, 26, 159);
+INSERT INTO `website_category` VALUES (160, 26, 160);
+INSERT INTO `website_category` VALUES (161, 26, 161);
+INSERT INTO `website_category` VALUES (162, 26, 162);
+INSERT INTO `website_category` VALUES (163, 26, 163);
+INSERT INTO `website_category` VALUES (164, 26, 164);
+INSERT INTO `website_category` VALUES (165, 26, 165);
+INSERT INTO `website_category` VALUES (166, 26, 166);
+INSERT INTO `website_category` VALUES (167, 26, 167);
+INSERT INTO `website_category` VALUES (168, 26, 168);
+INSERT INTO `website_category` VALUES (169, 26, 169);
+INSERT INTO `website_category` VALUES (170, 27, 170);
+INSERT INTO `website_category` VALUES (171, 27, 171);
+INSERT INTO `website_category` VALUES (172, 27, 172);
+INSERT INTO `website_category` VALUES (173, 27, 173);
+INSERT INTO `website_category` VALUES (174, 28, 174);
+INSERT INTO `website_category` VALUES (175, 28, 175);
+INSERT INTO `website_category` VALUES (176, 28, 176);
+INSERT INTO `website_category` VALUES (177, 28, 177);
+INSERT INTO `website_category` VALUES (178, 28, 178);
+INSERT INTO `website_category` VALUES (179, 29, 179);
+INSERT INTO `website_category` VALUES (180, 29, 180);
+INSERT INTO `website_category` VALUES (181, 29, 181);
+INSERT INTO `website_category` VALUES (182, 29, 182);
+INSERT INTO `website_category` VALUES (183, 29, 183);
+INSERT INTO `website_category` VALUES (184, 30, 184);
+INSERT INTO `website_category` VALUES (185, 30, 185);
+INSERT INTO `website_category` VALUES (186, 30, 186);
+INSERT INTO `website_category` VALUES (187, 30, 187);
+INSERT INTO `website_category` VALUES (188, 30, 188);
+INSERT INTO `website_category` VALUES (189, 30, 189);
+INSERT INTO `website_category` VALUES (190, 31, 190);
+INSERT INTO `website_category` VALUES (191, 31, 191);
+INSERT INTO `website_category` VALUES (192, 31, 192);
+INSERT INTO `website_category` VALUES (193, 31, 193);
+INSERT INTO `website_category` VALUES (194, 31, 194);
+INSERT INTO `website_category` VALUES (195, 31, 195);
+INSERT INTO `website_category` VALUES (196, 31, 196);
+INSERT INTO `website_category` VALUES (197, 31, 197);
+INSERT INTO `website_category` VALUES (198, 31, 198);
+INSERT INTO `website_category` VALUES (199, 33, 199);
+INSERT INTO `website_category` VALUES (200, 33, 200);
+INSERT INTO `website_category` VALUES (201, 33, 201);
+INSERT INTO `website_category` VALUES (202, 33, 202);
+INSERT INTO `website_category` VALUES (203, 33, 203);
+INSERT INTO `website_category` VALUES (204, 33, 204);
+INSERT INTO `website_category` VALUES (205, 33, 205);
+INSERT INTO `website_category` VALUES (206, 34, 206);
+INSERT INTO `website_category` VALUES (207, 34, 207);
+INSERT INTO `website_category` VALUES (208, 34, 208);
+INSERT INTO `website_category` VALUES (209, 35, 209);
+INSERT INTO `website_category` VALUES (210, 35, 210);
+INSERT INTO `website_category` VALUES (211, 35, 211);
+INSERT INTO `website_category` VALUES (212, 35, 212);
+INSERT INTO `website_category` VALUES (213, 35, 213);
+INSERT INTO `website_category` VALUES (214, 35, 214);
+INSERT INTO `website_category` VALUES (215, 35, 215);
+INSERT INTO `website_category` VALUES (216, 35, 216);
+INSERT INTO `website_category` VALUES (217, 35, 217);
+INSERT INTO `website_category` VALUES (218, 35, 218);
+INSERT INTO `website_category` VALUES (219, 35, 219);
+INSERT INTO `website_category` VALUES (220, 35, 220);
+INSERT INTO `website_category` VALUES (221, 35, 221);
+INSERT INTO `website_category` VALUES (222, 35, 222);
+INSERT INTO `website_category` VALUES (223, 35, 223);
+INSERT INTO `website_category` VALUES (224, 36, 224);
+INSERT INTO `website_category` VALUES (225, 36, 225);
+INSERT INTO `website_category` VALUES (226, 37, 226);
+INSERT INTO `website_category` VALUES (227, 37, 227);
+INSERT INTO `website_category` VALUES (228, 38, 228);
+INSERT INTO `website_category` VALUES (229, 38, 229);
+INSERT INTO `website_category` VALUES (230, 38, 230);
+INSERT INTO `website_category` VALUES (231, 43, 231);
+INSERT INTO `website_category` VALUES (232, 43, 232);
+INSERT INTO `website_category` VALUES (233, 43, 233);
+INSERT INTO `website_category` VALUES (234, 43, 234);
+INSERT INTO `website_category` VALUES (235, 43, 235);
+INSERT INTO `website_category` VALUES (236, 43, 236);
+INSERT INTO `website_category` VALUES (237, 44, 237);
+INSERT INTO `website_category` VALUES (238, 44, 238);
+INSERT INTO `website_category` VALUES (239, 45, 239);
+INSERT INTO `website_category` VALUES (240, 45, 240);
+INSERT INTO `website_category` VALUES (241, 45, 241);
+INSERT INTO `website_category` VALUES (242, 45, 242);
+INSERT INTO `website_category` VALUES (243, 45, 243);
+INSERT INTO `website_category` VALUES (244, 45, 244);
+INSERT INTO `website_category` VALUES (245, 46, 245);
+INSERT INTO `website_category` VALUES (246, 46, 246);
+INSERT INTO `website_category` VALUES (247, 46, 247);
+INSERT INTO `website_category` VALUES (248, 46, 248);
+INSERT INTO `website_category` VALUES (249, 46, 249);
+INSERT INTO `website_category` VALUES (250, 46, 250);
+INSERT INTO `website_category` VALUES (251, 46, 251);
+INSERT INTO `website_category` VALUES (252, 46, 252);
+INSERT INTO `website_category` VALUES (253, 46, 253);
+INSERT INTO `website_category` VALUES (254, 46, 254);
+INSERT INTO `website_category` VALUES (255, 46, 255);
+INSERT INTO `website_category` VALUES (256, 46, 256);
+INSERT INTO `website_category` VALUES (257, 46, 257);
+INSERT INTO `website_category` VALUES (258, 46, 258);
+INSERT INTO `website_category` VALUES (259, 46, 259);
+INSERT INTO `website_category` VALUES (260, 46, 260);
+INSERT INTO `website_category` VALUES (261, 46, 261);
+INSERT INTO `website_category` VALUES (262, 46, 262);
+INSERT INTO `website_category` VALUES (263, 46, 263);
+INSERT INTO `website_category` VALUES (264, 46, 264);
+INSERT INTO `website_category` VALUES (265, 48, 265);
+INSERT INTO `website_category` VALUES (266, 48, 266);
+INSERT INTO `website_category` VALUES (267, 48, 267);
+INSERT INTO `website_category` VALUES (268, 49, 268);
+INSERT INTO `website_category` VALUES (269, 49, 269);
+INSERT INTO `website_category` VALUES (270, 49, 270);
+INSERT INTO `website_category` VALUES (271, 49, 271);
+INSERT INTO `website_category` VALUES (272, 49, 272);
+INSERT INTO `website_category` VALUES (273, 49, 273);
+INSERT INTO `website_category` VALUES (274, 49, 274);
+INSERT INTO `website_category` VALUES (275, 49, 275);
+INSERT INTO `website_category` VALUES (276, 49, 276);
+INSERT INTO `website_category` VALUES (277, 49, 277);
+INSERT INTO `website_category` VALUES (278, 49, 278);
+INSERT INTO `website_category` VALUES (279, 49, 279);
+INSERT INTO `website_category` VALUES (280, 50, 280);
+INSERT INTO `website_category` VALUES (281, 50, 281);
+INSERT INTO `website_category` VALUES (282, 50, 282);
+INSERT INTO `website_category` VALUES (283, 50, 283);
+INSERT INTO `website_category` VALUES (284, 50, 284);
+INSERT INTO `website_category` VALUES (285, 50, 285);
+INSERT INTO `website_category` VALUES (286, 51, 286);
+INSERT INTO `website_category` VALUES (287, 51, 287);
+INSERT INTO `website_category` VALUES (288, 51, 288);
+INSERT INTO `website_category` VALUES (289, 51, 289);
+INSERT INTO `website_category` VALUES (290, 51, 290);
+INSERT INTO `website_category` VALUES (291, 51, 291);
+INSERT INTO `website_category` VALUES (292, 51, 292);
+INSERT INTO `website_category` VALUES (293, 51, 293);
+INSERT INTO `website_category` VALUES (294, 51, 294);
+INSERT INTO `website_category` VALUES (295, 51, 295);
+INSERT INTO `website_category` VALUES (296, 53, 296);
+INSERT INTO `website_category` VALUES (297, 53, 297);
+INSERT INTO `website_category` VALUES (298, 53, 298);
+INSERT INTO `website_category` VALUES (299, 53, 299);
+INSERT INTO `website_category` VALUES (300, 53, 300);
+INSERT INTO `website_category` VALUES (301, 53, 301);
+INSERT INTO `website_category` VALUES (302, 53, 302);
+INSERT INTO `website_category` VALUES (303, 53, 303);
+INSERT INTO `website_category` VALUES (304, 53, 304);
+INSERT INTO `website_category` VALUES (305, 53, 305);
+INSERT INTO `website_category` VALUES (306, 53, 306);
+INSERT INTO `website_category` VALUES (307, 53, 307);
+INSERT INTO `website_category` VALUES (308, 53, 308);
+INSERT INTO `website_category` VALUES (309, 53, 309);
+INSERT INTO `website_category` VALUES (310, 53, 310);
+INSERT INTO `website_category` VALUES (311, 53, 311);
+INSERT INTO `website_category` VALUES (312, 53, 312);
+INSERT INTO `website_category` VALUES (313, 54, 313);
+INSERT INTO `website_category` VALUES (314, 54, 314);
+INSERT INTO `website_category` VALUES (315, 54, 315);
+INSERT INTO `website_category` VALUES (316, 54, 316);
+INSERT INTO `website_category` VALUES (317, 54, 317);
+INSERT INTO `website_category` VALUES (318, 54, 318);
+INSERT INTO `website_category` VALUES (319, 54, 319);
+INSERT INTO `website_category` VALUES (320, 54, 320);
+INSERT INTO `website_category` VALUES (321, 54, 321);
+INSERT INTO `website_category` VALUES (322, 55, 322);
+INSERT INTO `website_category` VALUES (323, 55, 323);
+INSERT INTO `website_category` VALUES (324, 55, 324);
+INSERT INTO `website_category` VALUES (325, 55, 325);
+INSERT INTO `website_category` VALUES (326, 55, 326);
+INSERT INTO `website_category` VALUES (327, 55, 327);
+INSERT INTO `website_category` VALUES (328, 55, 328);
+INSERT INTO `website_category` VALUES (329, 55, 329);
+INSERT INTO `website_category` VALUES (330, 55, 330);
+INSERT INTO `website_category` VALUES (331, 55, 331);
+INSERT INTO `website_category` VALUES (332, 55, 332);
+INSERT INTO `website_category` VALUES (333, 55, 333);
+INSERT INTO `website_category` VALUES (334, 55, 334);
+INSERT INTO `website_category` VALUES (335, 56, 335);
+INSERT INTO `website_category` VALUES (336, 56, 336);
+INSERT INTO `website_category` VALUES (337, 56, 337);
+INSERT INTO `website_category` VALUES (338, 56, 338);
+INSERT INTO `website_category` VALUES (339, 56, 339);
+INSERT INTO `website_category` VALUES (340, 56, 340);
+INSERT INTO `website_category` VALUES (341, 57, 341);
+INSERT INTO `website_category` VALUES (342, 57, 342);
+INSERT INTO `website_category` VALUES (343, 57, 343);
+INSERT INTO `website_category` VALUES (344, 57, 344);
+INSERT INTO `website_category` VALUES (345, 57, 345);
+INSERT INTO `website_category` VALUES (346, 57, 346);
+INSERT INTO `website_category` VALUES (347, 57, 347);
+INSERT INTO `website_category` VALUES (348, 57, 348);
+INSERT INTO `website_category` VALUES (349, 57, 349);
+INSERT INTO `website_category` VALUES (350, 57, 350);
+INSERT INTO `website_category` VALUES (351, 57, 351);
+INSERT INTO `website_category` VALUES (352, 57, 352);
+INSERT INTO `website_category` VALUES (353, 57, 353);
+INSERT INTO `website_category` VALUES (354, 57, 354);
+INSERT INTO `website_category` VALUES (355, 57, 355);
+INSERT INTO `website_category` VALUES (356, 57, 356);
+INSERT INTO `website_category` VALUES (357, 58, 357);
+INSERT INTO `website_category` VALUES (358, 58, 358);
+INSERT INTO `website_category` VALUES (359, 58, 359);
+INSERT INTO `website_category` VALUES (360, 58, 360);
+INSERT INTO `website_category` VALUES (361, 58, 361);
+INSERT INTO `website_category` VALUES (362, 58, 362);
+INSERT INTO `website_category` VALUES (363, 58, 363);
+INSERT INTO `website_category` VALUES (364, 58, 364);
+INSERT INTO `website_category` VALUES (365, 58, 365);
+INSERT INTO `website_category` VALUES (366, 58, 366);
+INSERT INTO `website_category` VALUES (367, 58, 367);
+INSERT INTO `website_category` VALUES (368, 58, 368);
+INSERT INTO `website_category` VALUES (369, 58, 369);
+INSERT INTO `website_category` VALUES (370, 58, 370);
+INSERT INTO `website_category` VALUES (371, 60, 371);
+INSERT INTO `website_category` VALUES (372, 60, 372);
+INSERT INTO `website_category` VALUES (373, 60, 373);
+INSERT INTO `website_category` VALUES (374, 60, 374);
+INSERT INTO `website_category` VALUES (375, 60, 375);
+INSERT INTO `website_category` VALUES (376, 60, 376);
+INSERT INTO `website_category` VALUES (377, 60, 377);
+INSERT INTO `website_category` VALUES (378, 61, 378);
+INSERT INTO `website_category` VALUES (379, 61, 379);
+INSERT INTO `website_category` VALUES (380, 61, 380);
+INSERT INTO `website_category` VALUES (381, 61, 381);
+INSERT INTO `website_category` VALUES (382, 61, 382);
+INSERT INTO `website_category` VALUES (383, 61, 383);
+INSERT INTO `website_category` VALUES (384, 61, 384);
+INSERT INTO `website_category` VALUES (385, 61, 385);
+INSERT INTO `website_category` VALUES (386, 61, 386);
+INSERT INTO `website_category` VALUES (387, 61, 387);
+INSERT INTO `website_category` VALUES (388, 61, 388);
+INSERT INTO `website_category` VALUES (389, 63, 389);
+INSERT INTO `website_category` VALUES (390, 63, 390);
+INSERT INTO `website_category` VALUES (391, 63, 391);
+INSERT INTO `website_category` VALUES (392, 63, 392);
+INSERT INTO `website_category` VALUES (393, 63, 393);
+INSERT INTO `website_category` VALUES (394, 63, 394);
+INSERT INTO `website_category` VALUES (395, 63, 395);
+INSERT INTO `website_category` VALUES (396, 63, 396);
+INSERT INTO `website_category` VALUES (397, 63, 397);
+INSERT INTO `website_category` VALUES (398, 64, 398);
+INSERT INTO `website_category` VALUES (399, 64, 399);
+INSERT INTO `website_category` VALUES (400, 64, 400);
+INSERT INTO `website_category` VALUES (401, 64, 401);
+INSERT INTO `website_category` VALUES (402, 64, 402);
+INSERT INTO `website_category` VALUES (403, 65, 403);
+INSERT INTO `website_category` VALUES (404, 65, 404);
+INSERT INTO `website_category` VALUES (405, 65, 405);
+INSERT INTO `website_category` VALUES (406, 65, 406);
+INSERT INTO `website_category` VALUES (407, 65, 407);
+INSERT INTO `website_category` VALUES (408, 66, 408);
+INSERT INTO `website_category` VALUES (409, 66, 409);
+INSERT INTO `website_category` VALUES (410, 66, 410);
+INSERT INTO `website_category` VALUES (411, 66, 411);
+INSERT INTO `website_category` VALUES (412, 68, 412);
+INSERT INTO `website_category` VALUES (413, 68, 413);
+INSERT INTO `website_category` VALUES (414, 68, 414);
+INSERT INTO `website_category` VALUES (415, 68, 415);
+INSERT INTO `website_category` VALUES (416, 68, 416);
+INSERT INTO `website_category` VALUES (417, 68, 417);
+INSERT INTO `website_category` VALUES (418, 68, 418);
+INSERT INTO `website_category` VALUES (419, 68, 419);
+INSERT INTO `website_category` VALUES (420, 68, 420);
+INSERT INTO `website_category` VALUES (421, 68, 421);
+INSERT INTO `website_category` VALUES (422, 68, 422);
+INSERT INTO `website_category` VALUES (423, 68, 423);
+INSERT INTO `website_category` VALUES (424, 68, 424);
+INSERT INTO `website_category` VALUES (425, 68, 425);
+INSERT INTO `website_category` VALUES (426, 68, 426);
+INSERT INTO `website_category` VALUES (427, 69, 427);
+INSERT INTO `website_category` VALUES (428, 69, 428);
+INSERT INTO `website_category` VALUES (429, 69, 429);
+INSERT INTO `website_category` VALUES (430, 69, 430);
+INSERT INTO `website_category` VALUES (431, 69, 431);
+INSERT INTO `website_category` VALUES (432, 69, 432);
+INSERT INTO `website_category` VALUES (433, 69, 433);
+INSERT INTO `website_category` VALUES (434, 69, 434);
+INSERT INTO `website_category` VALUES (435, 69, 435);
+INSERT INTO `website_category` VALUES (436, 69, 436);
+INSERT INTO `website_category` VALUES (437, 69, 437);
+INSERT INTO `website_category` VALUES (438, 69, 438);
+INSERT INTO `website_category` VALUES (439, 69, 439);
+INSERT INTO `website_category` VALUES (440, 69, 440);
+INSERT INTO `website_category` VALUES (441, 69, 441);
+INSERT INTO `website_category` VALUES (442, 69, 442);
+INSERT INTO `website_category` VALUES (443, 69, 443);
+INSERT INTO `website_category` VALUES (444, 69, 444);
+INSERT INTO `website_category` VALUES (445, 69, 445);
+INSERT INTO `website_category` VALUES (446, 69, 446);
+INSERT INTO `website_category` VALUES (447, 70, 447);
+INSERT INTO `website_category` VALUES (448, 70, 448);
+INSERT INTO `website_category` VALUES (449, 70, 449);
+INSERT INTO `website_category` VALUES (450, 70, 450);
+INSERT INTO `website_category` VALUES (451, 70, 451);
+INSERT INTO `website_category` VALUES (452, 70, 452);
+INSERT INTO `website_category` VALUES (453, 70, 453);
+INSERT INTO `website_category` VALUES (454, 70, 454);
+INSERT INTO `website_category` VALUES (455, 71, 455);
+INSERT INTO `website_category` VALUES (456, 71, 456);
+INSERT INTO `website_category` VALUES (457, 71, 457);
+INSERT INTO `website_category` VALUES (458, 71, 458);
+INSERT INTO `website_category` VALUES (459, 71, 459);
+INSERT INTO `website_category` VALUES (460, 71, 460);
+INSERT INTO `website_category` VALUES (461, 71, 461);
+INSERT INTO `website_category` VALUES (462, 71, 462);
+INSERT INTO `website_category` VALUES (463, 71, 463);
+INSERT INTO `website_category` VALUES (464, 71, 464);
+INSERT INTO `website_category` VALUES (465, 71, 465);
+INSERT INTO `website_category` VALUES (466, 71, 466);
+INSERT INTO `website_category` VALUES (467, 71, 467);
+INSERT INTO `website_category` VALUES (468, 71, 468);
+INSERT INTO `website_category` VALUES (469, 71, 469);
+INSERT INTO `website_category` VALUES (470, 71, 470);
+INSERT INTO `website_category` VALUES (471, 71, 471);
+INSERT INTO `website_category` VALUES (472, 71, 472);
+INSERT INTO `website_category` VALUES (473, 71, 473);
+INSERT INTO `website_category` VALUES (474, 71, 474);
+INSERT INTO `website_category` VALUES (475, 72, 475);
+INSERT INTO `website_category` VALUES (476, 72, 476);
+INSERT INTO `website_category` VALUES (477, 72, 477);
+INSERT INTO `website_category` VALUES (478, 72, 478);
+INSERT INTO `website_category` VALUES (479, 72, 479);
+INSERT INTO `website_category` VALUES (480, 72, 480);
+INSERT INTO `website_category` VALUES (481, 73, 481);
+INSERT INTO `website_category` VALUES (482, 73, 482);
+INSERT INTO `website_category` VALUES (483, 73, 483);
+INSERT INTO `website_category` VALUES (484, 73, 484);
+INSERT INTO `website_category` VALUES (485, 73, 485);
+INSERT INTO `website_category` VALUES (486, 73, 486);
+INSERT INTO `website_category` VALUES (487, 73, 487);
+INSERT INTO `website_category` VALUES (488, 73, 488);
+INSERT INTO `website_category` VALUES (489, 73, 489);
+INSERT INTO `website_category` VALUES (490, 73, 490);
+INSERT INTO `website_category` VALUES (491, 73, 491);
+INSERT INTO `website_category` VALUES (492, 73, 492);
+INSERT INTO `website_category` VALUES (493, 73, 493);
+INSERT INTO `website_category` VALUES (494, 73, 494);
+INSERT INTO `website_category` VALUES (495, 73, 495);
+INSERT INTO `website_category` VALUES (496, 73, 496);
+INSERT INTO `website_category` VALUES (497, 73, 497);
+INSERT INTO `website_category` VALUES (498, 73, 498);
+INSERT INTO `website_category` VALUES (499, 73, 499);
+INSERT INTO `website_category` VALUES (500, 73, 500);
+INSERT INTO `website_category` VALUES (501, 75, 501);
+INSERT INTO `website_category` VALUES (502, 75, 502);
+INSERT INTO `website_category` VALUES (503, 75, 503);
+INSERT INTO `website_category` VALUES (504, 75, 504);
+INSERT INTO `website_category` VALUES (505, 76, 505);
+INSERT INTO `website_category` VALUES (506, 76, 506);
+INSERT INTO `website_category` VALUES (507, 76, 507);
+INSERT INTO `website_category` VALUES (508, 76, 508);
+INSERT INTO `website_category` VALUES (509, 76, 509);
+INSERT INTO `website_category` VALUES (510, 77, 510);
+INSERT INTO `website_category` VALUES (511, 77, 511);
+INSERT INTO `website_category` VALUES (512, 77, 512);
+INSERT INTO `website_category` VALUES (513, 77, 513);
+INSERT INTO `website_category` VALUES (514, 77, 514);
+INSERT INTO `website_category` VALUES (515, 77, 515);
+INSERT INTO `website_category` VALUES (516, 77, 516);
+INSERT INTO `website_category` VALUES (517, 77, 517);
+INSERT INTO `website_category` VALUES (518, 77, 518);
+INSERT INTO `website_category` VALUES (519, 77, 519);
+INSERT INTO `website_category` VALUES (520, 77, 520);
+INSERT INTO `website_category` VALUES (521, 77, 521);
+INSERT INTO `website_category` VALUES (522, 77, 522);
+INSERT INTO `website_category` VALUES (523, 77, 523);
+INSERT INTO `website_category` VALUES (524, 77, 524);
+INSERT INTO `website_category` VALUES (525, 77, 525);
+INSERT INTO `website_category` VALUES (526, 77, 526);
+INSERT INTO `website_category` VALUES (527, 77, 527);
+INSERT INTO `website_category` VALUES (528, 77, 528);
+INSERT INTO `website_category` VALUES (529, 77, 529);
+INSERT INTO `website_category` VALUES (530, 78, 530);
+INSERT INTO `website_category` VALUES (531, 78, 531);
+INSERT INTO `website_category` VALUES (532, 78, 532);
+INSERT INTO `website_category` VALUES (533, 79, 533);
+INSERT INTO `website_category` VALUES (534, 79, 534);
+INSERT INTO `website_category` VALUES (535, 79, 535);
+INSERT INTO `website_category` VALUES (536, 79, 536);
+INSERT INTO `website_category` VALUES (537, 79, 537);
+INSERT INTO `website_category` VALUES (538, 79, 538);
+INSERT INTO `website_category` VALUES (539, 80, 539);
+INSERT INTO `website_category` VALUES (540, 80, 540);
+INSERT INTO `website_category` VALUES (541, 80, 541);
+INSERT INTO `website_category` VALUES (542, 80, 542);
+INSERT INTO `website_category` VALUES (543, 80, 543);
+INSERT INTO `website_category` VALUES (544, 80, 544);
+INSERT INTO `website_category` VALUES (545, 80, 545);
+INSERT INTO `website_category` VALUES (546, 80, 546);
+INSERT INTO `website_category` VALUES (547, 80, 547);
+INSERT INTO `website_category` VALUES (548, 80, 548);
+INSERT INTO `website_category` VALUES (549, 80, 549);
+INSERT INTO `website_category` VALUES (550, 80, 550);
+INSERT INTO `website_category` VALUES (551, 80, 551);
+INSERT INTO `website_category` VALUES (552, 80, 552);
+INSERT INTO `website_category` VALUES (553, 80, 553);
+INSERT INTO `website_category` VALUES (554, 80, 554);
+INSERT INTO `website_category` VALUES (555, 80, 555);
+INSERT INTO `website_category` VALUES (556, 80, 556);
+INSERT INTO `website_category` VALUES (557, 81, 557);
+INSERT INTO `website_category` VALUES (558, 81, 558);
+INSERT INTO `website_category` VALUES (559, 81, 559);
+INSERT INTO `website_category` VALUES (560, 81, 560);
+INSERT INTO `website_category` VALUES (561, 81, 561);
+INSERT INTO `website_category` VALUES (562, 81, 562);
+INSERT INTO `website_category` VALUES (563, 81, 563);
+INSERT INTO `website_category` VALUES (564, 81, 564);
+INSERT INTO `website_category` VALUES (565, 81, 565);
+INSERT INTO `website_category` VALUES (566, 81, 566);
+INSERT INTO `website_category` VALUES (567, 81, 567);
+INSERT INTO `website_category` VALUES (568, 81, 568);
+INSERT INTO `website_category` VALUES (569, 81, 569);
+INSERT INTO `website_category` VALUES (570, 81, 570);
+INSERT INTO `website_category` VALUES (571, 81, 571);
+INSERT INTO `website_category` VALUES (572, 81, 572);
+INSERT INTO `website_category` VALUES (573, 81, 573);
+INSERT INTO `website_category` VALUES (574, 81, 574);
+INSERT INTO `website_category` VALUES (575, 81, 575);
+INSERT INTO `website_category` VALUES (576, 83, 576);
+INSERT INTO `website_category` VALUES (577, 83, 577);
+INSERT INTO `website_category` VALUES (578, 83, 578);
+INSERT INTO `website_category` VALUES (579, 83, 579);
+INSERT INTO `website_category` VALUES (580, 84, 580);
+INSERT INTO `website_category` VALUES (581, 84, 581);
+INSERT INTO `website_category` VALUES (582, 84, 582);
+INSERT INTO `website_category` VALUES (583, 84, 583);
+INSERT INTO `website_category` VALUES (584, 85, 584);
+INSERT INTO `website_category` VALUES (585, 85, 585);
+INSERT INTO `website_category` VALUES (586, 85, 586);
+INSERT INTO `website_category` VALUES (587, 85, 587);
+INSERT INTO `website_category` VALUES (588, 85, 588);
+INSERT INTO `website_category` VALUES (589, 85, 589);
+INSERT INTO `website_category` VALUES (590, 85, 590);
+INSERT INTO `website_category` VALUES (591, 85, 591);
+INSERT INTO `website_category` VALUES (592, 85, 592);
+INSERT INTO `website_category` VALUES (593, 85, 593);
+INSERT INTO `website_category` VALUES (594, 85, 594);
+INSERT INTO `website_category` VALUES (595, 85, 595);
+INSERT INTO `website_category` VALUES (596, 85, 596);
+INSERT INTO `website_category` VALUES (597, 85, 597);
+INSERT INTO `website_category` VALUES (598, 85, 598);
+INSERT INTO `website_category` VALUES (599, 85, 599);
+INSERT INTO `website_category` VALUES (600, 87, 600);
+INSERT INTO `website_category` VALUES (601, 87, 601);
+INSERT INTO `website_category` VALUES (602, 87, 602);
+INSERT INTO `website_category` VALUES (603, 87, 603);
+INSERT INTO `website_category` VALUES (604, 88, 604);
+INSERT INTO `website_category` VALUES (605, 88, 605);
+INSERT INTO `website_category` VALUES (606, 88, 606);
+INSERT INTO `website_category` VALUES (607, 89, 607);
+INSERT INTO `website_category` VALUES (608, 89, 608);
+INSERT INTO `website_category` VALUES (609, 89, 609);
+INSERT INTO `website_category` VALUES (610, 89, 610);
+INSERT INTO `website_category` VALUES (611, 89, 611);
+INSERT INTO `website_category` VALUES (612, 89, 612);
+INSERT INTO `website_category` VALUES (613, 91, 613);
+INSERT INTO `website_category` VALUES (614, 91, 614);
+INSERT INTO `website_category` VALUES (615, 91, 615);
+INSERT INTO `website_category` VALUES (616, 91, 616);
+INSERT INTO `website_category` VALUES (617, 91, 617);
+INSERT INTO `website_category` VALUES (618, 91, 618);
+INSERT INTO `website_category` VALUES (619, 91, 619);
+INSERT INTO `website_category` VALUES (620, 91, 620);
+INSERT INTO `website_category` VALUES (621, 91, 621);
+INSERT INTO `website_category` VALUES (622, 91, 622);
+INSERT INTO `website_category` VALUES (623, 92, 623);
+INSERT INTO `website_category` VALUES (624, 92, 624);
+INSERT INTO `website_category` VALUES (625, 92, 625);
+INSERT INTO `website_category` VALUES (626, 92, 626);
+INSERT INTO `website_category` VALUES (627, 92, 627);
+INSERT INTO `website_category` VALUES (628, 92, 628);
+INSERT INTO `website_category` VALUES (629, 92, 629);
+INSERT INTO `website_category` VALUES (630, 92, 630);
+INSERT INTO `website_category` VALUES (631, 92, 631);
+INSERT INTO `website_category` VALUES (632, 92, 632);
+INSERT INTO `website_category` VALUES (633, 92, 633);
+INSERT INTO `website_category` VALUES (634, 92, 634);
+INSERT INTO `website_category` VALUES (635, 92, 635);
+INSERT INTO `website_category` VALUES (636, 93, 636);
+INSERT INTO `website_category` VALUES (637, 93, 637);
+INSERT INTO `website_category` VALUES (638, 93, 638);
+INSERT INTO `website_category` VALUES (639, 93, 639);
+INSERT INTO `website_category` VALUES (640, 93, 640);
+INSERT INTO `website_category` VALUES (641, 93, 641);
+INSERT INTO `website_category` VALUES (642, 94, 642);
+INSERT INTO `website_category` VALUES (643, 94, 643);
+INSERT INTO `website_category` VALUES (644, 94, 644);
+INSERT INTO `website_category` VALUES (645, 94, 645);
+INSERT INTO `website_category` VALUES (646, 94, 646);
+INSERT INTO `website_category` VALUES (647, 94, 647);
+INSERT INTO `website_category` VALUES (648, 94, 648);
+INSERT INTO `website_category` VALUES (649, 95, 649);
+INSERT INTO `website_category` VALUES (650, 95, 650);
+INSERT INTO `website_category` VALUES (651, 95, 651);
+INSERT INTO `website_category` VALUES (652, 95, 652);
+INSERT INTO `website_category` VALUES (653, 95, 653);
+INSERT INTO `website_category` VALUES (654, 95, 654);
+INSERT INTO `website_category` VALUES (655, 97, 655);
+INSERT INTO `website_category` VALUES (656, 97, 656);
+INSERT INTO `website_category` VALUES (657, 97, 657);
+INSERT INTO `website_category` VALUES (658, 98, 658);
+INSERT INTO `website_category` VALUES (659, 98, 659);
+INSERT INTO `website_category` VALUES (660, 98, 660);
+INSERT INTO `website_category` VALUES (661, 98, 661);
+INSERT INTO `website_category` VALUES (662, 98, 662);
+INSERT INTO `website_category` VALUES (663, 98, 663);
+INSERT INTO `website_category` VALUES (664, 99, 664);
+INSERT INTO `website_category` VALUES (665, 99, 665);
+INSERT INTO `website_category` VALUES (666, 100, 666);
+INSERT INTO `website_category` VALUES (667, 100, 667);
+INSERT INTO `website_category` VALUES (668, 101, 668);
+INSERT INTO `website_category` VALUES (669, 101, 669);
+INSERT INTO `website_category` VALUES (670, 101, 670);
+INSERT INTO `website_category` VALUES (671, 101, 671);
+INSERT INTO `website_category` VALUES (672, 101, 672);
+INSERT INTO `website_category` VALUES (673, 101, 673);
+INSERT INTO `website_category` VALUES (674, 102, 674);
+INSERT INTO `website_category` VALUES (675, 102, 675);
+INSERT INTO `website_category` VALUES (676, 102, 676);
+INSERT INTO `website_category` VALUES (677, 102, 677);
+INSERT INTO `website_category` VALUES (678, 102, 678);
+INSERT INTO `website_category` VALUES (679, 102, 679);
+INSERT INTO `website_category` VALUES (680, 102, 680);
 
---
--- 表的结构 `options`
---
+-- ----------------------------
+-- Table structure for website_user
+-- ----------------------------
+DROP TABLE IF EXISTS `website_user`;
+CREATE TABLE `website_user`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NULL DEFAULT NULL,
+  `website_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Fixed;
 
-CREATE TABLE IF NOT EXISTS `options` (
-  `option_name` varchar(127) NOT NULL,
-  `option_value` longtext
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `user`
---
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` bigint(20) NOT NULL,
-  `create_time` datetime DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `last_login_time` datetime DEFAULT NULL,
-  `nickname` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `qq` bigint(20) DEFAULT NULL,
-  `salt` varchar(255) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `user_avatar` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `user`
---
-
-INSERT INTO `user` (`user_id`, `create_time`, `email`, `last_login_time`, `nickname`, `password`, `qq`, `salt`, `status`, `user_avatar`, `username`) VALUES
-(1, '2019-09-07 20:56:36', NULL, '2019-09-23 11:26:08', '艾森', '$2a$10$exzd80mFazRt98IOF1I59Ox.D0IHXDFoVTTCFeog02xWUtmjV7svO', 38707145, NULL, 1, '/static/images/user-5.png', 'iksen');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `website`
---
-
-CREATE TABLE IF NOT EXISTS `website` (
-  `website_id` int(11) NOT NULL,
-  `create_time` datetime DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `is_recommend` int(11) DEFAULT NULL,
-  `is_touch` int(11) DEFAULT NULL,
-  `ordered` int(11) DEFAULT NULL,
-  `summary` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `visits` int(11) DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=1371 DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `website`
---
-
-INSERT INTO `website` (`website_id`, `create_time`, `icon`, `is_recommend`, `is_touch`, `ordered`, `summary`, `title`, `url`, `visits`) VALUES
-(1144, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/dr_jd_com.jpg', 0, 0, 0, '京东商城旗下的第三方导购平台', '京东达人', 'http://dr.jd.com', 0),
-(1143, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mp_wifi_com.gif', 0, 0, 0, 'wifi万能钥匙自媒体', 'wifi万能钥匙自媒体', 'http://mp.wifi.com', 0),
-(1142, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mp_eastday_com.jpg', 0, 0, 0, '东方网全新打造的分类内容的自媒体平台', '东方号', 'http://mp.eastday.com', 0),
-(1141, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mp_iqiyi_com.jpg', 0, 0, 0, '爱奇艺的视频自媒体平台', '爱奇艺号', 'http://mp.iqiyi.com', 0),
-(1140, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ctocio_com_cn.jpg', 0, 0, 0, '专门服务于企业IT专业人士以及IT系统采购决策者', 'IT专家网', 'http://www.ctocio.com.cn', 0),
-(1139, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ccw_com_cn.jpg', 0, 0, 0, '中国最权威的IT专业网站', '计世', 'http://www.ccw.com.cn', 0),
-(1138, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_bukop_com.jpg', 0, 0, 0, '关注全球商业新模式、新趋势', '商业不靠谱', 'http://www.bukop.com', 0),
-(1137, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/tech2ipo_com.jpg', 0, 0, 0, '专注互联网创业与创新', 'TECH2IPO', 'http://tech2ipo.com', 0),
-(1136, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_kejilie_com.jpg', 0, 0, 0, '帮你高效阅读最新科技资讯的工具', '科技猎', 'http://www.kejilie.com', 0),
-(1135, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_tmtpost_com.jpg', 0, 0, 0, '国内首家TMT公司人社群媒体', '钛媒体', 'http://www.tmtpost.com', 0),
-(1134, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cninin_com.jpg', 0, 0, 0, '分享最新、最快的互联网资讯!', '中文互联网资讯', 'http://www.cninin.com', 0),
-(1133, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_geekpark_net.jpg', 0, 0, 0, '互联网热门趋势、热点产品的深度分析，发掘产品和趋势的价值。', '极客公园', 'http://www.geekpark.net', 0),
-(1132, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_alibuybuy_com.jpg', 0, 0, 0, '聚焦互联网前沿资讯', '互联网的那点事', 'http://www.alibuybuy.com', 0),
-(1131, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_yixieshi_com.jpg', 0, 0, 0, '最有料的互联网资讯', '互联网的一些事', 'http://www.yixieshi.com', 0),
-(1130, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_huxiu_com.jpg', 0, 0, 0, '聚合优质创新信息与人群的新媒体平台', '虎嗅网', 'http://www.huxiu.com', 0),
-(1129, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_qdaily_com.jpg', 0, 0, 0, '好奇驱动你的世界', '好奇心日报', 'http://www.qdaily.com', 0),
-(1128, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_tmtforum_com.jpg', 0, 0, 0, '分享国内外最新最前沿的科技创新、创业项目、创业公司', 'TMTforum', 'http://www.tmtforum.com', 0),
-(1127, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_donews_com.jpg', 0, 0, 0, '中国互联网行业的风向标', 'Donews', 'http://www.donews.com', 0),
-(1126, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ifanr_com.jpg', 0, 0, 0, '报道未来，服务新生活引领者', '爱范儿', 'http://www.ifanr.com', 0),
-(1125, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_zaodula_com.jpg', 0, 0, 0, '专注分享产品、用研、交互、运营、市场等专业产品知识', '互联网早读课', 'http://www.zaodula.com', 0),
-(1124, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ittime_com_cn.png', 0, 0, 0, '解读信息时代的商业变革', 'IT时代网', 'http://www.ittime.com.cn', 0),
-(1123, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/cn_engadget_com.jpg', 0, 0, 0, '消费性电子产品新闻和评测', 'Engadget', 'http://cn.engadget.com', 0),
-(1122, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_lieyunwang_com.png', 0, 0, 0, '用心服务创业者_互联网创业项目推荐和创业创新资讯', '猎云网', 'http://www.lieyunwang.com', 0),
-(1121, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/newseed_pedaily_cn.jpg', 0, 0, 0, '离资本最近的创业服务平台！', '新芽', 'http://newseed.pedaily.cn', 0),
-(1120, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/fex_baidu_com.jpg', 0, 0, 0, '百度web前端研发部', '百度FEX', 'http://fex.baidu.com', 0),
-(1119, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_aliued_cn.jpg', 0, 0, 0, '阿里巴巴用户体验设计部', '阿里UED', 'http://www.aliued.cn', 0),
-(1118, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/uedc_163_com.jpg', 0, 0, 0, '网易用户体验设计中心', '网易UEDC', 'http://uedc.163.com', 0),
-(1117, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/ued_koubei_com.jpg', 0, 0, 0, '口碑用户体验设计', '口碑UED', 'http://ued.koubei.com', 0),
-(1116, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mxd_tencent_com.jpg', 0, 0, 0, '腾讯MXD移动互联网设计中心', '腾讯MXD', 'http://mxd.tencent.com', 0),
-(1115, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/isux_tencent_com.jpg', 0, 0, 0, '社交用户体验设计', '腾讯ISUX', 'http://isux.tencent.com', 0),
-(1114, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/ued_baidu_com.jpg', 0, 0, 0, '百度用户体验中心', '百度用户体验中心', 'http://ued.baidu.com', 0),
-(1113, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mux_alimama_com.jpg', 0, 0, 0, '阿里妈妈体验工作平台', '阿里妈妈MUX', 'http://mux.alimama.com', 0),
-(1112, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/tgideas_qq_com.jpg', 0, 0, 0, '腾讯游戏官方设计团队', 'TGideas', 'http://tgideas.qq.com', 0),
-(1111, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/uec_nq_com.jpg', 0, 0, 0, '网秦用户体验中心', 'NQ UEC', 'http://uec.nq.com', 0),
-(1110, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/ixdc_org.jpg', 0, 0, 0, '国际体验设计协会', 'IXDC', 'http://ixdc.org', 0),
-(1109, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/gux_163_com.jpg', 0, 0, 0, '网易GUX游戏用户体验中心', '网易GUX', 'http://gux.163.com', 0),
-(1108, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/tech_meituan_com.jpg', 0, 0, 0, '美团点评技术团队', '美团点评技术团队', 'http://tech.meituan.com', 0),
-(1107, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/f2e_souche_com.jpg', 0, 0, 0, '大搜车前端团队博客', '大搜车前端团队博客', 'http://f2e.souche.com/blog', 0),
-(1106, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/ued_sina_com.jpg', 0, 0, 0, '用户为中心的设计理念', '新浪UED', 'http://ued.sina.com', 0),
-(1105, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/cdc_tencent_com.jpg', 0, 0, 0, '腾讯用户研究与体验设计部', '腾讯CDC', 'http://cdc.tencent.com', 0),
-(1104, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/vc_changyou_com.jpg', 0, 0, 0, '搜狐畅游视觉设计中心团队', '畅游视觉设计中心', 'http://vc.changyou.com', 0),
-(1103, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/ue_baidu_com.png', 0, 0, 0, '最专业的在线设计学习平台', '百度UE讲堂', 'http://ue.baidu.com', 0),
-(1102, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/cued_xunlei_com.jpg', 0, 0, 0, '迅雷用户体验设计中心', 'CUED', 'http://cued.xunlei.com', 0),
-(1101, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_500d_me.jpg', 0, 0, 0, '中国领先的在线简历制作平台', '五百丁', 'http://www.500d.me', 0),
-(1100, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jianlipro_com.jpg', 0, 0, 0, '专业的在线简历制作网站', '简历计划', 'http://www.jianlipro.com', 0),
-(1099, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/qiaobutang_com.gif', 0, 0, 0, '中英文个人求职简历模板表格免费下载', '乔布简历', 'http://qiaobutang.com', 0),
-(1098, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/cv_utrainee_com.png', 0, 0, 0, '名校学生都在用的专业简历制作工具', '职徒简历 - 名校学生都在用的专业简历工具', 'https://cv.utrainee.com', 0),
-(1097, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_liepin_com.png', 0, 0, 0, '招聘_找工作_精英职业发展平台', '猎聘网', 'http://www.liepin.com', 0),
-(1096, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_hunteron_com.jpg', 0, 0, 0, '中高端人才跳槽神器', '猎上网', 'http://www.hunteron.com', 0),
-(1095, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_lietou007_com.jpg', 0, 0, 0, '目前国内最大的猎头行业网站', '猎头007', 'http://www.lietou007.com', 0),
-(1094, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_highpin_cn.jpg', 0, 0, 0, '智联招聘旗下中高端人才求职平台！', '智联卓聘', 'http://www.highpin.cn', 0),
-(1093, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_lieluobo_com.png', 0, 0, 0, '互联网猎头平台', '猎萝卜', 'https://www.lieluobo.com/', 0),
-(1092, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_dianhou_com.jpg', 0, 0, 0, '专业的电商招聘平台', '电猴网', 'http://www.dianhou.com/', 0),
-(1091, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_dianshangren_cn.png', 0, 0, 0, '专业的电子商务人才网', '电商人才网', 'http://www.dianshangren.cn/', 0),
-(1090, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_alizhaopin_com.png', 0, 0, 0, '阿里巴巴旗下电商招聘平台', '淘工作', 'https://www.alizhaopin.com/', 0),
-(1089, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ecjobhome_com.png', 0, 0, 0, '专业电商人才求职招聘网站平台', '电商之家', 'http://www.ecjobhome.com/', 0),
-(1088, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_taocaizi_com.png', 0, 0, 0, '专业电商人才求职招聘网', '淘才子', 'http://www.taocaizi.com/', 0),
-(1087, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_taojianz_com.jpg', 0, 0, 0, '领先靠谱的大学生兼职招聘网', '淘兼职', 'http://www.taojianz.com', 0),
-(1086, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_juxiangyou_com.jpg', 0, 0, 0, '一个网络兼职平台', '聚享游', 'http://www.juxiangyou.com', 0),
-(1085, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_doumi_com.jpg', 0, 0, 0, '免费提供大量最新兼职招聘信息', '斗米兼职', 'http://www.doumi.com', 0),
-(1084, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jianzhiq_com.jpg', 0, 0, 0, '中国最大的大学生兼职平台', '兼职圈', 'http://www.jianzhiq.com', 0),
-(1083, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jzdd_com.jpg', 0, 0, 0, '服务规模最大的兼职平台', '兼职招聘网', 'http://www.jzdd.com', 0),
-(1082, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_kdjz_com.jpg', 0, 0, 0, '提供最安全、可靠、免费的兼职招聘服务', '口袋兼职', 'http://www.kdjz.com', 0),
-(1081, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jianzhimao_com.jpg', 0, 0, 0, '国内领先的兼职招聘网站', '兼职猫', 'http://www.jianzhimao.com', 0),
-(1080, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jianke_cc.jpg', 0, 0, 0, '安全靠谱的网上兼职服务平台', '兼客兼职', 'http://www.jianke.cc', 0),
-(1079, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jobdiy_cn.jpg', 0, 0, 0, '国内领先的兼职招聘平台', '兼职达人', 'http://www.jobdiy.cn', 0),
-(1078, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_wutongguo_com.jpg', 0, 0, 0, '高校应届毕业生的专业网申平台', '梧桐果', 'http://www.wutongguo.com', 0),
-(1077, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_211zph_com.jpg', 0, 0, 0, '为毕业生和企业开展校园招聘', '211校招网', 'http://www.211zph.com', 0),
-(1076, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_haitou_cc.jpg', 0, 0, 0, '大学生求职搜索引擎', '海投网', 'http://www.haitou.cc', 0),
-(1075, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_horsehr_com.jpg', 0, 0, 0, '专注校园求职招聘的专业网站', '千里马校园网', 'http://www.horsehr.com', 0),
-(1074, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_zheyibu_com.jpg', 0, 0, 0, '供最新最全的校园招聘信息', '这一步', 'http://www.zheyibu.com', 0),
-(1073, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cimo_cn.jpg', 0, 0, 0, '帮助大学生走出校园玩转职场', '青苜网', 'http://www.cimo.cn', 0),
-(1072, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_shixiseng_com.jpg', 0, 0, 0, '国内领先的实习生招聘网站', '实习僧', 'http://www.shixiseng.com', 0),
-(1071, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_51job_com.jpg', 0, 0, 0, '最全最准确的招聘网站', '前程无忧', 'http://www.51job.com', 0),
-(1070, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_zhaopin_com.jpg', 0, 0, 0, '全国性权威人才网站', '智联招聘', 'http://www.zhaopin.com', 0),
-(1069, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_neitui_me.png', 0, 0, 0, '互联网招聘内部推荐直招平台', '内推网', 'http://www.neitui.me', 0),
-(1068, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jobtong_com.jpg', 0, 0, 0, '最靠谱的移动互联网招聘社区', '周伯通', 'http://www.jobtong.com', 0),
-(1067, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_lagou_com.jpg', 0, 0, 0, '最专业的互联网招聘平台', '拉勾网', 'http://www.lagou.com', 0),
-(1066, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/shixian_com.png', 0, 0, 0, 'BAT工程师兼职预约平台', '实现网', 'http://shixian.com', 0),
-(1065, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_nashangban_com.png', 0, 0, 0, '高质量互联网人才', '哪上班', 'http://www.nashangban.com', 0),
-(1064, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_chinahr_com.jpg', 0, 0, 0, '专注人力资源领域,服务广大企业用户和求职者', '中华英才网', 'http://www.chinahr.com', 0),
-(1063, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/100offer_com.png', 0, 0, 0, '和好机会来个偶遇吧', '100offer', 'http://100offer.com', 0),
-(1062, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_wealink_com.png', 0, 0, 0, '全行业在线招聘模式领导者', '若邻网', 'http://www.wealink.com', 0),
-(1061, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/cn_linkedin_com.jpg', 0, 0, 0, '全球领先的职业社交网站', '领英', 'http://cn.linkedin.com', 0),
-(1060, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_moke8_com.jpg', 0, 0, 0, '网页模板下载,建站资源共享平台', '魔客吧', 'http://www.moke8.com', 0),
-(1059, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_mobanwang_com.jpg', 0, 0, 0, '网页模板免费下载', '模板王', 'http://www.mobanwang.com', 0),
-(1058, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_mb5u_com.jpg', 0, 0, 0, '国内最具人气的网站模板下载', '模板无忧', 'http://www.mb5u.com', 0),
-(1057, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_mobantu_com.jpg', 0, 0, 0, 'wordpress主题免费下载', '模板兔', 'http://www.mobantu.com', 0),
-(1056, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_mobanku_com.gif', 0, 0, 0, '专注于网页模板、网站模板设计开发，企业建站最好选择-', '模板库', 'http://www.mobanku.com', 0),
-(1055, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cssmoban_com.gif', 0, 0, 0, '网页模板,网站模板,DIV+CSS模板,企业网站模板下载', '模板之家', 'http://www.cssmoban.com', 0),
-(1054, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_rapidbbs_cn.jpg', 0, 0, 0, '中国PPT高手必收藏的网站', '锐普PPT', 'http://www.rapidbbs.cn', 0),
-(1053, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_51ppt_com_cn.jpg', 0, 0, 0, '精美PPT模板大全', '无忧PPT', 'http://www.51ppt.com.cn', 0),
-(1052, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_tretars_com.jpg', 0, 0, 0, '免费ppt模板下载_免费ppt模板_ppt模板', '逼格PPT', 'http://www.tretars.com', 0),
-(1051, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_ypppt_com.jpg', 0, 0, 0, '精美免费PPT模板下载', '优品PPT', 'http://www.ypppt.com', 0),
-(1050, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_pptstore_net.jpg', 0, 0, 0, '顶级原创PPT模板和KEYNOTE模板下载', 'PPTSTORE', 'http://www.pptstore.net', 0),
-(1049, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/muzi_info.jpg', 0, 0, 0, 'PPT教程，PPT素材，PPT模板', 'MUZI 木子PPT', 'http://muzi.info', 0),
-(1048, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_pptxok_com.gif', 0, 0, 0, '综合互联网PPT下载服务平台', '欧酷PPT', 'http://www.pptxok.com', 0),
-(1047, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_myanshi_com.gif', 0, 0, 0, 'PPT模板下载制作平台', '演示设计铺', 'http://www.myanshi.com', 0),
-(1046, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_islide_cc.gif', 0, 0, 0, '让PPT设计简单起来', 'iSlide', 'https://www.islide.cc/', 0),
-(1045, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/cn_forwallpaper_com.jpg', 0, 0, 0, '精美图片网站', 'Wallpaper', 'http://cn.forwallpaper.com', 0),
-(1044, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_123rf_com_cn.jpg', 0, 0, 0, '中国领先商业图片素材网', '123RF图库', 'http://www.123rf.com.cn', 0),
-(1043, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/eput_com.jpg', 0, 0, 0, '中国领先的高品质图片分享与售卖平台', 'Eput', 'http://eput.com', 0),
-(1042, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/500px_com.jpg', 0, 0, 0, '致力于摄影分享、发现、售卖', '500px', 'http://500px.com', 0),
-(1041, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_yestone_com.jpg', 0, 0, 0, '专业的版权视觉内容提供商', 'Yestone邑石网', 'http://www.yestone.com', 0),
-(1040, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/image_baidu_com.jpg', 0, 0, 0, '海量的高清美图', '百度图片', 'http://image.baidu.com', 0),
-(1039, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/pixabay_com.jpg', 0, 0, 0, '免费的高清图片', 'Pixabay', 'http://pixabay.com', 0),
-(1038, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_quanjing_com.jpg', 0, 0, 0, '中国最大的图片库和图片素材网站', '全景网', 'http://www.quanjing.com', 0),
-(1037, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_hellorf_com.jpg', 0, 0, 0, '正版图片,视频,音乐素材交易平台', '站酷海洛创意', 'http://www.hellorf.com', 0),
-(1036, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/cn_freeimages_com.jpg', 0, 0, 0, '超过 389690 张免费照片和图片', 'FreeImages.com', 'http://cn.freeimages.com', 0),
-(1035, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_vcg_com.jpg', 0, 0, 0, '中国领先的图片供应商', '视觉中国官网', 'http://www.vcg.com', 0),
-(1034, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/img_zhongsou_com.jpg', 0, 0, 0, '中文图片搜索', '中搜图片', 'http://img.zhongsou.com', 0),
-(1033, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_photophoto_cn.jpg', 0, 0, 0, '免费设计图库素材分享下载平台', '图行天下图库', 'http://www.photophoto.cn', 0),
-(1032, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/unsplash_com.jpg', 0, 0, 0, '免费的高品质图片素材', 'Unsplash', 'http://unsplash.com', 0),
-(1031, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_17ziti_com.png', 0, 0, 0, '最全的免费字体打包下载', '字体之家', 'http://www.17ziti.com', 0),
-(1030, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_qiuziti_com.png', 0, 0, 0, '识图找字/字体下载', '求字体', 'http://www.qiuziti.com', 0),
-(1029, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_akuziti_com.gif', 0, 0, 0, '字体转换器在线转换', '字体在线转换', 'http://www.akuziti.com', 0),
-(1028, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_zitikoudai_com.jpg', 0, 0, 0, '在线预览和下载中英文字体', '字体口袋', 'http://www.zitikoudai.com', 0),
-(1027, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/wytype_com.png', 0, 0, 0, '文悦科技', '文悦字形', 'http://wytype.com', 0),
-(1026, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_diyiziti_com.jpg', 0, 0, 0, '字体转换器在线转换', '第一字体网', 'http://www.diyiziti.com', 0),
-(1025, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_shufaziti_com.jpg', 0, 0, 0, '书法字典在线查询工具收集整理', '书法字体', 'http://www.shufaziti.com', 0),
-(1024, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/zh_fonts2u_com.jpg', 0, 0, 0, '提供大量的免费字体', 'Fonts2u.com', 'http://zh.fonts2u.com', 0),
-(1023, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/sicangziti_com.jpg', 0, 0, 0, '优质字体免费下载', '私藏字体', 'http://sicangziti.com', 0),
-(1022, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_youziku_com.jpg', 0, 0, 0, '全球第一中文web font（在线字体）', '有字库', 'http://www.youziku.com', 0),
-(1021, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_zhaozi_cn.jpg', 0, 0, 0, '中英文原创字体在线预览下载', '找字网', 'http://www.zhaozi.cn', 0),
-(1020, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_font5_com_cn.jpg', 0, 0, 0, '专业的免费字体下载网站', '字体量贩', 'http://www.font5.com.cn', 0),
-(1019, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/ztxz_org.png', 0, 0, 0, '设计师常用字体', '字体下载大全', 'http://ztxz.org', 0),
-(1018, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_easyicon_net.png', 0, 0, 0, '图标搜索下载', 'EASYICON', 'http://www.easyicon.net', 0),
-(1017, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/smallicons_net.jpg', 0, 0, 0, '图标集', 'SMALLICONS', 'http://smallicons.net', 0),
-(1016, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_flaticon_com.jpg', 0, 0, 0, '免费矢量图标', 'FLATICON', 'http://www.flaticon.com', 0),
-(1015, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/iosicongallery_com.png', 0, 0, 0, 'iOS图标库', 'iOS Icon Gallery', 'http://iosicongallery.com', 0),
-(1014, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/dryicons_com.jpg', 0, 0, 0, '图标和矢量图形', 'DryIcons.com', 'http://dryicons.com', 0),
-(1013, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/iconmonstr_com.jpg', 0, 0, 0, '免费下载一个项目的简单图标', 'iconmonstr', 'http://iconmonstr.com', 0),
-(1012, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/icomoon_io.jpg', 0, 0, 0, 'SVG字体，图标PNG，PDF生成器', 'IcoMoon App', 'http://icomoon.io/app', 0),
-(1011, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/thenounproject_com.jpg', 0, 0, 0, '项目图标管理Icons for Everything', 'Noun Project', 'http://thenounproject.com', 0),
-(1010, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_iconfinder_com.jpg', 0, 0, 0, '1275000 +免费图标', 'Iconfinder', 'http://www.iconfinder.com', 0),
-(1009, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/iconutopia_com.jpg', 0, 0, 0, '免费图标集', 'Icon Utopia', 'http://iconutopia.com', 0),
-(1008, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/app-icons_net.jpg', 0, 0, 0, '可爱的APP图标画廊网站', 'APP icons', 'http://app-icons.net', 0),
-(1007, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/flattyshadow_com.jpg', 0, 0, 0, '阴影的创造者,在线图像阴影创造', 'Flattyshadow', 'http://flattyshadow.com', 0),
-(1006, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_flaticon_com_cn.jpg', 0, 0, 0, '打造中国最好下载图标平台之一', '扁平图标', 'http://www.flaticon.com.cn', 0),
-(1005, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/ionicons_com.png', 0, 0, 0, '包含超过 430 个免费漂亮的程序图标。', 'Ionicons', 'http://ionicons.com', 0),
-(1004, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/icons8_com.jpg', 0, 0, 0, '有史以来最大的图标包', 'Icons8', 'http://icons8.com', 0),
-(1003, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/iconka_com.jpg', 0, 0, 0, '插画/动漫/图标设计/', 'Iconka.com', 'http://iconka.com', 0),
-(1002, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_iconfont_cn.jpg', 0, 0, 0, '阿里巴巴矢量图标库', 'Iconfont', 'http://www.iconfont.cn', 0),
-(1001, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_17sucai_com.png', 0, 0, 0, '一流的中国素材网站', '17素材网', 'http://www.17sucai.com', 0),
-(1000, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_sucai888_com.jpg', 0, 0, 0, '分享网页特效、界面素材', '素材吧', 'http://www.sucai888.com', 0),
-(999, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/cn_clipart_me.jpg', 0, 0, 0, '免费矢量和PSD图片', 'Clipart.me', 'http://cn.clipart.me', 0),
-(998, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_aiimg_com.jpg', 0, 0, 0, '免费提供资源的网站', '爱图', 'http://www.aiimg.com', 0),
-(997, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/niutuku_com.jpg', 0, 0, 0, '设计素材免费下载', '牛图库', 'http://niutuku.com', 0),
-(996, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_tooopen_com.jpg', 0, 0, 0, '免费和共享下载资源', '素材公社', 'http://www.tooopen.com', 0),
-(995, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_16sucai_com.jpg', 0, 0, 0, '海量免费网页素材', '16素材网', 'http://www.16sucai.com', 0),
-(994, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/momi8_com.jpg', 0, 0, 0, '网页背景图片素材免费下载', '末米吧', 'http://momi8.com', 0),
-(993, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_teapic_com.jpg', 0, 0, 0, '专业中国素材下载分享平台', '茶图素材网', 'http://www.teapic.com', 0),
-(992, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/psefan_com.jpg', 0, 0, 0, '精选设计师高逼格素材', 'PS饭团网', 'http://psefan.com', 0),
-(991, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_lanrentuku_com.jpg', 0, 0, 0, '专注于提供网页素材下载', '懒人图库', 'http://www.lanrentuku.com', 0),
-(990, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/woofeng_cn.jpg', 0, 0, 0, '收罗优质干货素材', '黄蜂网', 'http://woofeng.cn', 0),
-(989, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_zcool_com_cn.jpg', 0, 0, 0, '站酷免费素材下载', '站酷素材', 'http://www.zcool.com.cn/gfxs', 0),
-(988, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_daimg_com.jpg', 0, 0, 0, '优质的影楼素材和设计素材', '大图网', 'http://www.daimg.com', 0),
-(987, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/cn_vectorhq_com.jpg', 0, 0, 0, '免费矢量和PSD图片', 'VectorHQ.com', 'http://cn.vectorhq.com', 0),
-(986, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_58pic_com.jpg', 0, 0, 0, '免费设计素材下载', '千图网', 'http://www.58pic.com', 0),
-(985, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/data_xiguaji_com.png', 0, 0, 0, '公众号大数据服务商', '西瓜数据', 'http://data.xiguaji.com/', 0),
-(984, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_weizhishu_com.png', 0, 0, 0, '新媒体大数据领导者', '微指数', 'http://www.weizhishu.com/', 0),
-(983, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_gsdata_cn.png', 0, 0, 0, '中国新媒体大数据权威平台', '清博大数据', 'http://www.gsdata.cn/', 0),
-(982, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/zmt_yizhuan5_com.png', 0, 0, 0, '提供最全自媒体素材数据', '易撰', 'http://zmt.yizhuan5.com/', 0),
-(981, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/top_jd_com.gif', 0, 0, 0, '全品类排名信息实时发布', '京东排行榜', 'http://top.jd.com/', 0),
-(980, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_cbooo_cn.png', 0, 0, 0, '专注于票房数据', '中国票房', 'http://www.cbooo.cn/', 0),
-(979, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/top_sogou_com.jpg', 0, 0, 0, '时事热点，尽在搜狗热搜榜', '搜狗热搜榜', 'http://top.sogou.com/', 0),
-(978, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_qimai_cn.png', 0, 0, 0, '专业移动推广数据分析平台', '七麦数据', 'https://www.qimai.cn/', 0),
-(977, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_chandashi_com.png', 0, 0, 0, '关键词大数据分析平台', '蝉大师', 'https://www.chandashi.com/', 0),
-(976, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/top_baidu_com.jpg', 0, 0, 0, '权威的关键词排行榜与分类热点门户', '百度搜索风云榜', 'http://top.baidu.com', 0),
-(975, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/index_so_com.jpg', 0, 0, 0, '搜索大数据分享平台', '360趋势', 'http://index.so.com', 0),
-(974, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_umindex_com.jpg', 0, 0, 0, '全球领先的第三方全域大数据服务提供商', '友盟指数', 'http://www.umindex.com', 0),
-(973, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/index_youku_com.gif', 0, 0, 0, '网络视频收视数据分析平台', '网络视频指数', 'http://index.youku.com', 0),
-(972, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/top_taobao_com.gif', 0, 0, 0, '淘宝搜索排行榜，实时查看热门关键字', '淘宝搜索', 'http://top.taobao.com', 0),
-(971, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/index_baidu_com.jpg', 0, 0, 0, '以百度海量网民行为数据为基础的数据分享平台', '百度指数', 'http://index.baidu.com', 0),
-(970, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/tbi_tencent_com.gif', 0, 0, 0, '洞察用户和塑造品牌的权威平台', '腾讯浏览指数', 'http://tbi.tencent.com', 0),
-(969, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/research_antgroup_com--research.gif', 0, 0, 0, '居民网络消费指数', '网络消费指数', 'http://research.antgroup.com/research/consumeScale.htm', 0),
-(968, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/index_toutiao_com.jpg', 0, 0, 0, '今日头条一款数据公共服务产品', '头条指数', 'http://index.toutiao.com', 0),
-(967, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/top_taobao_com.gif', 0, 0, 0, '对商品性价比排行的一种导航', '淘宝排行榜', 'http://top.taobao.com', 0),
-(966, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/index_1688_com.jpg', 0, 0, 0, '最权威专业的行业价格、供应、采购趋势分析', '阿里指数', 'http://index.1688.com', 0),
-(965, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/data_weibo_com.gif', 0, 0, 0, '新浪微博搜索指数分析', '微博指数', 'http://data.weibo.com/index', 0),
-(964, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/datatang_com.jpg', 0, 0, 0, '国内首家大数据交易平台', '数据堂', 'http://datatang.com', 0),
-(963, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_analysys_cn.jpg', 0, 0, 0, '实时分析驱动用户资产成长', '易观', 'http://www.analysys.cn', 0),
-(962, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_itongji_cn.jpg', 0, 0, 0, '数据分析与数据挖掘从这开始', '中国统计网', 'http://www.itongji.cn', 0),
-(961, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_199it_com.gif', 0, 0, 0, '中文互联网数据研究资讯中心', '199IT互联网数据中心', 'http://www.199it.com', 0),
-(960, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/tongji_baidu_com--data.jpg', 0, 0, 0, '浏览器市场份额', '百度流量研究院', 'http://tongji.baidu.com/data/browser', 0),
-(959, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_stats_gov_cn.jpg', 0, 0, 0, '中华人民共和国国家统计局', '国家统计数据', 'http://www.stats.gov.cn/tjsj', 0),
-(958, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_cnidp_cn.gif', 0, 0, 0, '免费提供互联网统计数据', 'CNNIC 互联网数据平台', 'http://www.cnidp.cn', 0),
-(957, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_iresearch_cn.png', 0, 0, 0, '互联网数据资讯聚合平台', '艾瑞网', 'http://www.iresearch.cn', 0),
-(956, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_myfans_cc.gif', 0, 0, 0, '最大的微社区。公众号首选微信社区', '粉丝圈', 'https://www.myfans.cc/', 0),
-(955, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/mi_talkingdata_com.png', 0, 0, 0, '全球领先免费公开数据实时查询平台', 'TalkingData移动观象台', 'http://mi.talkingdata.com/', 0),
-(954, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_wecenter_com.gif', 0, 0, 0, '一款开源知识社区问答程序', 'WeCente', 'http://www.wecenter.com/', 0),
-(953, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_thinksns_com.gif', 0, 0, 0, '开源社交系统', 'ThinkSNS', 'http://www.thinksns.com/', 0),
-(952, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_whatsns_com.gif', 0, 0, 0, '全新开源语音内容付费问答系统', 'whatsns', 'https://www.whatsns.com/', 0),
-(951, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_opensns_cn.gif', 0, 0, 0, '开源社交建站系统', 'OpenSNS', 'http://www.opensns.cn/', 0),
-(950, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_tipask_com.gif', 0, 0, 0, '最强大的问答系统', 'Tipask', 'https://www.tipask.com/', 0),
-(949, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_uuask_cn.gif', 0, 0, 0, '优优问答程序系统', 'UUASK', 'http://www.uuask.cn/', 0),
-(948, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_jinhusns_com.gif', 0, 0, 0, '最强大的SNS社区软件', '近乎', 'http://www.jinhusns.com/', 0),
-(947, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_thinksaas_cn.gif', 0, 0, 0, '轻量级的php开源社区系统', 'ThinkSAAS', 'https://www.thinksaas.cn/', 0),
-(946, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_wecenter_com.gif', 0, 0, 0, '一款开源知识社区问答程序', 'WeCente', 'http://www.wecenter.com/', 0),
-(945, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_thinksns_com.gif', 0, 0, 0, '开源社交系统', 'ThinkSNS', 'http://www.thinksns.com/', 0),
-(944, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_whatsns_com.gif', 0, 0, 0, '全新开源语音内容付费问答系统', 'whatsns', 'https://www.whatsns.com/', 0),
-(943, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_opensns_cn.gif', 0, 0, 0, '开源社交建站系统', 'OpenSNS', 'http://www.opensns.cn/', 0),
-(942, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_tipask_com.gif', 0, 0, 0, '最强大的问答系统', 'Tipask', 'https://www.tipask.com/', 0),
-(941, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_uuask_cn.gif', 0, 0, 0, '优优问答程序系统', 'UUASK', 'http://www.uuask.cn/', 0),
-(940, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_biweb_cn.jpg', 0, 0, 0, '开源WEBAPP手机网站系统', 'BIWEB', 'http://www.biweb.cn', 0),
-(939, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_zblogcn_com.jpg', 0, 0, 0, 'PHP版本和ASP版本的博客程序', 'Z-Blog', 'http://www.zblogcn.com', 0),
-(938, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_ecshop_com.jpg', 0, 0, 0, '免费开源网店系统', 'ECSHO', 'http://www.ecshop.com', 0),
-(937, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_discuz_net.jpg', 0, 0, 0, '一个以社区为基础的专业建站平台', 'Discuz', 'http://www.discuz.net', 0),
-(936, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_phpwind_net.jpg', 0, 0, 0, '通用型建站软件', 'PHPWind', 'http://www.phpwind.net', 0),
-(935, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_ecisp_cn.jpg', 0, 0, 0, '企业网站管理系统PHP', '易思ESPCMS', 'http://www.ecisp.cn', 0),
-(934, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_dedecms_com.jpg', 0, 0, 0, '国内开源CMS的领先品牌', '织梦CMS', 'http://www.dedecms.com', 0),
-(933, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_phpcms_cn.jpg', 0, 0, 0, '国内主流CMS系统之一', 'phpcms', 'http://www.phpcms.cn', 0),
-(932, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/kaiyuan_hudong_com.jpg', 0, 0, 0, '一家全球领先的社会化知识媒体平台', 'HDwiki', 'http://kaiyuan.hudong.com', 0),
-(931, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/open_114la_com.jpg', 0, 0, 0, '智能的网址导航建站系统', '114开源导航', 'http://open.114la.com', 0),
-(930, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_phome_net.jpg', 0, 0, 0, '超高安全、超高稳定的开源CMS系统', '帝国CMS', 'http://www.phome.net', 0),
-(929, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_wopus_org.jpg', 0, 0, 0, '最流行的一款PHP+Mysql类博客程序', 'WordPress', 'http://www.wopus.org', 0),
-(928, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_metinfo_cn.jpg', 0, 0, 0, '最适合企业网站建设的cms系统', '米拓', 'http://www.metinfo.cn', 0),
-(927, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/gohugo_io.png', 0, 0, 0, '世界上最快的框架来构建网站', 'HUGO', 'https://gohugo.io/', 0),
-(926, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/typecho_org.gif', 0, 0, 0, '轻量级开源博客程序', 'Typecho', 'http://typecho.org', 0),
-(925, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_tpt360_com.gif', 0, 0, 0, '专注模块化网站内容管理系统开发', 'TPTCMS', 'http://www.tpt360.com', 0),
-(924, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_mipcms_com.gif', 0, 0, 0, '基于百度MIP移动加速器SEO优化后的网站系统', 'MIPCMS', 'http://www.mipcms.com', 0),
-(923, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/hexo_io.png', 0, 0, 0, '一个快速、简单和强大的博客框架', 'Hexo', 'https://hexo.io/', 0),
-(922, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_phpok_com.png', 0, 0, 0, '专业的企业网站建设系统', 'PHPOK', 'https://www.phpok.com/', 0),
-(921, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_siteserver_cn.png', 0, 0, 0, '企业级开源CMS系统', 'SiteServer CMS', 'https://www.siteserver.cn/', 0),
-(920, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/smallpdf_com.gif', 0, 0, 0, '免费PDF转换工具', 'Smallpdf', 'http://smallpdf.com/cn', 0),
-(919, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/app_xunjiepdf_com.png', 0, 0, 0, '文档在线转换', '迅捷在线转换', 'http://app.xunjiepdf.com/', 0),
-(918, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_pdf365_cn.png', 0, 0, 0, 'PDF在线转换处理平台', 'PDF365', 'http://www.pdf365.cn/', 0),
-(917, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/cli_im.gif', 0, 0, 0, '在线生成二维码', '草料二维码', 'http://cli.im', 0),
-(916, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_imayan_net.gif', 0, 0, 0, '国内首家开创二维码DIY功能的平台', '码眼无界', 'http://www.imayan.net', 0),
-(915, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_9thws_com.png', 0, 0, 0, '艺术二维码设计', '第九工场', 'http://www.9thws.com/', 0),
-(914, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_wxeditor_com.jpg', 0, 0, 0, '文章排版神器', '易点微信编辑器', 'http://www.wxeditor.com', 0),
-(913, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/bj_96weixin_com.png', 0, 0, 0, '提供手机预览功能', '96微信编辑器', 'http://bj.96weixin.com', 0),
-(912, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_xmyeditor_com.png', 0, 0, 0, '微信在线排版小助手', '小蚂蚁微信编辑', 'http://www.xmyeditor.com', 0),
-(911, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_e7wei_cn.gif', 0, 0, 0, '一站式微信营销平台', '易企微', 'http://www.e7wei.cn', 0),
-(910, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/http:.png', 0, 0, 0, '简介易用微信排版工具', '爱美编', 'http://http://www.imeibian.com/main.html', 0),
-(909, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/http:.png', 0, 0, 0, '图文排版简单易用', '乐推微-Editor', 'http://http://tui.younle.com/Home/Index/wemdiaEdit.shtml', 0),
-(908, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/wx_bzrw_net.gif', 0, 0, 0, '线排版工具', '微信排版工具', 'http://wx.bzrw.net', 0),
-(907, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/paiban_xmt_cn.png', 0, 0, 0, '排版效率高、界面简洁', '新媒体排版', 'http://paiban.xmt.cn', 0),
-(906, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_135editor_com.png', 0, 0, 0, '简洁的图文排版网站', '135编辑器', 'http://www.135editor.com', 0),
-(905, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/bj_91join_com.jpg', 0, 0, 0, '免费提供美化微信图文功能', '91微信编辑器', 'http://bj.91join.com', 0),
-(904, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_videaba_com.jpg', 0, 0, 0, '免费在线微信公众平台图文排版工具', '微助点', 'http://www.videaba.com', 0),
-(903, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/bj_weixin005_com.jpg', 0, 0, 0, '完全免费的微信编辑器', '005编辑器', 'http://bj.weixin005.com', 0),
-(902, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_17bjq_com.jpg', 0, 0, 0, '免费、简洁、易用的编辑器', '17编辑器', 'http://www.17bjq.com', 0),
-(901, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/edit_newrank_cn.gif', 0, 0, 0, '全中国最好用的微信编辑器', '新榜编辑器', 'http://edit.newrank.cn', 0),
-(900, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/xiumi_us.png', 0, 0, 0, '原创模板素材，精选风格排版', '秀米', 'https://xiumi.us/', 0),
-(899, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_biaonimeia_com.jpg', 0, 0, 0, 'UI自动标注工具，一键生成iOS、android、网页标注神器！', '标你妹啊', 'http://www.biaonimeia.com', 0),
-(898, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_getmarkman_com.jpg', 0, 0, 0, '高效的设计稿标注、测量工具', '马克鳗', 'http://www.getmarkman.com', 0),
-(897, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/qietu_net.jpg', 0, 0, 0, '要切图就上切图网', '切图网', 'http://qietu.net', 0),
-(896, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_fancynode_com_cn.png', 0, 0, 0, '像素大厨，标注切图', 'PxCook', 'http://www.fancynode.com.cn/pxcook', 0),
-(895, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/tool_c7sky_com.gif', 0, 0, 0, '网页设计常用色彩搭配表 - 配色表 | 小影的工具箱', '配色表', 'http://tool.c7sky.com/webcolor', 0),
-(894, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/color_adobe_com.gif', 0, 0, 0, 'Aobobe专业配色工具', 'Adobe Color CC', 'http://color.adobe.com', 0),
-(893, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/color_uisdc_com.gif', 0, 0, 0, '实用网页配色工具', '日本传统色', 'http://color.uisdc.com/jp', 0),
-(892, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_peise_net.gif', 0, 0, 0, '致力色彩搭配方案的交流与学习', '配色网', 'http://www.peise.net', 0),
-(891, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_colordic_org.gif', 0, 0, 0, '原色大辞典', '原色大辞典', 'http://www.colordic.org', 0),
-(890, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_colordic_org.gif', 0, 0, 0, '日本传统色', '日本和色大辞典', 'http://www.colordic.org/w', 0),
-(889, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/color_uisdc_com.gif', 0, 0, 0, '中国传统色彩', '中国传统色彩', 'http://color.uisdc.com', 0),
-(888, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_seowhy_com.jpg', 0, 0, 0, '从SEO到互联网营销的在线视频课程', '搜外网', 'http://www.seowhy.com', 0),
-(887, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_ourseo_net.gif', 0, 0, 0, '关注搜索、站长、创业、运营的SEO门', '众优网', 'http://www.ourseo.net', 0),
-(886, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_seo_cn.jpg', 0, 0, 0, 'SEO培训入门教程', 'SEO.cn', 'http://www.seo.cn', 0),
-(885, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/bbs_moonseo_cn.jpg', 0, 0, 0, '互联网最大的搜索引擎优化研究中心', 'SEO研究中心', 'http://bbs.moonseo.cn', 0),
-(884, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_xueseo_com.jpg', 0, 0, 0, 'SEO优化网', '学SEO', 'http://www.xueseo.com', 0),
-(883, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_weimob_net.gif', 0, 0, 0, '智能商业服务提供商', '微盟', 'http://www.weimob.net/', 0),
-(882, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_yidao_info.gif', 0, 0, 0, '提供自媒体营销服务方案', '一道自媒体', 'http://www.yidao.info/', 0),
-(881, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_weiboyi_com.png', 0, 0, 0, '短视频智能营销平台', '微播易', 'http://www.weiboyi.com/', 0),
-(880, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_chuanboyi_com.gif', 0, 0, 0, '广告投放平台', '传播易', 'https://www.chuanboyi.com/', 0),
-(879, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_myunmei_com.jpg', 0, 0, 0, '海量一手媒体资源交易平台', '云自媒', 'http://www.myunmei.com/', 0),
-(878, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/xmt_cn.png', 0, 0, 0, '运营从未如此性感', '新媒体管家', 'https://xmt.cn/', 0),
-(877, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_ejianmedia_com.gif', 0, 0, 0, '新媒体一键发布运营平台', '简媒', 'http://www.ejianmedia.com/', 0),
-(876, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_wxb_com.png', 0, 0, 0, '自媒体公众号助手', '微小宝', 'http://www.wxb.com/', 0),
-(875, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_xiguaji_com.png', 0, 0, 0, '让公众号运营更简单', '西瓜助手', 'http://www.xiguaji.com/', 0),
-(874, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/drip_im.png', 0, 0, 0, '轻巧、智能的微信公众号管理平台', '水滴微信平台', 'https://drip.im/', 0),
-(873, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/yiban_io.png', 0, 0, 0, '简单好用的公众号效率工具', '壹伴', 'https://yiban.io/', 0),
-(872, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_umeng_com.jpg', 0, 0, 0, '第三方全域大数据服务提供商', '友盟统计', 'http://www.umeng.com', 0),
-(871, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/tongji_baidu_com.jpg', 0, 0, 0, '最大的中文网站分析平台', '百度统计', 'http://tongji.baidu.com', 0),
-(870, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_51_la.gif', 0, 0, 0, '免费的、完善的、人性化的网站流量统计分析', '51统计', 'http://www.51.la', 0),
-(869, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_google_cn--analytics.gif', 0, 0, 0, '网站分析和报告', 'Google Analytics', 'http://www.google.cn/analytics/', 0),
-(868, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_yigao_com.jpg', 0, 0, 0, '行业内最具实力的网络营销', '亿告', 'http://www.yigao.com', 0),
-(867, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/union_sogou_com.jpg', 0, 0, 0, '致力于通过搜索引擎入口和网盟广告流量资源整合的方式', '搜狗联盟', 'http://union.sogou.com', 0),
-(866, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/union_163_com.jpg', 0, 0, 0, '专注于网易游戏及其他产品的网盟推广', '网易联盟', 'http://union.163.com', 0),
-(865, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_chanet_com_cn.gif', 0, 0, 0, '报酬型网络广告平台', 'CHANet成果网', 'http://www.chanet.com.cn', 0),
-(864, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/front_yiqifa_com.jpg', 0, 0, 0, '中国电子商务效果营销广告联盟', '亿起发', 'http://front.yiqifa.com', 0),
-(863, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_yinxiangma_com.jpg', 0, 0, 0, '国内第一家验证码广告平台', '印象码', 'http://www.yinxiangma.com', 0),
-(862, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/u_ctrip_com.jpg', 0, 0, 0, '基于携程旅行网自主推出的分销站点', '携程网站联盟', 'http://u.ctrip.com', 0),
-(861, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_alimama_com.gif', 0, 0, 0, '帮助客户实现高效率的营销推广', '阿里妈妈', 'http://www.alimama.com', 0),
-(860, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_domob_cn.jpg', 0, 0, 0, '中国第一智能手机广告平台', '多盟', 'http://www.domob.cn', 0),
-(859, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/union_114la_com.jpg', 0, 0, 0, '向会员提供互联网流量变现业务服务', '114啦网站联盟', 'http://union.114la.com', 0),
-(858, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_duomai_com.jpg', 0, 0, 0, '提供专业、共赢的网络营销服务的平台', '多麦CPS广告联盟', 'http://www.duomai.com', 0),
-(857, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/union_360_cn.jpg', 0, 0, 0, '创造巨大的用户流量和商业价值', '360联盟', 'http://union.360.cn', 0),
-(856, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/union_baidu_com.jpg', 0, 0, 0, '最具竞争力的互联网流量变现专业服务', '百度联盟', 'http://union.baidu.com', 0),
-(855, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/offer-wow_com.gif', 0, 0, 0, '目前国外最火爆、效果最好的推广形式。', 'offerWoW', 'http://offer-wow.com', 0),
-(854, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_dianru_com.gif', 0, 0, 0, '中国移动广告大数据营销平台', '点入移动', 'http://www.dianru.com', 0),
-(853, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_adwo_com.png', 0, 0, 0, '中国先进的智能移动广告平台', '安沃传媒', 'http://www.adwo.com', 0),
-(852, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_miidi_net.gif', 0, 0, 0, '米迪手机广告平台', '米迪', 'http://www.miidi.net', 0),
-(851, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_youmi_net.png', 0, 0, 0, '技术效果卓越的专业移动广告平台', '有米广告', 'http://www.youmi.net', 0),
-(850, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/e_qq_com.png', 0, 0, 0, '腾讯公司核心广告业务', '腾讯社交广告', 'http://e.qq.com', 0),
-(849, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/media_jd_com.png', 0, 0, 0, '面向全网的广告交易平台', '京东联盟', 'http://media.jd.com', 0),
-(848, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_mbalib_com.gif', 0, 0, 0, '第一个在线创建经济管理百科平台。', 'MBA智库', 'http://www.mbalib.com', 0),
-(847, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/fankui_help_sogou_com.jpg', 0, 0, 0, '搜狗搜索收录提交', '搜狗搜索收录', 'http://fankui.help.sogou.com', 0),
-(846, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/zhanzhang_baidu_com--linksubmit.jpg', 0, 0, 0, '优化PC和移动搜索收录', '百度链接提交', 'http://zhanzhang.baidu.com/linksubmit/url', 0),
-(845, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_bing_com--toolbox.jpg', 0, 0, 0, '将您的网站提交到必应Bing', 'Bing收录', 'http://www.bing.com/toolbox/submit-site-url', 0),
-(844, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/url_114la_com.jpg', 0, 0, 0, '114啦网址导航收录', '114啦收录', 'http://url.114la.com', 0),
-(843, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_duba_com.jpg', 0, 0, 0, '毒霸网址大全 - 最安全实用的网址导航', '毒霸网址收录', 'http://www.duba.com/apply', 0),
-(842, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/submit_hao123_com--static--auditSys.jpg', 0, 0, 0, 'hao123网址之家--网站提交', 'hao123收录', 'http://submit.hao123.com/static/auditSys/wztj.htm', 0),
-(841, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/123_sogou_com--about.jpg', 0, 0, 0, '收录申请 - 搜狗网址导航', '搜狗导航收录', 'http://123.sogou.com/about/shoulu.html', 0),
-(840, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/info_so_360_cn.gif', 0, 0, 0, '提交网站到360搜索', '360搜索网站收录', 'http://info.so.360.cn/site_submit.html', 0),
-(839, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_yunyingxuetang_com.gif', 0, 0, 0, '互联网产品运营知识学习分享网站', '运营学堂', 'http://www.yunyingxuetang.com/', 0),
-(838, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_iyunying_org.png', 0, 0, 0, '网站运营人员学习交流', '爱运营', 'http://www.iyunying.org/', 0),
-(837, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_91yunying_com.gif', 0, 0, 0, '分享互联网产品策划', '91运营网', 'http://www.91yunying.com/', 0),
-(836, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_niaogebiji_com.png', 0, 0, 0, '分享移动互联网运营推广干货', '鸟哥笔记', 'http://www.niaogebiji.com/', 0),
-(835, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_yymiao_cn.png', 0, 0, 0, '网络运营人学习交流乐园', '运营喵', 'https://www.yymiao.cn/', 0),
-(834, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/getuikit_net.jpg', 0, 0, 0, '轻量级、模块化的前端框架', 'UIkit', 'http://getuikit.net', 0),
-(833, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_bootcss_com.png', 0, 0, 0, '前端开发的开源工具包', 'Bootstrap中文网', 'http://www.bootcss.com', 0),
-(832, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/amazeui_org.jpg', 0, 0, 0, '移动优先的跨屏前端框架', 'Amaze UI', 'http://amazeui.org', 0),
-(831, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_layui_com.gif', 0, 0, 0, '经典模块化前端UI框架', 'layui', 'http://www.layui.com/', 0),
-(830, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/semantic-ui_com.png', 0, 0, 0, '全语义化前端界面开发框架', 'Semantic UI', 'https://semantic-ui.com/', 0),
-(829, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/foundation_zurb_com.gif', 0, 0, 0, '强大灵活易用的前端框架', 'Foundation', 'https://foundation.zurb.com/', 0),
-(828, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/zui_sexy.gif', 0, 0, 0, '开源HTML5跨屏框架', 'ZUI', 'http://zui.sexy/', 0),
-(827, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_bootcss_com--p--flat-ui.png', 0, 0, 0, '免费的WEB界面工具组件库', 'Flat UI', 'http://www.bootcss.com/p/flat-ui/', 0),
-(826, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_mdui_org.gif', 0, 0, 0, '用于开发 Material Design 网页的前端框架', 'MDUI', 'https://www.mdui.org/', 0),
-(825, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/qmuiteam_com--web--page.gif', 0, 0, 0, '快速产生项目 UI 的前端框架', 'QMUI', 'http://qmuiteam.com/web/page/index.html', 0),
-(824, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_mdui_org.gif', 0, 0, 0, '网页的前端框架', 'MDUI', 'https://www.mdui.org/', 0),
-(823, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/sui_taobao_org--sui--docs.gif', 0, 0, 0, '简单易用、功能强大的UI库', 'SUI', 'http://sui.taobao.org/sui/docs/', 0),
-(822, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_iviewui_com.gif', 0, 0, 0, '一套基于 Vue.js 的高质量UI 组件库', 'iView', 'https://www.iviewui.com/', 0),
-(821, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/weui_io.gif', 0, 0, 0, '微信原生视觉体验一致的基础样式库', 'WeUI', 'https://weui.io/', 0),
-(820, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/yo_doyoe_com--doc.gif', 0, 0, 0, '专注于移动开发的UI框架', 'Yo', 'http://yo.doyoe.com/doc/index.html', 0),
-(819, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/frozenui_github_io.gif', 0, 0, 0, '专注于移动web的UI框架，基于腾讯手机QQ规范.', 'FrozenUI', 'http://frozenui.github.io/', 0),
-(818, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/m_sui_taobao_org.gif', 0, 0, 0, '轻量，小巧且精美的UI库', 'SUI', 'http://m.sui.taobao.org/', 0),
-(817, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/vycool_com--Jingle.gif', 0, 0, 0, '用来开发移动端的html5应用框架', 'Jingle', 'http://vycool.com/Jingle/', 0),
-(816, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/dev_dcloud_net_cn--mui.gif', 0, 0, 0, '最接近原生APP体验的高性能前端框架', 'MUI', 'http://dev.dcloud.net.cn/mui/', 0),
-(815, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_auicss_com.png', 0, 0, 0, '靠谱的移动前端框架', 'AUI', 'http://www.auicss.com/', 0),
-(814, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/ionicframework_com.gif', 0, 0, 0, '面向Web开发人员的应用程序平台', 'ionicframework', 'https://ionicframework.com/', 0),
-(813, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/purecss_io.gif', 0, 0, 0, '雅虎开发的响应式css前端框架', 'Pure', 'https://purecss.io/', 0),
-(812, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/cdn_code_baidu_com.gif', 0, 0, 0, '百度静态资源公共库', '百度CDN', 'http://cdn.code.baidu.com/', 0),
-(811, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_bootcdn_cn.gif', 0, 0, 0, '中文网开源项目免费 CDN 加速服务', 'BootCDN', 'https://www.bootcdn.cn/', 0),
-(810, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/microjs_com.gif', 0, 0, 0, '神奇迷你的微型框架和微型库', 'Microjs', 'http://microjs.com/', 0),
-(809, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/cdn_baomitu_com.gif', 0, 0, 0, '首个支持 HTTP/2 的 CDN 服务', '360前端CDN', 'https://cdn.baomitu.com/', 0);
-INSERT INTO `website` (`website_id`, `create_time`, `icon`, `is_recommend`, `is_touch`, `ordered`, `summary`, `title`, `url`, `visits`) VALUES
-(808, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_javascripting_com.png', 0, 0, 0, 'JavaScript静态资源库', 'JavaScripting', 'http://www.javascripting.com/', 0),
-(807, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/npm_taobao_org.png', 0, 0, 0, '淘宝开放的NPM资源库', '淘宝NPM', 'https://npm.taobao.org/', 0),
-(806, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_htmleaf_com.jpg', 0, 0, 0, '最全面的网页开发素材', 'jQuery之家', 'http://www.htmleaf.com', 0),
-(805, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_ui3g_com.jpg', 0, 0, 0, '最全jquery插件下载', '优设记', 'http://www.ui3g.com', 0),
-(804, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_jq22_com.jpg', 0, 0, 0, '收集最全最新最好的jQuery插件', 'jQuery插件库', 'http://www.jq22.com', 0),
-(803, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/github_com--AlloyTeam.gif', 0, 0, 0, '模块化、非侵入式Web前端框架', 'JX(腾讯js库)', 'http://github.com/AlloyTeam/JX', 0),
-(802, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/github_com--BaiduFE.gif', 0, 0, 0, '百度JS库，简单可依赖的Javascript库，适合开发互联网产品。', 'Tangram', 'http://github.com/BaiduFE/Tangram-base', 0),
-(801, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/nej_netease_com.png', 0, 0, 0, '网易前端JS库', 'NEJ（网易）', 'http://nej.netease.com', 0),
-(800, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/dynamicsjs_com.png', 0, 0, 0, 'Dynamics.js动画库', 'Dynamics.js', 'http://dynamicsjs.com', 0),
-(799, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/leaverou_github_io--animatable.gif', 0, 0, 0, '动画效果网址（英文）', 'animatable', 'http://leaverou.github.io/animatable/#', 0),
-(798, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/anicollection_github_io--#.gif', 0, 0, 0, 'AniCollection动画库', 'AniCollection动画库', 'http://anicollection.github.io/#/', 0),
-(797, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/www_apjs_net.jpg', 0, 0, 0, '克服HTML在构建应用上的不足', 'AngularJS', 'http://www.apjs.net', 0),
-(796, '2019-09-08 18:13:17', 'http://47.106.84.166:3302/upload/jslite_io.gif', 0, 0, 0, '兼容jQuery的API简约的JavaScript库', 'JSLite', 'http://jslite.io', 0),
-(795, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/seajs_org.jpg', 0, 0, 0, '简单、极致的模块化开发体验', 'Sea.js', 'http://seajs.org/docs', 0),
-(794, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/css3lib_alloyteam_com.gif', 0, 0, 0, 'CSS3 UI 库', 'CSS3 UI Lib', 'http://css3lib.alloyteam.com', 0),
-(793, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_jeasyui_net.png', 0, 0, 0, '一组基于jQuery的UI插件集合', 'EasyUI', 'http://www.jeasyui.net', 0),
-(792, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_awesomes_cn.jpg', 0, 0, 0, '高质量前端库、框架和插件', 'Awesomes', 'http://www.awesomes.cn', 0),
-(791, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_swiper_com_cn.png', 0, 0, 0, '应用较广泛的移动端网页触摸内容滑动js插件', 'Swiper中文', 'http://www.swiper.com.cn', 0),
-(790, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_sharejs_com.jpg', 0, 0, 0, '免费的JS资源分享网站', 'JS脚本', 'http://www.sharejs.com', 0),
-(789, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_jq-school_com.jpg', 0, 0, 0, '国内最大的jquery原创分享社区', 'jQueryschool', 'http://www.jq-school.com', 0),
-(788, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/runjs_cn.jpg', 0, 0, 0, '在线编辑、交流JavaScript 代码', 'RunJS', 'http://runjs.cn', 0),
-(787, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_html5cn_org.jpg', 0, 0, 0, '中国最大的HTML5中文门户', 'HTML5中国', 'http://www.html5cn.org', 0),
-(786, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_h5course_com.jpg', 0, 0, 0, '提供关于HTML5的学习资料和技术知识', 'HTML5学堂', 'http://www.h5course.com', 0),
-(785, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_divcss5_com.jpg', 0, 0, 0, 'DIV+CSS布局教程学习与分享平台', 'DIVCSS5', 'http://www.divcss5.com', 0),
-(784, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/devdocs_io.gif', 0, 0, 0, '一站式程序员文档', 'DevDocs', 'http://devdocs.io', 0),
-(783, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_zybuluo_com--codeep--note.gif', 0, 0, 0, 'Cmd Markdown 编辑阅读器', 'Markdown', 'http://www.zybuluo.com/codeep/note/163962', 0),
-(782, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/isux_tencent_com.jpg', 0, 0, 0, 'css3动画手册及动画工具', '动画手册[Guide]', 'http://isux.tencent.com/css3', 0),
-(781, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_css88_com--doc.jpg', 0, 0, 0, 'Css 预编译器', 'Less.js 中文文档', 'http://www.css88.com/doc/less', 0),
-(780, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_css88_com--doc--jsdoc.gif', 0, 0, 0, '根据js注释信息,生成js应用程序或库、模块的API文档工具', 'JSDoc', 'http://www.css88.com/doc/jsdoc/index.html', 0),
-(779, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_css88_com--doc.jpg', 0, 0, 0, 'CSS 的扩展', 'Sass中文文档', 'http://www.css88.com/doc/sass', 0),
-(778, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_css88_com--doc.jpg', 0, 0, 0, '轻量级的现代高级浏览器的JavaScript库', 'Zepto.js', 'http://www.css88.com/doc/zeptojs_api', 0),
-(777, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_css88_com.jpg', 0, 0, 0, 'jQuery UI API中文文档', 'jQuery UI API', 'http://www.css88.com/jquery-ui-api', 0),
-(776, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_css88_com--book.gif', 0, 0, 0, '最新最全的CSS参考手册', 'CSS3参考手册', 'http://www.css88.com/book/css', 0),
-(775, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/hemin_cn.gif', 0, 0, 0, 'jQuery API 中文手册', 'jquery 在线手册', 'http://hemin.cn/jq', 0),
-(774, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_css88_com.jpg', 0, 0, 0, '高效、精简、功能丰富的 JavaScript 工具库', 'jQuery中文', 'http://www.css88.com/jqapi-1.9', 0),
-(773, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/api_jquery_com.jpg', 0, 0, 0, 'jQuery API 英文参考手册', 'jQuery API', 'http://api.jquery.com', 0),
-(772, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_jb51_net--onlineread.gif', 0, 0, 0, 'HTML特殊字符编码对照表汇总大全', 'HTML特殊字符编码对照表', 'http://www.jb51.net/onlineread/htmlchar.htm', 0),
-(771, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/wf_uisdc_com.jpg', 0, 0, 0, '网站开发基础知识，最佳实践手册', 'WEB开发基础', 'http://wf.uisdc.com', 0),
-(770, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_w3cplus_com.jpg', 0, 0, 0, '提供大量最新前端技术文章', 'w3cplus', 'http://www.w3cplus.com', 0),
-(769, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_w3ctech_com.jpg', 0, 0, 0, '最大的前端技术社区', 'w3ctech', 'http://www.w3ctech.com', 0),
-(768, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_daqianduan_com.jpg', 0, 0, 0, '关注前端开发的独立博客', '大前端', 'http://www.daqianduan.com', 0),
-(767, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_58img_com.jpg', 0, 0, 0, '打造国内最好、最专业的前端资源站', '前端资源网', 'http://www.58img.com', 0),
-(766, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_imweb_io.jpg', 0, 0, 0, 'Web前端 腾讯IMWeb 团队社区', '腾讯IMWeb', 'http://www.imweb.io', 0),
-(765, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_html-js_com.jpg', 0, 0, 0, '专业的前端技术内容社区', '前端乱炖', 'http://www.html-js.com', 0),
-(764, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_css88_com.jpg', 0, 0, 0, '专注前端开发，关注用户体验', 'WEB前端开发', 'http://www.css88.com', 0),
-(763, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_yyyweb_com.jpg', 0, 0, 0, '专注 Web 开发技术', '前端里', 'http://www.yyyweb.com', 0),
-(762, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_w3cmark_com.jpg', 0, 0, 0, '专注前端开发资源整合和学习网站', 'w3cmark', 'http://www.w3cmark.com', 0),
-(761, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_qdfuns_com.jpg', 0, 0, 0, '人气爆棚的知识分享专业社区', '前端网 QDFuns', 'http://www.qdfuns.com', 0),
-(760, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_web-tinker_com.gif', 0, 0, 0, '最新 Web 技术 + 原创文章 + 每日更新', 'Web技术研究所', 'http://www.web-tinker.com', 0),
-(759, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/caibaojian_com.gif', 0, 0, 0, '注于前端开发', '前端开发博客', 'http://caibaojian.com/', 0),
-(758, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_wufangbo_com.jpg', 0, 0, 0, '专业编程开发技术网站', '编程开发', 'http://www.wufangbo.com', 0),
-(757, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_webppd_com.jpg', 0, 0, 0, 'WebPPD产品原型设计', 'WebPPD', 'http://www.webppd.com', 0),
-(756, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_yuanxingku_com.jpg', 0, 0, 0, '高保真原型案例实战', '原型库', 'http://www.yuanxingku.com', 0),
-(755, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_axure_com_cn.jpg', 0, 0, 0, 'Axure使用者必上的网站', 'Axure中文网', 'http://www.axure.com.cn', 0),
-(754, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_pmdaniu_com.jpg', 0, 0, 0, 'PM工具+社区的平台', '产品大牛', 'http://www.pmdaniu.com', 0),
-(753, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/xiaopiu_com--i.png', 0, 0, 0, '优雅高效的在线APP原型工具', 'xiaopiu', 'https://xiaopiu.com/i/kUyQdZ', 0),
-(752, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/pro_modao_cc.jpg', 0, 0, 0, '强大易用的原型设计与协同工具', '墨刀', 'https://pro.modao.cc/?code', 0),
-(751, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_axureux_com.png', 0, 0, 0, 'Axure高质量原创模板及元件库', 'AxureUX', 'http://www.axureux.com/', 0),
-(750, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/idoc_mockplus_cn.gif', 0, 0, 0, '更快更简单的产品设计协同软件', '摹客iDoc', 'https://idoc.mockplus.cn/', 0),
-(749, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_pmtoo_com.jpg', 0, 0, 0, '产品经理门户/产品第一媒体', 'Pmtoo', 'http://www.pmtoo.com', 0),
-(748, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/pmcaff_com.png', 0, 0, 0, '国内最早的产品经理社区', 'PMCAFF', 'http://pmcaff.com', 0),
-(747, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_woshipm_com.jpg', 0, 0, 0, '产品爱好者学习交流平台', '人人都是PM', 'http://www.woshipm.com', 0),
-(746, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_chanpin100_com.png', 0, 0, 0, '最真实的PM学习网站', '产品壹佰', 'http://www.chanpin100.com', 0),
-(745, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_masterchat_cn.png', 0, 0, 0, '互联网产品经理门户网站', '产品邦', 'http://www.masterchat.cn', 0),
-(744, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_imspm_com.jpg', 0, 0, 0, '互联网产品工作者和创业者社区', '超级产品经理', 'http://www.imspm.com', 0),
-(743, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_pmyes_com.gif', 0, 0, 0, '互联网产品经理的交流社区', 'PMYES', 'https://www.pmyes.com/', 0),
-(742, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_ipmtalk_com.png', 0, 0, 0, '产品经理爱好者社区', 'PMTalk', 'http://www.ipmtalk.com/', 0),
-(741, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_ziticq_com.jpg', 0, 0, 0, '首个字体品牌设计师交流网', '字体传奇网', 'http://www.ziticq.com', 0),
-(740, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_missku_com.png', 0, 0, 0, '设计，素材原创平台', '思酷', 'http://www.missku.com', 0),
-(739, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/ziti_cndesign_com.png', 0, 0, 0, '字体设计及欣赏交流平台', '中国字体设计网', 'http://ziti.cndesign.com', 0),
-(738, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_logosc_cn.jpg', 0, 0, 0, '国内最早最全面的专业LOGO资源标志设计', 'LOGO收藏家', 'http://www.logosc.cn', 0),
-(737, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/logofury_com.jpg', 0, 0, 0, '国外LOGO资源欣赏', 'LogoFury', 'http://logofury.com', 0),
-(736, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/logofaves_com.jpg', 0, 0, 0, '国外LOGO设计欣赏', 'Logo Faves', 'http://logofaves.com', 0),
-(735, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/logospire_com.jpg', 0, 0, 0, '一个标志灵感画廊', 'Logospire', 'http://logospire.com', 0),
-(734, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/thedesigninspiration_com.jpg', 0, 0, 0, '国外LOGO设计网站', 'Logo Design', 'http://thedesigninspiration.com', 0),
-(733, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_logomoose_com.jpg', 0, 0, 0, '国外logo欣赏网站', 'LogoMoose', 'http://www.logomoose.com', 0),
-(732, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/logopond_com.jpg', 0, 0, 0, '国外LOGO展示社区', 'Logopond', 'http://logopond.com', 0),
-(731, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_logozj_com.jpg', 0, 0, 0, '为设计爱好者提供学习和创作的灵感', 'LOGO之家', 'http://www.logozj.com', 0),
-(730, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/logonc_com.jpg', 0, 0, 0, 'LOGO设计分享灵感平台', '藏标网', 'http://logonc.com', 0),
-(729, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_logoshe_com.jpg', 0, 0, 0, '设计欣赏为主的标志设计分享网站', 'logo社', 'http://www.logoshe.com', 0),
-(728, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_logodashi_com.jpg', 0, 0, 0, '高端LOGO设计定制第一平台', 'LOGO大师', 'http://www.logodashi.com', 0),
-(727, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/malikafavre_com.jpg', 0, 0, 0, '玛莉卡法夫尔图形艺术家', 'Malika Favre', 'http://malikafavre.com', 0),
-(726, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_topys_cn.jpg', 0, 0, 0, '全球顶尖创意分享', 'TOPYS', 'http://www.topys.cn', 0),
-(725, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/arting365_com.jpg', 0, 0, 0, '最具价值导向的设计新媒体', 'Arting365', 'http://arting365.com', 0),
-(724, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/huaban_com.jpg', 0, 0, 0, '灵感天堂/图片素材领导者', '花瓣网', 'http://huaban.com', 0),
-(723, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_ifavart_com.jpg', 0, 0, 0, '最出色的视觉艺术分享', 'ifavart', 'http://www.ifavart.com', 0),
-(722, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/pixid_cn.jpg', 0, 0, 0, '分享顶尖的html5网站', '全球酷站中心', 'http://pixid.cn', 0),
-(721, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_behance_net.jpg', 0, 0, 0, '展示和发现全球创意', 'Behance', 'http://www.behance.net', 0),
-(720, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_pinterest_com.png', 0, 0, 0, '世界设计灵感收集地', 'Pinterest', 'http://www.pinterest.com', 0),
-(719, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_huimengya_com.jpg', 0, 0, 0, '免费绘画教程学习交流平台', '绘萌芽', 'http://www.huimengya.com', 0),
-(718, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/dribbble_com.jpg', 0, 0, 0, '全球设计师必去的网站', 'Dribbble', 'http://dribbble.com', 0),
-(717, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/shijue_me.jpg', 0, 0, 0, '最专业的设计师平台', '视觉中国设计师', 'http://shijue.me', 0),
-(716, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_zcool_com_cn.jpg', 0, 0, 0, '设计师互动平台', '站酷', 'http://www.zcool.com.cn', 0),
-(715, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_huakewang_com.jpg', 0, 0, 0, '中国知名平面网页界面', '画客网', 'http://www.huakewang.com', 0),
-(714, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_yiihuu_com.jpg', 0, 0, 0, '数字艺术在线教育平台,', '翼狐网', 'http://www.yiihuu.com', 0),
-(713, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_25xt_com.jpg', 0, 0, 0, '专注APP设计', '25学堂', 'http://www.25xt.com', 0),
-(712, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_mobileui_cn.jpg', 0, 0, 0, '移动设备界面设计专业网站', '莫贝网', 'http://www.mobileui.cn', 0),
-(711, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_ui4app_com.jpg', 0, 0, 0, '免费优质的素材资源', 'UI4App', 'http://www.ui4app.com', 0),
-(710, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_jiawin_com.jpg', 0, 0, 0, '用户体验设计分享平台', '觉唯设计', 'http://www.jiawin.com', 0),
-(709, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_uilover_com.jpg', 0, 0, 0, '学UI最佳平台', 'UI设计爱好者', 'http://www.uilover.com', 0),
-(708, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_uiimg_com.jpg', 0, 0, 0, 'UI设计师交流平台', 'UI图', 'http://www.uiimg.com', 0),
-(707, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/chinaui_com.jpg', 0, 0, 0, '人机界面设计门户网站', '优艾网', 'http://chinaui.com', 0),
-(706, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_uishe_cn.jpg', 0, 0, 0, '中国最好的UI设计素材资源网站', 'UI社', 'http://www.uishe.cn', 0),
-(705, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_uisheji_com.jpg', 0, 0, 0, '专业的ui设计师交流学习分享平台', 'UI设计网', 'http://www.uisheji.com', 0),
-(704, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_boxui_com.jpg', 0, 0, 0, '以用户体验为中心的设计', '盒子UI', 'http://www.boxui.com', 0),
-(703, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_sj520_cn.jpg', 0, 0, 0, '中国设计师交流平台', '520设计网', 'http://www.sj520.cn', 0),
-(702, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/97ui_com.png', 0, 0, 0, '国内专业的UI设计师灵感社区', '优界网', 'http://97ui.com', 0),
-(701, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_uimaker_com.jpg', 0, 0, 0, 'UI界面软件设计欣赏', 'Uimaker', 'http://www.uimaker.com', 0),
-(700, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_uisdc_com.jpg', 0, 0, 0, '最专业的网页设计交流平台', '优设-UISDC', 'http://www.uisdc.com', 0),
-(699, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_tuyiyi_com.jpg', 0, 0, 0, '优秀UI设计师互动平台', '图翼网', 'http://www.tuyiyi.com', 0),
-(698, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_uigreat_com.jpg', 0, 0, 0, '设计师互动交流学习社区', '优阁网', 'http://www.uigreat.com', 0),
-(697, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_ui_cn.jpg', 0, 0, 0, '中国人气最高的图形界面交互设计平台', 'UI中国', 'http://www.ui.cn', 0),
-(696, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_shui-mai_com.jpg', 0, 0, 0, '免费自学UI设计APP', 'UI设计者', 'http://www.shui-mai.com', 0),
-(695, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/90sheji_com.jpg', 0, 0, 0, '电商设计/淘宝素材库', '90设计网', 'http://90sheji.com', 0),
-(694, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_iguoguo_net.jpg', 0, 0, 0, '酷站模版素材欣赏下载', '爱果果', 'http://www.iguoguo.net', 0),
-(693, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_17xsj_com.jpg', 0, 0, 0, '设计综合学习平台', '一起学设计', 'http://www.17xsj.com', 0),
-(692, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_zhisheji_com.jpg', 0, 0, 0, '中国最大的电商设计师交流平台', '致设计', 'http://www.zhisheji.com', 0),
-(691, '2019-09-08 18:13:16', 'http://47.106.84.166:3302/upload/www_xueui_cn.jpg', 0, 0, 0, '高质量免费的UI学习平台', '学ui网', 'http://www.xueui.cn', 0),
-(1145, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/baijiahao_baidu_com.jpg', 0, 0, 0, '帮助内容创作者“在这里影响世界”', '百家号', 'http://baijiahao.baidu.com', 0),
-(1146, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mp_btime_com.jpg', 0, 0, 0, '北京时间媒体平台', '北京时间号', 'http://mp.btime.com', 0),
-(1147, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mp_weixin_qq_com.jpg', 0, 0, 0, '提供业务服务与用户管理能力的全新服务平台', '微信公众平台', 'http://mp.weixin.qq.com', 0),
-(1148, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mp_sina_com_cn.png', 0, 0, 0, '为自媒体提供的优质原创内容生产平台', '新浪看点平台', 'http://mp.sina.com.cn', 0),
-(1149, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/zhuanlan_zhihu_com.jpg', 0, 0, 0, '一个从知乎问答社区催生的自媒体平台', '知乎专栏', 'http://zhuanlan.zhihu.com', 0),
-(1150, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mp_dayu_com.jpg', 0, 0, 0, '阿里文娱体系为内容创作者提供的统一账号', '大鱼号', 'http://mp.dayu.com', 0),
-(1151, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/zmt_ifeng_com.jpg', 0, 0, 0, '凤凰网自媒体平台', '凤凰号', 'http://zmt.ifeng.com', 0),
-(1152, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jianshu_com.jpg', 0, 0, 0, '一个优质的创作社区', '简书', 'http://www.jianshu.com', 0),
-(1153, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mp_yidianzixun_com.jpg', 0, 0, 0, '一点资讯旗下自媒体号', '一点号', 'http://mp.yidianzixun.com', 0),
-(1154, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/om_qq_com.jpg', 0, 0, 0, '全网流量开放', '企鹅号', 'http://om.qq.com', 0),
-(1155, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/cm_thecover_cn.jpg', 0, 0, 0, '第一个年轻人的自媒体平台', '封面号', 'http://cm.thecover.cn', 0),
-(1156, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/zm_look_360_cn.jpg', 0, 0, 0, '360公司旗下的自媒体平台', '众媒聚合平台', 'http://zm.look.360.cn', 0),
-(1157, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mp_toutiao_com.jpg', 0, 0, 0, '今日头条旗下媒体/自媒体平台', '头条号', 'http://mp.toutiao.com', 0),
-(1158, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/plus_yixin_im.jpg', 0, 0, 0, '网易与中国电信推出的“易信”', '易信号', 'http://plus.yixin.im', 0),
-(1159, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/we_taobao_com.jpg', 0, 0, 0, '通过阿里创作平台入驻', '微淘号', 'http://we.taobao.com', 0),
-(1160, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/me_weibo_com.jpg', 0, 0, 0, '帮助持续贡献优质内容的中小博主', '微博自媒体', 'http://me.weibo.com', 0),
-(1161, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/tieba_baidu_com.png', 0, 0, 0, '全球最大的中文社区。', '百度贴吧', 'http://tieba.baidu.com', 0),
-(1162, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_tianya_cn.gif', 0, 0, 0, '高端人文论坛', '天涯社区', 'http://www.tianya.cn', 0),
-(1163, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/dzh_mop_com.gif', 0, 0, 0, '公众舆论的策源地和扩散平台', '猫扑网', 'http://dzh.mop.com', 0),
-(1164, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/bbs_sina_com_cn.png', 0, 0, 0, '全球最大华人中文社区', '新浪论坛', 'http://bbs.sina.com.cn', 0),
-(1165, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/bbs_voc_com_cn.gif', 0, 0, 0, '国内最著名大型社区之一', '华声论坛', 'http://bbs.voc.com.cn', 0),
-(1166, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_kdnet_net.gif', 0, 0, 0, '中国最具代表性的互联网UGC平台之一', '凯迪网络', 'http://www.kdnet.net', 0),
-(1167, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_xici_net.gif', 0, 0, 0, '国内首创“自行开版、自行管理、自行发展”的开放式社区平台', '西祠胡同', 'http://www.xici.net', 0),
-(1168, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/bbs1_people_com_cn.gif', 0, 0, 0, '全球最著名的中文时政社区', '强国社区', 'http://bbs1.people.com.cn', 0),
-(1169, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/forum_home_news_cn.gif', 0, 0, 0, '新华网发展论坛', '发展论坛', 'http://forum.home.news.cn', 0),
-(1170, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_xilu_com.gif', 0, 0, 0, '中国第一军事门户网站', '西陆网', 'http://www.xilu.com', 0),
-(1171, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ltaaa_com.gif', 0, 0, 0, '各国草根真实世界', '龙腾网', 'http://www.ltaaa.com', 0),
-(1172, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/bbs_taobao_com.gif', 0, 0, 0, '淘宝网论坛', '淘宝论坛', 'http://bbs.taobao.com', 0),
-(1173, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/club_china_com.gif', 0, 0, 0, '全国最大社区媒体', '中华网社区', 'http://club.china.com', 0),
-(1174, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_tom_com.gif', 0, 0, 0, '全面及时中文资讯', 'TOM.COM', 'http://www.tom.com', 0),
-(1175, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_kaixin001_com.gif', 0, 0, 0, '在线社区', '开心网', 'http://www.kaixin001.com', 0),
-(1176, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/qzone_qq_com.gif', 0, 0, 0, '分享生活，留住感动', 'QQ空间', 'http://qzone.qq.com', 0),
-(1177, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/weibo_com.jpg', 0, 0, 0, '随时随地发现新鲜事', '新浪微博', 'http://weibo.com', 0),
-(1178, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/t_qq_com.gif', 0, 0, 0, '腾讯微博', '腾讯微博', 'http://t.qq.com', 0),
-(1179, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_zhihu_com.gif', 0, 0, 0, '分享知识、经验和见解', '知乎', 'http://www.zhihu.com', 0),
-(1180, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/blog_sina_com_cn.png', 0, 0, 0, '最具人气的博客频道', '新浪博客', 'http://blog.sina.com.cn', 0),
-(1181, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_yidianzixun_com.png', 0, 0, 0, '私人定制的资讯客户端', '一点资讯', 'http://www.yidianzixun.com', 0),
-(1182, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cri_cn.gif', 0, 0, 0, '中央重点新闻网站', '国际在线', 'http://www.cri.cn', 0),
-(1183, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_china_com.gif', 0, 0, 0, '国家级门户网站', '中华网', 'http://www.china.com', 0),
-(1184, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_thepaper_cn.jpg', 0, 0, 0, '专注时政与思想', '澎湃新闻', 'http://www.thepaper.cn', 0),
-(1185, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cnr_cn.jpg', 0, 0, 0, '中央重点新闻网站', '央广网', 'http://www.cnr.cn', 0),
-(1186, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_huanqiu_com.jpg', 0, 0, 0, '中国领先的国际资讯门户', '环球网', 'http://www.huanqiu.com', 0),
-(1187, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_chinanews_com.gif', 0, 0, 0, '中新社，梳理天下新闻', '中国新闻网', 'http://www.chinanews.com', 0),
-(1188, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/news_cctv_com.png', 0, 0, 0, '面向全球,多语种,多终端', '央视新闻网', 'http://news.cctv.com', 0),
-(1189, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_xinhuanet_com.jpg', 0, 0, 0, '综合新闻信息服务门户网站', '新华网', 'http://www.xinhuanet.com', 0),
-(1190, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/news_baidu_com.jpg', 0, 0, 0, '全球最大的中文新闻平台', '百度新闻', 'http://news.baidu.com', 0),
-(1191, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/news_sohu_com.png', 0, 0, 0, '24小时不间断的最新资讯', '搜狐新闻', 'http://news.sohu.com', 0),
-(1192, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/news_qq_com.png', 0, 0, 0, '腾讯新闻，事实派', '腾讯新闻', 'http://news.qq.com', 0),
-(1193, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/news_ifeng_com.png', 0, 0, 0, '提供大智慧和犀利观点', '凤凰资讯', 'http://news.ifeng.com', 0),
-(1194, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/news_sina_com_cn.png', 0, 0, 0, '24小时滚动报道国内、国际及社会新闻', '新浪新闻', 'http://news.sina.com.cn', 0),
-(1195, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/news_163_com.png', 0, 0, 0, '专业时事报道门户网站', '网易新闻', 'http://news.163.com', 0),
-(1196, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_wenming_cn.jpg', 0, 0, 0, '宣传思想战线和精神文明建设', '中国文明网', 'http://www.wenming.cn', 0),
-(1197, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_71_cn.jpg', 0, 0, 0, '提高思想理论素养', '宣讲家网', 'http://www.71.cn', 0),
-(1198, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_k618_cn.png', 0, 0, 0, '青少年教育类垂直新闻资讯', '未来网', 'http://www.k618.cn', 0),
-(1199, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_haiwainet_cn.gif', 0, 0, 0, '人民日报海外版官方网站', '海外网', 'http://www.haiwainet.cn', 0),
-(1200, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_youth_cn.gif', 0, 0, 0, '共青团中央主办的中央重点新闻网站', '中国青年网', 'http://www.youth.cn', 0),
-(1201, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_stnn_cc.jpg', 0, 0, 0, '综合性门户网站', '星岛环球', 'http://www.stnn.cc', 0),
-(1202, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/yixi_tv.gif', 0, 0, 0, '分享见解、体验和对未来的想象，做有价值的传播', '一席', 'http://yixi.tv', 0),
-(1203, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_kankanews_com.gif', 0, 0, 0, '国内专业的视频新闻网站', '看看新闻', 'http://www.kankanews.com', 0),
-(1204, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ted_com.gif', 0, 0, 0, '专家发言的有影响力的视频', 'TED', 'http://www.ted.com', 0),
-(1205, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_takungpao_com.gif', 0, 0, 0, '百年大公报的新媒体平台', '大公网', 'http://www.takungpao.com', 0),
-(1206, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_infzm_com.gif', 0, 0, 0, '发行量最大的综合性周报', '南方周末', 'http://www.infzm.com', 0),
-(1207, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cyol_net.gif', 0, 0, 0, '中国青年报官网', '中青在线', 'http://www.cyol.net', 0),
-(1208, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_bjnews_com_cn.gif', 0, 0, 0, '精品新闻网站', '新京报网', 'http://www.bjnews.com.cn', 0),
-(1209, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_gmw_cn.gif', 0, 0, 0, '思想理论领域的中央重点新闻网站', '光明网', 'http://www.gmw.cn', 0),
-(1210, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/hsb_hsw_cn.jpg', 0, 0, 0, '陕西权威综合类城市生活报', '华商报', 'http://hsb.hsw.cn', 0),
-(1211, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_nfcmag_com.jpg', 0, 0, 0, '隶属于广州日报报业集团', '南风窗网', 'http://www.nfcmag.com', 0),
-(1212, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/cn_chinadaily_com_cn.jpg', 0, 0, 0, '中国最优质的新闻发布平台', '中国日报', 'http://cn.chinadaily.com.cn', 0),
-(1213, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_xfrb_com_cn.gif', 0, 0, 0, '消费领域中全国性的综合性日报', '消费日报', 'http://www.xfrb.com.cn', 0),
-(1214, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/ctdsb_cnhubei_com.gif', 0, 0, 0, '楚天都市报在线阅读体验', '楚天都市报', 'http://ctdsb.cnhubei.com', 0),
-(1215, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_oeeee_com.jpg', 0, 0, 0, '南方都市报官方网站-奥一网', '南方都市报', 'http://www.oeeee.com', 0),
-(1216, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_inewsweek_cn.gif', 0, 0, 0, '中央重点新闻网站', '中国新闻周刊', 'http://www.inewsweek.cn', 0),
-(1217, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_yangtse_com.gif', 0, 0, 0, '江苏省重点新闻网站', '扬子晚报', 'http://www.yangtse.com', 0),
-(1218, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_lifeweek_com_cn.gif', 0, 0, 0, '最受尊敬的周刊品牌之一', '三联生活周刊', 'http://www.lifeweek.com.cn', 0),
-(1219, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_banyuetan_org.jpg', 0, 0, 0, '中国最具影响力时政新闻评论专业网', '半月谈', 'http://www.banyuetan.org', 0),
-(1220, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cnautonews_com.gif', 0, 0, 0, '《中国汽车报》社唯一官方网站', '中国汽车报', 'http://www.cnautonews.com', 0),
-(1221, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ifengweekly_com.jpg', 0, 0, 0, '高端人群阅读的时政刊物', '凤凰周刊', 'http://www.ifengweekly.com', 0),
-(1222, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jinghua_cn.jpg', 0, 0, 0, '新闻类综合性都市报', '京华时报', 'http://www.jinghua.cn', 0),
-(1223, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cankaoxiaoxi_com.jpg', 0, 0, 0, '中国发行量最大的日报', '参考消息', 'http://www.cankaoxiaoxi.com', 0),
-(1224, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_zaobao_com.gif', 0, 0, 0, '新加坡国际即时早报', '联合早报', 'http://www.zaobao.com', 0),
-(1225, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/finance_china_com_cn.jpg', 0, 0, 0, '提供国内外财经新闻服务；', '中国财经', 'http://finance.china.com.cn', 0),
-(1226, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_financeun_com.jpg', 0, 0, 0, '全球最大的中文金融门户', '中国金融', 'http://www.financeun.com', 0),
-(1227, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_stcn_com.gif', 0, 0, 0, '中国证监会指定创业板、沪港通信息披露网站', '《证券时报》', 'http://www.stcn.com', 0),
-(1228, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_yicai_com.gif', 0, 0, 0, '7X24小时提供股市行情、经济大势、金融政策、行业动态、专家分析等财经资讯；', '第一财经', 'http://www.yicai.com', 0),
-(1229, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cs_com_cn.png', 0, 0, 0, '中国最权威的证券财经资讯网站', '中证网', 'http://www.cs.com.cn', 0),
-(1230, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_10jqka_com_cn.jpg', 0, 0, 0, '一家专业的互联网金融数据服务商', '同花顺财经', 'http://www.10jqka.com.cn', 0),
-(1231, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/finance_ifeng_com.jpg', 0, 0, 0, '离用户最近的财经媒体', '凤凰财经', 'http://finance.ifeng.com', 0),
-(1232, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cnstock_com.jpg', 0, 0, 0, '中国资本市场信息披露平台', '中国证券网', 'http://www.cnstock.com', 0),
-(1233, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_p5w_net.gif', 0, 0, 0, '权威财经资讯网站', '全景', 'http://www.p5w.net', 0),
-(1234, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jrj_com_cn.gif', 0, 0, 0, '投资者首选财经金融门户网站，以证券交易为核心的互联网综合理财平台', '金融界', 'http://www.jrj.com.cn', 0),
-(1235, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/money_163_com.jpg', 0, 0, 0, '全球金融市场数据更新和实时解读', '网易财经', 'http://money.163.com', 0),
-(1236, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_caixin_com.jpg', 0, 0, 0, '原创财经新媒体', '财新网', 'http://www.caixin.com', 0),
-(1237, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_hexun_com.gif', 0, 0, 0, '中国财经网络领袖和中产阶级网络家园', '和讯网', 'http://www.hexun.com', 0),
-(1238, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_caijing_com_cn.gif', 0, 0, 0, '全方位的新闻、分析、评论与可信赖的信息源', '财经网', 'http://www.caijing.com.cn', 0),
-(1239, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_eastmoney_com.jpg', 0, 0, 0, '专业的互联网财经媒体', '东方财富网', 'http://www.eastmoney.com', 0),
-(1240, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/finance_sina_com_cn.png', 0, 0, 0, '财经资讯及全球金融市场报价', '新浪财经', 'http://finance.sina.com.cn', 0),
-(1241, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_bashan_com.gif', 0, 0, 0, '财经资讯的今日头条', '巴山财经', 'http://www.bashan.com', 0),
-(1242, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/cn_nikkei_com.jpg', 0, 0, 0, '日本经济新闻社', '日经中文网', 'http://cn.nikkei.com', 0),
-(1243, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_gov_cn.gif', 0, 0, 0, '中央人民政府门户网站', '中国政府网', 'http://www.gov.cn', 0),
-(1244, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_legaldaily_com_cn.jpg', 0, 0, 0, '法制类新闻门户网站', '法制网', 'http://www.legaldaily.com.cn', 0),
-(1245, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_12371_cn.png', 0, 0, 0, '央视网承办的党员教育平台', '共产党员网', 'http://www.12371.cn', 0),
-(1246, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cpd_com_cn.jpg', 0, 0, 0, '最权威的警务资讯综合门户网站', '中国警察网', 'http://www.cpd.com.cn', 0),
-(1247, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_gov_cn.png', 0, 0, 0, '国务院办公厅主办', '中国政府网', 'http://www.gov.cn', 0),
-(1248, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/military_china_com.gif', 0, 0, 0, '最具资深权威的军事门户', '中华军事网', 'http://military.china.com/', 0),
-(1249, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/mil_huanqiu_com.gif', 0, 0, 0, '环球网军事频道', '环球军事', 'http://mil.huanqiu.com/', 0),
-(1250, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_miercn_com.gif', 0, 0, 0, '中国最具特色军事社区', '米尔网', 'http://www.miercn.com/', 0),
-(1251, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/news_ifeng_com--mil.gif', 0, 0, 0, '凤凰网旗下军事频道', '凤凰军事', 'http://news.ifeng.com/mil/', 0),
-(1252, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/bbs_tiexue_net.gif', 0, 0, 0, '关心中国国防建设、关注世界军事发展', '铁血社区', 'http://bbs.tiexue.net', 0),
-(1253, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_81_cn.jpg', 0, 0, 0, '中国人民解放军官方军事新闻门户', '中国军网', 'http://www.81.cn', 0),
-(1254, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_dahe_cn.jpg', 0, 0, 0, '河南首家重点新闻网站', '大河网', 'http://www.dahe.cn', 0),
-(1255, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_gxnews_com_cn.jpg', 0, 0, 0, '权威的综合新闻信息报道', '广西新闻网', 'http://www.gxnews.com.cn', 0),
-(1256, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ycwb_com.jpg', 0, 0, 0, '华南地区最出色的新闻网站', '金羊网', 'http://www.ycwb.com', 0),
-(1257, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_dbw_cn.jpg', 0, 0, 0, '最全面的黑龙江信息', '东北网', 'http://www.dbw.cn', 0),
-(1258, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_fjsen_com.jpg', 0, 0, 0, '福建官方新闻门户', '东南网', 'http://www.fjsen.com', 0),
-(1259, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_dzwww_com.jpg', 0, 0, 0, '山东新闻信息权威发布平台', '大众日报', 'http://www.dzwww.com', 0),
-(1260, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cqnews_net.jpg', 0, 0, 0, '重庆首个全媒体网站', '华龙网', 'http://www.cqnews.net', 0),
-(1261, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_southcn_com.jpg', 0, 0, 0, '政府批准建设的新闻宣传网站', '南方网', 'http://www.southcn.com', 0),
-(1262, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/sputniknews_cn.jpg', 0, 0, 0, '新生的大型媒体品牌网站', '俄罗斯卫星通讯社', 'http://sputniknews.cn', 0),
-(1263, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ftchinese_com.png', 0, 0, 0, '《金融时报》唯一非英语网站', 'FT中文网', 'http://www.ftchinese.com', 0),
-(1264, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_un_org--chinese.jpg', 0, 0, 0, '报道联合国及各地办事机构', '联合国新闻', 'http://www.un.org/chinese/News', 0),
-(1265, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cnn_com.png', 0, 0, 0, '美国有线电视新闻网', 'CNN', 'http://www.cnn.com', 0),
-(1266, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_qiaojiang_tv.gif', 0, 0, 0, '免费的设计视频教程平台', '巧匠课堂', 'http://www.qiaojiang.tv/', 0),
-(1267, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_jisuanke_com.gif', 0, 0, 0, '学习面向未来的计算机科学', '计蒜客', 'http://www.jisuanke.com', 0),
-(1268, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_maiziedu_com.gif', 0, 0, 0, '专业IT职业教育平台', '麦子学院', 'http://www.maiziedu.com', 0),
-(1269, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_kaikeba_com.gif', 0, 0, 0, '互联网热门职业课程与在线教育服务', '开课吧', 'http://www.kaikeba.com', 0),
-(1270, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_shiyanlou_com.gif', 0, 0, 0, '采用创新的“在线实验”学习模式', '实验楼', 'http://www.shiyanlou.com', 0),
-(1271, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_wyzc_com.gif', 0, 0, 0, '中国原创IT在线教育品牌', '我赢职场', 'http://www.wyzc.com', 0),
-(1272, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_hubwiz_com.gif', 0, 0, 0, '学习最前沿编程技术', '汇智网', 'http://www.hubwiz.com', 0),
-(1273, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_osforce_cn.gif', 0, 0, 0, '国内最全面、最实战的IT在线教育培训网站', '开源力量', 'http://www.osforce.cn', 0),
-(1274, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_xuetangx_com.gif', 0, 0, 0, '最大的中文慕课(MOOC)平台', '学堂在线', 'http://www.xuetangx.com', 0),
-(1275, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/boolan_com.gif', 0, 0, 0, '专注做高端IT互联网教育平台', '博览网', 'http://boolan.com', 0),
-(1276, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ablesky_com.gif', 0, 0, 0, '聚合万家培训机构的在线网校大课堂', '能力天空', 'http://www.ablesky.com', 0),
-(1277, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/class_qq_com.png', 0, 0, 0, '专注知识分享的在线学习平台', '腾讯精品课', 'http://class.qq.com', 0),
-(1278, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/xue_taobao_com.gif', 0, 0, 0, '学习精品课程就来淘宝教育（淘宝同学）', '淘宝教育', 'http://xue.taobao.com', 0),
-(1279, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/study_163_com.jpg', 0, 0, 0, '领先的实用技能学习平台', '网易云课堂', 'http://study.163.com', 0),
-(1280, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_imooc_com.jpg', 0, 0, 0, '免费优质的IT技能学习平台', '慕课网', 'http://www.imooc.com', 0),
-(1281, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/xue_zbj_com.jpg', 0, 0, 0, '最靠谱的职业技能学习平台', '八戒教育', 'http://xue.zbj.com', 0),
-(1282, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/open_163_com.jpg', 0, 0, 0, '传播属于全人类的知识和智慧', '网易公开课', 'http://open.163.com', 0),
-(1283, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/opencla_cctv_com.jpg', 0, 0, 0, '央视网在线教育平台', '中国公开课', 'http://opencla.cctv.com', 0),
-(1284, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/open_sina_com_cn.gif', 0, 0, 0, '全世界各大名校的著名教授视频课程', '新浪公开课', 'http://open.sina.com.cn', 0),
-(1285, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/v_ifeng_com.jpg', 0, 0, 0, '最具媒体价值的综合视频门户', '凤凰公开课', 'http://v.ifeng.com/gongkaike', 0),
-(1286, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_shanbay_com.gif', 0, 0, 0, '提升英语词汇及听说读写能力', '扇贝', 'http://www.shanbay.com', 0),
-(1287, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_usbgabc_com.gif', 0, 0, 0, '青少儿英语，在线美国外教。', '博根英语', 'http://www.usbgabc.com', 0),
-(1288, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_91waijiao_com.gif', 0, 0, 0, '全外教在线互动口语学习', '91外教', 'http://www.91waijiao.com', 0),
-(1289, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_hujiang_com.jpg', 0, 0, 0, '专业的互联网学习平台', '沪江网校', 'http://www.hujiang.com', 0),
-(1290, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_baletu_com.jpg', 0, 0, 0, '一款在线租房手机应用', '巴乐兔', 'http://www.baletu.com/', 0),
-(1291, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/58_com.jpg', 0, 0, 0, '每天更新数万条优质租房信息', '58租房', 'http://58.com/chuzu', 0),
-(1292, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/ganji_com.jpg', 0, 0, 0, '提供最专业的租房交易服务', '赶集网租房', 'http://ganji.com/zufang', 0),
-(1293, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_youtx_com.png', 0, 0, 0, '中国领先的房屋短租日租网站', '游天下', 'http://www.youtx.com', 0),
-(1294, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_douban_com--group.gif', 0, 0, 0, '整租、转租、求租、找室友', '豆瓣租房', 'http://www.douban.com/group/search?cat', 0),
-(1295, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ziroom_com.jpg', 0, 0, 0, '提供高品质租住产品和超期望服务的O2O互联网公司', '自如租房', 'http://www.ziroom.com', 0),
-(1296, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_52mf_com_cn.jpg', 0, 0, 0, '中国首家连锁集中式长租公寓运营商', '魔方公寓', 'http://www.52mf.com.cn/', 0),
-(1297, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_iguanyu_com.jpg', 0, 0, 0, '龙湖集团集中式长租公寓品牌', '冠寓', 'http://www.iguanyu.com/', 0),
-(1298, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_inboyu_com.png', 0, 0, 0, '为青年群体提供着优质的租住空间', '泊寓', 'https://www.inboyu.com/', 0),
-(1299, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_homeplus_cn.jpg', 0, 0, 0, '上市公司旗下高品质租住公寓', '红璞公寓', 'http://www.homeplus.cn/', 0),
-(1300, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_mayi_com.jpg', 0, 0, 0, '家庭出游首选', '蚂蚁短租', 'http://www.mayi.com', 0),
-(1301, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_tujia_com.jpg', 0, 0, 0, '全球公寓民宿预订平台', '途家网', 'http://www.tujia.com', 0),
-(1302, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_xiaozhu_com.jpg', 0, 0, 0, '短租民宿预订首选,独一无二的社交住宿体验', '小猪', 'http://www.xiaozhu.com', 0),
-(1303, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_iheima_com.jpg', 0, 0, 0, '创业创新服务平台', 'i黑马', 'http://www.iheima.com', 0),
-(1304, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cyz_org_cn.jpg', 0, 0, 0, '清华大学旗下的创业教育大型公益平台', '创业者', 'http://www.cyz.org.cn', 0),
-(1305, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/17startup_com.jpg', 0, 0, 0, '一起创业吧--让创业不再孤单', '17Startup', 'http://17startup.com', 0),
-(1306, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cyzone_cn.jpg', 0, 0, 0, '全维度创业者服务平台', '创业邦', 'http://www.cyzone.cn', 0),
-(1307, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_wabei_cn.jpg', 0, 0, 0, '新三板生态价值发现平台', '挖贝网', 'http://www.wabei.cn', 0),
-(1308, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/cy_ncss_org_cn.jpg', 0, 0, 0, '宣传、鼓励、引导、帮助大学生创业', '全国大学生创业服务网', 'http://cy.ncss.org.cn', 0),
-(1309, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_sequoiacap_com.png', 0, 0, 0, '创业者背后的创业者', 'Sequoia红杉资本', 'http://www.sequoiacap.com', 0),
-(1310, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_nlightvc_com.png', 0, 0, 0, '专注于投资早期、科技创新项目', '北极光创投', 'http://www.nlightvc.com', 0),
-(1311, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_chinae_net.jpg', 0, 0, 0, '天使众投平台--快速找到天使投资人,创业项目线上股权众筹', '创业易', 'http://www.chinae.net', 0),
-(1312, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/rong_36kr_com.jpg', 0, 0, 0, '为创业者提供最好的产品和服务。', '36氪-融资', 'http://rong.36kr.com', 0),
-(1313, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/angelcrunch_com.jpg', 0, 0, 0, '中国天使合投第一平台', '天使汇', 'http://angelcrunch.com', 0),
-(1314, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_tisiwi_com.jpg', 0, 0, 0, '中国领先的互联网天使投资机构', '天使湾', 'http://www.tisiwi.com', 0),
-(1315, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_dreamore_com.jpg', 0, 0, 0, '最方便、简单、快捷的筹款工具', '追梦筹', 'http://www.dreamore.com', 0),
-(1316, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_thecapital_com_cn.jpg', 0, 0, 0, '中国股权投资综合服务平台', '融资中国', 'http://www.thecapital.com.cn', 0),
-(1317, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_feimalv_com.jpg', 0, 0, 0, '中国首家创业项目专业管理支持机构', '飞马旅', 'http://www.feimalv.com', 0),
-(1318, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cybernaut_com_cn.jpg', 0, 0, 0, '专注中国科技产业化投资，培育全球领先新兴产业领跑者', 'Cybernaut', 'http://www.cybernaut.com.cn', 0),
-(1319, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_chinaventure_com_cn.jpg', 0, 0, 0, '中国股权投资行业第一新闻门户', '投资中网', 'http://www.chinaventure.com.cn', 0),
-(1320, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_cye_com_cn.jpg', 0, 0, 0, '中国创业门户网站', '创业网', 'http://www.cye.com.cn', 0),
-(1321, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_pedaily_cn.jpg', 0, 0, 0, '中国创业与投资第一门户', '投资界', 'http://www.pedaily.cn', 0),
-(1322, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/http:.png', 0, 0, 0, '最快的速度传递筹款，用最有爱的方式完成筹款', '柠檬生活金融', 'http://http://www.lemonfinance.cn/', 0),
-(1323, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_tmeng_cn.jpg', 0, 0, 0, '国内领先的互联网影视平台', '淘梦网', 'http://www.tmeng.cn', 0),
-(1324, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_yunchou_com.jpg', 0, 0, 0, '中国领先的众筹网站，影视众筹平台、收益众筹平台首选', '云筹', 'http://www.yunchou.com', 0),
-(1325, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_zhongchou_com.jpg', 0, 0, 0, '中国专业的一站式综合众筹融资服务平台', '众筹', 'http://www.zhongchou.com', 0),
-(1326, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_demohour_com.jpg', 0, 0, 0, '一个支持创新的众筹平台', '点名时间', 'http://www.demohour.com', 0),
-(1327, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_dajiatou_com.jpg', 0, 0, 0, '股权众筹平台|影视众筹网站', '大家投', 'http://www.dajiatou.com', 0),
-(1328, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_hdb_com.jpg', 0, 0, 0, '免费提供活动发布、传播、收款、报名统计、验票签到等全环节服务', '互动吧', 'http://www.hdb.com', 0),
-(1329, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_huodongxing_com.jpg', 0, 0, 0, '全球最大中文活动平台', '活动行', 'http://www.huodongxing.com', 0),
-(1330, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/club_alibabatech_org.jpg', 0, 0, 0, '一个倡导“享技术聚朋友”的互动、交流的平台', '阿里技术沙龙', 'http://club.alibabatech.org', 0),
-(1331, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_infoq_com--cn--zones.jpg', 0, 0, 0, '百度和极客邦科技共同举办的线下技术交流活动', '百度技术沙龙', 'http://www.infoq.com/cn/zones/baidu-salon', 0),
-(1332, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_lanhan_cn.jpg', 0, 0, 0, '最新最全的互联网聚会活动', '懒汉互联', 'http://www.lanhan.cn', 0),
-(1333, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_eventdove_com.jpg', 0, 0, 0, '找活动、办活动，上会鸽', 'Eventdove会鸽', 'http://www.eventdove.com', 0),
-(1334, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/tech_163_com--special.jpg', 0, 0, 0, '联合知名IT博客，每月举办一次', '五道口沙龙', 'http://tech.163.com/special/wudaokou', 0),
-(1335, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_chuangxin_com.jpg', 0, 0, 0, '为创业者提供全方位的创业服务', '创新工场', 'http://www.chuangxin.com', 0),
-(1336, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_people-squared_com.jpg', 0, 0, 0, '为创业团队提供办公场地、空间服务和活动对接', '联合创业办公社', 'http://www.people-squared.com', 0),
-(1337, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_chuangyechang_com.jpg', 0, 0, 0, '成都创业团队核心聚集地', '天府软件园', 'http://www.chuangyechang.com', 0),
-(1338, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_sznsibi_org.gif', 0, 0, 0, '深圳市南山区科技创业服务中心', '深圳市创业服务', 'http://www.sznsibi.org', 0),
-(1339, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_zjsaibo_com.jpg', 0, 0, 0, '杭州市江干区大学生创业园', '赛博创业工场', 'http://www.zjsaibo.com', 0),
-(1340, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_linkstartup_com.jpg', 0, 0, 0, '专注早中期融资', 'LinkStartup', 'http://www.linkstartup.com', 0),
-(1341, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_innovation-camp_com.jpg', 0, 0, 0, '专注于移动互联网新型应用的创业孵化器和加速器', '快创营', 'http://www.innovation-camp.com', 0),
-(1342, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ybc_org_cn.gif', 0, 0, 0, '中国青年创业国际计划', 'YBC', 'http://www.ybc.org.cn', 0),
-(1343, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_stefg_org.jpg', 0, 0, 0, '上海市大学生科技创业基金会', '创业基金会', 'http://www.stefg.org', 0),
-(1344, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/innospring_net.jpg', 0, 0, 0, '深谙科技改变世界之道', '创源', 'http://innospring.net', 0),
-(1345, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/so_yyyydh_com.gif', 0, 0, 0, '提升上网效率，友友悠游导航旗下网站', '友友搜索', 'http://so.yyyydh.com/', 0),
-(1346, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/zhuye_kim.gif', 0, 0, 0, '主页从未如此惊艳', 'KIM主页', 'http://zhuye.kim', 0),
-(1347, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ubuuk_com.png', 0, 0, 0, '发现优秀的设计与网站', '优波', 'https://www.ubuuk.com/', 0),
-(1348, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_chuangzaoshi_com.png', 0, 0, 0, '创意工作者导航', '创造狮', 'http://www.chuangzaoshi.com/', 0),
-(1349, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/hao_psefan_com.png', 0, 0, 0, 'PS饭团旗下导航 | 精选素材站导航', '饭团导航', 'http://hao.psefan.com/', 0),
-(1350, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_niudana_com.png', 0, 0, 0, '精选国内外优秀 UI/UX 网站', '牛大拿', 'http://www.niudana.com/', 0),
-(1351, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/wz_cndesign_com.png', 0, 0, 0, '优秀设计网站排名大全', '中国设计网址导航', 'http://wz.cndesign.com/', 0),
-(1352, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/dh_woshipm_com.png', 0, 0, 0, '产品经理和运营人必备的导航站', '阿猫阿狗网址导航', 'http://dh.woshipm.com/', 0),
-(1353, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_pm265_com.png', 0, 0, 0, '及时收录产品相关优秀网站', 'PM265', 'http://www.pm265.com/', 0),
-(1354, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_pmdaniu_com.png', 0, 0, 0, '让产品工作更简单', '产品大牛导航', 'http://www.pmdaniu.com/navigate', 0),
-(1355, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_daqianduan_com.jpg', 0, 0, 0, '大前端的前端开发网址导航', '大前端网址导航', 'http://www.daqianduan.com/nav', 0),
-(1356, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_h-ui_net.gif', 0, 0, 0, 'H-ui前端框架前端网址导航', '前端网址导航', 'http://www.h-ui.net/site.shtml', 0),
-(1357, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/123_jser_us.gif', 0, 0, 0, '前端工程师专用的导航站', '前端导航站', 'http://123.jser.us/', 0),
-(1358, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/daohangcom_com.gif', 0, 0, 0, '设计师和前端开发工程师的网址导航', 'com导航', 'http://daohangcom.com/', 0),
-(1359, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_alloyteam_com--nav.gif', 0, 0, 0, '腾讯AlloyTeam-Web前端导航', 'Web前端导航', 'http://www.alloyteam.com/nav/', 0),
-(1360, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_ziliao6_com.gif', 0, 0, 0, '只推荐好的工具/资源', '牛资料导航', 'http://www.ziliao6.com/', 0),
-(1361, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_doo123_com.png', 0, 0, 0, '自媒体平台收集最全', '新媒体导航', 'http://www.doo123.com/', 0),
-(1362, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/zmt_yundaohang_com.png', 0, 0, 0, '专业的自媒体人资源平台', '自媒体导航', 'http://zmt.yundaohang.com/', 0);
-INSERT INTO `website` (`website_id`, `create_time`, `icon`, `is_recommend`, `is_touch`, `ordered`, `summary`, `title`, `url`, `visits`) VALUES
-(1363, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_yunyingxuetang_com.gif', 0, 0, 0, '互联网运营人员都在用的工具网址导航', '新媒体运营网址导航', 'http://www.yunyingxuetang.com/daohang.html', 0),
-(1364, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/qiachu_com.gif', 0, 0, 0, '从心出发，预见未来', '洽初导航', 'http://qiachu.com/', 0),
-(1365, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/daohangwan_com--board.gif', 0, 0, 0, '产品运营、电商运营、新媒体运营', '运营/新媒体导航', 'http://daohangwan.com/board/erEd', 0),
-(1366, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_koudaiyunying_com.png', 0, 0, 0, '服务新媒体运营者的免费工具导航', '口袋运营', 'http://www.koudaiyunying.com/', 0),
-(1367, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/www_iyunying_org.png', 0, 0, 0, '网站产品运营网址工具导航', '产品运营导航', 'http://www.iyunying.org/daohang.html', 0),
-(1368, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/web_geekji_cn.png', 0, 0, 0, '运营工作者专业导航网站', '钛导航', 'https://web.geekji.cn/', 0),
-(1369, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/hao_chochina_com.png', 0, 0, 0, 'HR网站网址导航大全', 'HR网址之家', 'http://hao.chochina.com', 0),
-(1370, '2019-09-08 18:13:18', 'http://47.106.84.166:3302/upload/cho_icxo_com--hrweb.png', 0, 0, 0, '中国HR管理第一网址大全', 'HR网址大全', 'http://cho.icxo.com/hrweb/', 0);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `website_category`
---
-
-CREATE TABLE IF NOT EXISTS `website_category` (
-  `id` int(11) NOT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `website_id` int(11) DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=681 DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `website_category`
---
-
-INSERT INTO `website_category` (`id`, `category_id`, `website_id`) VALUES
-(1, 23, 691),
-(2, 23, 692),
-(3, 23, 693),
-(4, 23, 694),
-(5, 23, 695),
-(6, 23, 696),
-(7, 23, 697),
-(8, 23, 698),
-(9, 23, 699),
-(10, 23, 700),
-(11, 23, 701),
-(12, 23, 702),
-(13, 23, 703),
-(14, 23, 704),
-(15, 23, 705),
-(16, 23, 706),
-(17, 23, 707),
-(18, 23, 708),
-(19, 23, 709),
-(20, 23, 710),
-(21, 23, 711),
-(22, 23, 712),
-(23, 23, 713),
-(24, 23, 714),
-(25, 23, 715),
-(26, 23, 716),
-(27, 23, 717),
-(28, 23, 718),
-(29, 23, 719),
-(30, 23, 720),
-(31, 23, 721),
-(32, 23, 722),
-(33, 23, 723),
-(34, 23, 724),
-(35, 23, 725),
-(36, 23, 726),
-(37, 23, 727),
-(38, 23, 728),
-(39, 23, 729),
-(40, 23, 730),
-(41, 23, 731),
-(42, 23, 732),
-(43, 23, 733),
-(44, 23, 734),
-(45, 23, 735),
-(46, 23, 736),
-(47, 23, 737),
-(48, 23, 738),
-(49, 23, 739),
-(50, 23, 740),
-(51, 23, 741),
-(52, 24, 742),
-(53, 24, 743),
-(54, 24, 744),
-(55, 24, 745),
-(56, 24, 746),
-(57, 24, 747),
-(58, 24, 748),
-(59, 24, 749),
-(60, 24, 750),
-(61, 24, 751),
-(62, 24, 752),
-(63, 24, 753),
-(64, 24, 754),
-(65, 24, 755),
-(66, 24, 756),
-(67, 24, 757),
-(68, 25, 758),
-(69, 25, 759),
-(70, 25, 760),
-(71, 25, 761),
-(72, 25, 762),
-(73, 25, 763),
-(74, 25, 764),
-(75, 25, 765),
-(76, 25, 766),
-(77, 25, 767),
-(78, 25, 768),
-(79, 25, 769),
-(80, 25, 770),
-(81, 25, 771),
-(82, 25, 772),
-(83, 25, 773),
-(84, 25, 774),
-(85, 25, 775),
-(86, 25, 776),
-(87, 25, 777),
-(88, 25, 778),
-(89, 25, 779),
-(90, 25, 780),
-(91, 25, 781),
-(92, 25, 782),
-(93, 25, 783),
-(94, 25, 784),
-(95, 25, 785),
-(96, 25, 786),
-(97, 25, 787),
-(98, 25, 788),
-(99, 25, 789),
-(100, 25, 790),
-(101, 25, 791),
-(102, 25, 792),
-(103, 25, 793),
-(104, 25, 794),
-(105, 25, 795),
-(106, 25, 796),
-(107, 25, 797),
-(108, 25, 798),
-(109, 25, 799),
-(110, 25, 800),
-(111, 25, 801),
-(112, 25, 802),
-(113, 25, 803),
-(114, 25, 804),
-(115, 25, 805),
-(116, 25, 806),
-(117, 25, 807),
-(118, 25, 808),
-(119, 25, 809),
-(120, 25, 810),
-(121, 25, 811),
-(122, 25, 812),
-(123, 25, 813),
-(124, 25, 814),
-(125, 25, 815),
-(126, 25, 816),
-(127, 25, 817),
-(128, 25, 818),
-(129, 25, 819),
-(130, 25, 820),
-(131, 25, 821),
-(132, 25, 822),
-(133, 25, 823),
-(134, 25, 824),
-(135, 25, 825),
-(136, 25, 826),
-(137, 25, 827),
-(138, 25, 828),
-(139, 25, 829),
-(140, 25, 830),
-(141, 25, 831),
-(142, 25, 832),
-(143, 25, 833),
-(144, 25, 834),
-(145, 26, 835),
-(146, 26, 836),
-(147, 26, 837),
-(148, 26, 838),
-(149, 26, 839),
-(150, 26, 840),
-(151, 26, 841),
-(152, 26, 842),
-(153, 26, 843),
-(154, 26, 844),
-(155, 26, 845),
-(156, 26, 846),
-(157, 26, 847),
-(158, 26, 848),
-(159, 26, 849),
-(160, 26, 850),
-(161, 26, 851),
-(162, 26, 852),
-(163, 26, 853),
-(164, 26, 854),
-(165, 26, 855),
-(166, 26, 856),
-(167, 26, 857),
-(168, 26, 858),
-(169, 26, 859),
-(170, 26, 860),
-(171, 26, 861),
-(172, 26, 862),
-(173, 26, 863),
-(174, 26, 864),
-(175, 26, 865),
-(176, 26, 866),
-(177, 26, 867),
-(178, 26, 868),
-(179, 26, 869),
-(180, 26, 870),
-(181, 26, 871),
-(182, 26, 872),
-(183, 26, 873),
-(184, 26, 874),
-(185, 26, 875),
-(186, 26, 876),
-(187, 26, 877),
-(188, 26, 878),
-(189, 26, 879),
-(190, 26, 880),
-(191, 26, 881),
-(192, 26, 882),
-(193, 26, 883),
-(194, 26, 884),
-(195, 26, 885),
-(196, 26, 886),
-(197, 26, 887),
-(198, 26, 888),
-(199, 27, 889),
-(200, 27, 890),
-(201, 27, 891),
-(202, 27, 892),
-(203, 27, 893),
-(204, 27, 894),
-(205, 27, 895),
-(206, 27, 896),
-(207, 27, 897),
-(208, 27, 898),
-(209, 27, 899),
-(210, 27, 900),
-(211, 27, 901),
-(212, 27, 902),
-(213, 27, 903),
-(214, 27, 904),
-(215, 27, 905),
-(216, 27, 906),
-(217, 27, 907),
-(218, 27, 908),
-(219, 27, 909),
-(220, 27, 910),
-(221, 27, 911),
-(222, 27, 912),
-(223, 27, 913),
-(224, 27, 914),
-(225, 27, 915),
-(226, 27, 916),
-(227, 27, 917),
-(228, 27, 918),
-(229, 27, 919),
-(230, 27, 920),
-(231, 28, 921),
-(232, 28, 922),
-(233, 28, 923),
-(234, 28, 924),
-(235, 28, 925),
-(236, 28, 926),
-(237, 28, 927),
-(238, 28, 928),
-(239, 28, 929),
-(240, 28, 930),
-(241, 28, 931),
-(242, 28, 932),
-(243, 28, 933),
-(244, 28, 934),
-(245, 28, 935),
-(246, 28, 936),
-(247, 28, 937),
-(248, 28, 938),
-(249, 28, 939),
-(250, 28, 940),
-(251, 28, 941),
-(252, 28, 942),
-(253, 28, 943),
-(254, 28, 944),
-(255, 28, 945),
-(256, 28, 946),
-(257, 28, 947),
-(258, 28, 948),
-(259, 28, 949),
-(260, 28, 950),
-(261, 28, 951),
-(262, 28, 952),
-(263, 28, 953),
-(264, 28, 954),
-(265, 29, 955),
-(266, 29, 956),
-(267, 29, 957),
-(268, 29, 958),
-(269, 29, 959),
-(270, 29, 960),
-(271, 29, 961),
-(272, 29, 962),
-(273, 29, 963),
-(274, 29, 964),
-(275, 29, 965),
-(276, 29, 966),
-(277, 29, 967),
-(278, 29, 968),
-(279, 29, 969),
-(280, 29, 970),
-(281, 29, 971),
-(282, 29, 972),
-(283, 29, 973),
-(284, 29, 974),
-(285, 29, 975),
-(286, 29, 976),
-(287, 29, 977),
-(288, 29, 978),
-(289, 29, 979),
-(290, 29, 980),
-(291, 29, 981),
-(292, 29, 982),
-(293, 29, 983),
-(294, 29, 984),
-(295, 29, 985),
-(296, 30, 986),
-(297, 30, 987),
-(298, 30, 988),
-(299, 30, 989),
-(300, 30, 990),
-(301, 30, 991),
-(302, 30, 992),
-(303, 30, 993),
-(304, 30, 994),
-(305, 30, 995),
-(306, 30, 996),
-(307, 30, 997),
-(308, 30, 998),
-(309, 30, 999),
-(310, 30, 1000),
-(311, 30, 1001),
-(312, 30, 1002),
-(313, 30, 1003),
-(314, 30, 1004),
-(315, 30, 1005),
-(316, 30, 1006),
-(317, 30, 1007),
-(318, 30, 1008),
-(319, 30, 1009),
-(320, 30, 1010),
-(321, 30, 1011),
-(322, 30, 1012),
-(323, 30, 1013),
-(324, 30, 1014),
-(325, 30, 1015),
-(326, 30, 1016),
-(327, 30, 1017),
-(328, 30, 1018),
-(329, 30, 1019),
-(330, 30, 1020),
-(331, 30, 1021),
-(332, 30, 1022),
-(333, 30, 1023),
-(334, 30, 1024),
-(335, 30, 1025),
-(336, 30, 1026),
-(337, 30, 1027),
-(338, 30, 1028),
-(339, 30, 1029),
-(340, 30, 1030),
-(341, 30, 1031),
-(342, 30, 1032),
-(343, 30, 1033),
-(344, 30, 1034),
-(345, 30, 1035),
-(346, 30, 1036),
-(347, 30, 1037),
-(348, 30, 1038),
-(349, 30, 1039),
-(350, 30, 1040),
-(351, 30, 1041),
-(352, 30, 1042),
-(353, 30, 1043),
-(354, 30, 1044),
-(355, 30, 1045),
-(356, 30, 1046),
-(357, 30, 1047),
-(358, 30, 1048),
-(359, 30, 1049),
-(360, 30, 1050),
-(361, 30, 1051),
-(362, 30, 1052),
-(363, 30, 1053),
-(364, 30, 1054),
-(365, 30, 1055),
-(366, 30, 1056),
-(367, 30, 1057),
-(368, 30, 1058),
-(369, 30, 1059),
-(370, 30, 1060),
-(371, 31, 1061),
-(372, 31, 1062),
-(373, 31, 1063),
-(374, 31, 1064),
-(375, 31, 1065),
-(376, 31, 1066),
-(377, 31, 1067),
-(378, 31, 1068),
-(379, 31, 1069),
-(380, 31, 1070),
-(381, 31, 1071),
-(382, 31, 1072),
-(383, 31, 1073),
-(384, 31, 1074),
-(385, 31, 1075),
-(386, 31, 1076),
-(387, 31, 1077),
-(388, 31, 1078),
-(389, 31, 1079),
-(390, 31, 1080),
-(391, 31, 1081),
-(392, 31, 1082),
-(393, 31, 1083),
-(394, 31, 1084),
-(395, 31, 1085),
-(396, 31, 1086),
-(397, 31, 1087),
-(398, 31, 1088),
-(399, 31, 1089),
-(400, 31, 1090),
-(401, 31, 1091),
-(402, 31, 1092),
-(403, 31, 1093),
-(404, 31, 1094),
-(405, 31, 1095),
-(406, 31, 1096),
-(407, 31, 1097),
-(408, 31, 1098),
-(409, 31, 1099),
-(410, 31, 1100),
-(411, 31, 1101),
-(412, 32, 1102),
-(413, 32, 1103),
-(414, 32, 1104),
-(415, 32, 1105),
-(416, 32, 1106),
-(417, 32, 1107),
-(418, 32, 1108),
-(419, 32, 1109),
-(420, 32, 1110),
-(421, 32, 1111),
-(422, 32, 1112),
-(423, 32, 1113),
-(424, 32, 1114),
-(425, 32, 1115),
-(426, 32, 1116),
-(427, 32, 1117),
-(428, 32, 1118),
-(429, 32, 1119),
-(430, 32, 1120),
-(431, 32, 1121),
-(432, 32, 1122),
-(433, 32, 1123),
-(434, 32, 1124),
-(435, 32, 1125),
-(436, 32, 1126),
-(437, 32, 1127),
-(438, 32, 1128),
-(439, 32, 1129),
-(440, 32, 1130),
-(441, 32, 1131),
-(442, 32, 1132),
-(443, 32, 1133),
-(444, 32, 1134),
-(445, 32, 1135),
-(446, 32, 1136),
-(447, 32, 1137),
-(448, 32, 1138),
-(449, 32, 1139),
-(450, 32, 1140),
-(451, 32, 1141),
-(452, 32, 1142),
-(453, 32, 1143),
-(454, 32, 1144),
-(455, 32, 1145),
-(456, 32, 1146),
-(457, 32, 1147),
-(458, 32, 1148),
-(459, 32, 1149),
-(460, 32, 1150),
-(461, 32, 1151),
-(462, 32, 1152),
-(463, 32, 1153),
-(464, 32, 1154),
-(465, 32, 1155),
-(466, 32, 1156),
-(467, 32, 1157),
-(468, 32, 1158),
-(469, 32, 1159),
-(470, 32, 1160),
-(471, 32, 1161),
-(472, 32, 1162),
-(473, 32, 1163),
-(474, 32, 1164),
-(475, 32, 1165),
-(476, 32, 1166),
-(477, 32, 1167),
-(478, 32, 1168),
-(479, 32, 1169),
-(480, 32, 1170),
-(481, 32, 1171),
-(482, 32, 1172),
-(483, 32, 1173),
-(484, 32, 1174),
-(485, 32, 1175),
-(486, 32, 1176),
-(487, 32, 1177),
-(488, 32, 1178),
-(489, 32, 1179),
-(490, 32, 1180),
-(491, 32, 1181),
-(492, 32, 1182),
-(493, 32, 1183),
-(494, 32, 1184),
-(495, 32, 1185),
-(496, 32, 1186),
-(497, 32, 1187),
-(498, 32, 1188),
-(499, 32, 1189),
-(500, 32, 1190),
-(501, 32, 1191),
-(502, 32, 1192),
-(503, 32, 1193),
-(504, 32, 1194),
-(505, 32, 1195),
-(506, 32, 1196),
-(507, 32, 1197),
-(508, 32, 1198),
-(509, 32, 1199),
-(510, 32, 1200),
-(511, 32, 1201),
-(512, 32, 1202),
-(513, 32, 1203),
-(514, 32, 1204),
-(515, 32, 1205),
-(516, 32, 1206),
-(517, 32, 1207),
-(518, 32, 1208),
-(519, 32, 1209),
-(520, 32, 1210),
-(521, 32, 1211),
-(522, 32, 1212),
-(523, 32, 1213),
-(524, 32, 1214),
-(525, 32, 1215),
-(526, 32, 1216),
-(527, 32, 1217),
-(528, 32, 1218),
-(529, 32, 1219),
-(530, 32, 1220),
-(531, 32, 1221),
-(532, 32, 1222),
-(533, 32, 1223),
-(534, 32, 1224),
-(535, 32, 1225),
-(536, 32, 1226),
-(537, 32, 1227),
-(538, 32, 1228),
-(539, 32, 1229),
-(540, 32, 1230),
-(541, 32, 1231),
-(542, 32, 1232),
-(543, 32, 1233),
-(544, 32, 1234),
-(545, 32, 1235),
-(546, 32, 1236),
-(547, 32, 1237),
-(548, 32, 1238),
-(549, 32, 1239),
-(550, 32, 1240),
-(551, 32, 1241),
-(552, 32, 1242),
-(553, 32, 1243),
-(554, 32, 1244),
-(555, 32, 1245),
-(556, 32, 1246),
-(557, 32, 1247),
-(558, 32, 1248),
-(559, 32, 1249),
-(560, 32, 1250),
-(561, 32, 1251),
-(562, 32, 1252),
-(563, 32, 1253),
-(564, 32, 1254),
-(565, 32, 1255),
-(566, 32, 1256),
-(567, 32, 1257),
-(568, 32, 1258),
-(569, 32, 1259),
-(570, 32, 1260),
-(571, 32, 1261),
-(572, 32, 1262),
-(573, 32, 1263),
-(574, 32, 1264),
-(575, 32, 1265),
-(576, 33, 1266),
-(577, 33, 1267),
-(578, 33, 1268),
-(579, 33, 1269),
-(580, 33, 1270),
-(581, 33, 1271),
-(582, 33, 1272),
-(583, 33, 1273),
-(584, 33, 1274),
-(585, 33, 1275),
-(586, 33, 1276),
-(587, 33, 1277),
-(588, 33, 1278),
-(589, 33, 1279),
-(590, 33, 1280),
-(591, 33, 1281),
-(592, 33, 1282),
-(593, 33, 1283),
-(594, 33, 1284),
-(595, 33, 1285),
-(596, 33, 1286),
-(597, 33, 1287),
-(598, 33, 1288),
-(599, 33, 1289),
-(600, 34, 1290),
-(601, 34, 1291),
-(602, 34, 1292),
-(603, 34, 1293),
-(604, 34, 1294),
-(605, 34, 1295),
-(606, 34, 1296),
-(607, 34, 1297),
-(608, 34, 1298),
-(609, 34, 1299),
-(610, 34, 1300),
-(611, 34, 1301),
-(612, 34, 1302),
-(613, 35, 1303),
-(614, 35, 1304),
-(615, 35, 1305),
-(616, 35, 1306),
-(617, 35, 1307),
-(618, 35, 1308),
-(619, 35, 1309),
-(620, 35, 1310),
-(621, 35, 1311),
-(622, 35, 1312),
-(623, 35, 1313),
-(624, 35, 1314),
-(625, 35, 1315),
-(626, 35, 1316),
-(627, 35, 1317),
-(628, 35, 1318),
-(629, 35, 1319),
-(630, 35, 1320),
-(631, 35, 1321),
-(632, 35, 1322),
-(633, 35, 1323),
-(634, 35, 1324),
-(635, 35, 1325),
-(636, 35, 1326),
-(637, 35, 1327),
-(638, 35, 1328),
-(639, 35, 1329),
-(640, 35, 1330),
-(641, 35, 1331),
-(642, 35, 1332),
-(643, 35, 1333),
-(644, 35, 1334),
-(645, 35, 1335),
-(646, 35, 1336),
-(647, 35, 1337),
-(648, 35, 1338),
-(649, 35, 1339),
-(650, 35, 1340),
-(651, 35, 1341),
-(652, 35, 1342),
-(653, 35, 1343),
-(654, 35, 1344),
-(655, 36, 1345),
-(656, 36, 1346),
-(657, 36, 1347),
-(658, 36, 1348),
-(659, 36, 1349),
-(660, 36, 1350),
-(661, 36, 1351),
-(662, 36, 1352),
-(663, 36, 1353),
-(664, 36, 1354),
-(665, 36, 1355),
-(666, 36, 1356),
-(667, 36, 1357),
-(668, 36, 1358),
-(669, 36, 1359),
-(670, 36, 1360),
-(671, 36, 1361),
-(672, 36, 1362),
-(673, 36, 1363),
-(674, 36, 1364),
-(675, 36, 1365),
-(676, 36, 1366),
-(677, 36, 1367),
-(678, 36, 1368),
-(679, 36, 1369),
-(680, 36, 1370);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `attachment`
---
-ALTER TABLE `attachment`
-  ADD PRIMARY KEY (`attach_id`);
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`category_id`);
-
---
--- Indexes for table `options`
---
-ALTER TABLE `options`
-  ADD PRIMARY KEY (`option_name`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- Indexes for table `website`
---
-ALTER TABLE `website`
-  ADD PRIMARY KEY (`website_id`);
-
---
--- Indexes for table `website_category`
---
-ALTER TABLE `website_category`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `category_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `website`
---
-ALTER TABLE `website`
-  MODIFY `website_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1371;
---
--- AUTO_INCREMENT for table `website_category`
---
-ALTER TABLE `website_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=681;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS = 1;

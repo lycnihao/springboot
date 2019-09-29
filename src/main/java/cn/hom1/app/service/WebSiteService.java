@@ -22,7 +22,7 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
 
     WebSite findByWebSiteId(Integer webSiteId);
 
-    void save(WebSite link,Set<Integer> categoryIds);
+    void save(WebSite webSite,Set<Integer> categoryIds);
 
     void delete(Integer webSiteId);
 

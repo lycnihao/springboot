@@ -41,7 +41,7 @@ public class ApiDataController {
     @RequestMapping("getList")
     @Cacheable(value="webSite",key="'webSite'")
     public CategoryWebSiteVo getList() {
-        List<Category> categories = categoryService.listAll();
+        List<Category> categories = categoryService.list();
         Map<Integer, List<WebSite>> webSites = webSiteService.convertToListMapByCategory(categories);
         return new CategoryWebSiteVo(categories,webSites);
     }

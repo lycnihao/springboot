@@ -1,22 +1,20 @@
 package cn.hom1.app.utils;
 
-import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.WebSite;
+import cn.hom1.app.model.entity.WebSiteCategory;
+import cn.hom1.app.model.enums.WebsiteTypeEnum;
 import cn.hom1.app.service.CategoryService;
+import cn.hom1.app.service.WebSiteCategoryService;
 import cn.hom1.app.service.WebSiteService;
-import cn.hutool.core.text.StrBuilder;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import cn.hom1.app.model.entity.Category;
 
-import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.*;
 
 /**
@@ -25,19 +23,17 @@ import java.util.*;
 @Service
 public class RequestWeb {
 
-/*    private WebSiteService webSiteService;
+    private WebSiteService webSiteService;
 
     private CategoryService categoryService;
 
+    private WebSiteCategoryService webSiteCategoryService;
+
     public RequestWeb(WebSiteService webSiteService,
-        CategoryService categoryService) {
+        CategoryService categoryService,WebSiteCategoryService webSiteCategoryService) {
         this.webSiteService = webSiteService;
         this.categoryService = categoryService;
-    }*/
-
-    public static void main(String[] args) {
-        RequestWeb requestWeb = new RequestWeb();
-        requestWeb.push();
+        this.webSiteCategoryService = webSiteCategoryService;
     }
 
     public String pull() {
@@ -58,9 +54,9 @@ public class RequestWeb {
             Map<String, Object> parent = new HashMap<>(3);
             parent.put("name", parentName);
             parent.put("slugName", parentSlugName);
-
+            Map<String, Object> cates = new HashMap<>();
             for (Element tab : listNavItem.select(".tab-content .tab-pane")) {
-                List<Map<String, String>> list = new ArrayList<>();
+                List<WebSite> list = new ArrayList<>();
                 for (Element item : tab.select(".card-col")) {
                     String title = item.select(".hao h3").text();
                     String summary = item.select(".hao p").text();
@@ -71,20 +67,24 @@ public class RequestWeb {
                         : imgHref.substring(0, imgHref.lastIndexOf("/")).replace("/", "--");
                     String imgSuffix = img.substring(img.lastIndexOf("."), img.length());
 
-                    Map<String, String> cate = new HashMap<>();
-                    cate.put("title", title);
-                    cate.put("summary", summary);
-                    cate.put("url", url);
-                    cate.put("logo", imgPrefix + imgSuffix);
-                    list.add(cate);
+                    WebSite webSite = new WebSite();
+                    webSite.setTitle(title);
+                    webSite.setSummary(summary);
+                    webSite.setUrl(url);
+                    webSite.setOrdered(0);
+                    webSite.setIcon("http://47.106.84.166:3302/upload/"+imgPrefix + imgSuffix);
+                    webSite.setType(WebsiteTypeEnum.PUBLIC.getDesc());
+                    webSite.setCreateTime(new Date());
+                    webSite.setIsRecommend(0);
+                    webSite.setVisits(0);
+
+                    list.add(webSite);
                 }
 
                 String name = tab.select(".tab-pane").attr("id");
-
-                Map<String, Object> cates = new HashMap<>();
                 cates.put(name, list);
-                parent.put("subCate", cates);
             }
+            parent.put("subCate", cates);
             jsonArray.add(parent);
         }
         System.out.println(jsonArray);
@@ -94,10 +94,38 @@ public class RequestWeb {
 
     public void push() {
 
-        JSONArray jsonArray = (JSONArray) JSON.parse(new RequestWeb().pull());
+        JSONArray jsonArray = (JSONArray) JSON.parse(this.pull());
         for (int i = 0; i < jsonArray.size(); i++) {
             JSONObject object = jsonArray.getJSONObject(i);
-            System.out.println(object);
+            /*System.out.println(object);*/
+            Category parentCate = new Category();
+            parentCate.setSlugName(object.get("slugName").toString());
+            parentCate.setName(object.get("name").toString());
+            parentCate.setParentId(0);
+            Category parentCategory = categoryService.create(parentCate);
+            System.out.println(parentCategory);
+            Map<String,Object> subCates = (Map<String, Object>) object.get("subCate");
+            /*System.out.println(subCates);*/
+            for (String subCate: subCates.keySet()){
+                System.out.println(subCate);
+
+                Category subCategory = new Category();
+                subCategory.setSlugName(subCate);
+                subCategory.setName(subCate);
+                subCategory.setParentId(parentCate.getCategoryId());
+
+                Category category = categoryService.create(subCategory);
+
+                JSONArray webSitesArray = (JSONArray) subCates.get(subCate);
+                List<WebSite> webSites = webSitesArray.toJavaList(WebSite.class);
+                for (WebSite  webSite:webSites){
+                    Set<Integer> categoryIds = new HashSet<>();
+                    categoryIds.add(category.getCategoryId());
+                    webSiteService.save(webSite,categoryIds);
+                }
+
+            }
+            System.out.println("----------------------");
         }
     }
 

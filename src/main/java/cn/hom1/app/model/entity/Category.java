@@ -47,6 +47,12 @@ public class Category implements Serializable {
     private String description;
 
     /**
+     * 分类顺序
+     */
+    @Column(name = "ordered")
+    private int ordered;
+
+    /**
      * 父级分类
      */
     @Column(name = "parent_id")
