@@ -25,7 +25,7 @@ import java.util.*;
 @Service
 public class RequestWeb {
 
-    private WebSiteService webSiteService;
+/*    private WebSiteService webSiteService;
 
     private CategoryService categoryService;
 
@@ -33,14 +33,76 @@ public class RequestWeb {
         CategoryService categoryService) {
         this.webSiteService = webSiteService;
         this.categoryService = categoryService;
-    }
+    }*/
 
     public static void main(String[] args) {
-        /*RequestWeb requestWeb = new RequestWeb();
-        requestWeb.push();*/
+        RequestWeb requestWeb = new RequestWeb();
+        requestWeb.push();
     }
 
-    public void pull(){
+    public String pull() {
+
+        String webUrl = "http://www.yechuang.top/";
+        Document doc = RequestUtil.requestSite(webUrl, false, "");
+        Elements mainElements = doc
+            .select("body > div:nth-child(4) > div > div.left.pull-left.col-md-9");
+        JSONArray jsonArray = new JSONArray();
+
+        Elements listNav = mainElements.select(".list-nav");
+
+        for (Element listNavItem : listNav) {
+            String parentSlugName = listNavItem.select(".list-nav").attr("id");
+            String parentName = listNavItem.select(".nav>h3").text();
+            /*System.out.println(parentSlugName);
+            System.out.println(parentName);*/
+            Map<String, Object> parent = new HashMap<>(3);
+            parent.put("name", parentName);
+            parent.put("slugName", parentSlugName);
+
+            for (Element tab : listNavItem.select(".tab-content .tab-pane")) {
+                List<Map<String, String>> list = new ArrayList<>();
+                for (Element item : tab.select(".card-col")) {
+                    String title = item.select(".hao h3").text();
+                    String summary = item.select(".hao p").text();
+                    String url = item.select(".hao").attr("href").split("=")[1];
+                    String img = item.select("img").attr("src");
+                    String imgHref = url.replace(".", "_").split("//")[1];
+                    String imgPrefix = imgHref.lastIndexOf("/") == -1 ? imgHref
+                        : imgHref.substring(0, imgHref.lastIndexOf("/")).replace("/", "--");
+                    String imgSuffix = img.substring(img.lastIndexOf("."), img.length());
+
+                    Map<String, String> cate = new HashMap<>();
+                    cate.put("title", title);
+                    cate.put("summary", summary);
+                    cate.put("url", url);
+                    cate.put("logo", imgPrefix + imgSuffix);
+                    list.add(cate);
+                }
+
+                String name = tab.select(".tab-pane").attr("id");
+
+                Map<String, Object> cates = new HashMap<>();
+                cates.put(name, list);
+                parent.put("subCate", cates);
+            }
+            jsonArray.add(parent);
+        }
+        System.out.println(jsonArray);
+        return jsonArray.toJSONString();
+    }
+
+
+    public void push() {
+
+        JSONArray jsonArray = (JSONArray) JSON.parse(new RequestWeb().pull());
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JSONObject object = jsonArray.getJSONObject(i);
+            System.out.println(object);
+        }
+    }
+
+}
+    /*public void pull(){
 
         //用户目录
         final StrBuilder uploadPath = new StrBuilder(System.getProperties().getProperty("user.home"));
@@ -69,7 +131,7 @@ public class RequestWeb {
                 map.put("title",title);
                 map.put("summary",summary);
                 map.put("url",url);
-                /*map.put("img",img);*/
+                *//*map.put("img",img);*//*
                 map.put("logo",imgPrefix + imgSuffix);
                 map.put("category",category);
                 System.out.println(map);
@@ -127,9 +189,9 @@ public class RequestWeb {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
-    public void push(){
+  /*  public void push(){
         //用户目录
         final StrBuilder uploadPath = new StrBuilder(System.getProperties().getProperty("user.home"));
         uploadPath.append("/hom1/");
@@ -162,8 +224,8 @@ public class RequestWeb {
                     }
                     categories.add(category);
 
-                    /*links.setCategories(categories);*/
-                    /*webSiteService.save(webSite);*/
+                    *//*links.setCategories(categories);*//*
+                    *//*webSiteService.save(webSite);*//*
                 }
             }
 
@@ -172,4 +234,4 @@ public class RequestWeb {
         }
     }
 
-}
+}*/

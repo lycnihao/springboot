@@ -9,6 +9,9 @@ import javax.persistence.*;
 @Table(name = "category")
 @Data
 public class Category implements Serializable {
+
+    private static final long serialVersionUID = -4388580446658733030L;
+
     /**
      * 分类Id
      */

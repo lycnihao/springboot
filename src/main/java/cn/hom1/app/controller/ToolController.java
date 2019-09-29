@@ -26,7 +26,7 @@ public class ToolController {
   @RequestMapping("push")
   @ResponseBody
   public String push() {
-    requestWeb.push();
+    /*requestWeb.push();*/
     return "ok";
   }
 }
