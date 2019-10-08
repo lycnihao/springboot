@@ -11,6 +11,8 @@ public interface CategoryService extends CrudService<Category, Integer> {
 
     List<Category> list();
 
+    List<Category> convertSubList();
+
     Category findBySlugName(String slugName);
 
     Category findByName(String name);

@@ -16,6 +16,14 @@ public interface CategoryRepository extends BaseRepository<Category, Integer> {
     @NonNull
     List<Category> list();
 
+    @Query("from Category where parentId = 0 order by ordered")
+    @NonNull
+    List<Category> parenList();
+
+    @Query("from Category where parentId <> 0 order by ordered")
+    @NonNull
+    List<Category> subList();
+
     Category findCategoryBySlugName(String slugName);
 
     Category findCategoriesByName(String name);

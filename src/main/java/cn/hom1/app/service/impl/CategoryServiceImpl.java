@@ -8,6 +8,8 @@ import cn.hom1.app.repository.WebSiteCategoryRepository;
 import cn.hom1.app.service.CategoryService;
 import cn.hom1.app.service.base.AbstractCrudService;
 import cn.hom1.app.utils.ServiceUtils;
+
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +30,41 @@ public class CategoryServiceImpl extends AbstractCrudService<Category, Integer> 
         this.webSiteCategoryRepository = webSiteCategoryRepository;
     }
 
+    /**
+     * 转换子分类特殊显示格式
+     */
     @Override
     public List<Category> list() {
-        return categoryRepository.list();
+        List<Category> list = new ArrayList<>();
+        categoryRepository.parenList().forEach(category ->{
+            if (category.getParentId().equals(0)){
+                list.add(category);
+                categoryRepository.subList().forEach(subCategory ->{
+                    if (subCategory.getParentId().equals(category.getCategoryId())){
+                        list.add(subCategory);
+                    }
+                });
+            }
+        });
+        return list;
+    }
+
+    @Override
+    public List<Category> convertSubList() {
+        List<Category> list = new ArrayList<>();
+        categoryRepository.parenList().forEach(category ->{
+            if (category.getParentId().equals(0)){
+                list.add(category);
+                categoryRepository.subList().forEach(subCategory ->{
+                    if (subCategory.getParentId().equals(category.getCategoryId())){
+                        String name = subCategory.getName();
+                        subCategory.setName("|-"+name);
+                        list.add(subCategory);
+                    }
+                });
+            }
+        });
+        return list;
     }
 
     @Override
@@ -51,7 +85,7 @@ public class CategoryServiceImpl extends AbstractCrudService<Category, Integer> 
   @Override
     public List<CategoryWithWebSiteCountDTO> listCategoryWithWebSiteCount() {
 
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = this.convertSubList();
 
         // Query category post count
         Map<Integer, Long> categoryPostCountMap = ServiceUtils
@@ -68,7 +102,7 @@ public class CategoryServiceImpl extends AbstractCrudService<Category, Integer> 
                 categoryWithPostCountDTO.setIcon(category.getIcon());
                 categoryWithPostCountDTO.setSlugName(category.getSlugName());
                 categoryWithPostCountDTO.setDescription(category.getDescription());
-
+                categoryWithPostCountDTO.setParentId(category.getParentId());
                 // Set post count
                 categoryWithPostCountDTO.setWebSiteCount(categoryPostCountMap.getOrDefault(category.getCategoryId(), 0L));
                 return categoryWithPostCountDTO;
