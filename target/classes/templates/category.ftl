@@ -37,6 +37,29 @@
                                     <small>*这是文章路径上显示的名称，最好为英文</small>
                                 </div>
                                 <div class="form-group">
+                                  <label for="parent">上级分类：</label>
+                                  <select class="form-control" id="parentId" name="parentId">
+                                    <option value="0">无</option>
+                                      <@commonTag method="categories">
+                                        <#list categories as categorie>
+                                          <#if categorie.parentId == 0>
+                                            <#if updateCategory.parentId == categorie.categoryId>
+                                              <option value="${categorie.categoryId}" selected>${categorie.name}</option>
+                                            <#else>
+                                              <option value="${categorie.categoryId}">${categorie.name}</option>
+                                            </#if>
+                                          </#if>
+                                        </#list>
+                                      </@commonTag>
+                                  </select>
+                                  <small>*这是分类级别，二级分类附属于一级分类下</small>
+                                </div>
+                              <div class="form-group">
+                                <label for="slugName">显示顺序：</label>
+                                <input type="text" class="form-control" id="ordered" name="ordered" value="${updateCategory.ordered!}">
+                                <small>*分类显示的顺序</small>
+                              </div>
+                                <div class="form-group">
                                     <label for="description" class="control-label">描述：</label>
                                     <textarea class="form-control" rows="3" id="description" name="description" style="resize: none">${updateCategory.description!}</textarea>
                                     <small>*添加描述，部分页面可显示</small>
@@ -62,6 +85,20 @@
                                     <label for="slugName">路径名称：</label>
                                     <input type="text" class="form-control" id="slugName" name="slugName">
                                     <small>*这是文章路径上显示的名称，最好为英文</small>
+                                </div>
+                                <div class="form-group">
+                                  <label for="parent">上级分类：</label>
+                                  <select class="form-control" id="parentId" name="parentId">
+                                    <option value="0">无</option>
+                                    <@commonTag method="categories">
+                                      <#list categories as categorie>
+                                        <#if categorie.parentId == 0>
+                                            <option value="${categorie.categoryId}">${categorie.name}</option>
+                                        </#if>
+                                      </#list>
+                                    </@commonTag>
+                                  </select>
+                                  <small>*这是分类级别，二级分类附属于一级分类下</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="description" class="control-label">描述：</label>
@@ -98,7 +135,9 @@
                                               <td>${cate.slugName!}</td>
                                               <td>${cate.description!}</td>
                                               <td>
+                                                <a href="/admin/website?categoryId=${cate.categoryId}">
                                                   <span class="label" style="background-color: #d6cdcd;">${cate.webSiteCount}</span>
+                                                </a>
                                               </td>
                                               <td>
                                                   <#if updateCategory?? && updateCategory.categoryId?c==cate.categoryId?c>

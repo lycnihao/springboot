@@ -1,12 +1,23 @@
 <#compress >
     <link rel="stylesheet" href="/static/plugins/select2/css/select2.min.css">
     <#include "module/_macro.ftl">
+    <style>
+      .site-img{
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+      }
+    </style>
     <@head>小红衣后台管理 | 首页</@head>
     <div class="content-wrapper">
       <section class="content-header" id="animated-header">
         <h1 style="display: inline-block;">网站列表</h1>
-        <a class="btn btn-xs btn-info"  href="javascript:;" onclick="jQuery('#addModal').modal('show', {backdrop: 'static'});">
-          <i class="fa fa-plus"></i>添加网站 </a>
+        <a  href="javascript:;" onclick="jQuery('#addModal').modal('show', {backdrop: 'static'});">
+          <i class="fa fa-plus"></i>添加网站
+        </a>|
+        <a class="btn-header" id="search" href="javascript:void(0)">
+          <i class="fa fa-search" aria-hidden="true"></i>筛选
+        </a>
         <ol class="breadcrumb">
           <li>
             <a data-pjax="true" href="javascript:void(0)"><i class="fa fa-dashboard"></i> 首页</a>
@@ -17,57 +28,54 @@
       <section class="content" id="animated-content">
           <div class="box">
             <div class="box-body">
-                <div class="row" id="form-search" style="display: none">
-                  <form action="/admin/website" method="get">
+                <div class="row" id="searchForm" style="display: none">
+                  <form class="form-horizontal" action="/admin/website" method="get">
                     <div class="col-xs-12 col-sm-6 col-md-3">
                       <div class="form-group">
-                        <label class="control-label">网站名称</label>
-                        <input class="form-control" type="text" name="keyword" placeholder="" value="">
+                        <label class="col-sm-4 control-label">网站名称</label>
+                        <div class="col-sm-8">
+                          <input class="form-control input-sm" type="text" name="keyword">
+                        </div>
+
                       </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
                       <div class="form-group">
-                        <label class="control-label">网站分类</label>
-                        <select class="group form-control" name="categoryId" data-url="example/bootstraptable/cxselect?type=group">
-                          <option value="">请选择</option>
+                        <label class="col-sm-4 control-label">网站分类</label>
+                        <div class="col-sm-8">
+                          <select class="form-control" name="categoryId" data-url="example/bootstraptable/cxselect?type=group">
+                            <option value="">请选择</option>
                           <@commonTag method="categories">
                             <#list categories as categorie>
-                            <option value="${categorie.categoryId}">${categorie.name}</option>
+                              <#if categorie.parentId == 0>
+                                <option value="${categorie.categoryId}" disabled>${categorie.name}</option>
+                              <#else>
+                                <option value="${categorie.categoryId}">${categorie.name}</option>
+                              </#if>
+
                             </#list>
                           </@commonTag>
-                        </select>
+                          </select>
+                        </div>
                       </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
-                      <button type="submit" class="btn btn-primary">
+                      <button type="submit" class="btn btn-primary btn-sm">
                         提交
                       </button>
                     </div>
                   </form>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
-                    <div class="pull-left"></div>
-                    <div class="pull-right">
-                      <button id="search-toggle" type="button" class="btn btn-default" style="margin-top: 10px">
-                        <i class="fa fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12 table-responsive no-padding">
-                    <table class="table table-hover">
+                  <div class="col-md-12 table-responsive no-padding" style="margin: 0 10px">
+                    <table class="table table-hover" style="font-size: 15px;">
                     <thead>
                     <tr>
-                      <th></th>
                       <th>图标</th>
                       <th>名称</th>
                       <th>链接</th>
                       <th>分类</th>
-                      <th>类型</th>
                       <th>标签</th>
-                      <th>ID</th>
                       <th>添加时间</th>
                       <th>操作</th>
                     </tr>
@@ -75,47 +83,35 @@
                     <tbody>
                     <#list website.content as website>
                     <tr>
-                      <td class="user-cb">
-                        <input type="checkbox" name="ids" value="${website.websiteId}"/>
-                      </td>
                       <td>
                         <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${website.websiteId}});">
-                          <img src="${website.icon}" class="direct-chat-img" alt="user-pic" />
+                          <img src="${website.icon}" class="site-img" alt="user-pic" />
                         </a>
                       </td>
                       <td>
                         <a target="_blank" href="${website.url}" class="name">${website.title}</a>
                       </td>
                       <td class="hidden-xs hidden-sm">
-                        <span class="email">${website.url}</span>
+                        <span style="font-size: 14px">${website.url}</span>
                       </td>
                       <td class="hidden-xs hidden-sm">
                         <#list websiteCate?keys as key>
                           <#if key?number == website.websiteId>
                             <#list websiteCate[key] as item>
-                              <div class="label label-primary">${item.name}</div>
+                              <a href="/admin/website?categoryId=${item.categoryId}"><div class="label label-primary">${item.name}</div></a>
                             </#list>
                           </#if>
                         </#list>
                       </td>
                       <td>
-                                <span>${(website.isTouch == 0 && website.isRecommend == 0)?string('<div class="badge bg-light-blue">网站</div>',
-                                (website.isTouch == 1 && website.isRecommend == 1)?string('<div class="badge bg-yellow">置顶</div><div class="badge bg-green">推荐</div>',
-                                (website.isTouch == 1)?string('<div class="badge bg-yellow">置顶</div>',
-                                '<div class="badge bg-green">推荐</div>')) )}</span>
-                      </td>
-                      <td>
-                        <span class="email">设计师/设计工具</span>
-                      </td>
-                      <td>
-                        <span class="email">${website.websiteId}</span>
+                        <span class="email">待开发/计划中</span>
                       </td>
                       <td>
                         <span class="email">${website.createTime?string("yyyy-MM-dd")}</span>
                       </td>
                       <td class="action-website">
-                        <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${website.websiteId ? c}});" class="btn bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
-                        <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${website.websiteId ? c}});" class="btn btn-danger"><i class="linecons-trash"></i>删除</a>
+                        <a href="javascript:;" onclick="jQuery('#updateModal').modal('show', {backdrop: 'static',id:${website.websiteId ? c}});" class="btn btn-sm bg-olive btn-flat"><i class="linecons-pencil"></i>编辑</a>
+                        <a href="javascript:;" onclick="jQuery('#deleteModal').modal('show', {backdrop: 'static',id:${website.websiteId ? c}});" class="btn btn-sm btn-danger"><i class="linecons-trash"></i>删除</a>
                       </td>
                     </tr>
                     </#list>
@@ -161,75 +157,35 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-12">
-                <div class="col-sm-4 text-center" style="margin-top: 28px">
-                  <div class="upload-img">
-                    <img id="icon" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
-                    <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=icon','选择附件')">选择图片</span>
-                  </div>
+                <div class="form-group col-md-6">
+                  <label for="title" class="control-label">网址名称</label>
+                  <input type="text" class="form-control" id="title" name="title" placeholder="网站名称">
                 </div>
-                <div class="col-sm-8">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label for="url" class="control-label">网址</label>
-                      <div class="input-group input-group-sm">
-                        <input id="url" name="url" type="text" class="form-control" placeholder="网址地址，如:http://www.baidu.com">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-info btn-flat" onclick="getTitle('#url','#title')">抓取标题</button>
+                <div class="form-group col-md-6">
+                  <label for="url" class="control-label">网站链接</label>
+                  <div class="input-group input-group-sm">
+                    <input id="url" name="url" type="text" class="form-control" placeholder="如:http://www.baidu.com">
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat" onclick="getTitle('#url','#title')">获取标题</button>
                       </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="title" class="control-label">名称</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="网站名称">
-                  </div>
-                  <div class="form-group no-margin">
-                    <label for="summary" class="control-label">简介</label>
-                    <textarea class="form-control autogrow" id="summary" placeholder="对此标签页的简介文字"></textarea>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label for="categories" class="control-label">分类</label>
+                <div class="form-group col-md-12">
+                  <label for="icon" class="control-label">网址图标</label>
+                  <input type="text" class="form-control" id="icon" name="icon" placeholder="网站图标">
+                </div>
+                <div class="form-group col-md-12 no-margin">
+                  <label for="summary" class="control-label">网站简介</label>
+                  <textarea class="form-control autogrow" id="summary" placeholder="对网站进行简要的概括(50字以内)"></textarea>
+                </div>
+                <div class="form-group col-md-12" style="margin-top: 10px">
+                  <label for="categories" class="control-label">网站分类</label>
                   <select id="categories" class="categories form-control" multiple="multiple" style="width: 100%;">
                       <#list categories as categorie>
                           <option value="${categorie.categoryId}">${categorie.name}</option>
                       </#list>
                   </select>
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label for="createTime" class="control-label">添加时间</label>
-                  <input type="text" class="form-control" id="createTime" name="createTime" placeholder="2017-08-01">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-md-12">
-                  <ul style="list-style: none;padding: 0px;margin: 0px;">
-                      <li style="padding: 0;margin: 0px;list-style: none;display: inline-block;">
-                          <div class="pretty p-default">
-                              <input name="isTouch" id="isTouch" type="checkbox" class="minimal" value="1">
-                              <div class="state p-primary">
-                                  <label>置顶</label>
-                              </div>
-                          </div>
-                      </li>
-                      <li style="padding: 0;margin: 0px;list-style: none;display: inline-block;">
-                          <div class="pretty p-default">
-                              <input name="isRecommend" id="isRecommend" type="checkbox" class="minimal" value="1">
-                              <div class="state p-primary">
-                                  <label>推荐</label>+
-                              </div>
-                          </div>
-                      </li>
-                  </ul>
               </div>
             </div>
           </div>
@@ -254,81 +210,53 @@
                         <div class="col-md-12">
                             <div class="col-sm-4 text-center">
                               <div class="upload-img">
-                                <img id="u-icon" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
+                                <img id="u-icon-img" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
                                 <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=u-icon','选择附件')">选择图片</span>
                               </div>
                             </div>
-                            <div class="col-sm-8">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <label for="u-url" class="control-label">网址</label>
-                                  <div class="input-group input-group-sm">
-                                    <input id="u-url" name="u-url" type="text" class="form-control" placeholder="网址地址，如:http://www.baidu.com">
-                                    <span class="input-group-btn">
-                                      <button type="button" class="btn btn-info btn-flat"  onclick="getTitle('#u-url','#u-title')">抓取标题</button>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="u-title" class="control-label">名称</label>
-                                <input type="text" class="form-control" id="u-title" name="u-title" placeholder="网站名称">
-                              </div>
-
-
-                              <div class="form-group no-margin">
-                                <label for="u-summary" class="control-label">简介</label>
-                                <textarea class="form-control autogrow" id="u-summary" placeholder="对此标签页的简介文字"></textarea>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                          <div class="col-sm-8">
                             <div class="form-group">
-                                <label for="categories" class="control-label">分类</label>
-                                  <select id="u-categories" class="categories form-control" multiple="multiple" style="width: 100%;">
-                                      <#list categories as categorie>
-                                          <option value="${categorie.categoryId}">${categorie.name}</option>
-                                      </#list>
-                                  </select>
+                              <label for="u-title" class="control-label">网址名称</label>
+                              <input type="text" class="form-control" id="u-title" name="u-title" placeholder="网站名称">
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="u-createTime" class="control-label">添加时间</label>
-                                <input type="text" class="form-control" id="u-createTime" placeholder="2017-08-01">
+                              <label for="u-url" class="control-label">网站链接</label>
+                              <div class="input-group input-group-sm">
+                                <input id="u-url" name="u-url" type="text" class="form-control" placeholder="网址链接，如:http://www.baidu.com">
+                                <span class="input-group-btn">
+                                  <button type="button" class="btn btn-info btn-flat" onclick="getTitle('#u-url','#u-title')">抓取标题</button>
+                                </span>
+                              </div>
                             </div>
+                            <div class="form-group">
+                              <label for="u-icon" class="control-label">网址图标</label>
+                              <input type="text" class="form-control" id="u-icon" name="u-icon" placeholder="网站图标">
+                            </div>
+                          </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-5">
+                  <div class="row">
+                      <div class="form-group col-md-12 no-margin">
+                        <label for="u-summary" class="control-label">网站简介</label>
+                        <textarea class="form-control autogrow" id="u-summary" placeholder="对网站进行简要的概括(50字以内)"></textarea>
+                      </div>
+                      <div class="form-group col-md-12" style="margin-top: 10px">
+                        <label for="u-categories" class="control-label">网站分类</label>
+                        <select id="u-categories" class="categories form-control" multiple="multiple" style="width: 100%;">
+                        <#list categories as categorie>
+                          <option value="${categorie.categoryId}">${categorie.name}</option>
+                        </#list>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label for="u-createTime" class="control-label">创建时间</label>
+                        <input type="text" class="form-control" id="u-createTime" name="u-createTime" disabled>
+                      </div>
+                      <div class="form-group col-md-6">
                           <label for="u-ordered" class="control-label">序号</label>
                           <input type="number" class="form-control" id="u-ordered" placeholder="序号">
-                        </div>
-                        <div class="form-group col-md-5" style="margin-top: 20px;">
-                            <ul style="list-style: none;padding: 0px;margin: 0px;">
-                                <li style="padding: 0;margin: 0px;list-style: none">
-                                    <div class="pretty p-default">
-                                        <input name="u-isTouch" id="u-isTouch" type="checkbox" class="minimal" value="1">
-                                        <div class="state p-primary">
-                                            <label>置顶</label>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li style="padding: 0;margin: 0px;list-style: none">
-                                    <div class="pretty p-default">
-                                        <input name="u-isRecommend" id="u-isRecommend" type="checkbox" class="minimal" value="1">
-                                        <div class="state p-primary">
-                                            <label>推荐</label>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                      </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -371,14 +299,13 @@
         $('#updateModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)[0];
             var id = button.id;
-            $('#u-isRecommend').prop('checked', false);
-            $('#u-isTouch').prop('checked', false);
             $.get('website/updateData',{'websiteId':id},function (result) {
 
                 $('#u-websiteId').val(result.websiteId);
                 $('#u-title').val(result.title);
                 $('#u-url').val(result.url);
-                $('#u-icon').attr('src',result.icon);
+                $('#u-icon').val(result.icon)
+                $('#u-icon-img').attr('src',result.icon);
                 $('#u-summary').val(result.summary);
                 $('#u-ordered').val(result.ordered);
                 $('#u-createTime').val(result.createTime);
@@ -386,13 +313,6 @@
                 var arr = [];
                 $.each(result.categories, function(key, val) { arr.push(val.categoryId) });
                 $('#u-categories').val(arr).trigger('change');
-
-                if(result.isTouch == 1)
-                    $('#u-isTouch').prop('checked', true);
-
-                if(result.isRecommend == 1)
-                  $('#u-isRecommend').prop('checked', true)
-
 
             });
         });
@@ -408,14 +328,12 @@
             var websiteId = $('#u-websiteId').val();
             var title = $('#u-title').val();
             var url =  $('#u-url').val();
-            var icon =  $('#u-icon').attr('src');
+            var icon =  $('#u-icon').val();
             var summary = $('#u-summary').val();
             var ordered = $('#u-ordered').val();
             var createTime = $('#u-createTime').val();
-            var isTouch = $('#u-isTouch').prop('checked');
-            var isRecommend = $('#u-isRecommend').prop('checked');
             var categoryIds = $("#u-categories").val();
-            var data = {'websiteId':websiteId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'categoryIds':categoryIds};
+            var data = {'websiteId':websiteId,'title':title,'url':url,'icon':icon,'summary':summary,'ordered':ordered,'createTime':new Date(createTime),'categoryIds':categoryIds};
             $.ajax({
                 url:'website/save',
                 type:'post',
@@ -431,13 +349,11 @@
         $("#add").click(function () {
           var title = $('#title').val();
           var url =  $('#url').val();
-          var icon =  $('#icon').attr('src');
+          var icon =  $('#icon').val();
           var summary = $('#summary').val();
-          var createTime = $('#createTime').val();
-          var isTouch = $('#isTouch').prop('checked');
-          var isRecommend = $('#isRecommend').prop('checked');
+          var createTime = new Date();
           var categoryIds = $("#categories").val();
-          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'isTouch':isTouch == true ? 1:0,'isRecommend':isRecommend == true ? 1:0,'categoryIds[]':categoryIds};
+          var data = {'title':title,'url':url,'icon':icon,'summary':summary,'createTime':new Date(createTime),'categoryIds[]':categoryIds};
             $.ajax({
                 url:'website/save',
                 type:'post',
@@ -461,9 +377,9 @@
             });
         });
 
-        $("#search-toggle").click(function () {
-          $("#form-search").toggle();
-        })
+        $("#search").click(function () {
+          $("#searchForm").slideToggle(400);
+        });
 
         function layerModal(url, title) {
           layer.open({

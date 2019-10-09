@@ -32,7 +32,8 @@ public class AttachmentController {
      * @return 模板路径/admin_attachment
      */
     @RequestMapping
-    public String attachment(Model model,@PageableDefault(size = 18, sort = "attachId", direction = Sort.Direction.DESC) Pageable pageable) {
+    public String attachment(Model model,
+        @PageableDefault(size = 72, sort = "attachId", direction = Sort.Direction.DESC) Pageable pageable) {
         final Page<Attachment> attachments = attachmentService.listAll(pageable);
         model.addAttribute("attachments", attachments);
         return "attachment";
