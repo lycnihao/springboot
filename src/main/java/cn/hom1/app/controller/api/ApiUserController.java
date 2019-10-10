@@ -80,19 +80,21 @@ public class ApiUserController {
     }
 
     String password = new BCryptPasswordEncoder().encode(user.getPassword());
+    user.setNickname(user.getUsername());
     user.setPassword(password);
     user.setCreateTime(new Date());
     user.setStatus(1);
-    System.out.println(user);
-    /*userService.create(user);*/
-    return new JsonResult(1, "用户添加成功");
+    user.setUserAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
+    userService.create(user);
+    return new JsonResult(1, "注册成功");
   }
 
 
   @RequestMapping("/info")
   public JsonResult info(HttpSession session){
-    String str = (String) session.getAttribute(Const.USER_SESSION_KEY);
-    Long userId = Long.valueOf(str);
+    Object object = session.getAttribute(Const.USER_SESSION_KEY);
+    System.out.println(object);
+    Long userId = Long.valueOf(object.toString());
     Optional<User> user = userService.fetchById(userId);
     User us = user.orElse(new User());
     us.setPassword("**");
