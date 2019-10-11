@@ -35,31 +35,43 @@ public class ApiInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 从 http 请求头中取出 token
         String token = request.getHeader("token");
+        System.out.println("token--"+token);
         // 执行认证
         if (token == null) {
-            throw new RuntimeException("无token，请重新登录");
+            /*throw new RuntimeException("无token，请重新登录");*/
+            System.out.println("无token，请重新登录");
+            response.sendRedirect("/api/user/fail");
+            return false;
         }
         // 获取 token 中的 user id
         String userId;
         try {
             userId = JWT.decode(token).getAudience().get(0);
         } catch (JWTDecodeException j) {
-            throw new RuntimeException("401");
+            /*throw new RuntimeException("401");*/
+            System.out.println("user id获取失败");
+            response.sendRedirect("/api/user/fail");
+            return false;
         }
         User user = userService.fetchById(Long.valueOf(userId)).orElse(new User());
         if (null == user) {
-            throw new RuntimeException("用户不存在，请重新登录");
+            /*throw new RuntimeException("用户不存在，请重新登录");*/
+            System.out.println("用户不存在，请重新登录");
+            response.sendRedirect("/api/user/fail");
+            return false;
         }
         // 验证 token
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
         try {
             jwtVerifier.verify(token);
         } catch (JWTVerificationException e) {
-            throw new RuntimeException("401");
+            /*throw new RuntimeException("401");*/
+            System.out.println("token解析失败");
+            response.sendRedirect("/api/user/fail");
+            return false;
         }
 
-        /*//否则拦截并跳转到登录
-        response.sendRedirect("/api/user/fail");*/
+
         return true;
     }
 

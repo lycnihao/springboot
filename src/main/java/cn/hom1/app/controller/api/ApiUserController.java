@@ -11,8 +11,11 @@ import cn.hutool.crypto.SecureUtil;
 import java.util.Date;
 import java.util.Optional;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.auth0.jwt.JWT;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,7 +43,7 @@ public class ApiUserController {
   }
 
   @RequestMapping("/login")
-  public JsonResult login(LoginQuery loginQuery, HttpServletResponse response) {
+  public JsonResult login(LoginQuery loginQuery) {
 
     String username = loginQuery.getUsername();
     String password = loginQuery.getPassword();
@@ -60,9 +63,8 @@ public class ApiUserController {
 
     String token = AuthTokenUtil.buildAuthToken(user);
 
-    Cookie cookie = new Cookie(Const.USER_TOKEN_KEY,token);
+    Cookie cookie = new Cookie(Const.USER_TOKEN_KEY + "_"+user.getUserId(),token);
     cookie.setPath("/");
-    response.addCookie(cookie);
     return new JsonResult(1, "登陆成功",token);
   }
 
@@ -91,10 +93,10 @@ public class ApiUserController {
 
 
   @RequestMapping("/info")
-  public JsonResult info(HttpSession session){
-    Object object = session.getAttribute(Const.USER_SESSION_KEY);
-    System.out.println(object);
-    Long userId = Long.valueOf(object.toString());
+  public JsonResult info(HttpServletRequest request){
+    Object token = request.getHeader("token");
+    System.out.println(token);
+    Long userId = Long.valueOf(JWT.decode(token.toString()).getAudience().get(0));
     Optional<User> user = userService.fetchById(userId);
     User us = user.orElse(new User());
     us.setPassword("**");
