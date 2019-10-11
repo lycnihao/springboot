@@ -5,15 +5,17 @@ import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.User;
 import cn.hom1.app.model.params.LoginQuery;
 import cn.hom1.app.service.UserService;
+import cn.hom1.app.utils.AuthTokenUtil;
 import cn.hutool.core.lang.Validator;
+import cn.hutool.crypto.SecureUtil;
 import java.util.Date;
 import java.util.Optional;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -38,8 +40,7 @@ public class ApiUserController {
   }
 
   @RequestMapping("/login")
-  public JsonResult login(LoginQuery loginQuery, HttpServletResponse response,
-      HttpSession session) {
+  public JsonResult login(LoginQuery loginQuery, HttpServletResponse response) {
 
     String username = loginQuery.getUsername();
     String password = loginQuery.getPassword();
@@ -51,19 +52,18 @@ public class ApiUserController {
       return new JsonResult(0, "账户或密码错误");
     }
 
-    if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
+    if (!SecureUtil.md5(password).equals(user.getPassword())) {
       return new JsonResult(0, "账户或密码错误");
     }
 
     userService.updateLastLoginTime(user.getUserId());
 
-    Cookie cookie = new Cookie(Const.USER_SESSION_KEY,user.getUserId().toString() );
-    cookie.setMaxAge(30 * 24 * 60 * 60);
+    String token = AuthTokenUtil.buildAuthToken(user);
+
+    Cookie cookie = new Cookie(Const.USER_TOKEN_KEY,token);
     cookie.setPath("/");
     response.addCookie(cookie);
-    session.setAttribute(Const.USER_SESSION_KEY, user.getUserId());
-
-    return new JsonResult(1, "登陆成功");
+    return new JsonResult(1, "登陆成功",token);
   }
 
   @RequestMapping("/register")
@@ -79,7 +79,7 @@ public class ApiUserController {
       return new JsonResult(0, "用户名已存在");
     }
 
-    String password = new BCryptPasswordEncoder().encode(user.getPassword());
+    String password = SecureUtil.md5(user.getPassword());
     user.setNickname(user.getUsername());
     user.setPassword(password);
     user.setCreateTime(new Date());
@@ -103,7 +103,8 @@ public class ApiUserController {
   }
 
   @RequestMapping("/fail")
+  @ResponseBody
   public JsonResult fail(){
-    return new JsonResult(1, "访问失败，请登陆后再继续操作");
+    return new JsonResult(0, "访问失败，请登陆后再继续操作");
   }
 }

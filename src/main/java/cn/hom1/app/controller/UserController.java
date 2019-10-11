@@ -3,10 +3,9 @@ package cn.hom1.app.controller;
 import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.User;
 import cn.hom1.app.service.UserService;
+import cn.hutool.crypto.SecureUtil;
 import java.util.Date;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -47,7 +46,7 @@ public class UserController {
           return new JsonResult(0,"用户名已存在");
         }
 
-        String password = new BCryptPasswordEncoder().encode(user.getPassword());
+        String password = SecureUtil.md5(user.getPassword());
         user.setPassword(password);
         user.setCreateTime(new Date());
         user.setStatus(1);

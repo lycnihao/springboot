@@ -73,13 +73,12 @@
       <img src="/static/images/user-5.png" alt="user image" class="img-circle"
            style="width: 100px;height: 100px;">
     </div>
-    <form class="login-form" action="login" method="post">
       <div style="margin-bottom: 28px;" class="form-style">
-        <input name="username" type="username" class="form-control" placeholder="用户名">
+        <input id="username" name="username" type="text" class="form-control" placeholder="用户名">
         <span class="fa fa-user form-control-style"></span>
       </div>
       <div style="margin-bottom: 22px;" class="form-style">
-        <input name="password" type="password" class="form-control" placeholder="密码">
+        <input id="password" name="password" type="password" class="form-control" placeholder="密码">
         <span class="fa fa-unlock-alt form-control-style"></span>
       </div>
       <div class="form-style text-right" style="margin: 0 0 13px">
@@ -97,7 +96,6 @@
           <button id="loginBtn" type="submit" class="btn bg-green btn-block btn-flat">登陆</button>
         </div>
       </div>
-    </form>
   </div>
 
 </div>
@@ -109,24 +107,24 @@
   $(function () {
     $("body").css("background-image", "url(/static/images/bg1.jpg)").css("background-size",
         "cover").css("background-position", "center");
-   /* $("#loginBtn").on('click', function () {
+    $("#loginBtn").on('click', function () {
       $("#loginBtn").html('<i class="fa fa-spin fa-refresh"></i> 登陆中...').attr('disabled', true);
       $.ajax({
         type: "POST",
         url: "/admin/login",
-        data: $(".login-form").serialize(),
+        data: {'username':$("#username").val(),'password':$("#password").val()},
         dataType: "json",
         success: function (data) {
           setTimeout(function () {
             $.unblockUI();
           }, 50);
-          if (data.code == 200) {
+          if (data.code == 1) {
             $("#loginBtn").html("跳转中...").attr('disabled', false);
             layer.msg("登陆成功！", {
               offset: '30%',
               time: 800
             }, function () {
-              window.location.href = "/";
+              window.location.href = "/admin";
             });
           } else {
             $("#loginBtn").html('登陆').attr('disabled', false);
@@ -154,7 +152,7 @@
       if (event.keyCode == 13) {
         $("#loginBtn").click();
       }
-    });*/
+    });
   })
 </script>
 </body>

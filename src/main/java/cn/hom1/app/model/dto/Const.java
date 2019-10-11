@@ -11,4 +11,9 @@ public class Const {
    * user_session
    */
   public static String USER_SESSION_KEY = "user_session";
+
+  /**
+   * user_token
+   */
+  public static String USER_TOKEN_KEY = "user_token_key";
 }
