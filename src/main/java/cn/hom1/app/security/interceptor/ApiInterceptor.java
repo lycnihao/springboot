@@ -71,6 +71,7 @@ public class ApiInterceptor implements HandlerInterceptor {
             return false;
         }
 
+        request.setAttribute("user",user);
 
         return true;
     }

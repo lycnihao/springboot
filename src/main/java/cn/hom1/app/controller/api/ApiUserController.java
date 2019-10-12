@@ -3,12 +3,16 @@ package cn.hom1.app.controller.api;
 import cn.hom1.app.model.dto.Const;
 import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.User;
+import cn.hom1.app.model.entity.WebSite;
 import cn.hom1.app.model.params.LoginQuery;
 import cn.hom1.app.service.UserService;
+import cn.hom1.app.service.WebSiteService;
 import cn.hom1.app.utils.AuthTokenUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.crypto.SecureUtil;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +37,11 @@ public class ApiUserController {
 
   private UserService userService;
 
-  public ApiUserController(UserService userService) {
+  private WebSiteService webSiteService;
+
+  public ApiUserController(UserService userService,WebSiteService webSiteService) {
     this.userService = userService;
+    this.webSiteService = webSiteService;
   }
 
   @RequestMapping("/")
@@ -86,7 +93,11 @@ public class ApiUserController {
     user.setPassword(password);
     user.setCreateTime(new Date());
     user.setStatus(1);
-    user.setUserAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
+    if (user.getQq() == null) {
+      user.setUserAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
+    } else {
+      user.setUserAvatar(String.format("http://q1.qlogo.cn/g?b=qq&nk=%s&s=100", user.getQq()));
+    }
     userService.create(user);
     return new JsonResult(1, "注册成功");
   }
@@ -94,19 +105,21 @@ public class ApiUserController {
 
   @RequestMapping("/info")
   public JsonResult info(HttpServletRequest request){
-    Object token = request.getHeader("token");
-    System.out.println(token);
-    Long userId = Long.valueOf(JWT.decode(token.toString()).getAudience().get(0));
-    Optional<User> user = userService.fetchById(userId);
-    User us = user.orElse(new User());
-    us.setPassword("**");
-    us.setSalt("***");
-    return new JsonResult(1, us);
+    User user = (User) request.getAttribute("user");
+    user.setPassword("**");
+    user.setSalt("***");
+    return new JsonResult(1, user);
   }
 
   @RequestMapping("/fail")
   @ResponseBody
   public JsonResult fail(){
     return new JsonResult(0, "访问失败，请登陆后再继续操作");
+  }
+
+  @RequestMapping("userWebSite")
+  public List<WebSite> getUserWebSite(HttpServletRequest request) {
+    User user = (User) request.getAttribute("user");
+    return webSiteService.listWebSiteListByUserId(user.getUserId().intValue());
   }
 }
