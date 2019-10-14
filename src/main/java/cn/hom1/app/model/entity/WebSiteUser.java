@@ -1,5 +1,6 @@
 package cn.hom1.app.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ public class WebSiteUser {
    * User id.
    */
   @Column(name = "user_id")
+  @JsonIgnore
   private Integer userId;
 
   /**
@@ -31,4 +33,23 @@ public class WebSiteUser {
    */
   @Column(name = "website_id")
   private Integer websiteId;
+
+  /**
+   * Website title.
+   */
+  @Column(name = "website_title")
+  private String websiteTitle;
+
+  /**
+   * Website url.
+   */
+  @Column(name = "website_url")
+  private String websiteUrl;
+
+  /**
+   * Website icon.
+   */
+  @Column(name = "website_icon")
+  private String websiteIcon;
+
 }

@@ -4,6 +4,7 @@ import cn.hom1.app.model.dto.Const;
 import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.User;
 import cn.hom1.app.model.entity.WebSite;
+import cn.hom1.app.model.entity.WebSiteUser;
 import cn.hom1.app.model.params.LoginQuery;
 import cn.hom1.app.service.UserService;
 import cn.hom1.app.service.WebSiteService;
@@ -37,11 +38,8 @@ public class ApiUserController {
 
   private UserService userService;
 
-  private WebSiteService webSiteService;
-
-  public ApiUserController(UserService userService,WebSiteService webSiteService) {
+  public ApiUserController(UserService userService) {
     this.userService = userService;
-    this.webSiteService = webSiteService;
   }
 
   @RequestMapping("/")
@@ -82,10 +80,11 @@ public class ApiUserController {
       return new JsonResult(0, "用户名已存在");
     }
 
-    User uUser = userService.findByName(user.getUsername());
+    User uUser = Validator.isEmail(user.getUsername()) ? userService.findByEmail(user.getUsername())
+        : userService.findByName(user.getUsername());
 
     if (uUser != null) {
-      return new JsonResult(0, "用户名已存在");
+      return new JsonResult(0, Validator.isEmail(user.getUsername()) ? "用户名已存在" : "该邮箱已被注册");
     }
 
     String password = SecureUtil.md5(user.getPassword());
@@ -115,11 +114,5 @@ public class ApiUserController {
   @ResponseBody
   public JsonResult fail(){
     return new JsonResult(0, "访问失败，请登陆后再继续操作");
-  }
-
-  @RequestMapping("userWebSite")
-  public List<WebSite> getUserWebSite(HttpServletRequest request) {
-    User user = (User) request.getAttribute("user");
-    return webSiteService.listWebSiteListByUserId(user.getUserId().intValue());
   }
 }

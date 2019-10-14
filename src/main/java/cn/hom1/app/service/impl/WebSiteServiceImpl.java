@@ -136,9 +136,7 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
     }
 
     @Override
-    public  List<WebSite> listWebSiteListByUserId(Integer userId) {
-        List<WebSiteUser> webSiteUserList = webSiteUserService.ListByUserId(userId);
-        Set<Integer> websiteIds = ServiceUtils.fetchProperty(webSiteUserList,WebSiteUser::getWebsiteId);
-        return webSiteRepository.findAllById(websiteIds);
+    public  List<WebSiteUser> listWebSiteListByUserId(Integer userId) {
+        return webSiteUserService.ListByUserId(userId);
     }
 }

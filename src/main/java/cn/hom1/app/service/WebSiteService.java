@@ -2,6 +2,7 @@ package cn.hom1.app.service;
 
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.WebSite;
+import cn.hom1.app.model.entity.WebSiteUser;
 import cn.hom1.app.model.params.WebSiteQuery;
 import cn.hom1.app.service.base.CrudService;
 
@@ -35,7 +36,7 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
     Map<Integer, List<WebSite>> convertToListMapByCategory(@NonNull List<Category> categories);
 
     @NonNull
-    List<WebSite> listWebSiteListByUserId(@NonNull Integer userId);
+    List<WebSiteUser> listWebSiteListByUserId(@NonNull Integer userId);
 
 
 }
