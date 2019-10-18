@@ -61,7 +61,7 @@ public class AttachmentController {
         attachment.setAttachSize(resultMap.get("size"));
         attachment.setAttachWh(resultMap.get("wh"));
         attachment.setAttachLocation(resultMap.get("location"));
-        attachmentService.save(attachment);
+        attachmentService.create(attachment);
 
         return new JsonResult(200, resultMap);
     }

@@ -52,4 +52,10 @@ public class WebSiteUser {
   @Column(name = "website_icon")
   private String websiteIcon;
 
+  /**
+   * Website category.
+   */
+  @Column(name = "website_category")
+  private String websiteCate;
+
 }

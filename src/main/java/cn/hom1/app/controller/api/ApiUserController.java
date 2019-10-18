@@ -2,18 +2,23 @@ package cn.hom1.app.controller.api;
 
 import cn.hom1.app.model.dto.Const;
 import cn.hom1.app.model.dto.JsonResult;
+import cn.hom1.app.model.entity.Attachment;
 import cn.hom1.app.model.entity.User;
 import cn.hom1.app.model.entity.WebSite;
 import cn.hom1.app.model.entity.WebSiteUser;
 import cn.hom1.app.model.params.LoginQuery;
+import cn.hom1.app.service.AttachmentService;
 import cn.hom1.app.service.UserService;
 import cn.hom1.app.service.WebSiteService;
+import cn.hom1.app.service.WebSiteUserService;
 import cn.hom1.app.utils.AuthTokenUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.crypto.SecureUtil;
+import com.auth0.jwt.algorithms.Algorithm;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,10 +26,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.auth0.jwt.JWT;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 用户接口
@@ -38,8 +48,14 @@ public class ApiUserController {
 
   private UserService userService;
 
-  public ApiUserController(UserService userService) {
+  private AttachmentService attachmentService;
+
+  private WebSiteUserService webSiteUserService;
+
+  public ApiUserController(UserService userService,AttachmentService attachmentService,WebSiteUserService webSiteUserService) {
     this.userService = userService;
+    this.attachmentService = attachmentService;
+    this.webSiteUserService = webSiteUserService;
   }
 
   @RequestMapping("/")
@@ -66,7 +82,8 @@ public class ApiUserController {
 
     userService.updateLastLoginTime(user.getUserId());
 
-    String token = AuthTokenUtil.buildAuthToken(user);
+    String token =JWT.create().withAudience(user.getUserId().toString())
+        .sign(Algorithm.HMAC256(user.getPassword()));
 
     Cookie cookie = new Cookie(Const.USER_TOKEN_KEY + "_"+user.getUserId(),token);
     cookie.setPath("/");
@@ -114,5 +131,47 @@ public class ApiUserController {
   @ResponseBody
   public JsonResult fail(){
     return new JsonResult(0, "访问失败，请登陆后再继续操作");
+  }
+
+
+  @PostMapping("/upload")
+  @ResponseBody
+  public JsonResult upload(@RequestParam("file") MultipartFile file,
+      HttpServletRequest request) {
+    Map<String, String> resultMap = null;
+    if (!file.isEmpty()) {
+      resultMap = attachmentService.upload(file, request);
+      for (String key : resultMap.keySet()) {
+        System.out.println(key + "-->" + resultMap.get(key));
+      }
+    }
+    //保存在数据库
+    Attachment attachment = new Attachment();
+    attachment.setAttachName(resultMap.get("fileName"));
+    attachment.setAttachPath(resultMap.get("filePath"));
+    attachment.setAttachSmallPath(resultMap.get("smallPath"));
+    attachment.setAttachType(file.getContentType());
+    attachment.setAttachSuffix(resultMap.get("suffix"));
+    attachment.setAttachSize(resultMap.get("size"));
+    attachment.setAttachWh(resultMap.get("wh"));
+    attachment.setAttachLocation(resultMap.get("location"));
+    attachmentService.create(attachment);
+    return new JsonResult(1,"图标上传成功", resultMap);
+  }
+
+  @RequestMapping("/saveSite")
+  @ResponseBody
+  public JsonResult saveSite(WebSiteUser webSiteUser,HttpServletRequest request){
+    Object userId = request.getAttribute("userId");
+    webSiteUser.setUserId(Integer.valueOf(userId.toString()));
+    webSiteUserService.create(webSiteUser);
+    return new JsonResult(1, "保存成功~");
+  }
+
+  @RequestMapping("/removeSite/{siteId}")
+  @ResponseBody
+  public JsonResult removeSite(@PathVariable("siteId") String siteId){
+    webSiteUserService.removeById(Integer.valueOf(siteId));
+    return new JsonResult(1, "删除成功~");
   }
 }

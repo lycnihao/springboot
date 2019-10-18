@@ -28,7 +28,4 @@ public interface AttachmentService extends CrudService<Attachment, Long> {
    */
   Map<String, String> attachUpload(MultipartFile file, HttpServletRequest request);
 
-  void save(Attachment attachment);
-
-
 }

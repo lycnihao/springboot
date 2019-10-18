@@ -185,10 +185,4 @@ public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long>
   public Optional<Attachment> fetchById(Long attachId) {
     return attachmentRepository.findById(attachId);
   }
-
-  @Override
-  public void save(Attachment attachment) {
-    attachmentRepository.save(attachment);
-  }
-
 }

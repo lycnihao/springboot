@@ -1,5 +1,6 @@
 package cn.hom1.app.controller.api;
 
+import cn.hom1.app.model.dto.JsonResult;
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.WebSite;
 import cn.hom1.app.model.entity.WebSiteUser;
@@ -8,10 +9,12 @@ import cn.hom1.app.service.CategoryService;
 import cn.hom1.app.service.WebSiteService;
 import cn.hom1.app.service.RequestService;
 
+import cn.hom1.app.service.WebSiteUserService;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,11 +31,14 @@ public class ApiDataController {
 
     private RequestService requestService;
 
+    private WebSiteUserService webSiteUserService;
+
     public ApiDataController(WebSiteService webSiteService, CategoryService categoryService,
-                  RequestService requestService) {
+                  RequestService requestService,WebSiteUserService webSiteUserService) {
         this.webSiteService = webSiteService;
         this.categoryService = categoryService;
         this.requestService = requestService;
+        this.webSiteUserService = webSiteUserService;
     }
 
     @RequestMapping("getList")
@@ -42,18 +48,6 @@ public class ApiDataController {
         Map<Integer, List<WebSite>> webSites = webSiteService.convertToListMapByCategory(categories);
         return new CategoryWebSiteVo(categories,webSites);
     }
-
-
-/*    @RequestMapping("getTouch")
-    public List<WebSite> getTouch(){
-        return webSiteService.findTouch();
-    }
-
-
-    @RequestMapping("getRecommend")
-    public List<WebSite> getRecommend(){
-        return webSiteService.findRecommend();
-    }*/
 
     @RequestMapping("getHotList")
     public Object[] getHotList(){
@@ -73,6 +67,12 @@ public class ApiDataController {
         } catch (JWTDecodeException j) {
             System.out.println("user id获取失败");
         }
+
         return webSiteService.listWebSiteListByUserId(Integer.valueOf(userId));
+    }
+
+    @RequestMapping("userWebSite/{siteId}")
+    public JsonResult userWebSite( @PathVariable("siteId") Integer siteId){
+        return new JsonResult(1,webSiteUserService.fetchById(siteId).orElse(new WebSiteUser()));
     }
 }

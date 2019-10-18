@@ -1,8 +1,5 @@
 package cn.hom1.app.security.interceptor;
 
-import static cn.hom1.app.model.dto.Const.USER_SESSION_KEY;
-
-import cn.hom1.app.model.dto.Const;
 import cn.hom1.app.model.entity.User;
 import cn.hom1.app.service.UserService;
 import com.auth0.jwt.JWT;
@@ -10,14 +7,10 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import java.util.Optional;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -72,6 +65,7 @@ public class ApiInterceptor implements HandlerInterceptor {
         }
 
         request.setAttribute("user",user);
+        request.setAttribute("userId",user.getUserId());
 
         return true;
     }
