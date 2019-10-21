@@ -67,6 +67,11 @@ public class User implements Serializable {
   private Integer status;
 
   /**
+   * 用户ip
+   */
+  private String ip;
+
+  /**
    * 创建时间
    */
   private Date createTime;

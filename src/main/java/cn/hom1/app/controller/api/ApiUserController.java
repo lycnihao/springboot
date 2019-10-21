@@ -12,6 +12,7 @@ import cn.hom1.app.service.UserService;
 import cn.hom1.app.service.WebSiteService;
 import cn.hom1.app.service.WebSiteUserService;
 import cn.hom1.app.utils.AuthTokenUtil;
+import cn.hom1.app.utils.HomUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.crypto.SecureUtil;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -91,17 +92,17 @@ public class ApiUserController {
   }
 
   @RequestMapping("/register")
-  public JsonResult register(@ModelAttribute User user) {
+  public JsonResult register(@ModelAttribute User user,HttpServletRequest request) {
 
     if (user.getUsername().equals("admin") || user.getUsername().equals("system")) {
       return new JsonResult(0, "用户名已存在");
     }
 
-    User uUser = Validator.isEmail(user.getUsername()) ? userService.findByEmail(user.getUsername())
-        : userService.findByName(user.getUsername());
 
-    if (uUser != null) {
-      return new JsonResult(0, Validator.isEmail(user.getUsername()) ? "用户名已存在" : "该邮箱已被注册");
+    if (null != userService.findByName(user.getUsername())) {
+        return new JsonResult(0, "该用户名已被注册");
+    } else if(null != userService.findByEmail(user.getEmail())){
+        return new JsonResult(0, "该邮箱已被注册");
     }
 
     String password = SecureUtil.md5(user.getPassword());
@@ -109,6 +110,7 @@ public class ApiUserController {
     user.setPassword(password);
     user.setCreateTime(new Date());
     user.setStatus(1);
+    user.setIp(HomUtil.getIp(request));
     if (user.getQq() == null) {
       user.setUserAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
     } else {
