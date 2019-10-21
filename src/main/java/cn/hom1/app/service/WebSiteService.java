@@ -17,10 +17,6 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
 
     Page<WebSite> pageBy(WebSiteQuery webSiteQuery, Pageable pageable);
 
-    List<WebSite> findTouch();
-
-    List<WebSite> findRecommend();
-
     WebSite findByWebSiteId(Integer webSiteId);
 
     void save(WebSite webSite,Set<Integer> categoryIds);

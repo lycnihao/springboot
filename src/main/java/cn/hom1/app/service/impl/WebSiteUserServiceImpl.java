@@ -1,6 +1,5 @@
 package cn.hom1.app.service.impl;
 
-import cn.hom1.app.model.entity.WebSiteCategory;
 import cn.hom1.app.model.entity.WebSiteUser;
 import cn.hom1.app.repository.WebSiteUserRepository;
 import cn.hom1.app.service.WebSiteUserService;
@@ -29,4 +28,24 @@ public class WebSiteUserServiceImpl  extends
   public List<WebSiteUser> ListByUserId(Integer userId) {
     return webSiteUserRepository.findAllByUserId(userId);
   }
+
+  @Override
+  public void updateSort(Integer userId, Integer oldIndex, Integer newIndex) {
+    if (newIndex < oldIndex){
+      webSiteUserRepository.updateSortIncrease(userId, newIndex, oldIndex);
+    } else {
+      webSiteUserRepository.updateSortReduce(userId, oldIndex, newIndex);
+    }
+  }
+
+  @Override
+  public void updateSortAll(Integer userId,Integer sort) {
+    webSiteUserRepository.updateSortAll(userId,sort);
+  }
+
+  @Override
+  public int findMaxSort(Integer userId) {
+    return webSiteUserRepository.findMaxSort(userId);
+  }
+
 }

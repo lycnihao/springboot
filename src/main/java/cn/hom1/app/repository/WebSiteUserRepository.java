@@ -3,6 +3,9 @@ package cn.hom1.app.repository;
 import cn.hom1.app.model.entity.WebSiteUser;
 import cn.hom1.app.repository.base.BaseRepository;
 import java.util.List;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 描述
@@ -13,4 +16,22 @@ import java.util.List;
 public interface WebSiteUserRepository extends BaseRepository<WebSiteUser, Integer> {
 
   List<WebSiteUser> findAllByUserId(Integer userId);
+
+  @Transactional
+  @Modifying
+  @Query(value = "update website_user set sort = sort + 1 where user_id = ? and sort between ? and ?",nativeQuery =true)
+  int updateSortIncrease(Integer userId,Integer oldIndex,Integer newIndex);
+
+  @Transactional
+  @Modifying
+  @Query(value = "update website_user set sort = sort - 1 where user_id = ? and sort between ? and ?",nativeQuery =true)
+  int updateSortReduce(Integer userId,Integer newIndex,Integer oldIndex);
+
+  @Transactional
+  @Modifying
+  @Query(value = "update website_user set sort = sort - 1 where user_id = ? and sort > ?",nativeQuery =true)
+  void updateSortAll(Integer userId, Integer sort);
+
+  @Query(value = "select max(sort) from website_user where user_id = ?",nativeQuery =true)
+  int findMaxSort(Integer userId);
 }

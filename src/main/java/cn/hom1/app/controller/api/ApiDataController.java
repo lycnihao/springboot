@@ -12,6 +12,8 @@ import cn.hom1.app.service.RequestService;
 import cn.hom1.app.service.WebSiteUserService;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,8 +69,9 @@ public class ApiDataController {
         } catch (JWTDecodeException j) {
             System.out.println("user id获取失败");
         }
-
-        return webSiteService.listWebSiteListByUserId(Integer.valueOf(userId));
+        List<WebSiteUser> webSiteList = webSiteService.listWebSiteListByUserId(Integer.valueOf(userId));
+        Collections.sort(webSiteList, Comparator.comparing(WebSiteUser::getSort));
+        return webSiteList;
     }
 
     @RequestMapping("userWebSite/{siteId}")

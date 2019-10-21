@@ -14,8 +14,7 @@ public class WebSiteVo extends WebSite{
 
     public WebSiteVo(WebSite webSite, List<Category> categories ) {
         super(webSite.getWebsiteId(),webSite.getTitle(),webSite.getUrl(),webSite.getIcon(),webSite.getSummary(),
-            webSite.getOrdered(),webSite.getVisits(),webSite.getCreateTime(),
-            webSite.getIsTouch(),webSite.getIsRecommend());
+            webSite.getOrdered(),webSite.getVisits(),webSite.getCreateTime());
         this.categories = categories;
     }
 }

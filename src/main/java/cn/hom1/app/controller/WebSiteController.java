@@ -40,7 +40,7 @@ public class WebSiteController {
     this.requestService = requestService;
   }
 
-  @RequestMapping()
+    @RequestMapping
     public String webSite(ModelMap modelMap,@PageableDefault(size = 10, sort = "websiteId", direction = Sort.Direction.DESC) Pageable pageable,
                           WebSiteQuery webSiteQuery) {
       Page<WebSite> webSitePage = webSiteService.pageBy(webSiteQuery,pageable);
@@ -61,8 +61,7 @@ public class WebSiteController {
       modelMap.addAttribute("url", sb.toString());
       modelMap.addAttribute("website", webSitePage);
       modelMap.addAttribute("websiteCate", websiteCateMap);
-
-        return "webSite";
+        return "website";
     }
 
     @RequestMapping("updateData")

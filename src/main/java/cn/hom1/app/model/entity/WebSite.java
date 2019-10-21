@@ -75,17 +75,6 @@ public class WebSite implements Serializable {
     @CreatedDate
     private Date createTime;
 
-    /**
-     * 是否Touch
-     */
-    @Column(name = "isTouch")
-    private int isTouch;
-
-    /**
-     * 是否推荐
-     */
-    @Column(name = "isRecommend")
-    private int isRecommend;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public Date getCreateTime() {
@@ -96,7 +85,7 @@ public class WebSite implements Serializable {
     }
 
     public WebSite(Integer websiteId,String title, String url, String icon, String summary, int ordered, int visits,
-        Date createTime, int isTouch, int isRecommend) {
+        Date createTime) {
         this.websiteId = websiteId;
         this.title = title;
         this.url = url;
@@ -105,7 +94,5 @@ public class WebSite implements Serializable {
         this.ordered = ordered;
         this.visits = visits;
         this.createTime = createTime;
-        this.isTouch = isTouch;
-        this.isRecommend = isRecommend;
     }
 }

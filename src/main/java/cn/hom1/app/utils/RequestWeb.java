@@ -75,7 +75,6 @@ public class RequestWeb {
                     webSite.setIcon("http://47.106.84.166:3302/upload/"+imgPrefix + imgSuffix);
                     webSite.setType(WebsiteTypeEnum.PUBLIC.getDesc());
                     webSite.setCreateTime(new Date());
-                    webSite.setIsRecommend(0);
                     webSite.setVisits(0);
 
                     list.add(webSite);

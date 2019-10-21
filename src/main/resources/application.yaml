@@ -10,7 +10,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: false
+    show-sql: true
     open-in-view: true
 
   cache:
@@ -18,5 +18,9 @@ spring:
     ehcache:
       config: classpath:/ehcache.xml
 
-cors:
-  url: http://www.hom1.cn
+qiniu:
+  qiniu_access_key: fflJ8zBJwUJpDRzLuQbddw5BB_1tdIXQuvXM7t_b
+  qiniu_secret_key: 8vGtdr_knUcvAI8aqzTEtAmczTkYLo26OVq6L_rG
+  qiniu_domain: http://hom1.79xj.cn
+  qiniu_bucket: www_hom1_cn
+  qiniu_small_url:

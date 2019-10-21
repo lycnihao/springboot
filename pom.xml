@@ -108,12 +108,19 @@
 			<version>1.2.47</version>
 		</dependency>
 
+		<!-- token -->
 		<dependency>
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
 			<version>3.4.0</version>
 		</dependency>
 
+		<!-- 七牛云SDK -->
+		<dependency>
+			<groupId>com.qiniu</groupId>
+			<artifactId>qiniu-java-sdk</artifactId>
+			<version>7.2.18</version>
+		</dependency>
 	</dependencies>
 
 	<build>

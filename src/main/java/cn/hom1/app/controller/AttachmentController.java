@@ -46,9 +46,6 @@ public class AttachmentController {
         Map<String, String> resultMap = null;
         if (!file.isEmpty()) {
             resultMap = attachmentService.upload(file, request);
-            for (String key : resultMap.keySet()) {
-                System.out.println(key + "-->" + resultMap.get(key));
-            }
         }
 
         //保存在数据库

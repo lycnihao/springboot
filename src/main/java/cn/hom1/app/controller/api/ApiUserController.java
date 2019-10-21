@@ -166,14 +166,36 @@ public class ApiUserController {
   public JsonResult saveSite(WebSiteUser webSiteUser,HttpServletRequest request){
     Object userId = request.getAttribute("userId");
     webSiteUser.setUserId(Integer.valueOf(userId.toString()));
+    if (webSiteUser.getId() != null){
+      webSiteUser.setSort(webSiteUserService.findMaxSort(Integer.valueOf(userId.toString())));
+    }
     webSiteUserService.create(webSiteUser);
     return new JsonResult(1, "保存成功~");
   }
 
   @RequestMapping("/removeSite/{siteId}")
   @ResponseBody
-  public JsonResult removeSite(@PathVariable("siteId") String siteId){
+  public JsonResult removeSite(@PathVariable("siteId") String siteId, HttpServletRequest request){
+    Object userId = request.getAttribute("userId");
+
+    WebSiteUser webSiteUser = webSiteUserService.fetchById(Integer.valueOf(siteId)).orElse(new WebSiteUser());
+    webSiteUserService.updateSortAll(Integer.valueOf(userId.toString()),webSiteUser.getSort());
     webSiteUserService.removeById(Integer.valueOf(siteId));
     return new JsonResult(1, "删除成功~");
+  }
+
+  @RequestMapping("/sortSite/{siteId}")
+  @ResponseBody
+  public JsonResult sort(@PathVariable("siteId") Integer siteId, @RequestParam(name = "oldIndex") Integer oldIndex,
+      @RequestParam(name = "newIndex") Integer newIndex,HttpServletRequest request){
+    Object userId = request.getAttribute("userId");
+
+    webSiteUserService.updateSort(Integer.valueOf(userId.toString()), oldIndex, newIndex);
+
+    WebSiteUser webSiteUser = webSiteUserService.fetchById(siteId).orElse(new WebSiteUser());
+    webSiteUser.setSort(newIndex);
+    webSiteUserService.update(webSiteUser);
+
+    return new JsonResult(1, "排序保存成功~");
   }
 }

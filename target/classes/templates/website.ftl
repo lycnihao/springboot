@@ -126,7 +126,7 @@
                   第${website.number+1}/${website.totalPages}页
                 </div>
                 <div class="btn-group pull-right btn-group-sm" role="group">
-                  <a data-pjax="true" class="btn btn-default <#if !website.hasPrevious()>disabled</#if>" href="/admin/website/" >
+                  <a data-pjax="true" class="btn btn-default <#if !website.hasPrevious()>disabled</#if>" href="/admin/website" >
                     首页
                   </a>
                   <a data-pjax="true" class="btn btn-default <#if !website.hasPrevious()>disabled</#if>" href="/admin/website?page=${website.number-1}${url}" >
@@ -304,7 +304,7 @@
                 $('#u-websiteId').val(result.websiteId);
                 $('#u-title').val(result.title);
                 $('#u-url').val(result.url);
-                $('#u-icon').val(result.icon)
+                $('#u-icon').val(result.icon);
                 $('#u-icon-img').attr('src',result.icon);
                 $('#u-summary').val(result.summary);
                 $('#u-ordered').val(result.ordered);

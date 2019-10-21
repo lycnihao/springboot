@@ -29,12 +29,6 @@ public class WebSiteUser {
   private Integer userId;
 
   /**
-   * Website id.
-   */
-  @Column(name = "website_id")
-  private Integer websiteId;
-
-  /**
    * Website title.
    */
   @Column(name = "website_title")
@@ -58,4 +52,9 @@ public class WebSiteUser {
   @Column(name = "website_category")
   private String websiteCate;
 
+  /**
+   * 网址顺序
+   */
+  @Column(name = "sort")
+  private int sort;
 }

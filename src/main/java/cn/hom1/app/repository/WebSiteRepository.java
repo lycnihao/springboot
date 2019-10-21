@@ -15,13 +15,6 @@ import java.util.List;
 @Repository
 public interface WebSiteRepository extends BaseRepository<WebSite, Integer> {
 
-
-    //获取推荐touch列表
-    List<WebSite> findByIsTouch(Integer type);
-
-    //获取推荐网站列表
-    List<WebSite> findByIsRecommend(Integer type);
-
     WebSite findByWebsiteId(Integer linkId);
 
     @Query(value = "select MAX(ordered) from webSite", nativeQuery = true)

@@ -28,4 +28,13 @@ public interface AttachmentService extends CrudService<Attachment, Long> {
    */
   Map<String, String> attachUpload(MultipartFile file, HttpServletRequest request);
 
+  /**
+   * 七牛云上传
+   *
+   * @param file    file
+   * @param request request
+   * @return Map
+   */
+  Map<String, String> attachQiNiuUpload(MultipartFile file, HttpServletRequest request);
+
 }

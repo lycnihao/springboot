@@ -75,16 +75,6 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
     }
 
     @Override
-    public List<WebSite> findTouch() {
-        return webSiteRepository.findByIsTouch(TrueFalseEnum.TRUE.getCode());
-    }
-
-    @Override
-    public List<WebSite> findRecommend() {
-        return webSiteRepository.findByIsRecommend(TrueFalseEnum.TRUE.getCode());
-    }
-
-    @Override
     public WebSite findByWebSiteId(Integer webSiteId) {
         return webSiteRepository.findByWebsiteId(webSiteId);
     }
