@@ -1,6 +1,8 @@
 package cn.hom1.app.service;
 
 
+import cn.hom1.app.model.dto.WebContent;
+
 public interface RequestService {
 
   /**
@@ -15,4 +17,6 @@ public interface RequestService {
    * @return 标题
    */
   String getTitle(String url);
+
+  WebContent getWebContent(String url);
 }

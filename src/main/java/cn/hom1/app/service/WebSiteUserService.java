@@ -12,5 +12,5 @@ public interface WebSiteUserService extends CrudService<WebSiteUser, Integer> {
 
   void updateSortAll(Integer userId,Integer sort);
 
-  int findMaxSort(Integer userId);
+  Integer findMaxSort(Integer userId);
 }

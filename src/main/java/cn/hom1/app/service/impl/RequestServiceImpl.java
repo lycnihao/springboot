@@ -1,5 +1,6 @@
 package cn.hom1.app.service.impl;
 
+import cn.hom1.app.model.dto.WebContent;
 import cn.hom1.app.service.RequestService;
 import cn.hom1.app.utils.RequestUtil;
 import java.io.IOException;
@@ -61,5 +62,33 @@ public class RequestServiceImpl implements RequestService {
   public String getTitle(String url) {
     Document doc = RequestUtil.requestSite(url,false, "");
     return doc != null ? doc.title() : "";
+  }
+
+  @Override
+  public WebContent getWebContent(String url) {
+
+    WebContent webContent = new WebContent();
+    Document doc = RequestUtil.requestSite(url,false, "");
+
+    if (doc != null){
+
+      webContent.setUrl(url);
+      webContent.setName(doc.title());
+
+      Elements elements= doc.head().select("link");
+      elements.forEach(element ->{
+        if ("image/x-icon".equals(element.attr("type"))){
+          String href = element.attr("href");
+          if (href.indexOf("/") == 0){
+            webContent.setIconFile(url + href);
+          } else {
+            webContent.setIconFile(href);
+          }
+
+        }
+      });
+      return webContent;
+    }
+    return null;
   }
 }

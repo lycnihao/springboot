@@ -1,6 +1,7 @@
 package cn.hom1.app.controller.api;
 
 import cn.hom1.app.model.dto.JsonResult;
+import cn.hom1.app.model.dto.WebContent;
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.WebSite;
 import cn.hom1.app.model.entity.WebSiteUser;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -77,5 +79,15 @@ public class ApiDataController {
     @RequestMapping("userWebSite/{siteId}")
     public JsonResult userWebSite( @PathVariable("siteId") Integer siteId){
         return new JsonResult(1,webSiteUserService.fetchById(siteId).orElse(new WebSiteUser()));
+    }
+
+    @RequestMapping("getWebContent")
+    @ResponseBody
+    public JsonResult getWebContent(String url) {
+        WebContent webContent = requestService.getWebContent(url);
+        if (webContent == null){
+            return new JsonResult(0,"什么都没抓取到~");
+        }
+        return new JsonResult(1,webContent);
     }
 }

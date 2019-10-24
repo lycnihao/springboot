@@ -33,5 +33,5 @@ public interface WebSiteUserRepository extends BaseRepository<WebSiteUser, Integ
   void updateSortAll(Integer userId, Integer sort);
 
   @Query(value = "select max(sort) from website_user where user_id = ?",nativeQuery =true)
-  int findMaxSort(Integer userId);
+  Integer findMaxSort(Integer userId);
 }

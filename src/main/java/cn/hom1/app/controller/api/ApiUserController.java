@@ -166,8 +166,9 @@ public class ApiUserController {
   public JsonResult saveSite(WebSiteUser webSiteUser,HttpServletRequest request){
     Object userId = request.getAttribute("userId");
     webSiteUser.setUserId(Integer.valueOf(userId.toString()));
-    if (webSiteUser.getId() != null){
-      webSiteUser.setSort(webSiteUserService.findMaxSort(Integer.valueOf(userId.toString())));
+    if (webSiteUser.getId() == null){
+      Integer maxSort = webSiteUserService.findMaxSort(Integer.valueOf(userId.toString()));
+      webSiteUser.setSort(maxSort == null ? 1 : maxSort + 1);
     }
     webSiteUserService.create(webSiteUser);
     return new JsonResult(1, "保存成功~");

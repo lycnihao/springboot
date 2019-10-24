@@ -1,5 +1,7 @@
 package cn.hom1.app;
 
+import cn.hom1.app.service.RequestService;
+import cn.hom1.app.service.WebSiteUserService;
 import cn.hom1.app.utils.RequestWeb;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,11 +14,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class DemoApplicationTests {
 
 	@Autowired
-	private RequestWeb requestWeb;
+	private RequestService requestService;
 
 	@Test
 	public void contextLoads(){
-		requestWeb.push();
+		/*requestWeb.push();*/
+		requestService.getWebContent("http://www.168dh.cn");
 	}
 
 }
