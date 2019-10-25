@@ -12,6 +12,8 @@ import org.springframework.data.annotation.CreatedDate;
 @Data
 public class WebSite implements Serializable {
 
+    private static final long serialVersionUID = -3594857430363351418L;
+
     /**
      * 网址Id
      */
