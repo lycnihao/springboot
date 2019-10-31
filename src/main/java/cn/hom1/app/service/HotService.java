@@ -1,0 +1,34 @@
+package cn.hom1.app.service;
+
+import cn.hom1.app.model.vo.TopHot;
+import java.util.List;
+
+public interface HotService {
+
+  /**
+   * 百度实时热搜榜
+   */
+  List<TopHot> baiduRealTime();
+
+  /**
+   * 百度今日热搜榜
+   */
+  List<TopHot> baiduToday();
+
+
+  /**
+   * 百度百科热搜词条
+   */
+  List<TopHot> baiduBaiKe();
+
+
+  /**
+   * 微博热搜榜
+   */
+  List<TopHot> weiboTopHot();
+
+  /**
+   * 微博新时代
+   */
+  List<TopHot> weiboSocialEvent();
+}
