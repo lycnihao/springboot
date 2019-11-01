@@ -3,8 +3,16 @@ package cn.hom1.app.service.impl;
 import cn.hom1.app.model.vo.TopHot;
 import cn.hom1.app.service.HotService;
 import cn.hom1.app.utils.RequestUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.jsoup.Connection;
+import org.jsoup.Connection.Response;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -113,9 +121,62 @@ public class HotServiceImpl implements HotService {
       TopHot hotVo = new TopHot();
       hotVo.setTitle(element.select("a").text());
       hotVo.setUrl(element.select("a").attr("abs:href"));
-      System.out.println(hotVo);
       list.add(hotVo);
     });
     return list;
   }
+
+  @Override
+  public List<TopHot> zhihuTopSearch() {
+    Document doc = RequestUtil.requestSite("https://www.zhihu.com/api/v4/search/top_search",false, "");
+    JSONObject jsonObject = JSONObject.parseObject(doc.body().text());
+    JSONObject jsonInfo = jsonObject.getJSONObject("top_search");
+    JSONArray jsonArray = jsonInfo.getJSONArray("words");
+    List<TopHot> list = new ArrayList<>();
+
+    for(int i = 0; i< jsonArray.size(); i++){
+      JSONObject object = jsonArray.getJSONObject(i);
+      TopHot topHot = new TopHot();
+      topHot.setTitle(object.get("query").toString());
+      topHot.setSummary(object.get("display_query").toString());
+      topHot.setUrl(String.format("https://www.zhihu.com/search?q=%s&utm_content=search_hot&utm_medium=168导航&utm_source=zhihu&type=content",object.get("display_query").toString()));
+      list.add(topHot);
+    }
+    return list;
+  }
+
+  @Override
+  public List<TopHot> zhihuTopHot() {
+    Response response = null;
+    try {
+      response = Jsoup.connect("https://www.bjsoubang.com/api/getChannelData?channel_id=2")
+          .header("Accept", "*/*")
+          .header("Accept-Encoding", "gzip, deflate")
+          .header("Accept-Language","zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3")
+          .header("Content-Type", "application/json;charset=UTF-8")
+          .header("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0")
+          .ignoreContentType(true)
+          .timeout(100000)
+          .execute();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    JSONObject jsonObject = JSONObject.parseObject(response.body());
+    JSONObject jsonInfo = jsonObject.getJSONObject("info");
+    JSONArray jsonArray = jsonInfo.getJSONArray("data");
+    List<TopHot> list = new ArrayList<>();
+
+    for(int i = 0; i< jsonArray.size(); i++){
+      JSONObject object = jsonArray.getJSONObject(i);
+      TopHot topHot = new TopHot();
+      topHot.setTitle(object.get("title").toString());
+      topHot.setSummary(object.get("description").toString());
+      topHot.setUrl(object.get("link").toString());
+      topHot.setImg(object.get("img").toString());
+      list.add(topHot);
+    }
+    return list;
+  }
+
+
 }

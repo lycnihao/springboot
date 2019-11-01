@@ -34,7 +34,7 @@ public class TopHot {
   /**
    * 预览图
    */
-  private String picture;
+  private String img;
 
   /**
    * 热度

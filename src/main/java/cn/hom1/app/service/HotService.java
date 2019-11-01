@@ -31,4 +31,14 @@ public interface HotService {
    * 微博新时代
    */
   List<TopHot> weiboSocialEvent();
+
+  /**
+   * 知乎热搜
+   */
+  List<TopHot> zhihuTopSearch();
+
+  /**
+   * 知乎热榜
+   */
+  List<TopHot> zhihuTopHot();
 }

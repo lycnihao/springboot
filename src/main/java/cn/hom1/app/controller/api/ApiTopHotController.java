@@ -57,4 +57,20 @@ public class ApiTopHotController {
 
     return new JsonResult(0,hotVoList);
   }
+
+  @GetMapping("zhihu")
+  public JsonResult zhihuApi(Integer t){
+    List<TopHot> hotVoList;
+
+    int topSearch = 0,topHot = 1;
+
+    if (t == topSearch)
+      hotVoList = hotService.zhihuTopSearch();
+    else  if(t == topHot)
+      hotVoList = hotService.zhihuTopHot();
+    else
+      return new JsonResult(1,"参数有误");
+
+    return new JsonResult(0,hotVoList);
+  }
 }
