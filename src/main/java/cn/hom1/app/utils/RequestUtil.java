@@ -1,6 +1,5 @@
 package cn.hom1.app.utils;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import org.jsoup.Connection;
@@ -23,10 +22,10 @@ public class RequestUtil {
     try {
     Connection connect =  Jsoup.connect(url)
         .header("Accept", "*/*")
-        .header("Accept-Encoding", "gzip, deflate")
-        .header("Accept-Language","zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3")
+        .header("Accept-Encoding", "gzip, deflate, br")
+        .header("Accept-Language","zh-CN,zh;q=0.9")
         .header("Content-Type", "application/json;charset=UTF-8")
-        .header("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0")
+        .header("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36")
         .ignoreContentType(true)
         .timeout(100000);
 
@@ -47,6 +46,7 @@ public class RequestUtil {
       e.printStackTrace();
       return null;
     }
-    return document;
+
+    return  document;
   }
 }

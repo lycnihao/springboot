@@ -41,4 +41,9 @@ public interface HotService {
    * 知乎热榜
    */
   List<TopHot> zhihuTopHot();
+
+  /**
+   * 豆瓣热榜
+   */
+  List<TopHot> doubanChart();
 }
