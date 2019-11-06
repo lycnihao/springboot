@@ -20,7 +20,7 @@ public class DemoApplicationTests {
 	@Test
 	public void contextLoads(){
 		/*requestWeb.push();*/
-		hotService.doubanChart();
+		hotService.doubanBook(3);
 	}
 
 }

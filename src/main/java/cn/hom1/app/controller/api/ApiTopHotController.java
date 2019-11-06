@@ -73,4 +73,18 @@ public class ApiTopHotController {
 
     return new JsonResult(0,hotVoList);
   }
+
+  @GetMapping("douban")
+  public JsonResult doubanApi(Integer t){
+    List<TopHot> hotVoList;
+
+    int doubanChart = 0;
+
+    if (t == doubanChart)
+      hotVoList = hotService.doubanChart();
+    else
+      hotVoList = hotService.doubanBook(t);
+
+    return new JsonResult(0,hotVoList);
+  }
 }

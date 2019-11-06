@@ -2,19 +2,14 @@ package cn.hom1.app.service.impl;
 
 import cn.hom1.app.model.vo.TopHot;
 import cn.hom1.app.service.HotService;
-import cn.hom1.app.utils.CookieManager;
 import cn.hom1.app.utils.RequestUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -170,25 +165,54 @@ public class HotServiceImpl implements HotService {
 
   @Override
   public List<TopHot> doubanChart() {
-    Document doc = null;
-    try {
-      doc = Jsoup.connect("https://movie.douban.com/")
-          .header("Content-Type", "application/json;charset=UTF-8")
-          .header("User-Agent", "Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0")
-          .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
-          .header("Accept-Language", "zh-cn,zh;q=0.5")
-          .header("Accept-Encoding", "GB2312,utf-8;q=0.7,*;q=0.7")
-          .header("Referer", "http://movie.douban.com/")
-          .header("Cache-Control", "max-age=0")
-          .ignoreContentType(true)
-          .timeout(100000).get();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    System.out.println(doc);
     List<TopHot> list = new ArrayList<>();
-    return null;
+    Document doc = RequestUtil.requestSite("http://www.bjsoubang.com/api/getChannelData?channel_id=16",false, "");
+    JSONObject jsonObject = JSONObject.parseObject(doc.body().text());
+    JSONObject jsonInfo = jsonObject.getJSONObject("info");
+    JSONArray jsonArray = jsonInfo.getJSONArray("data");
+    jsonArray.forEach( jsonStr -> {
+      JSONObject json = JSONObject.parseObject(jsonStr.toString());
+      TopHot topHot = new TopHot();
+      topHot.setImg(json.getString("img"));
+      topHot.setTitle(json.getString("titleCn") + " " + json.getString("title"));
+      topHot.setSummary(json.getString("description"));
+      topHot.setUrl(json.getString("link"));
+      topHot.setLevel(json.getString("rate"));
+      list.add(topHot);
+    });
+    return list;
   }
 
+  @Override
+  public List<TopHot> doubanBook(int t) {
+    String url = "";
+    switch (t){
+      case 1:url = "https://www.bjsoubang.com/api/getChannelData?channel_id=17";
+      break;
+      case 2:url = "https://www.bjsoubang.com/api/getChannelData?channel_id=18";
+        break;
+      case 3:url = "https://www.bjsoubang.com/api/getChannelData?channel_id=14";
+        break;
+      case 4:url = "https://www.bjsoubang.com/api/getChannelData?channel_id=15";
+        break;
+    }
 
+    List<TopHot> list = new ArrayList<>();
+    Document doc = RequestUtil.requestSite(url,false, "");
+    JSONObject jsonObject = JSONObject.parseObject(doc.body().text());
+    JSONObject jsonInfo = jsonObject.getJSONObject("info");
+    JSONArray jsonArray = jsonInfo.getJSONArray("data");
+    jsonArray.forEach( jsonStr -> {
+      JSONObject json = JSONObject.parseObject(jsonStr.toString());
+      TopHot topHot = new TopHot();
+      topHot.setUrl(json.getString("link"));
+      topHot.setLevel(json.getString("rata"));
+      topHot.setTitle(json.getString("title"));
+      topHot.setSummary(t== 1 || t== 2 ? json.getString("author"):json.getString("description"));
+      topHot.setImg(t== 1 || t== 2 ? json.getString("src"):json.getString("img"));
+      System.out.println(topHot);
+      list.add(topHot);
+    });
+    return list;
+  }
 }
