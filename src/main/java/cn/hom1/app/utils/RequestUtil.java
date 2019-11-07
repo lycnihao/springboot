@@ -21,11 +21,6 @@ public class RequestUtil {
     Document document;
     try {
     Connection connect =  Jsoup.connect(url)
-        .header("Accept", "*/*")
-        .header("Accept-Encoding", "gzip, deflate, br")
-        .header("Accept-Language","zh-CN,zh;q=0.9")
-        .header("Content-Type", "application/json;charset=UTF-8")
-        .header("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36")
         .ignoreContentType(true)
         .timeout(100000);
 

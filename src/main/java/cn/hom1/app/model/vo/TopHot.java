@@ -16,7 +16,7 @@ public class TopHot {
   private String id;
 
   /**
-   * 地址
+   * 链接
    */
   private String url;
 

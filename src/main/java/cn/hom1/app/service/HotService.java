@@ -47,11 +47,17 @@ public interface HotService {
    */
   List<TopHot> doubanChart();
 
-  /**
-   * 豆瓣图书
-   */
-  List<TopHot> doubanBook(int t);
 
+  /**
+   * 豆瓣最受关注图书
+   */
+  List<TopHot> doubanPopularBook(int t);
+
+
+  /**
+   * 豆瓣新书
+   */
+  List<TopHot> doubanNewBook(int t);
 
   //豆瓣一周口碑榜
   //List<TopHot> doubanWeekly();

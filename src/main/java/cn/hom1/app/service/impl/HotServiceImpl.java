@@ -155,9 +155,7 @@ public class HotServiceImpl implements HotService {
       topHot.setSummary(jsonObject.getJSONObject("target").getJSONObject("excerptArea").getString("text"));
       topHot.setLevel(jsonObject.getJSONObject("target").getJSONObject("metricsArea").getString("text"));
       topHot.setTrend(jsonObject.getJSONObject("target").getJSONObject("labelArea").getString("text"));
-      String imgUrl = jsonObject.getJSONObject("target").getJSONObject("imageArea").getString("url");
-      //更换路线, pic3 403错误
-      topHot.setImg(imgUrl.replace("pic3", "pic2"));
+      topHot.setImg(jsonObject.getJSONObject("target").getJSONObject("imageArea").getString("url"));
       list.add(topHot);
     });
     return list;
@@ -166,6 +164,20 @@ public class HotServiceImpl implements HotService {
   @Override
   public List<TopHot> doubanChart() {
     List<TopHot> list = new ArrayList<>();
+    Document doc = RequestUtil.requestSite("https://movie.douban.com/chart",false, "");
+    Elements tableElements = doc.select(" #content > div > div.article > div > div > table");
+
+    tableElements.forEach(element -> {
+      TopHot topHot = new TopHot();
+      topHot.setTitle(element.select("tr > td:nth-child(2) > div > a").text());
+      topHot.setSummary(element.select("tr > td:nth-child(2) > div > p").text());
+      topHot.setUrl(element.select("tr > td:nth-child(1) > a").attr("href"));
+      topHot.setImg(element.select("tr > td:nth-child(1) > a > img").attr("src"));
+      topHot.setLevel(element.select("tr > td:nth-child(2) > div > div > span.rating_nums").text());
+      list.add(topHot);
+    });
+
+    /*
     Document doc = RequestUtil.requestSite("http://www.bjsoubang.com/api/getChannelData?channel_id=16",false, "");
     JSONObject jsonObject = JSONObject.parseObject(doc.body().text());
     JSONObject jsonInfo = jsonObject.getJSONObject("info");
@@ -179,39 +191,44 @@ public class HotServiceImpl implements HotService {
       topHot.setUrl(json.getString("link"));
       topHot.setLevel(json.getString("rate"));
       list.add(topHot);
+    });*/
+    return list;
+  }
+
+  @Override
+  public List<TopHot> doubanPopularBook(int t) {
+    String subcat = t == 0 ? "I":"F";
+
+    List<TopHot> list = new ArrayList<>();
+    Document doc = RequestUtil.requestSite("https://book.douban.com/chart?subcat=" + subcat,false, "");
+    Elements liElements = doc.select(" #content > div > div.article > ul > li");
+
+    liElements.forEach(element -> {
+      TopHot hotVo = new TopHot();
+      hotVo.setTitle(element.select("h2 a").text());
+      hotVo.setUrl(element.select("h2 a").attr("href"));
+      hotVo.setSummary(element.select(".subject-abstract").text());
+      hotVo.setLevel(element.select("p.clearfix.w250").text());
+      hotVo.setImg(element.select(".subject-cover").attr("src"));
+      list.add(hotVo);
     });
     return list;
   }
 
   @Override
-  public List<TopHot> doubanBook(int t) {
-    String url = "";
-    switch (t){
-      case 1:url = "https://www.bjsoubang.com/api/getChannelData?channel_id=17";
-      break;
-      case 2:url = "https://www.bjsoubang.com/api/getChannelData?channel_id=18";
-        break;
-      case 3:url = "https://www.bjsoubang.com/api/getChannelData?channel_id=14";
-        break;
-      case 4:url = "https://www.bjsoubang.com/api/getChannelData?channel_id=15";
-        break;
-    }
-
+  public List<TopHot> doubanNewBook(int t) {
+    String selector = t == 0 ? "#content > div > div.article > ul > li":"#content > div > div.aside > ul > li";
     List<TopHot> list = new ArrayList<>();
-    Document doc = RequestUtil.requestSite(url,false, "");
-    JSONObject jsonObject = JSONObject.parseObject(doc.body().text());
-    JSONObject jsonInfo = jsonObject.getJSONObject("info");
-    JSONArray jsonArray = jsonInfo.getJSONArray("data");
-    jsonArray.forEach( jsonStr -> {
-      JSONObject json = JSONObject.parseObject(jsonStr.toString());
-      TopHot topHot = new TopHot();
-      topHot.setUrl(json.getString("link"));
-      topHot.setLevel(json.getString("rata"));
-      topHot.setTitle(json.getString("title"));
-      topHot.setSummary(t== 1 || t== 2 ? json.getString("author"):json.getString("description"));
-      topHot.setImg(t== 1 || t== 2 ? json.getString("src"):json.getString("img"));
-      System.out.println(topHot);
-      list.add(topHot);
+    Document doc = RequestUtil.requestSite("https://book.douban.com/latest?icn=index-latestbook-all" ,false, "");
+    Elements liElements = doc.select(selector);
+    liElements.forEach(element -> {
+      TopHot hotVo = new TopHot();
+      hotVo.setTitle(element.select("h2 a").text());
+      hotVo.setUrl(element.select("h2 a").attr("href"));
+      hotVo.setSummary(t == 0 ? element.select(".detail").text():element.select(".detail-frame > p:nth-child(4)").text());
+      hotVo.setLevel(element.select(".rating .font-small").text());
+      hotVo.setImg(element.select(".cover img").attr("src"));
+      list.add(hotVo);
     });
     return list;
   }

@@ -82,8 +82,12 @@ public class ApiTopHotController {
 
     if (t == doubanChart)
       hotVoList = hotService.doubanChart();
+    else if (t == 1 || t == 2)
+      hotVoList = hotService.doubanPopularBook(t == 1 ? 0:1);
+    else if (t == 3 || t == 4)
+      hotVoList = hotService.doubanNewBook(t == 3 ? 0:1);
     else
-      hotVoList = hotService.doubanBook(t);
+      return new JsonResult(0,"参数错误异常！！！");
 
     return new JsonResult(0,hotVoList);
   }
