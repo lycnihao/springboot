@@ -90,4 +90,14 @@ public class ApiDataController {
         }
         return new JsonResult(1,webContent);
     }
+
+    @RequestMapping("getWeather")
+    @ResponseBody
+    public JsonResult getWeather(String city) {
+        Object resultObj = requestService.getWeather(city);
+        if (resultObj == null){
+            return new JsonResult(0,"什么都没抓取到~");
+        }
+        return new JsonResult(1,resultObj);
+    }
 }

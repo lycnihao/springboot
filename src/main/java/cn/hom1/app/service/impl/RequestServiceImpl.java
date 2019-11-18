@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonArray;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -90,5 +94,13 @@ public class RequestServiceImpl implements RequestService {
       return webContent;
     }
     return null;
+  }
+
+  @Override
+  public Object getWeather(String city) {
+    Document doc = RequestUtil.requestSite("https://free-api.heweather.net/s6/weather/now?location="+city+"&key=f30496591f7c416781f3a9d5f84adf90",false, "");
+    assert doc != null;
+    JSONArray jsonArray = JSONObject.parseObject(doc.body().text()).getJSONArray("HeWeather6");
+    return jsonArray.getJSONObject(0).getJSONObject("now");
   }
 }

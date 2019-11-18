@@ -19,4 +19,6 @@ public interface RequestService {
   String getTitle(String url);
 
   WebContent getWebContent(String url);
+
+  Object getWeather(String city);
 }
