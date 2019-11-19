@@ -20,5 +20,5 @@ public interface RequestService {
 
   WebContent getWebContent(String url);
 
-  Object getWeather(String city);
+  Object getWeather(String cityId);
 }

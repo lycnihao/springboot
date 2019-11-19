@@ -18,6 +18,7 @@ public class RequestUtil {
    * @return
    */
   public static Document requestSite(String url, boolean isProxy, String userAgent){
+    System.out.println("请求地址:" + url);
     Document document;
     try {
     Connection connect =  Jsoup.connect(url)

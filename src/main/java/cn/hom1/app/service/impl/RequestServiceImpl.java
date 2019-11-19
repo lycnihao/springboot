@@ -97,10 +97,28 @@ public class RequestServiceImpl implements RequestService {
   }
 
   @Override
-  public Object getWeather(String city) {
-    Document doc = RequestUtil.requestSite("https://free-api.heweather.net/s6/weather/now?location="+city+"&key=f30496591f7c416781f3a9d5f84adf90",false, "");
-    assert doc != null;
-    JSONArray jsonArray = JSONObject.parseObject(doc.body().text()).getJSONArray("HeWeather6");
-    return jsonArray.getJSONObject(0).getJSONObject("now");
+  public Object getWeather(String cityId) {
+    if (cityId.isEmpty()){
+      cityId = "auto_ip";
+    }
+    String key = "f30496591f7c416781f3a9d5f84adf90";
+
+    Document nowDoc = RequestUtil.requestSite("https://free-api.heweather.net/s6/weather/now?location="+cityId+"&key="+key,false, "");
+
+    assert nowDoc != null;
+    JSONObject jsonObject = JSONObject.parseObject(nowDoc.body().text()).getJSONArray("HeWeather6").getJSONObject(0);
+
+    if (jsonObject.getString("status").equals("ok")){
+      cityId = jsonObject.getJSONObject("basic").getString("cid");
+
+      Document surveyDoc = RequestUtil.requestSite("https://hfapp-service.heweather.net/v2.0/app/survey/index?key="+key+"&cityId="+cityId+"&lang=null",false, "");
+      assert surveyDoc != null;
+      JSONObject surveyObject = JSONObject.parseObject(surveyDoc.body().text());
+      System.out.println(surveyObject);
+      if (surveyObject.getString("status").equals("success"))
+      jsonObject.put("msg",surveyObject.getString("msg"));
+    }
+
+    return jsonObject;
   }
 }
