@@ -100,4 +100,12 @@ public class ApiDataController {
         }
         return new JsonResult(1,resultObj);
     }
+
+    @RequestMapping("visit/{linkId}")
+    @ResponseBody
+    public JsonResult getWeather(@PathVariable("linkId") Integer linkId) {
+        webSiteService.updateVisitsByLinkId(linkId);
+        return new JsonResult(1,"访问量又上涨啦");
+    }
+
 }
