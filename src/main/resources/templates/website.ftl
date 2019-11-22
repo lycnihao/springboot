@@ -157,7 +157,36 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-12">
-                <div class="form-group col-md-6">
+                <div class="col-sm-4 text-center">
+                  <div class="upload-img">
+                    <img id="icon-img" class="profile-img img-responsive img-circle pointer" src="/static/images/user-5.png" alt="User profile picture">
+                    <span class="upload-img-text" onclick="layerModal('/admin/attachments/select?id=icon','选择附件')">选择图片</span>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label for="title" class="control-label">网址名称</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="网站名称">
+                  </div>
+                  <div class="form-group">
+                    <label for="url" class="control-label">网站链接</label>
+                    <div class="input-group input-group-sm">
+                      <input id="url" name="url" type="text" class="form-control" placeholder="网址链接，如:http://www.baidu.com">
+                      <span class="input-group-btn">
+                                  <button type="button" class="btn btn-info btn-flat" onclick="getTitle('#url','#title','#icon')">抓取标题</button>
+                                </span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="icon" class="control-label">网址图标</label>
+                    <input type="text" class="form-control" id="icon" name="icon" placeholder="网站图标">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <#--<div class="form-group col-md-6">
                   <label for="title" class="control-label">网址名称</label>
                   <input type="text" class="form-control" id="title" name="title" placeholder="网站名称">
                 </div>
@@ -166,14 +195,14 @@
                   <div class="input-group input-group-sm">
                     <input id="url" name="url" type="text" class="form-control" placeholder="如:http://www.baidu.com">
                     <span class="input-group-btn">
-                            <button type="button" class="btn btn-info btn-flat" onclick="getTitle('#url','#title')">获取标题</button>
+                            <button type="button" class="btn btn-info btn-flat" onclick="getTitle('#url','#title','#icon')">获取标题</button>
                       </span>
                   </div>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="icon" class="control-label">网址图标</label>
                   <input type="text" class="form-control" id="icon" name="icon" placeholder="网站图标">
-                </div>
+                </div>-->
                 <div class="form-group col-md-12 no-margin">
                   <label for="summary" class="control-label">网站简介</label>
                   <textarea class="form-control autogrow" id="summary" placeholder="对网站进行简要的概括(50字以内)"></textarea>
@@ -224,7 +253,7 @@
                               <div class="input-group input-group-sm">
                                 <input id="u-url" name="u-url" type="text" class="form-control" placeholder="网址链接，如:http://www.baidu.com">
                                 <span class="input-group-btn">
-                                  <button type="button" class="btn btn-info btn-flat" onclick="getTitle('#u-url','#u-title')">抓取标题</button>
+                                  <button type="button" class="btn btn-info btn-flat" onclick="getTitle('#u-url','#u-title','#u-icon')">抓取标题</button>
                                 </span>
                               </div>
                             </div>
@@ -394,16 +423,18 @@
           });
         }
 
-        function getTitle(url,title) {
+        function getTitle(url,title,icon) {
           $.ajax({
-            url:'website/get-title/',
+            url:'website/getWebContent/',
             type:'GET',
             data:{'url':$(url).val()},
-            success:function (result) {
-              if(result.code){
-                $(title).val(result.msg);
+            success:function (res) {
+              if(res.code){
+                $(title).val(res.result.name);
+                if ($(icon).val().trim() == "")
+                  $(icon).val(res.result.iconFile);
               } else {
-                alert("获取发生了错误")
+                alert(result.code.msg)
               }
             }
           });

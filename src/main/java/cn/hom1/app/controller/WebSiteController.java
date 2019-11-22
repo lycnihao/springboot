@@ -1,6 +1,7 @@
 package cn.hom1.app.controller;
 
 import cn.hom1.app.model.dto.JsonResult;
+import cn.hom1.app.model.dto.WebContent;
 import cn.hom1.app.model.entity.Category;
 import cn.hom1.app.model.entity.WebSite;
 import cn.hom1.app.model.params.WebSiteQuery;
@@ -89,10 +90,13 @@ public class WebSiteController {
         return new JsonResult(200,"");
     }
 
-  @RequestMapping("get-title")
+  @RequestMapping("getWebContent")
   @ResponseBody
   public JsonResult getTitle(String url) {
-    String title = requestService.getTitle(url);
-    return new JsonResult(1,title);
+    WebContent webContent = requestService.getWebContent(url);
+    if (webContent == null){
+      return new JsonResult(0,"什么都没抓取到~");
+    }
+    return new JsonResult(1,webContent);
   }
 }

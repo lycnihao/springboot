@@ -56,7 +56,7 @@ public class AdminController {
     }
     User user = Validator.isEmail(username) ?
         userService.findByEmail(username) : userService.findByName(username);
-    if (user != null && user.getPassword().equals(SecureUtil.md5(password))){
+    if (user != null && user.getPassword().equals(SecureUtil.md5(password)) && user.getIsAdmin() == 1){
       userService.updateLastLoginTime(user.getUserId());
       session.setAttribute(USER_SESSION_KEY, user);
       return new JsonResult(1,"登陆成功");

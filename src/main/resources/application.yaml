@@ -21,6 +21,10 @@ spring:
 qiniu:
   qiniu_access_key: fflJ8zBJwUJpDRzLuQbddw5BB_1tdIXQuvXM7t_b
   qiniu_secret_key: 8vGtdr_knUcvAI8aqzTEtAmczTkYLo26OVq6L_rG
-  qiniu_domain: http://hom1.79xj.cn
-  qiniu_bucket: www_hom1_cn
+  qiniu_domain: http://img.168dh.cn
+  qiniu_bucket: img-dh
   qiniu_small_url:
+
+admin:
+  username: iksen
+  password: iksen22.

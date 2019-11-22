@@ -11,13 +11,6 @@ public interface RequestService {
    */
     Object[] getHotList();
 
-  /**
-   * 获取标题
-   * @param url 网站地址
-   * @return 标题
-   */
-  String getTitle(String url);
-
   WebContent getWebContent(String url);
 
   Object getWeather(String cityId);

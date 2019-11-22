@@ -84,6 +84,7 @@
     }).on("filebatchuploadcomplete",function (event, files, extra) {
         $("#uploadForm").hide(400);
       alert("上传成功");
+      window.location.reload();
     });
     function doTransport(url) {
         parent.$('#${id}').val(url);

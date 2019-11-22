@@ -192,7 +192,7 @@ public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long>
     final Map<String, String> resultMap = new HashMap<>(6);
     try {
       final Configuration cfg = new Configuration(Zone.zone2());
-      final String key = "images/"+System.currentTimeMillis() + file.getOriginalFilename();
+      final String key = "website/"+System.currentTimeMillis() + file.getOriginalFilename();
       final String accessKey = qiniuAccessKey;
       final String secretKey = qiniuSecretKey;
       final String domain = qiniuDomain;

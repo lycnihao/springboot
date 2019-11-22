@@ -63,12 +63,6 @@ public class RequestServiceImpl implements RequestService {
   }
 
   @Override
-  public String getTitle(String url) {
-    Document doc = RequestUtil.requestSite(url,false, "");
-    return doc != null ? doc.title() : "";
-  }
-
-  @Override
   public WebContent getWebContent(String url) {
 
     WebContent webContent = new WebContent();
@@ -81,10 +75,10 @@ public class RequestServiceImpl implements RequestService {
 
       Elements elements= doc.head().select("link");
       elements.forEach(element ->{
-        if ("image/x-icon".equals(element.attr("type"))){
-          String href = element.attr("href");
+        if ("image/x-icon".equals(element.attr("type")) ||  "icon".equals(element.attr("rel"))){
+          String href = element.attr("abs:href");
           if (href.indexOf("/") == 0){
-            webContent.setIconFile(url + href);
+            webContent.setIconFile(href);
           } else {
             webContent.setIconFile(href);
           }

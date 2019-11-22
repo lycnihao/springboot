@@ -67,6 +67,11 @@ public class User implements Serializable {
   private Integer status;
 
   /**
+   * 用户状态：1管理员; 0普通用户
+   */
+  private Integer isAdmin = 0;
+
+  /**
    * 用户ip
    */
   private String ip;
