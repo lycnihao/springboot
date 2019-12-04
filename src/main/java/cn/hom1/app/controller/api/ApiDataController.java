@@ -11,6 +11,7 @@ import cn.hom1.app.service.WebSiteService;
 import cn.hom1.app.service.RequestService;
 
 import cn.hom1.app.service.WebSiteUserService;
+import cn.hom1.app.utils.HomUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import java.util.Collections;
@@ -93,7 +94,8 @@ public class ApiDataController {
 
     @RequestMapping("getWeather")
     @ResponseBody
-    public JsonResult getWeather(String cityId) {
+    public JsonResult getWeather(String cityId,HttpServletRequest request) {
+        System.out.println(HomUtil.getIp(request));
         Object resultObj = requestService.getWeather(cityId);
         if (resultObj == null){
             return new JsonResult(0,"什么都没抓取到~");

@@ -47,16 +47,17 @@ public class DemoApplicationTests {
 		Elements aElements = doc.select(".m-hotlink  > .hotlink:nth-child(3) > li");
 		System.out.println(aElements.size());
 		for (int i = 0;i<aElements.size();i++) {
-			if (i >= 8 && i < 36){
+			if (i >= 10 && i < 36){
 			Element element = aElements.get(i);
 			WebSite webSite = new WebSite();
 			if (element.select(".linktxt").text().split("-").length == 1){
 				webSite.setTitle(element.select(".linktxt").text().split("-")[0]);
 			}else {
-				webSite.setTitle(element.select(".linktxt").text().split("-")[1]);
+				webSite.setTitle(element.select(".linktxt").text().split("-")[0]);
+				webSite.setSummary(element.select(".linktxt").text().split("-")[1]);
 			}
 
-			webSite.setSummary("");
+
 			if (element.select("a").attr("href").split("=").length == 1){
 				webSite.setUrl(element.select("a").attr("href").split("=")[0]);
 			}else {
@@ -94,7 +95,7 @@ public class DemoApplicationTests {
 				e.printStackTrace();
 			}*/
 
-			/*webSiteService.save(webSite,categoryIds);*/
+/*			webSiteService.save(webSite,categoryIds);*/
 		}}
 
 	}
