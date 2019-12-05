@@ -1,0 +1,44 @@
+.profile-img {
+  display: inline-block;
+  -webkit-border-radius: 50%;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 50%;
+  -moz-background-clip: padding;
+  border-radius: 50%;
+  background-clip: padding-box;
+  width: 160px;
+  height: 160px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.upload-img-text{
+  display: none;
+}
+.upload-img:hover img{
+  filter: brightness(60%);
+}
+.upload-img:hover .upload-img-text{
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 150px;
+  line-height: 150px;
+  border-radius: 50%;
+}
+
+.modal-backdrop{
+  z-index: 0;
+}
+
+.box{
+  border-top: none!important;
+}

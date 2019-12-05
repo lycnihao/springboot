@@ -9,10 +9,10 @@ import lombok.Data;
  *
  * @date 2019-12-03 14:15
  */
-@Data
+/*@Data
 @Entity
-@Table(name = "authUser")
-public class AuthUser {
+@Table(name = "authUser")*/
+public class AuthUser1 {
 
   private int openUserId;
 
