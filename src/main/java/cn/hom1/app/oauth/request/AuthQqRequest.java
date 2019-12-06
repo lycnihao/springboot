@@ -54,6 +54,7 @@ public class AuthQqRequest extends AuthDefaultRequest {
 
         HttpResponse response = doGetUserInfo(authToken);
         JSONObject object = JSONObject.parseObject(response.body());
+        System.out.println(object);
         if (object.getIntValue("ret") != 0) {
             throw new AuthException(object.getString("msg"));
         }

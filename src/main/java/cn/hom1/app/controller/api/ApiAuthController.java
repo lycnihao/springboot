@@ -29,7 +29,7 @@ public class ApiAuthController {
          request = new AuthQqRequest(AuthConfig.builder()
                 .clientId("101828731")
                 .clientSecret("e870b28303e89ef93e2be1a0debd67dd")
-                .redirectUri("http://www.168dh.cn/oauth/login")
+                .redirectUri("http://www.168dh.cn/oauth/callback")
                 .unionId(false)
                 .build());
         String state = AuthStateUtils.createState();
@@ -39,18 +39,18 @@ public class ApiAuthController {
         return "redirect:"+authorize;
     }
 
-    @RequestMapping("login")
-    public String login(String code,String state){
+    @RequestMapping("callback")
+    public String callback(String code,String state){
         AuthCallback callback = AuthCallback.builder()
                 .code(code)
                 .state(state)
                 .build();
         System.out.println(callback);
         AuthResponse response = Const.REQUEST.login(callback);
-        System.out.println(response);
         AuthUser user = (AuthUser) response.getData();
         System.out.println(JSON.toJSONString(user));
-        return null;
+        String redirectUrl = "http://168dh.cn";
+        return "redirect:"+redirectUrl;
     }
 
 }
