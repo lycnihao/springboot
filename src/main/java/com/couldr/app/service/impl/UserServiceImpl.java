@@ -33,6 +33,11 @@ public class UserServiceImpl  extends AbstractCrudService<User, Long> implements
   }
 
   @Override
+  public User findByQq(String openId) {
+    return userRepository.findByQq(openId);
+  }
+
+  @Override
   public void updateLastLoginTime(Long userId) {
     userRepository.updateLastLoginTime(userId);
   }

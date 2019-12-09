@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
  *
  * @author liyuancheng
  */
-public class NotFoundException extends HomException {
+public class NotFoundException extends CouldrException {
 
     public NotFoundException(String message) {
         super(message);

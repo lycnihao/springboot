@@ -17,22 +17,10 @@ import org.springframework.util.Assert;
 public class AuthTokenUtil {
 
   /**
-   * Expired seconds.
-   */
-  int ACCESS_TOKEN_EXPIRED_SECONDS = 24 * 3600;
-
-  int REFRESH_TOKEN_EXPIRED_DAYS = 30;
-
-  String ACCESS_TOKEN_CACHE_PREFIX = "hom1.user.access_token.";
-
-  String REFRESH_TOKEN_CACHE_PREFIX = "hom1.user.refresh_token.";
-
-
-  /**
-   * Builds authentication token.
+   * 构建身份验证令牌。
    *
-   * @param user user info must not be null
-   * @return authentication token
+   * @param user 用户信息不能为空
+   * @return 认证令牌
    */
   @NonNull
   public static String buildAuthToken(@NonNull User user) {
@@ -42,7 +30,6 @@ public class AuthTokenUtil {
     long currentTime = System.currentTimeMillis() + 60* 60 * 1000;
     Date end = new Date(currentTime);
 
-    /*HomUtil.randomUUIDWithoutDash()*/
     String token = JWT.create().withAudience(user.getUserId().toString()).withIssuedAt(start).withExpiresAt(end)
         .sign(Algorithm.HMAC256(user.getPassword()));
     return token;

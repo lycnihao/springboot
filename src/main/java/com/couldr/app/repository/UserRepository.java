@@ -12,6 +12,8 @@ public interface UserRepository extends BaseRepository<User, Long> {
 
   User findByEmail(String email);
 
+  User findByQq(String openId);
+
   @Transactional
   @Modifying
   @Query(value = "update user set last_login_time = now() where user_id = ?",nativeQuery =true)

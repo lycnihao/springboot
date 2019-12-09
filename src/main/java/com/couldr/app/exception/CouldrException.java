@@ -3,15 +3,15 @@ package com.couldr.app.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 
-public abstract class HomException extends RuntimeException{
+public abstract class CouldrException extends RuntimeException{
 
     private Object errorData;
 
-    public HomException(String message) {
+    public CouldrException(String message) {
         super(message);
     }
 
-    public HomException(String message, Throwable cause) {
+    public CouldrException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -21,7 +21,7 @@ public abstract class HomException extends RuntimeException{
         return errorData;
     }
 
-    public HomException setErrorData(@Nullable Object errorData) {
+    public CouldrException setErrorData(@Nullable Object errorData) {
         this.errorData = errorData;
         return this;
     }

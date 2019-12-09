@@ -1,6 +1,6 @@
 package com.couldr.app.exception.base;
 
-import com.couldr.app.exception.HomException;
+import com.couldr.app.exception.CouldrException;
 import com.couldr.app.model.dto.JsonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,8 +66,8 @@ public class ControllerExceptionHandler {
         return jsonResult;
     }
 
-    @ExceptionHandler(HomException.class)
-    public ResponseEntity<JsonResult> handleHomException(HomException e) {
+    @ExceptionHandler(CouldrException.class)
+    public ResponseEntity<JsonResult> handleHomException(CouldrException e) {
         JsonResult jsonResult = handleBaseException(e);
         jsonResult.setCode(e.getStatus().value());
         jsonResult.setResult(e.getErrorData());

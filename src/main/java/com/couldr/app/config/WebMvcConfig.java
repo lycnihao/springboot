@@ -2,7 +2,7 @@ package com.couldr.app.config;
 
 import com.couldr.app.web.filter.CorsFilter;
 import com.couldr.app.web.interceptor.ApiInterceptor;
-import com.couldr.app.web.interceptor.LoginInterceptor;
+import com.couldr.app.web.interceptor.AdminInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private ApiInterceptor apiInterceptor;
 
     @Autowired
-    private LoginInterceptor loginInterceptor;
+    private AdminInterceptor adminInterceptor;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -40,13 +40,19 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+
+        /**
+         * api接口拦截器
+         */
         registry.addInterceptor(apiInterceptor)
             .addPathPatterns("/api/user/**")
             .excludePathPatterns("/api/user/login")
             .excludePathPatterns("/api/user/register")
             .excludePathPatterns("/api/user/fail");
-
-        registry.addInterceptor(loginInterceptor)
+        /**
+         * 后台管理拦截器
+         */
+        registry.addInterceptor(adminInterceptor)
             .addPathPatterns("/admin/**")
             .excludePathPatterns("/admin/login")
             .excludePathPatterns("/admin/getLogin")

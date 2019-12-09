@@ -11,7 +11,7 @@ import com.couldr.app.service.WebSiteService;
 import com.couldr.app.service.RequestService;
 
 import com.couldr.app.service.WebSiteUserService;
-import com.couldr.app.utils.HomUtil;
+import com.couldr.app.utils.CouldrUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import java.util.Collections;
@@ -96,7 +96,7 @@ public class ApiDataController {
     @RequestMapping("getWeather")
     @ResponseBody
     public JsonResult getWeather(String cityId,HttpServletRequest request) {
-        System.out.println(HomUtil.getIp(request));
+        System.out.println(CouldrUtil.getIp(request));
         Object resultObj = requestService.getWeather(cityId);
         if (resultObj == null){
             return new JsonResult(0,"什么都没抓取到~");

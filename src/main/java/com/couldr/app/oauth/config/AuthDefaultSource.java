@@ -2,9 +2,6 @@ package com.couldr.app.oauth.config;
 
 /**
  * JustAuth内置的各api需要的url， 用枚举类分平台类型管理
- *
- * @author yadong.zhang (yadong.zhang0415(a)gmail.com)
- * @since 1.0
  */
 public enum AuthDefaultSource implements AuthSource {
     /**

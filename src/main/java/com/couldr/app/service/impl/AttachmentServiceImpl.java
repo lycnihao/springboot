@@ -6,7 +6,7 @@ import com.couldr.app.model.enums.AttachLocationEnum;
 import com.couldr.app.repository.AttachmentRepository;
 import com.couldr.app.service.AttachmentService;
 import com.couldr.app.service.base.AbstractCrudService;
-import com.couldr.app.utils.HomUtil;
+import com.couldr.app.utils.CouldrUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrBuilder;
 import cn.hutool.core.util.StrUtil;
@@ -233,7 +233,7 @@ public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long>
       resultMap.put("filePath", filePath.trim());
       resultMap.put("smallPath", smallUrl == null ? filePath.trim() : (filePath + smallUrl).trim());
       resultMap.put("suffix", file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')));
-      resultMap.put("size", HomUtil.parseSize(file.getSize()));
+      resultMap.put("size", CouldrUtil.parseSize(file.getSize()));
       resultMap.put("wh", putSet.getW() + "x" + putSet.getH());
       resultMap.put("location", AttachLocationEnum.QINIU.getDesc());
     } catch (Exception e) {

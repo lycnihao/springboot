@@ -7,7 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 用户
@@ -15,6 +18,9 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "user")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
 
 
@@ -54,7 +60,7 @@ public class User implements Serializable {
   /**
    * QQ
    */
-  private Long qq;
+  private String qq;
 
   /**
    * 头像
@@ -85,5 +91,4 @@ public class User implements Serializable {
    * 最后登录时间
    */
   private Date lastLoginTime;
-
 }

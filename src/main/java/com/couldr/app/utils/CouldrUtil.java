@@ -13,16 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author iksen
  * @date 2019-10-11 14:16
  */
-public class HomUtil {
-  /**
-   * Gets random uuid without dash.
-   *
-   * @return random uuid without dash
-   */
-  @NonNull
-  public static String randomUUIDWithoutDash() {
-    return UUID.randomUUID().toString().replace("-","");
-  }
+public class CouldrUtil {
 
   public static String getIp(HttpServletRequest request){
     String ipAddress = request.getHeader("x-forwarded-for");

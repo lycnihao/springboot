@@ -1,6 +1,5 @@
 package com.couldr.app.web.controller.api;
 
-import com.couldr.app.model.dto.Const;
 import com.couldr.app.model.dto.JsonResult;
 import com.couldr.app.model.entity.Attachment;
 import com.couldr.app.model.entity.User;
@@ -9,7 +8,8 @@ import com.couldr.app.model.params.LoginQuery;
 import com.couldr.app.service.AttachmentService;
 import com.couldr.app.service.UserService;
 import com.couldr.app.service.WebSiteUserService;
-import com.couldr.app.utils.HomUtil;
+import com.couldr.app.utils.AuthTokenUtil;
+import com.couldr.app.utils.CouldrUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.crypto.SecureUtil;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -78,11 +78,10 @@ public class ApiUserController {
 
     userService.updateLastLoginTime(user.getUserId());
 
-    String token =JWT.create().withAudience(user.getUserId().toString())
-        .sign(Algorithm.HMAC256(user.getPassword()));
+    String token = AuthTokenUtil.buildAuthToken(user);
 
-    Cookie cookie = new Cookie(Const.USER_TOKEN_KEY + "_"+user.getUserId(),token);
-    cookie.setPath("/");
+    /*Cookie cookie = new Cookie(Const.USER_TOKEN_KEY + "_"+user.getUserId(),token);
+    cookie.setPath("/");*/
     logger.info("用户[{}]登录成功。",user.getUsername());
     return new JsonResult(1, "登陆成功",token);
   }
@@ -106,14 +105,14 @@ public class ApiUserController {
     user.setPassword(password);
     user.setCreateTime(new Date());
     user.setStatus(1);
-    user.setIp(HomUtil.getIp(request));
+    user.setIp(CouldrUtil.getIp(request));
     if (user.getQq() == null) {
       user.setUserAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
     } else {
       user.setUserAvatar(String.format("http://q1.qlogo.cn/g?b=qq&nk=%s&s=100", user.getQq()));
     }
     userService.create(user);
-    logger.info("用户[{}]登录成功。注册ip:[{}]",user.getUsername(),user.getIp());
+    logger.info("用户[{}]注册成功。注册ip:[{}]",user.getUsername(),user.getIp());
     return new JsonResult(1, "注册成功");
   }
 

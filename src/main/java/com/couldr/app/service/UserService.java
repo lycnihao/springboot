@@ -9,5 +9,7 @@ public interface UserService  extends CrudService<User, Long> {
 
     User findByEmail(String email);
 
+    User findByQq(String openId);
+
     void updateLastLoginTime(Long userId);
 }
