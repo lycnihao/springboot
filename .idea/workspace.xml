@@ -2,113 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3fa9d1b-6f9b-494c-9d68-7004a8d818fb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YLI.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/DemoApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/config/FreeMarkerAutoConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/config/WebMvcConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AdminController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/AttachmentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/CategoryController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/IndexController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/WebSiteController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiAuthController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiDataController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiTopHotController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/controller/api/ApiUserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/exception/HomException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/exception/NotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/exception/NotFoundUserDetailException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/exception/base/ControllerExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/filter/CorsFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/dto/CategoryIdAndWebSiteCountDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/dto/CategoryWithWebSiteCountDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/dto/Const.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/dto/JsonResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/dto/QiNiuPutSet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/dto/WebContent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Attachment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/AuthUser1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Options.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/Tag.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/WebSite.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/WebSiteCategory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/entity/WebSiteUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/enums/AttachLocationEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/enums/TrueFalseEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/enums/WebsiteTypeEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/freemarker/ArticleTagDirective.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/freemarker/CommonTagDirective.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/params/LoginQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/params/WebSiteQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/vo/CategoryWebSiteVo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/vo/TopHot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/vo/WebSiteListVo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/model/vo/WebSiteVo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/config/AuthConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/config/AuthDefaultSource.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/config/AuthSource.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/enums/AuthResponseStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/enums/AuthUserGender.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/exception/AuthException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/model/AuthCallback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/model/AuthResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/model/AuthToken.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/model/AuthUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/request/AuthDefaultRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/request/AuthQqRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/request/AuthRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/utils/AuthStateUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/utils/GlobalAuthUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/utils/StringUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/oauth/utils/UrlBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/AttachmentRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/CategoryRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/WebSiteCategoryRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/WebSiteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/WebSiteUserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/base/BaseRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/repository/base/BaseRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/security/interceptor/ApiInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/security/interceptor/LoginInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/AttachmentService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/CategoryService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/HotService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/RequestService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/WebSiteCategoryService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/WebSiteService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/WebSiteUserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/AbstractCrudService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/base/CrudService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/AttachmentServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/CategoryServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/HotServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/RequestServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/UserServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/WebSiteCategoryServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/WebSiteServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/service/impl/WebSiteUserServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/utils/AuthTokenUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/utils/HomUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/utils/RequestUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/utils/ServiceUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/utils/UuidUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/hom1/app/utils/WebFileUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cn/hom1/app/DemoApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cn/hom1/app/oauth/request/AuthExtendRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cn/hom1/app/oauth/request/AuthExtendRequestTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/api/ApiAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/api/ApiAuthController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,19 +111,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/couldr/app/repository/UserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/couldr/app/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/couldr/app/service/impl/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/api/ApiAuthController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/couldr/app/model/dto/Const.java" />
         <option value="$PROJECT_DIR$/src/main/resources/ehcache.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/api/ApiUserController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yaml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/api/ApiAuthController.java" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -245,7 +136,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -287,6 +178,25 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springboot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springboot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -297,7 +207,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="interceptor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springboot" type="b2602c69:ProjectViewProjectNode" />
@@ -323,7 +233,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -395,29 +304,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method>
+      <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-      <method>
+      <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
@@ -430,29 +331,17 @@
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.couldr.app.DemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
+    <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
-      <method>
+      <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
@@ -517,6 +406,7 @@
       <workItem from="1575810010864" duration="939000" />
       <workItem from="1575859664341" duration="10611000" />
       <workItem from="1575939587560" duration="271000" />
+      <workItem from="1575984268226" duration="1585000" />
     </task>
     <servers />
   </component>
@@ -553,66 +443,51 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174883000" />
+    <option name="totallyTimeSpent" value="176468000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="6" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49774775" visible="true" weight="0.3944563" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
-      <window_info anchor="bottom" id="Java Enterprise" order="11" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.38941655" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Web" order="7" sideWeight="0.5022523" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.38937092" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49774775" visible="true" weight="0.39010283" />
-      <window_info anchor="right" id="Bean Validation" order="9" />
-      <window_info id="Web" order="7" sideWeight="0.5022523" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32321042" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32428765" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" id="Maven" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info anchor="right" id="Maven" order="10" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/oauth/model/AuthResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/oauth/request/AuthDefaultRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -690,13 +565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-760">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="335">
@@ -728,21 +596,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/interceptor/AdminInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/interceptor/AdminInterceptor.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/exception/NotFoundUserDetailException.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/exception/CouldrException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/exception/CouldrException.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/exception/base/ControllerExceptionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -771,13 +627,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/utils/CouldrUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/utils/CouldrUtil.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/api/ApiDataController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -822,13 +672,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/utils/AuthTokenUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/oauth/request/AuthQqRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -857,13 +700,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/interceptor/ApiInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="48" column="9" lean-forward="true" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.7.RELEASE/spring-core-5.1.7.RELEASE.jar!/org/springframework/util/StringUtils.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -875,13 +711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/model/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="77" column="30" lean-forward="true" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -899,13 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/model/dto/Const.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-221">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/ehcache.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
@@ -913,33 +735,6 @@
           <folding>
             <element signature="n#cache#1;n#ehcache#0;n#!!top" />
             <element signature="n#cache#2;n#ehcache#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/api/ApiAuthController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="83" column="25" selection-start-line="83" selection-start-column="17" selection-end-line="83" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1025#1026#0" expanded="true" />
-            <element signature="e#1071#1072#0" expanded="true" />
-            <element signature="method#index#0;class#ApiAuthController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/api/ApiUserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="120" column="1" lean-forward="true" selection-start-line="120" selection-start-column="1" selection-end-line="120" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#login#0;class#ApiUserController#0" />
-            <element signature="method#register#0;class#ApiUserController#0" />
-            <element signature="method#info#0;class#ApiUserController#0" />
-            <element signature="method#upload#0;class#ApiUserController#0" />
           </folding>
         </state>
       </provider>
@@ -976,6 +771,72 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-927">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/interceptor/ApiInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="30" column="47" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/api/ApiUserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="80" column="54" lean-forward="true" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#register#0;class#ApiUserController#0" />
+            <element signature="method#info#0;class#ApiUserController#0" />
+            <element signature="method#upload#0;class#ApiUserController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/service/base/AbstractCrudService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="197" selection-start-line="197" selection-end-line="197" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/model/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/utils/AuthTokenUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/model/dto/Const.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="54" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/couldr/app/web/controller/api/ApiAuthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="85" column="30" lean-forward="true" selection-start-line="85" selection-start-column="30" selection-end-line="85" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#index#0;class#ApiAuthController#0" />
+          </folding>
         </state>
       </provider>
     </entry>

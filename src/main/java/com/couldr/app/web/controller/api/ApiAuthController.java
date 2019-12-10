@@ -12,10 +12,14 @@ import com.couldr.app.oauth.request.AuthRequest;
 import com.couldr.app.oauth.utils.AuthStateUtils;
 import com.alibaba.fastjson.JSON;
 import com.couldr.app.service.UserService;
+import com.couldr.app.utils.AuthTokenUtil;
 import com.couldr.app.utils.CouldrUtil;
 import com.couldr.app.utils.UuidUtils;
 import java.util.Date;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,8 +54,8 @@ public class ApiAuthController {
     }
 
     @RequestMapping("callback")
-    public String callback(String code, String state, HttpServletRequest httpServletRequest){
-        AuthRequest request = new AuthQqRequest(AuthConfig.builder()
+    public String callback(String code, String state, HttpServletRequest request, HttpServletResponse response){
+        AuthRequest authRequest = new AuthQqRequest(AuthConfig.builder()
             .clientId("101828731")
             .clientSecret("e870b28303e89ef93e2be1a0debd67dd")
             .redirectUri("http://www.168dh.cn/oauth/callback")
@@ -62,17 +66,24 @@ public class ApiAuthController {
                 .code(code)
                 .state(state)
                 .build();
-        AuthResponse response = request.login(callback);
-        AuthUser authUser = (AuthUser) response.getData();
+        AuthResponse authResponse = authRequest.login(callback);
+        AuthUser authUser = (AuthUser) authResponse.getData();
         System.out.println(JSON.toJSONString(authUser));
 
         User user = userService.findByQq(authUser.getUuid());
 
         if (user == null){
-            this.register(httpServletRequest,authUser);
+            user = this.register(request,authUser);
+        } else {
+            userService.updateLastLoginTime(user.getUserId());
         }
+        String token = AuthTokenUtil.buildAuthToken(user);
+        Cookie cookie = new Cookie(Const.USER_TOKEN_KEY, token);
+        cookie.setPath("/");
+        response.addCookie(cookie);
 
-        String redirectUrl = "http://168dh.cn";
+        /*String redirectUrl = "http://168dh.cn";*/
+        String redirectUrl = "http://localhost:8080/";
         return "redirect:"+redirectUrl;
     }
 
@@ -81,7 +92,7 @@ public class ApiAuthController {
      * @param request 获取ip
      * @param authUser 第三方信息
      */
-    private void register(HttpServletRequest request, AuthUser authUser){
+    private User register(HttpServletRequest request, AuthUser authUser){
         String uuid = UuidUtils.getUUID();
         User user = User.builder()
             .username(uuid)
@@ -95,6 +106,7 @@ public class ApiAuthController {
             .userAvatar(authUser.getAvatar())
             .build();
         userService.create(user);
+        return user;
     }
 
 }
