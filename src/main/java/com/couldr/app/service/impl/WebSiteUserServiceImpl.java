@@ -49,4 +49,9 @@ public class WebSiteUserServiceImpl  extends
     return webSiteUserRepository.findMaxSort(userId);
   }
 
+  @Override
+  public void initUserWeb(Integer userId) {
+    webSiteUserRepository.initUserWeb(userId);
+  }
+
 }

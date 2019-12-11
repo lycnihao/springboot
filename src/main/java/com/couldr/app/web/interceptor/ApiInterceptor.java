@@ -1,5 +1,6 @@
 package com.couldr.app.web.interceptor;
 
+import com.couldr.app.model.dto.Const;
 import com.couldr.app.model.entity.User;
 import com.couldr.app.service.UserService;
 import com.auth0.jwt.JWT;
@@ -22,13 +23,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 public class ApiInterceptor implements HandlerInterceptor {
 
-    @Autowired
     private UserService userService;
+
+    public ApiInterceptor(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 从 http 请求头中取出 token
-        String token = request.getHeader("token");
+        String token = request.getHeader(Const.USER_TOKEN_KEY);
         System.out.println("token--"+token);
         // 执行认证
         if (token == null) {

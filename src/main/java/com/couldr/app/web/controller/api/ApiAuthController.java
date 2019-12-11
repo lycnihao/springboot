@@ -1,16 +1,16 @@
 package com.couldr.app.web.controller.api;
 
-import cn.hutool.crypto.SecureUtil;
 import com.couldr.app.model.dto.Const;
 import com.couldr.app.model.entity.User;
 import com.couldr.app.oauth.config.AuthConfig;
 import com.couldr.app.oauth.model.AuthCallback;
 import com.couldr.app.oauth.model.AuthResponse;
-import com.couldr.app.oauth.model.AuthUser;
+import com.couldr.app.model.entity.AuthUser;
 import com.couldr.app.oauth.request.AuthQqRequest;
 import com.couldr.app.oauth.request.AuthRequest;
 import com.couldr.app.oauth.utils.AuthStateUtils;
 import com.alibaba.fastjson.JSON;
+import com.couldr.app.service.AuthUserService;
 import com.couldr.app.service.UserService;
 import com.couldr.app.utils.AuthTokenUtil;
 import com.couldr.app.utils.CouldrUtil;
@@ -20,8 +20,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -36,8 +36,14 @@ public class ApiAuthController {
 
     private UserService userService;
 
-    public ApiAuthController(UserService userService) {
+    private AuthUserService authUserService;
+
+    @Value("${admin.domain}")
+    private String callbackUrl;
+
+    public ApiAuthController(UserService userService, AuthUserService authUserService) {
         this.userService = userService;
+        this.authUserService = authUserService;
     }
 
     @RequestMapping("qq")
@@ -74,17 +80,17 @@ public class ApiAuthController {
 
         if (user == null){
             user = this.register(request,authUser);
+            callbackUrl = callbackUrl + "/register/name";
         } else {
             userService.updateLastLoginTime(user.getUserId());
         }
         String token = AuthTokenUtil.buildAuthToken(user);
         Cookie cookie = new Cookie(Const.USER_TOKEN_KEY, token);
+        cookie.setMaxAge(30 * 24 * 3600);
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        /*String redirectUrl = "http://168dh.cn";*/
-        String redirectUrl = "http://localhost:8080/";
-        return "redirect:"+redirectUrl;
+        return "redirect:" + callbackUrl;
     }
 
     /**
@@ -97,7 +103,7 @@ public class ApiAuthController {
         User user = User.builder()
             .username(uuid)
             .password(uuid)
-            .status(1).isAdmin(0)
+            .status(0).isAdmin(0)
             .qq(authUser.getUuid())
             .createTime(new Date())
             .lastLoginTime(new Date())
@@ -106,6 +112,7 @@ public class ApiAuthController {
             .userAvatar(authUser.getAvatar())
             .build();
         userService.create(user);
+        authUserService.create(authUser);
         return user;
     }
 

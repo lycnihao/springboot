@@ -6,7 +6,7 @@ import com.couldr.app.oauth.enums.AuthResponseStatus;
 import com.couldr.app.oauth.model.AuthCallback;
 import com.couldr.app.oauth.model.AuthResponse;
 import com.couldr.app.oauth.model.AuthToken;
-import com.couldr.app.oauth.model.AuthUser;
+import com.couldr.app.model.entity.AuthUser;
 import com.couldr.app.oauth.exception.AuthException;
 import com.couldr.app.oauth.utils.UrlBuilder;
 import com.couldr.app.utils.UuidUtils;

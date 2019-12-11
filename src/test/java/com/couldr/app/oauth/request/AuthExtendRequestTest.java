@@ -4,7 +4,7 @@ import com.couldr.app.oauth.config.AuthConfig;
 import com.couldr.app.oauth.model.AuthCallback;
 import com.couldr.app.oauth.model.AuthResponse;
 import com.couldr.app.oauth.model.AuthToken;
-import com.couldr.app.oauth.model.AuthUser;
+import com.couldr.app.model.entity.AuthUser;
 import com.couldr.app.oauth.utils.AuthStateUtils;
 import com.alibaba.fastjson.JSON;
 import org.junit.Assert;

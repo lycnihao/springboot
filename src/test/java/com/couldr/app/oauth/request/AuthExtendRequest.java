@@ -7,7 +7,7 @@ import com.couldr.app.oauth.enums.AuthUserGender;
 import com.couldr.app.oauth.model.AuthCallback;
 import com.couldr.app.oauth.model.AuthResponse;
 import com.couldr.app.oauth.model.AuthToken;
-import com.couldr.app.oauth.model.AuthUser;
+import com.couldr.app.model.entity.AuthUser;
 
 /**
  * 测试用自定义扩展的第三方request

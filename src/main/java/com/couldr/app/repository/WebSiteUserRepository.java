@@ -35,4 +35,10 @@ public interface WebSiteUserRepository extends BaseRepository<WebSiteUser, Integ
 
   @Query(value = "select max(sort) from website_user where user_id = ?",nativeQuery =true)
   Integer findMaxSort(Integer userId);
+
+  @Transactional
+  @Modifying
+  @Query(value = "insert into website_user(sort,user_id,website_category,website_icon,website_title,website_url)"
+      + "select sort,?,website_category,website_icon,website_title,website_url from website_user where user_id = 0",nativeQuery =true)
+  void initUserWeb(Integer userId);
 }

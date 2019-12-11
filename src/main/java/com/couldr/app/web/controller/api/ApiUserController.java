@@ -12,14 +12,9 @@ import com.couldr.app.utils.AuthTokenUtil;
 import com.couldr.app.utils.CouldrUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.crypto.SecureUtil;
-import com.auth0.jwt.algorithms.Algorithm;
-
 import java.util.Date;
 import java.util.Map;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-
-import com.auth0.jwt.JWT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -48,6 +43,7 @@ public class ApiUserController {
   private AttachmentService attachmentService;
 
   private WebSiteUserService webSiteUserService;
+
   public ApiUserController(UserService userService,AttachmentService attachmentService,WebSiteUserService webSiteUserService) {
     this.userService = userService;
     this.attachmentService = attachmentService;
@@ -79,9 +75,6 @@ public class ApiUserController {
     userService.updateLastLoginTime(user.getUserId());
 
     String token = AuthTokenUtil.buildAuthToken(user);
-
-    /*Cookie cookie = new Cookie(Const.USER_TOKEN_KEY + "_"+user.getUserId(),token);
-    cookie.setPath("/");*/
     logger.info("用户[{}]登录成功。",user.getUsername());
     return new JsonResult(1, "登陆成功",token);
   }
@@ -106,12 +99,9 @@ public class ApiUserController {
     user.setCreateTime(new Date());
     user.setStatus(1);
     user.setIp(CouldrUtil.getIp(request));
-    if (user.getQq() == null) {
-      user.setUserAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
-    } else {
-      user.setUserAvatar(String.format("http://q1.qlogo.cn/g?b=qq&nk=%s&s=100", user.getQq()));
-    }
-    userService.create(user);
+    user.setUserAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
+    user = userService.create(user);
+    webSiteUserService.initUserWeb(user.getUserId().intValue());
     logger.info("用户[{}]注册成功。注册ip:[{}]",user.getUsername(),user.getIp());
     return new JsonResult(1, "注册成功");
   }
@@ -120,9 +110,15 @@ public class ApiUserController {
   @RequestMapping("/info")
   public JsonResult info(HttpServletRequest request){
     User user = (User) request.getAttribute("user");
-    user.setPassword("**");
-    user.setSalt("***");
-    return new JsonResult(1, user);
+    user.setUserId(null);
+    user.setPassword(null);
+    user.setQq(null);
+    if (user.getStatus() == 0){
+      return new JsonResult(1, user.getNickname());
+    } else {
+      return new JsonResult(1, user);
+    }
+
   }
 
   @RequestMapping("/fail")
@@ -195,4 +191,24 @@ public class ApiUserController {
 
     return new JsonResult(1, "排序保存成功~");
   }
+
+
+  @RequestMapping("/active")
+  @ResponseBody
+  public JsonResult active(String userName,HttpServletRequest request){
+    Object userId = request.getAttribute("userId");
+
+    User user = userService.fetchById((Long) userId).orElse(new User());
+    user.setStatus(1);
+    user.setUsername(userName);
+    user.setNickname(userName);
+    user.setLastLoginTime(new Date());
+    //状态修改为正常
+    userService.update(user);
+    //初始化常用网站
+    webSiteUserService.initUserWeb((int) userId);
+
+    return new JsonResult(1,"注册成功。开始您的旅程吧。");
+  }
+
 }

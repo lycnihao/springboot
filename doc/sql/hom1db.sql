@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 腾讯云
-Source Server Version : 50726
-Source Host           : 106.54.255.9:3306
+Source Server         : Mysql
+Source Server Version : 50720
+Source Host           : localhost:3306
 Source Database       : hom1db
 
 Target Server Type    : MYSQL
-Target Server Version : 50726
+Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2019-11-27 10:24:58
+Date: 2019-12-11 16:28:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -154,6 +154,35 @@ INSERT INTO `attachment` VALUES ('114', '2019-11-22 15:59:54', 'qiniu', 'shuimu.
 INSERT INTO `attachment` VALUES ('115', '2019-11-22 15:59:55', 'qiniu', 'xici.png', '0', 'http://img.168dh.cn/website/1574409593934xici.png', '31KB', 'http://img.168dh.cn/website/1574409593934xici.png', '.png', '', '160x159');
 INSERT INTO `attachment` VALUES ('116', '2019-11-22 15:59:55', 'qiniu', 'tianya.svg', '0', 'http://img.168dh.cn/website/1574409594954tianya.svg', '2KB', 'http://img.168dh.cn/website/1574409594954tianya.svg', '.svg', '', '64x64');
 INSERT INTO `attachment` VALUES ('117', '2019-11-22 15:59:56', 'qiniu', 'mop.png', '0', 'http://img.168dh.cn/website/1574409595445mop.png', '28KB', 'http://img.168dh.cn/website/1574409595445mop.png', '.png', '', '173x145');
+INSERT INTO `attachment` VALUES ('118', '2019-12-11 13:59:01', 'qiniu', 'huya.svg', '0', 'http://img.168dh.cn/website/1576043939448huya.svg', '9KB', 'http://img.168dh.cn/website/1576043939448huya.svg', '.svg', 'image/svg+xml', '200x200');
+INSERT INTO `attachment` VALUES ('119', '2019-12-11 14:00:34', 'qiniu', 'douyu.svg', '0', 'http://img.168dh.cn/website/1576044033399douyu.svg', '9KB', 'http://img.168dh.cn/website/1576044033399douyu.svg', '.svg', 'image/svg+xml', '200x200');
+INSERT INTO `attachment` VALUES ('120', '2019-12-11 14:03:06', 'qiniu', 'fanyi.png', '0', 'http://img.168dh.cn/website/1576044185796fanyi.png', '4KB', 'http://img.168dh.cn/website/1576044185796fanyi.png', '.png', 'image/png', '0x0');
+INSERT INTO `attachment` VALUES ('121', '2019-12-11 14:22:32', 'qiniu', '58.png', '0', 'http://img.168dh.cn/website/157604535119558.png', '2KB', 'http://img.168dh.cn/website/157604535119558.png', '.png', 'image/png', '20x20');
+INSERT INTO `attachment` VALUES ('122', '2019-12-11 14:29:15', 'qiniu', 'qqemail.png', '0', 'http://img.168dh.cn/website/1576045754356qqemail.png', '17KB', 'http://img.168dh.cn/website/1576045754356qqemail.png', '.png', 'image/png', '256x256');
+
+-- ----------------------------
+-- Table structure for auth_user
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_user`;
+CREATE TABLE `auth_user` (
+  `uuid` varchar(255) NOT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `blog` varchar(255) DEFAULT NULL,
+  `company` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `gender` int(11) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `source` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of auth_user
+-- ----------------------------
+INSERT INTO `auth_user` VALUES ('58302A0634AB6EAA50826B990ECCE64C', 'http://thirdqq.qlogo.cn/g?b=oidb&k=xQMdiaCNq4FK3KqOLR9RBcw&s=100&t=1571066314', null, null, null, '0', '湖南-长沙', '会飞的虾', null, 'QQ', '会飞的虾');
 
 -- ----------------------------
 -- Table structure for category
@@ -173,40 +202,27 @@ CREATE TABLE `category` (
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('1', '', null, '生活·日常', '0', '0', 'sh');
-INSERT INTO `category` VALUES ('2', '', null, '资讯·新闻', '0', '0', 'zx');
-INSERT INTO `category` VALUES ('17', '', null, '开发', '0', '4', 'kaifa');
-INSERT INTO `category` VALUES ('4', '', null, '开发·招聘', '0', '0', 'jishu');
-INSERT INTO `category` VALUES ('5', '', null, '学习·阅读', '0', '0', 'yuedu');
-INSERT INTO `category` VALUES ('6', '', null, '购物', '0', '1', 'gouwu');
-INSERT INTO `category` VALUES ('7', '', null, '视频', '0', '1', 'shiping');
-INSERT INTO `category` VALUES ('8', '', null, '小说', '0', '5', 'xiaoshuo');
-INSERT INTO `category` VALUES ('9', '', null, '音乐', '0', '1', 'yinyue');
-INSERT INTO `category` VALUES ('10', '', null, '资讯', '0', '2', 'zixun');
-INSERT INTO `category` VALUES ('11', '', null, '新闻', '0', '2', 'xinwen');
-INSERT INTO `category` VALUES ('12', '', null, '军事', '0', '2', 'junshi');
-INSERT INTO `category` VALUES ('13', '', null, '财经', '0', '2', 'caijing');
-INSERT INTO `category` VALUES ('14', '', null, '体育', '0', '2', 'tiyu');
-INSERT INTO `category` VALUES ('15', '', null, '汽车', '0', '2', 'qiche');
-INSERT INTO `category` VALUES ('16', '', null, '数码', '0', '2', 'shuma');
-INSERT INTO `category` VALUES ('18', '', null, '社区', '0', '1', 'shequ');
-INSERT INTO `category` VALUES ('19', '', null, '招聘', '0', '4', 'zhaopin');
-INSERT INTO `category` VALUES ('20', '', null, '视频', '0', '4', 'xshiping');
-INSERT INTO `category` VALUES ('21', '', null, '工具', '0', '4', 'kgongju');
-INSERT INTO `category` VALUES ('22', '', null, '外快', '0', '4', 'jiedan');
-INSERT INTO `category` VALUES ('23', '', null, '内容', '0', '5', 'neirong');
-INSERT INTO `category` VALUES ('24', '', null, '问答', '0', '5', 'wenda');
-INSERT INTO `category` VALUES ('25', '', null, '公开课', '0', '5', 'gongkaike');
-INSERT INTO `category` VALUES ('26', '', null, '科普', '0', '5', 'kepu');
-INSERT INTO `category` VALUES ('27', '', null, '设计·灵感', '0', '0', 'sheji');
-INSERT INTO `category` VALUES ('28', '', null, '摄影', '0', '27', 'sheying');
-INSERT INTO `category` VALUES ('29', '', null, '图片', '0', '27', 'tu');
-INSERT INTO `category` VALUES ('30', '', null, '插画', '0', '27', 'chahua');
-INSERT INTO `category` VALUES ('31', '', null, '灵感', '0', '27', 'linggan');
-INSERT INTO `category` VALUES ('32', '', null, '素材', '0', '27', 'sucai');
-INSERT INTO `category` VALUES ('33', '', null, '图标', '0', '27', 'icon');
-INSERT INTO `category` VALUES ('34', '', null, '配色', '0', '27', 'peise');
-INSERT INTO `category` VALUES ('35', '', null, '出行', '0', '1', 'chuxing');
+INSERT INTO `category` VALUES ('17', '', 'el-icon-goods\r\n', '开发', '10', '0', 'kaifa');
+INSERT INTO `category` VALUES ('6', '', 'el-icon-goods\r\n', '购物', '1', '0', 'gouwu');
+INSERT INTO `category` VALUES ('7', '', 'el-icon-video-play\r\n', '视频', '2', '0', 'shiping');
+INSERT INTO `category` VALUES ('9', '', 'el-icon-headset\r\n', '音乐', '3', '0', 'yinyue');
+INSERT INTO `category` VALUES ('10', '', 'el-icon-data-analysis\r\n', '资讯', '4', '0', 'zixun');
+INSERT INTO `category` VALUES ('11', '', 'el-icon-news\r\n', '新闻', '5', '0', 'xinwen');
+INSERT INTO `category` VALUES ('12', '', 'el-icon-umbrella\r\n', '军事', '6', '0', 'junshi');
+INSERT INTO `category` VALUES ('13', '', 'el-icon-data-line\r\n', '财经', '7', '0', 'caijing');
+INSERT INTO `category` VALUES ('14', '', 'el-icon-basketball\r\n', '体育', '8', '0', 'tiyu');
+INSERT INTO `category` VALUES ('15', '', 'el-icon-truck\r\n', '汽车', '9', '0', 'qiche');
+INSERT INTO `category` VALUES ('16', '', 'el-icon-mobile-phone\r\n', '数码', '11', '0', 'shuma');
+INSERT INTO `category` VALUES ('18', '', 'el-icon-chat-line-round\r\n', '社区', '12', '0', 'shequ');
+INSERT INTO `category` VALUES ('19', '', 'el-icon-suitcase\r\n', '招聘', '14', '0', 'zhaopin');
+INSERT INTO `category` VALUES ('28', '', 'el-icon-camera\r\n', '摄影', '15', '0', 'sheying');
+INSERT INTO `category` VALUES ('29', '', 'el-icon-picture-outline\r\n', '图片', '16', '0', 'tu');
+INSERT INTO `category` VALUES ('30', '', 'el-icon-brush\r\n', '插画', '17', '0', 'chahua');
+INSERT INTO `category` VALUES ('31', '', 'el-icon-attract\r\n', '灵感', '18', '0', 'linggan');
+INSERT INTO `category` VALUES ('32', '', 'el-icon-cherry\r\n', '素材', '19', '0', 'sucai');
+INSERT INTO `category` VALUES ('33', '', 'el-icon-star-off\r\n', '图标', '20', '0', 'icon');
+INSERT INTO `category` VALUES ('34', '', 'el-icon-menu\r\n', '配色', '21', '0', 'peise');
+INSERT INTO `category` VALUES ('35', '', 'el-icon-bicycle\r\n', '出行', '13', '0', 'chuxing');
 
 -- ----------------------------
 -- Table structure for hibernate_sequence
@@ -219,7 +235,7 @@ CREATE TABLE `hibernate_sequence` (
 -- ----------------------------
 -- Records of hibernate_sequence
 -- ----------------------------
-INSERT INTO `hibernate_sequence` VALUES ('118');
+INSERT INTO `hibernate_sequence` VALUES ('123');
 
 -- ----------------------------
 -- Table structure for options
@@ -266,17 +282,17 @@ CREATE TABLE `user` (
   `update_time` datetime DEFAULT NULL,
   `user_avatar` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
-  `qq` bigint(20) DEFAULT NULL,
+  `qq` varchar(50) DEFAULT NULL,
   `ip` varchar(255) DEFAULT NULL,
   `is_admin` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '2019-10-12 14:40:25', '38707145@qqcom', '2019-11-22 16:01:04', 'iksen', 'f992ae49dd4622ca6874d4ad4914de76', null, '1', null, 'http://q1.qlogo.cn/g?b=qq&nk=38707145&s=100', 'iksen', '38707145', null, '1');
-INSERT INTO `user` VALUES ('19', '2019-10-24 13:47:27', '929789911@qq.com', '2019-10-24 13:47:35', 'test', 'f992ae49dd4622ca6874d4ad4914de76', null, '1', null, 'http://q1.qlogo.cn/g?b=qq&nk=929789911&s=100', 'test', '929789911', '192.168.152.1', '0');
+INSERT INTO `user` VALUES ('1', '2019-10-12 14:40:25', '38707145@qq.com', '2019-12-11 15:33:58', 'iksen', 'f992ae49dd4622ca6874d4ad4914de76', null, '1', null, 'http://q1.qlogo.cn/g?b=qq&nk=38707145&s=100', 'iksen', '38707145', null, '1');
+INSERT INTO `user` VALUES ('2', '2019-10-24 13:47:27', '929789911@qq.com', '2019-10-24 13:47:35', 'test', 'f992ae49dd4622ca6874d4ad4914de76', null, '1', null, 'http://q1.qlogo.cn/g?b=qq&nk=929789911&s=100', 'test', '929789911', '192.168.152.1', '0');
 
 -- ----------------------------
 -- Table structure for website
@@ -302,7 +318,7 @@ INSERT INTO `website` VALUES ('1', '2019-11-22 11:26:39', 'http://q1clvr752.bkt.
 INSERT INTO `website` VALUES ('2', '2019-11-22 12:43:00', 'http://img.168dh.cn/website/1574397741691suning.svg', '0', '苏宁电器网上购物商城', '苏宁电器', 'public', 'https://dianqi.suning.com/', '0');
 INSERT INTO `website` VALUES ('3', '2019-11-22 12:44:39', 'http://img.168dh.cn/website/1574397866063guomei.png', '0', '正品低价、品质保障、快速送达、安心服务！', '国美', 'public', 'https://www.gome.com.cn/?cmpid=cps_21058_25286_&sid=21058&wid=25286', '0');
 INSERT INTO `website` VALUES ('4', '2019-11-22 12:48:41', 'http://img.168dh.cn/website/1574398107759dangdang.svg', '0', '网上购物中心', '当当', 'public', 'http://union.dangdang.com/transfer.php?from=P-339931&ad_type=10&sys_id=1&backurl=http%3A%2F%2Fwww.dangdang.com', '0');
-INSERT INTO `website` VALUES ('5', '2019-11-22 12:50:36', 'http://img.168dh.cn/website/1574398211213taobao.svg', '0', '淘!我喜欢', '淘宝网', 'public', 'https://www.taobao.com/', '0');
+INSERT INTO `website` VALUES ('5', '2019-11-22 12:50:36', 'http://img.168dh.cn/website/1574398211213taobao.svg', '0', '淘!我喜欢', '淘宝网', 'public', 'https://www.taobao.com/', '1');
 INSERT INTO `website` VALUES ('6', '2019-11-22 04:52:00', 'http://img.168dh.cn/website/1574398320508tmall.svg', '0', '理想生活上天猫', '天猫', 'public', 'https://www.tmall.com/', '0');
 INSERT INTO `website` VALUES ('7', '2019-11-22 12:54:20', 'http://img.168dh.cn/website/1574398443756amazon.svg', '0', '要网购, 就来Z.cn!', '亚马逊', 'public', 'https://www.amazon.cn/', '0');
 INSERT INTO `website` VALUES ('8', '2019-11-22 12:56:15', 'http://img.168dh.cn/website/1574398541667juhuasuan.svg', '0', '5亿品质用户精明之选', '聚划算', 'public', 'https://s.click.taobao.com/WSTnfuv', '0');
@@ -472,7 +488,6 @@ INSERT INTO `website` VALUES ('267', '2019-11-25 10:21:44', 'https://www.google.
 INSERT INTO `website` VALUES ('268', '2019-11-25 10:21:44', 'https://www.google.cn/s2/favicons?domain=https://www.estevezandbelloso.com', '0', null, 'estevez + belloso', 'public', 'https://www.estevezandbelloso.com', '0');
 INSERT INTO `website` VALUES ('269', '2019-11-25 10:21:44', 'https://www.google.cn/s2/favicons?domain=https://www.totallycoolpix.com', '0', ' 世界新闻摄影', 'OtallyCoolPix ', 'public', 'https://www.totallycoolpix.com', '0');
 INSERT INTO `website` VALUES ('270', '2019-11-25 10:21:44', 'https://www.google.cn/s2/favicons?domain=photoblog.hk', '0', ' 新奇好玩的攝影資訊', '攝影札記 ', 'public', 'https://photoblog.hk', '0');
-INSERT INTO `website` VALUES ('271', '2019-11-25 10:23:48', 'https://www.vcg.com/favicon.ico', '0', ' 收费高清图片素材库', '视觉中国 ', 'public', 'https://www.vcg.com/', '0');
 INSERT INTO `website` VALUES ('272', '2019-11-25 10:23:49', 'http://www.quanjing.com/image/2018image/public/logo-1.png', '0', ' 收费商业图片素材库', '全景网 ', 'public', 'http://www.quanjing.com/', '0');
 INSERT INTO `website` VALUES ('273', '2019-11-25 10:23:49', 'https://www.google.cn/s2/favicons?domain=https://librestock.com/', '0', ' 搜寻20个免费图库 Free', 'LibreStock ', 'public', 'https://librestock.com/', '0');
 INSERT INTO `website` VALUES ('274', '2019-11-25 10:23:49', 'https://www.google.cn/s2/favicons?domain=https://pixabay.com/', '0', ' 惊人的免费图片 Free', 'Pixabay ', 'public', 'https://pixabay.com/', '0');
@@ -714,7 +729,6 @@ INSERT INTO `website_category` VALUES ('274', '28', '267');
 INSERT INTO `website_category` VALUES ('275', '28', '268');
 INSERT INTO `website_category` VALUES ('276', '28', '269');
 INSERT INTO `website_category` VALUES ('277', '28', '270');
-INSERT INTO `website_category` VALUES ('278', '29', '271');
 INSERT INTO `website_category` VALUES ('279', '29', '272');
 INSERT INTO `website_category` VALUES ('280', '29', '273');
 INSERT INTO `website_category` VALUES ('281', '29', '274');
@@ -799,8 +813,80 @@ CREATE TABLE `website_user` (
   `website_title` varchar(255) DEFAULT NULL,
   `website_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=166 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of website_user
 -- ----------------------------
+INSERT INTO `website_user` VALUES ('1', '1', '0', '0', 'http://q1clvr752.bkt.clouddn.com/website/1574394895548jd.svg', '京东商城', 'https://union-click.jd.com/jdc?e=&p=AyIGZRprFDJWWA1FBCVbV0IUWVALHFRBEwQAQB1AWQkFaxxfaF4TYDpdYRFTTwUFa1UVfz1dB3UOHjdVE14dBREEUxpbJQITBlUSUhwCFAVlK1sUMllpVCtbHQYXA1AZXRwAIgdRHV8WBxoAXRJYHAUiAFUSa05XfAEGSw8QCxZTXE9aFAciN2UYayUyEgdlG2tKRk9aZRlaFAYb');
+INSERT INTO `website_user` VALUES ('100', '11', '0', '0', 'http://img.168dh.cn/website/1574402313228xiecheng.svg', '携程网', '//www.ctrip.com/?AllianceID=1113213&sid=2592216&ouid=&app=0101F00');
+INSERT INTO `website_user` VALUES ('101', '12', '0', '0', 'http://img.168dh.cn/website/1574402445651feizhu.svg', '飞猪旅行', 'https://s.click.taobao.com/zyHofuv');
+INSERT INTO `website_user` VALUES ('2', '13', '0', '0', 'http://img.168dh.cn/website/1574397741691suning.svg', '苏宁电器', 'https://sugs.suning.com/outstation.htm?p=BFAGFlINVAAQQhVjenFkXUsYVhAAR3duYn1QDCQ1dXNbSVINYzkoIh0XHREaHh0TZxRaIhQISRQ8V1UPVFoDGlBXGEJPCEoKWEtSLjo7aUtdHggSCgcmdyY6BwYvNGolDh5JDS45d30JBRoWGBMEG2cIFmwGREBSclBbRlBPGA');
+INSERT INTO `website_user` VALUES ('120', '12', '1', '0', 'http://img.168dh.cn/website/1574402445651feizhu.svg', '飞猪旅行', 'https://s.click.taobao.com/zyHofuv');
+INSERT INTO `website_user` VALUES ('5', '14', '0', '0', 'http://img.168dh.cn/website/1574398211213taobao.svg', '淘宝网', 'https://www.taobao.com/');
+INSERT INTO `website_user` VALUES ('6', '15', '0', '0', 'http://img.168dh.cn/website/1574398320508tmall.svg', '天猫', 'https://www.tmall.com/');
+INSERT INTO `website_user` VALUES ('7', '16', '0', '0', 'http://img.168dh.cn/website/1574398443756amazon.svg', '亚马逊', 'https://www.amazon.cn/');
+INSERT INTO `website_user` VALUES ('10', '17', '0', '0', 'http://img.168dh.cn/website/1574398792388kaola.svg', '考拉海购', 'https://www.kaola.com/');
+INSERT INTO `website_user` VALUES ('12', '18', '0', '0', 'http://img.168dh.cn/website/1574398927288aliyun.svg', '阿里云', 'https://s.click.taobao.com/7gUrfuv');
+INSERT INTO `website_user` VALUES ('119', '11', '1', '0', 'http://img.168dh.cn/website/1574402313228xiecheng.svg', '携程网', '//www.ctrip.com/?AllianceID=1113213&sid=2592216&ouid=&app=0101F00');
+INSERT INTO `website_user` VALUES ('103', '9', '0', '0', 'http://img.168dh.cn/website/1574399812291bilibili.svg', '哔哩哔哩', 'https://www.bilibili.com/');
+INSERT INTO `website_user` VALUES ('104', '7', '0', '0', 'http://img.168dh.cn/website/1574409294618v2ex.png', 'v2ex', 'https://www.v2ex.com/');
+INSERT INTO `website_user` VALUES ('105', '4', '0', '0', 'http://img.168dh.cn/website/1574409299898juejin.svg', '掘金', 'https://juejin.im/');
+INSERT INTO `website_user` VALUES ('106', '5', '0', '0', 'http://img.168dh.cn/website/1574409591168douban.svg', '豆瓣', 'https://www.douban.com/');
+INSERT INTO `website_user` VALUES ('107', '2', '0', '0', 'http://img.168dh.cn/website/1574409590807zhihu.svg', '知乎', 'https://www.zhihu.com/');
+INSERT INTO `website_user` VALUES ('108', '10', '0', '0', 'http://img.168dh.cn/website/1574409589994weibo.svg', '新浪微博', 'http://weibo.com/');
+INSERT INTO `website_user` VALUES ('109', '19', '0', '0', 'http://img.168dh.cn/website/1576043939448huya.svg', '虎牙直播', 'https://www.huya.com/');
+INSERT INTO `website_user` VALUES ('110', '20', '0', '0', 'http://img.168dh.cn/website/1576044033399douyu.svg', '斗鱼', 'https://www.douyu.com/');
+INSERT INTO `website_user` VALUES ('111', '8', '0', '0', 'http://img.168dh.cn/website/1576044185796fanyi.png', '百度翻译', 'http://www.168dh.cn');
+INSERT INTO `website_user` VALUES ('112', '21', '0', '0', 'http://img.168dh.cn/website/1574399865411iqiyi.svg', '爱奇艺', 'https://www.iqiyi.com/');
+INSERT INTO `website_user` VALUES ('113', '22', '0', '0', 'http://img.168dh.cn/website/1574399928451tengxunshipin.svg', '腾讯视频', 'https://v.qq.com/');
+INSERT INTO `website_user` VALUES ('114', '23', '0', '0', 'http://img.168dh.cn/website/1574400003893youku.svg', '优酷', 'https://www.youku.com/');
+INSERT INTO `website_user` VALUES ('115', '24', '0', '0', 'http://img.168dh.cn/website/157604535119558.png', '58同城', 'https://www.58.com/');
+INSERT INTO `website_user` VALUES ('116', '3', '0', '0', 'http://img.168dh.cn/website/1574404772897tengxunxinwen.svg', '腾讯新闻', 'https://news.qq.com/');
+INSERT INTO `website_user` VALUES ('117', '6', '0', '0', 'http://img.168dh.cn/website/1576045754356qqemail.png', 'QQ邮箱', 'https://mail.qq.com/');
+INSERT INTO `website_user` VALUES ('118', '1', '1', '0', 'http://q1clvr752.bkt.clouddn.com/website/1574394895548jd.svg', '京东商城', 'https://union-click.jd.com/jdc?e=&p=AyIGZRprFDJWWA1FBCVbV0IUWVALHFRBEwQAQB1AWQkFaxxfaF4TYDpdYRFTTwUFa1UVfz1dB3UOHjdVE14dBREEUxpbJQITBlUSUhwCFAVlK1sUMllpVCtbHQYXA1AZXRwAIgdRHV8WBxoAXRJYHAUiAFUSa05XfAEGSw8QCxZTXE9aFAciN2UYayUyEgdlG2tKRk9aZRlaFAYb');
+INSERT INTO `website_user` VALUES ('121', '13', '1', '0', 'http://img.168dh.cn/website/1574397741691suning.svg', '苏宁电器', 'https://sugs.suning.com/outstation.htm?p=BFAGFlINVAAQQhVjenFkXUsYVhAAR3duYn1QDCQ1dXNbSVINYzkoIh0XHREaHh0TZxRaIhQISRQ8V1UPVFoDGlBXGEJPCEoKWEtSLjo7aUtdHggSCgcmdyY6BwYvNGolDh5JDS45d30JBRoWGBMEG2cIFmwGREBSclBbRlBPGA');
+INSERT INTO `website_user` VALUES ('122', '14', '1', '0', 'http://img.168dh.cn/website/1574398211213taobao.svg', '淘宝网', 'https://www.taobao.com/');
+INSERT INTO `website_user` VALUES ('123', '15', '1', '0', 'http://img.168dh.cn/website/1574398320508tmall.svg', '天猫', 'https://www.tmall.com/');
+INSERT INTO `website_user` VALUES ('124', '16', '1', '0', 'http://img.168dh.cn/website/1574398443756amazon.svg', '亚马逊', 'https://www.amazon.cn/');
+INSERT INTO `website_user` VALUES ('125', '17', '1', '0', 'http://img.168dh.cn/website/1574398792388kaola.svg', '考拉海购', 'https://www.kaola.com/');
+INSERT INTO `website_user` VALUES ('126', '18', '1', '0', 'http://img.168dh.cn/website/1574398927288aliyun.svg', '阿里云', 'https://s.click.taobao.com/7gUrfuv');
+INSERT INTO `website_user` VALUES ('127', '9', '1', '0', 'http://img.168dh.cn/website/1574399812291bilibili.svg', '哔哩哔哩', 'https://www.bilibili.com/');
+INSERT INTO `website_user` VALUES ('128', '7', '1', '0', 'http://img.168dh.cn/website/1574409294618v2ex.png', 'v2ex', 'https://www.v2ex.com/');
+INSERT INTO `website_user` VALUES ('129', '4', '1', '0', 'http://img.168dh.cn/website/1574409299898juejin.svg', '掘金', 'https://juejin.im/');
+INSERT INTO `website_user` VALUES ('130', '5', '1', '0', 'http://img.168dh.cn/website/1574409591168douban.svg', '豆瓣', 'https://www.douban.com/');
+INSERT INTO `website_user` VALUES ('131', '2', '1', '0', 'http://img.168dh.cn/website/1574409590807zhihu.svg', '知乎', 'https://www.zhihu.com/');
+INSERT INTO `website_user` VALUES ('132', '10', '1', '0', 'http://img.168dh.cn/website/1574409589994weibo.svg', '新浪微博', 'http://weibo.com/');
+INSERT INTO `website_user` VALUES ('133', '19', '1', '0', 'http://img.168dh.cn/website/1576043939448huya.svg', '虎牙直播', 'https://www.huya.com/');
+INSERT INTO `website_user` VALUES ('134', '20', '1', '0', 'http://img.168dh.cn/website/1576044033399douyu.svg', '斗鱼', 'https://www.douyu.com/');
+INSERT INTO `website_user` VALUES ('135', '8', '1', '0', 'http://img.168dh.cn/website/1576044185796fanyi.png', '百度翻译', 'http://www.168dh.cn');
+INSERT INTO `website_user` VALUES ('136', '21', '1', '0', 'http://img.168dh.cn/website/1574399865411iqiyi.svg', '爱奇艺', 'https://www.iqiyi.com/');
+INSERT INTO `website_user` VALUES ('137', '22', '1', '0', 'http://img.168dh.cn/website/1574399928451tengxunshipin.svg', '腾讯视频', 'https://v.qq.com/');
+INSERT INTO `website_user` VALUES ('138', '23', '1', '0', 'http://img.168dh.cn/website/1574400003893youku.svg', '优酷', 'https://www.youku.com/');
+INSERT INTO `website_user` VALUES ('139', '24', '1', '0', 'http://img.168dh.cn/website/157604535119558.png', '58同城', 'https://www.58.com/');
+INSERT INTO `website_user` VALUES ('140', '3', '1', '0', 'http://img.168dh.cn/website/1574404772897tengxunxinwen.svg', '腾讯新闻', 'https://news.qq.com/');
+INSERT INTO `website_user` VALUES ('141', '6', '1', '0', 'http://img.168dh.cn/website/1576045754356qqemail.png', 'QQ邮箱', 'https://mail.qq.com/');
+INSERT INTO `website_user` VALUES ('142', '1', '28', '0', 'http://q1clvr752.bkt.clouddn.com/website/1574394895548jd.svg', '京东商城', 'https://union-click.jd.com/jdc?e=&p=AyIGZRprFDJWWA1FBCVbV0IUWVALHFRBEwQAQB1AWQkFaxxfaF4TYDpdYRFTTwUFa1UVfz1dB3UOHjdVE14dBREEUxpbJQITBlUSUhwCFAVlK1sUMllpVCtbHQYXA1AZXRwAIgdRHV8WBxoAXRJYHAUiAFUSa05XfAEGSw8QCxZTXE9aFAciN2UYayUyEgdlG2tKRk9aZRlaFAYb');
+INSERT INTO `website_user` VALUES ('143', '11', '28', '0', 'http://img.168dh.cn/website/1574402313228xiecheng.svg', '携程网', '//www.ctrip.com/?AllianceID=1113213&sid=2592216&ouid=&app=0101F00');
+INSERT INTO `website_user` VALUES ('144', '12', '28', '0', 'http://img.168dh.cn/website/1574402445651feizhu.svg', '飞猪旅行', 'https://s.click.taobao.com/zyHofuv');
+INSERT INTO `website_user` VALUES ('145', '13', '28', '0', 'http://img.168dh.cn/website/1574397741691suning.svg', '苏宁电器', 'https://sugs.suning.com/outstation.htm?p=BFAGFlINVAAQQhVjenFkXUsYVhAAR3duYn1QDCQ1dXNbSVINYzkoIh0XHREaHh0TZxRaIhQISRQ8V1UPVFoDGlBXGEJPCEoKWEtSLjo7aUtdHggSCgcmdyY6BwYvNGolDh5JDS45d30JBRoWGBMEG2cIFmwGREBSclBbRlBPGA');
+INSERT INTO `website_user` VALUES ('146', '14', '28', '0', 'http://img.168dh.cn/website/1574398211213taobao.svg', '淘宝网', 'https://www.taobao.com/');
+INSERT INTO `website_user` VALUES ('147', '15', '28', '0', 'http://img.168dh.cn/website/1574398320508tmall.svg', '天猫', 'https://www.tmall.com/');
+INSERT INTO `website_user` VALUES ('148', '16', '28', '0', 'http://img.168dh.cn/website/1574398443756amazon.svg', '亚马逊', 'https://www.amazon.cn/');
+INSERT INTO `website_user` VALUES ('149', '17', '28', '0', 'http://img.168dh.cn/website/1574398792388kaola.svg', '考拉海购', 'https://www.kaola.com/');
+INSERT INTO `website_user` VALUES ('150', '18', '28', '0', 'http://img.168dh.cn/website/1574398927288aliyun.svg', '阿里云', 'https://s.click.taobao.com/7gUrfuv');
+INSERT INTO `website_user` VALUES ('151', '9', '28', '0', 'http://img.168dh.cn/website/1574399812291bilibili.svg', '哔哩哔哩', 'https://www.bilibili.com/');
+INSERT INTO `website_user` VALUES ('152', '7', '28', '0', 'http://img.168dh.cn/website/1574409294618v2ex.png', 'v2ex', 'https://www.v2ex.com/');
+INSERT INTO `website_user` VALUES ('153', '4', '28', '0', 'http://img.168dh.cn/website/1574409299898juejin.svg', '掘金', 'https://juejin.im/');
+INSERT INTO `website_user` VALUES ('154', '5', '28', '0', 'http://img.168dh.cn/website/1574409591168douban.svg', '豆瓣', 'https://www.douban.com/');
+INSERT INTO `website_user` VALUES ('155', '2', '28', '0', 'http://img.168dh.cn/website/1574409590807zhihu.svg', '知乎', 'https://www.zhihu.com/');
+INSERT INTO `website_user` VALUES ('156', '10', '28', '0', 'http://img.168dh.cn/website/1574409589994weibo.svg', '新浪微博', 'http://weibo.com/');
+INSERT INTO `website_user` VALUES ('157', '19', '28', '0', 'http://img.168dh.cn/website/1576043939448huya.svg', '虎牙直播', 'https://www.huya.com/');
+INSERT INTO `website_user` VALUES ('158', '20', '28', '0', 'http://img.168dh.cn/website/1576044033399douyu.svg', '斗鱼', 'https://www.douyu.com/');
+INSERT INTO `website_user` VALUES ('159', '8', '28', '0', 'http://img.168dh.cn/website/1576044185796fanyi.png', '百度翻译', 'http://www.168dh.cn');
+INSERT INTO `website_user` VALUES ('160', '21', '28', '0', 'http://img.168dh.cn/website/1574399865411iqiyi.svg', '爱奇艺', 'https://www.iqiyi.com/');
+INSERT INTO `website_user` VALUES ('161', '22', '28', '0', 'http://img.168dh.cn/website/1574399928451tengxunshipin.svg', '腾讯视频', 'https://v.qq.com/');
+INSERT INTO `website_user` VALUES ('162', '23', '28', '0', 'http://img.168dh.cn/website/1574400003893youku.svg', '优酷', 'https://www.youku.com/');
+INSERT INTO `website_user` VALUES ('163', '24', '28', '0', 'http://img.168dh.cn/website/157604535119558.png', '58同城', 'https://www.58.com/');
+INSERT INTO `website_user` VALUES ('164', '3', '28', '0', 'http://img.168dh.cn/website/1574404772897tengxunxinwen.svg', '腾讯新闻', 'https://news.qq.com/');
+INSERT INTO `website_user` VALUES ('165', '6', '28', '0', 'http://img.168dh.cn/website/1576045754356qqemail.png', 'QQ邮箱', 'https://mail.qq.com/');

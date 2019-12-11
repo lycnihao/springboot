@@ -1,6 +1,11 @@
-package com.couldr.app.oauth.model;
+package com.couldr.app.model.entity;
 
 import com.couldr.app.oauth.enums.AuthUserGender;
+import com.couldr.app.oauth.model.AuthToken;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.*;
 
 import java.io.Serializable;
@@ -11,6 +16,8 @@ import java.io.Serializable;
  * @author yadong.zhang (yadong.zhang0415(a)gmail.com)
  * @since 1.8
  */
+@Entity
+@Table(name = "AuthUser")
 @Getter
 @Setter
 @Builder
@@ -22,6 +29,7 @@ public class AuthUser implements Serializable {
      *
      * @since 1.3.3
      */
+    @Id
     private String uuid;
     /**
      * 用户名
@@ -66,6 +74,7 @@ public class AuthUser implements Serializable {
     /**
      * 用户授权的token信息
      */
+    @Transient
     private AuthToken token;
 
 }

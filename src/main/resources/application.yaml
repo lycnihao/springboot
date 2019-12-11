@@ -26,6 +26,6 @@ qiniu:
   qiniu_small_url:
 
 admin:
-  domain: 168dh.cn
+  domain: http://localhost:8080
   username: iksen
   password: iksen22.

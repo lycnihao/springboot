@@ -1,5 +1,6 @@
 package com.couldr.app.web.controller.api;
 
+import com.couldr.app.model.dto.Const;
 import com.couldr.app.model.dto.JsonResult;
 import com.couldr.app.model.dto.WebContent;
 import com.couldr.app.model.entity.Category;
@@ -48,7 +49,7 @@ public class ApiDataController {
     }
 
     @RequestMapping("getList")
-    @Cacheable(value="webSite",key="'webSite'")
+    /*@Cacheable(value="webSite",key="'webSite'")*/
     public CategoryWebSiteVo getList() {
         List<Category> categories = categoryService.list();
         Map<Integer, List<WebSite>> webSites = webSiteService.convertToListMapByCategory(categories);
@@ -62,9 +63,11 @@ public class ApiDataController {
 
     @RequestMapping("userWebSite")
     public List<WebSiteUser> getUserWebSite(HttpServletRequest request) {
-        String token = request.getHeader("token");
+        String token = request.getHeader(Const.USER_TOKEN_KEY);
         if (token == null){
-            return webSiteService.listWebSiteListByUserId(0);
+            List<WebSiteUser> webSiteList = webSiteService.listWebSiteListByUserId(0);
+            Collections.sort(webSiteList, Comparator.comparing(WebSiteUser::getSort));
+            return webSiteList;
         }
         // 获取 token 中的 user id
         String userId = "0";

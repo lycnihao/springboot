@@ -9,15 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * 用户
  */
-@Data
 @Entity
 @Table(name = "user")
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -46,11 +48,6 @@ public class User implements Serializable {
    * 密码
    */
   private String password;
-
-  /**
-   * 加密盐值
-   */
-  private String salt;
 
   /**
    * 邮箱
