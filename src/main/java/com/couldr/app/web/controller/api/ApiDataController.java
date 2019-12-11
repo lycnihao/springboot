@@ -17,6 +17,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import java.util.Collections;
 import java.util.Comparator;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.cache.annotation.Cacheable;
@@ -63,7 +64,18 @@ public class ApiDataController {
 
     @RequestMapping("userWebSite")
     public List<WebSiteUser> getUserWebSite(HttpServletRequest request) {
-        String token = request.getHeader(Const.USER_TOKEN_KEY);
+        String token = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null){
+            List<WebSiteUser> webSiteList = webSiteService.listWebSiteListByUserId(0);
+            Collections.sort(webSiteList, Comparator.comparing(WebSiteUser::getSort));
+            return webSiteList;
+        }
+        for (Cookie cookie : cookies){
+            if (cookie.getName().equals(Const.USER_TOKEN_KEY))
+                token = cookie.getValue();
+        }
+        System.out.println("token--"+token);
         if (token == null){
             List<WebSiteUser> webSiteList = webSiteService.listWebSiteListByUserId(0);
             Collections.sort(webSiteList, Comparator.comparing(WebSiteUser::getSort));

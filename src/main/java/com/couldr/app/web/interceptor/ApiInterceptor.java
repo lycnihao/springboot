@@ -8,6 +8,8 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,14 +33,19 @@ public class ApiInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // 从 http 请求头中取出 token
-        String token = request.getHeader(Const.USER_TOKEN_KEY);
+        String token = null;
+        Cookie[] cookies = request.getCookies();
+        System.out.println("cookies size:" + cookies.length);
+        for (Cookie cookie : cookies){
+            if (cookie.getName().equals(Const.USER_TOKEN_KEY))
+                token = cookie.getValue();
+        }
         System.out.println("token--"+token);
         // 执行认证
         if (token == null) {
             /*throw new RuntimeException("无token，请重新登录");*/
             System.out.println("无token，请重新登录");
-            response.sendRedirect("/api/user/fail");
+            response.sendRedirect("/hom1/api/user/fail");
             return false;
         }
         // 获取 token 中的 user id
@@ -48,7 +55,7 @@ public class ApiInterceptor implements HandlerInterceptor {
         } catch (JWTDecodeException j) {
             /*throw new RuntimeException("401");*/
             System.out.println("user id获取失败");
-            response.sendRedirect("/api/user/fail");
+            response.sendRedirect("/hom1/api/user/fail");
             return false;
         }
         User user = userService.fetchById(Long.valueOf(userId)).orElse(new User());
