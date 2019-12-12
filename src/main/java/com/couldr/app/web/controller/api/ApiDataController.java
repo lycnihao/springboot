@@ -110,9 +110,9 @@ public class ApiDataController {
 
     @RequestMapping("getWeather")
     @ResponseBody
-    public JsonResult getWeather(String cityId,HttpServletRequest request) {
+    public JsonResult getWeather(HttpServletRequest request) {
         System.out.println(CouldrUtil.getIp(request));
-        Object resultObj = requestService.getWeather(cityId);
+        Object resultObj = requestService.getWeather(CouldrUtil.getIp(request));
         if (resultObj == null){
             return new JsonResult(0,"什么都没抓取到~");
         }

@@ -199,16 +199,19 @@ public class ApiUserController {
     Object userId = request.getAttribute("userId");
 
     User user = userService.fetchById((Long) userId).orElse(new User());
-    user.setStatus(1);
-    user.setUsername(userName);
-    user.setNickname(userName);
-    user.setLastLoginTime(new Date());
-    //状态修改为正常
-    userService.update(user);
-    //初始化常用网站
-    webSiteUserService.initUserWeb((int) userId);
+    if (user.getStatus() == 0){
+      user.setStatus(1);
+      user.setUsername(userName);
+      user.setNickname(userName);
+      user.setLastLoginTime(new Date());
+      //状态修改为正常
+      userService.update(user);
+      //初始化常用网站
+      webSiteUserService.initUserWeb((long)  userId);
+      return new JsonResult(1,"注册成功。开始您的旅程吧。");
+    }
 
-    return new JsonResult(1,"注册成功。开始您的旅程吧。");
+    return new JsonResult(0,"error");
   }
 
 }

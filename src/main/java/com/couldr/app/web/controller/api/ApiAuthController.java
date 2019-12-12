@@ -77,9 +77,11 @@ public class ApiAuthController {
         System.out.println(JSON.toJSONString(authUser));
 
         User user = userService.findByQq(authUser.getUuid());
-
+        System.out.println(user);
         if (user == null){
             user = this.register(request,authUser);
+            callbackUrl = callbackUrl + "/register/name";
+        } else if(user.getStatus() == 0){
             callbackUrl = callbackUrl + "/register/name";
         } else {
             userService.updateLastLoginTime(user.getUserId());

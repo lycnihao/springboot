@@ -50,7 +50,7 @@ public class WebSiteUserServiceImpl  extends
   }
 
   @Override
-  public void initUserWeb(Integer userId) {
+  public void initUserWeb(long userId) {
     webSiteUserRepository.initUserWeb(userId);
   }
 
