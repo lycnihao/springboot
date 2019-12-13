@@ -37,7 +37,7 @@ public class WebSiteUser {
   /**
    * Website url.
    */
-  @Column(name = "website_url")
+  @Column(name = "website_url", length = 300)
   private String websiteUrl;
 
   /**

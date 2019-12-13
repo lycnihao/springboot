@@ -1,5 +1,6 @@
 package com.couldr.app.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -47,6 +48,7 @@ public class User implements Serializable {
   /**
    * 密码
    */
+  @JsonIgnore
   private String password;
 
   /**
@@ -57,6 +59,7 @@ public class User implements Serializable {
   /**
    * QQ
    */
+  @JsonIgnore
   private String qq;
 
   /**
@@ -67,21 +70,25 @@ public class User implements Serializable {
   /**
    * 用户状态：1有效; 0无效
    */
+  @JsonIgnore
   private Integer status;
 
   /**
    * 用户状态：1管理员; 0普通用户
    */
+  @JsonIgnore
   private Integer isAdmin = 0;
 
   /**
    * 用户ip
    */
+  @JsonIgnore
   private String ip;
 
   /**
    * 创建时间
    */
+  @JsonIgnore
   private Date createTime;
 
   /**

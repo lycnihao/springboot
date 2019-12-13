@@ -19,6 +19,12 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoryId;
 
+    /**
+     * 用户id
+     */
+    @Column(name = "user_id")
+    private Long userId;
+
 
     /**
      * 分类名称

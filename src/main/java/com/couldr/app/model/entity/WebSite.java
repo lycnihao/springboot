@@ -32,7 +32,7 @@ public class WebSite implements Serializable {
     /**
      * 网址链接
      */
-    @Column(name = "url")
+    @Column(name = "url", length=300)
     private String url;
 
 
