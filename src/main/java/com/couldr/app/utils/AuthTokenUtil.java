@@ -26,8 +26,8 @@ public class AuthTokenUtil {
   public static String buildAuthToken(@NonNull User user) {
     Assert.notNull(user, "User must not be null");
     Date start = new Date();
-    //一小时有效时间
-    long currentTime = System.currentTimeMillis() + 60* 60 * 1000;
+    //十天有效时间
+    long currentTime = System.currentTimeMillis() + 10 * 24 * 60 * 60 * 1000;
     Date end = new Date(currentTime);
 
     String token = JWT.create().withAudience(user.getUserId().toString()).withIssuedAt(start).withExpiresAt(end)

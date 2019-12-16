@@ -88,7 +88,7 @@ public class ApiAuthController {
         }
         String token = AuthTokenUtil.buildAuthToken(user);
         Cookie cookie = new Cookie(Const.USER_TOKEN_KEY, token);
-        cookie.setMaxAge(30 * 24 * 3600);
+        cookie.setMaxAge(10 * 24 * 60 * 60 * 1000);
         cookie.setPath("/");
         response.addCookie(cookie);
 

@@ -1,5 +1,7 @@
 package com.couldr.app.web.interceptor;
 
+import com.couldr.app.exception.AuthException;
+import com.couldr.app.exception.CouldrException;
 import com.couldr.app.model.dto.Const;
 import com.couldr.app.model.entity.User;
 import com.couldr.app.service.UserService;
@@ -32,7 +34,7 @@ public class ApiInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws CouldrException {
         String token = null;
         Cookie[] cookies = request.getCookies();
         System.out.println("cookies size:" + cookies.length);
@@ -43,37 +45,26 @@ public class ApiInterceptor implements HandlerInterceptor {
         System.out.println("token--"+token);
         // 执行认证
         if (token == null) {
-            /*throw new RuntimeException("无token，请重新登录");*/
             System.out.println("无token，请重新登录");
-            response.sendRedirect("/hom1/api/user/fail");
-            return false;
+            throw new AuthException("无token，请重新登录");
         }
         // 获取 token 中的 user id
         String userId;
         try {
             userId = JWT.decode(token).getAudience().get(0);
         } catch (JWTDecodeException j) {
-            /*throw new RuntimeException("401");*/
             System.out.println("user id获取失败");
-            response.sendRedirect("/hom1/api/user/fail");
-            return false;
+            throw new AuthException("用户标识获取失败",j);
         }
         User user = userService.fetchById(Long.valueOf(userId)).orElse(new User());
-        if (null == user) {
-            /*throw new RuntimeException("用户不存在，请重新登录");*/
-            System.out.println("用户不存在，请重新登录");
-            response.sendRedirect("/api/user/fail");
-            return false;
-        }
+
         // 验证 token
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
         try {
             jwtVerifier.verify(token);
         } catch (JWTVerificationException e) {
-            /*throw new RuntimeException("401");*/
             System.out.println("token解析失败");
-            response.sendRedirect("/api/user/fail");
-            return false;
+            throw new AuthException("token解析失败",e);
         }
 
         request.setAttribute("user",user);

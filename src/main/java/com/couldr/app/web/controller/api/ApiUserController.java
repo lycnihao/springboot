@@ -110,9 +110,6 @@ public class ApiUserController {
   @RequestMapping("/info")
   public JsonResult info(HttpServletRequest request){
     User user = (User) request.getAttribute("user");
-    user.setUserId(null);
-    user.setPassword(null);
-    user.setQq(null);
     if (user.getStatus() == 0){
       return new JsonResult(1, user.getNickname());
     } else {
