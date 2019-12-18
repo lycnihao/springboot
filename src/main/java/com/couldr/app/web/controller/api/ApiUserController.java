@@ -115,7 +115,14 @@ public class ApiUserController {
     } else {
       return new JsonResult(1, user);
     }
+  }
 
+  @RequestMapping("/info/update")
+  public JsonResult infoUpdate(@ModelAttribute User user,HttpServletRequest request){
+    User acUser = (User) request.getAttribute("user");
+    acUser.setNickname(user.getNickname());
+    userService.update(acUser);
+    return new JsonResult(1,"保存成功");
   }
 
   @RequestMapping("/fail")

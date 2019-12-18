@@ -20,7 +20,7 @@ public interface WebSiteRepository extends BaseRepository<WebSite, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "update webSite set  visits = visits + 1 where webSite_id = ?",nativeQuery =true)
+    @Query(value = "update website set  visits = visits + 1 where website_id = ?",nativeQuery =true)
     Integer updateVisitsByLinkId(Integer linkId);
 
     Page<WebSite> findAll(Specification specification, Pageable pageable);
