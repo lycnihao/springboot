@@ -4,5 +4,5 @@ import com.couldr.app.model.entity.AuthUser;
 import com.couldr.app.service.base.CrudService;
 
 public interface AuthUserService  extends CrudService<AuthUser, Long> {
-
+  AuthUser findByUuid(String uuid);
 }

@@ -43,6 +43,10 @@ public class ApiInterceptor implements HandlerInterceptor {
                 token = cookie.getValue();
         }
         System.out.println("token--"+token);
+        //注册或登陆放行
+        if (token == null && request.getRequestURI().equals("oauth/callback")){
+            return true;
+        }
         // 执行认证
         if (token == null) {
             System.out.println("无token，请重新登录");

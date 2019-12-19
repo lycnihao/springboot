@@ -106,11 +106,11 @@ public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long>
     try {
       //用户目录
       final StrBuilder uploadPath = new StrBuilder(System.getProperties().getProperty("user.home"));
-      uploadPath.append("/hom1/");
-      uploadPath.append("upload/");
+      uploadPath.append("/couldr/");
+      uploadPath.append("upload/img/");
 
       //获取当前年月以创建目录，如果没有该目录则创建
-      /*uploadPath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");*/
+      uploadPath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
       final File mediaPath = new File(uploadPath.toString());
       if (!mediaPath.exists()) {
         if (!mediaPath.mkdirs()) {
@@ -142,16 +142,19 @@ public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long>
       //压缩文件路径
       final StrBuilder fullSmallPath = new StrBuilder(mediaPath.getAbsolutePath());
       fullSmallPath.append("/");
+      fullSmallPath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
       fullSmallPath.append(nameWithOutSuffix);
       fullSmallPath.append("_small.");
       fullSmallPath.append(fileSuffix);
 
       //映射路径
-      final StrBuilder filePath = new StrBuilder("/upload/");
+      final StrBuilder filePath = new StrBuilder("/upload/img/");
+      filePath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
       filePath.append(fileName);
 
       //缩略图映射路径
-      final StrBuilder fileSmallPath = new StrBuilder("/upload/");
+      final StrBuilder fileSmallPath = new StrBuilder("/upload/img/");
+      fileSmallPath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
       fileSmallPath.append(nameWithOutSuffix);
       fileSmallPath.append("_small.");
       fileSmallPath.append(fileSuffix);

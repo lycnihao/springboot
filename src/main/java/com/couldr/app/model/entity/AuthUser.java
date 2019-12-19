@@ -2,6 +2,7 @@ package com.couldr.app.model.entity;
 
 import com.couldr.app.oauth.enums.AuthUserGender;
 import com.couldr.app.oauth.model.AuthToken;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -30,6 +31,7 @@ public class AuthUser implements Serializable {
      * @since 1.3.3
      */
     @Id
+    @JsonIgnore
     private String uuid;
     /**
      * 用户名

@@ -21,4 +21,9 @@ public class AuthUserServiceImpl extends AbstractCrudService<AuthUser, Long> imp
     super(authUserRepository);
     this.authUserRepository = authUserRepository;
   }
+
+  @Override
+  public AuthUser findByUuid(String uuid) {
+    return authUserRepository.findByUuid(uuid);
+  }
 }

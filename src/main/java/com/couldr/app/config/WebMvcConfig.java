@@ -28,7 +28,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/upload/**")
-                .addResourceLocations("file:///" + System.getProperties().getProperty("user.home") + "/hom1/upload/");
+                .addResourceLocations("file:///" + System.getProperties().getProperty("user.home") + "/couldr/upload/");
         registry.addResourceHandler("/templates/**")
                 .addResourceLocations("classpath:/templates/");
     }
@@ -46,6 +46,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
          */
         registry.addInterceptor(apiInterceptor)
             .addPathPatterns("/api/user/**")
+            .addPathPatterns("/oauth/callback")
             .excludePathPatterns("/api/user/login")
             .excludePathPatterns("/api/user/register")
             .excludePathPatterns("/api/user/fail");

@@ -2,17 +2,22 @@ package com.couldr.app.web.controller.api;
 
 import com.couldr.app.model.dto.JsonResult;
 import com.couldr.app.model.entity.Attachment;
+import com.couldr.app.model.entity.AuthUser;
 import com.couldr.app.model.entity.User;
 import com.couldr.app.model.entity.WebSiteUser;
 import com.couldr.app.model.params.LoginQuery;
+import com.couldr.app.model.vo.UserVo;
 import com.couldr.app.service.AttachmentService;
+import com.couldr.app.service.AuthUserService;
 import com.couldr.app.service.UserService;
 import com.couldr.app.service.WebSiteUserService;
 import com.couldr.app.utils.AuthTokenUtil;
 import com.couldr.app.utils.CouldrUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.crypto.SecureUtil;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -20,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,10 +50,13 @@ public class ApiUserController {
 
   private WebSiteUserService webSiteUserService;
 
-  public ApiUserController(UserService userService,AttachmentService attachmentService,WebSiteUserService webSiteUserService) {
+  private AuthUserService authUserService;
+
+  public ApiUserController(UserService userService,AttachmentService attachmentService,WebSiteUserService webSiteUserService,AuthUserService authUserService) {
     this.userService = userService;
     this.attachmentService = attachmentService;
     this.webSiteUserService = webSiteUserService;
+    this.authUserService = authUserService;
   }
 
   @RequestMapping("/")
@@ -60,10 +69,8 @@ public class ApiUserController {
 
     String username = loginQuery.getUsername();
     String password = loginQuery.getPassword();
-
     User user = Validator.isEmail(username) ? userService.findByEmail(username)
         : userService.findByName(username);
-
     if (user == null) {
       return new JsonResult(0, "账户或密码错误");
     }
@@ -110,10 +117,23 @@ public class ApiUserController {
   @RequestMapping("/info")
   public JsonResult info(HttpServletRequest request){
     User user = (User) request.getAttribute("user");
+    List<AuthUser> authUsers = new ArrayList<>();
+    UserVo userVo = new UserVo();
+    userVo.setUsername(user.getUsername());
+    userVo.setNickname(user.getNickname());
+    userVo.setUserAvatar(user.getUserAvatar());
+
+    AuthUser authUser = authUserService.findByUuid(user.getQq());
+    if (authUser != null){
+      authUsers.add(authUser);
+    }
+    userVo.setAuthUserList(authUsers);
+
+
     if (user.getStatus() == 0){
       return new JsonResult(1, user.getNickname());
     } else {
-      return new JsonResult(1, user);
+      return new JsonResult(1, userVo);
     }
   }
 
@@ -121,7 +141,45 @@ public class ApiUserController {
   public JsonResult infoUpdate(@ModelAttribute User user,HttpServletRequest request){
     User acUser = (User) request.getAttribute("user");
     acUser.setNickname(user.getNickname());
+    acUser.setUserAvatar(user.getUserAvatar());
     userService.update(acUser);
+    return new JsonResult(1,"保存成功");
+  }
+
+  @RequestMapping("/info/email/update")
+  public JsonResult infoEmailUpdate(@RequestParam("email") String email,@RequestParam("password") String password,HttpServletRequest request){
+    User acUser = (User) request.getAttribute("user");
+    String pass = SecureUtil.md5(password);
+    if (!acUser.getPassword().equals(pass)){
+      return new JsonResult(0,"密码不匹配请重试。");
+    }
+    acUser.setEmail(email);
+    userService.update(acUser);
+    return new JsonResult(1,"保存成功");
+  }
+
+  @RequestMapping("/info/pass/update")
+  public JsonResult infoPassUpdate(@RequestParam("oldPass") String oldPass,@RequestParam("newPass") String newPass,HttpServletRequest request){
+    User acUser = (User) request.getAttribute("user");
+    String pass = SecureUtil.md5(oldPass);
+    if (!acUser.getPassword().equals(pass)){
+      return new JsonResult(0,"当前登陆密码不匹配请重试。");
+    }
+    acUser.setPassword(SecureUtil.md5(newPass));
+    userService.update(acUser);
+    return new JsonResult(1,"保存成功");
+  }
+
+
+  @RequestMapping("/info/cancel")
+  public JsonResult cancel(String source,HttpServletRequest request){
+    User user = (User) request.getAttribute("user");
+    AuthUser authUser = authUserService.findByUuid(user.getQq());
+    if (source.contains("QQ")){
+      authUserService.remove(authUser);
+      user.setQq("");
+    }
+    userService.update(user);
     return new JsonResult(1,"保存成功");
   }
 
@@ -139,9 +197,6 @@ public class ApiUserController {
     Map<String, String> resultMap = null;
     if (!file.isEmpty()) {
       resultMap = attachmentService.upload(file, request);
-      for (String key : resultMap.keySet()) {
-        System.out.println(key + "-->" + resultMap.get(key));
-      }
     }
     //保存在数据库
     Attachment attachment = new Attachment();

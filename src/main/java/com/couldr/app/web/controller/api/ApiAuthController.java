@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 第三方登陆
@@ -47,11 +48,15 @@ public class ApiAuthController {
     }
 
     @RequestMapping("qq")
-    public String index(){
+    public String index(@RequestParam(name = "backUrl",required = false) String backUrl){
+        String redirectUri = "http://www.168dh.cn/oauth/callback";
+        if (backUrl != null){
+            redirectUri += "?backUrl=" + backUrl;
+        }
         AuthRequest request = new AuthQqRequest(AuthConfig.builder()
                 .clientId("101828731")
                 .clientSecret("e870b28303e89ef93e2be1a0debd67dd")
-                .redirectUri("http://www.168dh.cn/oauth/callback")
+                .redirectUri(redirectUri)
                 .unionId(false)
                 .build());
         String state = AuthStateUtils.createState();
@@ -60,7 +65,9 @@ public class ApiAuthController {
     }
 
     @RequestMapping("callback")
-    public String callback(String code, String state, HttpServletRequest request, HttpServletResponse response){
+    public String callback(@RequestParam("code")String code, @RequestParam("state")String state,
+        @RequestParam("backUrl")String backUrl, HttpServletRequest request, HttpServletResponse response){
+        System.out.println("backUrl-----"+backUrl);
         AuthRequest authRequest = new AuthQqRequest(AuthConfig.builder()
             .clientId("101828731")
             .clientSecret("e870b28303e89ef93e2be1a0debd67dd")
@@ -77,10 +84,17 @@ public class ApiAuthController {
         System.out.println(JSON.toJSONString(authUser));
 
         User user = userService.findByQq(authUser.getUuid());
-        System.out.println(user);
         if (user == null){
-            user = this.register(request,authUser);
-            callbackUrl = callbackUrl + "/register/name";
+            User acUser = (User) request.getAttribute("user");
+            if(backUrl != null && acUser != null){
+                acUser.setQq(authUser.getUuid());
+                authUserService.create(authUser);
+                userService.update(acUser);
+                return "redirect:" + callbackUrl +"/"+ backUrl;
+            } else {
+                user = this.register(request,authUser);
+                callbackUrl = callbackUrl + "/register/name";
+            }
         } else if(user.getStatus() == 0){
             callbackUrl = callbackUrl + "/register/name";
         } else {
