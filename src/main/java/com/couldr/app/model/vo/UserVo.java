@@ -28,6 +28,11 @@ public class UserVo{
    */
   private String userAvatar;
 
+  /**
+   * 邮箱
+   */
+  private String email;
+
 
   private List<AuthUser> authUserList;
 

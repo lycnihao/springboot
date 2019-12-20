@@ -122,6 +122,7 @@ public class ApiUserController {
     userVo.setUsername(user.getUsername());
     userVo.setNickname(user.getNickname());
     userVo.setUserAvatar(user.getUserAvatar());
+    userVo.setEmail(user.getEmail());
 
     AuthUser authUser = authUserService.findByUuid(user.getQq());
     if (authUser != null){
