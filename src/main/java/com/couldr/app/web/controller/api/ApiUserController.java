@@ -15,6 +15,8 @@ import com.couldr.app.utils.AuthTokenUtil;
 import com.couldr.app.utils.CouldrUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.crypto.SecureUtil;
+import com.couldr.app.utils.HtmlUtil;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -191,7 +193,7 @@ public class ApiUserController {
   }
 
 
-  @PostMapping("/upload")
+  @PostMapping("/icon/upload")
   @ResponseBody
   public JsonResult upload(@RequestParam("file") MultipartFile file,
       HttpServletRequest request) {
@@ -272,6 +274,21 @@ public class ApiUserController {
     }
 
     return new JsonResult(0,"error");
+  }
+
+
+  @RequestMapping("/import")
+  @ResponseBody
+  private JsonResult inport(@RequestParam("file") MultipartFile file,
+      HttpServletRequest request){
+    try {
+      Map<String, String>  resultMap = HtmlUtil.parseHtmlOne(file.getInputStream());
+      webSiteUserService.inportHtml(resultMap);
+    } catch (IOException e) {
+      e.printStackTrace();
+      logger.error("导入html异常:",e);
+    }
+    return new JsonResult(1,"导入成功。");
   }
 
 }

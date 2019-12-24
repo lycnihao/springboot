@@ -4,6 +4,7 @@ import com.couldr.app.model.entity.WebSiteUser;
 import com.couldr.app.service.base.CrudService;
 
 import java.util.List;
+import java.util.Map;
 
 public interface WebSiteUserService extends CrudService<WebSiteUser, Integer> {
 
@@ -16,4 +17,6 @@ public interface WebSiteUserService extends CrudService<WebSiteUser, Integer> {
   Integer findMaxSort(Integer userId);
 
   void initUserWeb(long userId);
+
+  void inportHtml(Map<String, String> map);
 }

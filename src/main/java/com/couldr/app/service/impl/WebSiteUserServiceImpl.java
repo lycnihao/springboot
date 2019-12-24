@@ -1,11 +1,17 @@
 package com.couldr.app.service.impl;
 
+import com.couldr.app.model.entity.WebSite;
 import com.couldr.app.model.entity.WebSiteUser;
 import com.couldr.app.repository.WebSiteUserRepository;
+import com.couldr.app.service.AttachmentService;
 import com.couldr.app.service.WebSiteUserService;
 import com.couldr.app.service.base.AbstractCrudService;
+import com.couldr.app.utils.HtmlUtil;
+import com.couldr.app.utils.ServiceUtils;
 import java.util.List;
 
+import java.util.Map;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,9 +26,12 @@ public class WebSiteUserServiceImpl  extends
 
   private WebSiteUserRepository webSiteUserRepository;
 
-  public WebSiteUserServiceImpl(WebSiteUserRepository webSiteUserRepository) {
+  private AttachmentService attachmentService;
+
+  public WebSiteUserServiceImpl(WebSiteUserRepository webSiteUserRepository,AttachmentService attachmentService) {
     super(webSiteUserRepository);
     this.webSiteUserRepository = webSiteUserRepository;
+    this.attachmentService = attachmentService;
   }
 
   @Override
@@ -52,6 +61,16 @@ public class WebSiteUserServiceImpl  extends
   @Override
   public void initUserWeb(long userId) {
     webSiteUserRepository.initUserWeb(userId);
+  }
+
+  @Override
+  public void inportHtml(Map<String, String> map) {
+    map.keySet().forEach(key -> {
+      String name = map.get(key);
+      System.out.println(name);
+      WebSite webSite = HtmlUtil.getCollectFromUrl(key);
+      System.out.println(webSite);
+    });
   }
 
 }

@@ -16,4 +16,8 @@ public class Const {
    * request_token
    */
   public static String USER_TOKEN_KEY = "request_token";
+
+  public static String USER_AGENT="Mozilla";
+
+
 }
