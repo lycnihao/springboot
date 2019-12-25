@@ -44,7 +44,7 @@ public class ApiInterceptor implements HandlerInterceptor {
         }
         System.out.println("token--"+token);
         //注册或登陆放行
-        if (token == null && request.getRequestURI().equals("oauth/callback")){
+        if (token == null && request.getRequestURI().contains("oauth/callback")){
             return true;
         }
         // 执行认证

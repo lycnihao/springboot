@@ -66,7 +66,7 @@ public class ApiAuthController {
 
     @RequestMapping("callback")
     public String callback(@RequestParam("code")String code, @RequestParam("state")String state,
-        @RequestParam("backUrl")String backUrl, HttpServletRequest request, HttpServletResponse response){
+        @RequestParam(value = "backUrl",required = false)String backUrl, HttpServletRequest request, HttpServletResponse response){
         System.out.println("backUrl-----"+backUrl);
         AuthRequest authRequest = new AuthQqRequest(AuthConfig.builder()
             .clientId("101828731")
