@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
@@ -91,6 +92,20 @@ public class HtmlUtil {
     return resultMap;
   }
 
+  public static StringBuilder exportHtml(String title,StringBuilder body){
+    StringBuilder sb = new StringBuilder();
+    sb.append("<HTML>");
+    sb.append("<HEAD>");
+    sb.append("<TITLE>"+title+"</TITLE>");
+    sb.append("<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=utf-8\" />");
+    sb.append("</HEAD>");
+    sb.append("<BODY><H1>"+title+"</H1>");
+    sb.append(body);
+    sb.append("</BODY>");
+
+    return sb;
+  }
+
   public static WebSite getCollectFromUrl(String url){
     WebSite webSite = new WebSite();
     try {
@@ -108,13 +123,21 @@ public class HtmlUtil {
           webSite.setSummary(content);
         }
       }
-      Elements linkMetas = doc.head().select("link");
-      linkMetas.forEach(element ->{
-        if ("image/x-icon".equals(element.attr("type")) ||  "icon".equals(element.attr("rel"))){
-          String href = element.attr("abs:href");
+      URL uri = new URL(url);
+      System.out.println("-----------url-"+uri.getProtocol()+"://"+ uri.getHost()+"/favicon.ico");
+      webSite.setIcon(download(uri.getProtocol()+"://"+ uri.getHost()+"/favicon.ico"));
+
+/*      if (webSite.getIcon() == null){
+        Elements linkMetas = doc.head().select("link");
+        linkMetas.forEach(element ->{
+          if ("image/x-icon".equals(element.attr("type")) ||  "icon".equals(element.attr("rel"))){
+            String href = element.attr("abs:href");
             webSite.setIcon(download(href));
-        }
-      });
+          }
+        });
+      }*/
+
+
     } catch (Exception e) {
       logger.error("文章解析出错：",e);
     }

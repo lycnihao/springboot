@@ -18,5 +18,7 @@ public interface WebSiteUserService extends CrudService<WebSiteUser, Integer> {
 
   void initUserWeb(long userId);
 
-  void inportHtml(Map<String, String> map);
+  void inportHtml(Map<String, String> map,Integer userId);
+
+  StringBuilder exportToHtml(Integer userId);
 }

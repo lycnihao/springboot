@@ -17,11 +17,13 @@ import cn.hutool.core.lang.Validator;
 import cn.hutool.crypto.SecureUtil;
 import com.couldr.app.utils.HtmlUtil;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -281,14 +283,37 @@ public class ApiUserController {
   @ResponseBody
   private JsonResult inport(@RequestParam("file") MultipartFile file,
       HttpServletRequest request){
+    Long userId = (Long) request.getAttribute("userId");
     try {
       Map<String, String>  resultMap = HtmlUtil.parseHtmlOne(file.getInputStream());
-      webSiteUserService.inportHtml(resultMap);
+      webSiteUserService.inportHtml(resultMap,userId.intValue());
     } catch (IOException e) {
       e.printStackTrace();
       logger.error("导入html异常:",e);
     }
     return new JsonResult(1,"导入成功。");
   }
+
+  @RequestMapping("/export")
+  private void export(HttpServletRequest request,HttpServletResponse response){
+    Long userId = (Long) request.getAttribute("userId");
+    try {
+      String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+      String fileName= "couldr_" + date + ".html";
+      StringBuilder sb = new StringBuilder();
+        try {
+          sb = sb.append(webSiteUserService.exportToHtml(userId.intValue()));
+        } catch (Exception e) {
+          logger.error("异常：",e);
+        }
+      sb = HtmlUtil.exportHtml("酷达导航", sb);
+      response.setCharacterEncoding("UTF-8");
+      response.setHeader("Content-disposition","attachment; filename=" + fileName);
+      response.getWriter().print(sb);
+    } catch (Exception e) {
+      logger.error("异常：",e);
+    }
+  }
+
 
 }
