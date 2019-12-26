@@ -106,140 +106,17 @@ public class HtmlUtil {
     return sb;
   }
 
-  public static WebSite getCollectFromUrl(String url){
+  public static WebSite getCollectFromUrl(String title,String url){
     WebSite webSite = new WebSite();
+    webSite.setUrl(url);
+    webSite.setTitle(title);
     try {
-      webSite.setUrl(url);
-      Document doc = Jsoup.connect(url).userAgent(Const.USER_AGENT).get();
-      String title = doc.title();
-      if(StringUtils.isNotEmpty(title)){
-        webSite.setTitle(title);
-      }
-
-      Elements metas = doc.head().select("meta");
-      for (Element meta : metas) {
-        String content = meta.attr("content");
-        if ("description".equalsIgnoreCase(meta.attr("name"))) {
-          webSite.setSummary(content);
-        }
-      }
       URL uri = new URL(url);
-      System.out.println("-----------url-"+uri.getProtocol()+"://"+ uri.getHost()+"/favicon.ico");
-      webSite.setIcon(download(uri.getProtocol()+"://"+ uri.getHost()+"/favicon.ico"));
-
-/*      if (webSite.getIcon() == null){
-        Elements linkMetas = doc.head().select("link");
-        linkMetas.forEach(element ->{
-          if ("image/x-icon".equals(element.attr("type")) ||  "icon".equals(element.attr("rel"))){
-            String href = element.attr("abs:href");
-            webSite.setIcon(download(href));
-          }
-        });
-      }*/
-
-
+      webSite.setIcon(uri.getProtocol()+"://"+ uri.getHost()+"/favicon.ico");
     } catch (Exception e) {
+      webSite.setIcon("/favicon.ico");
       logger.error("文章解析出错：",e);
     }
     return webSite;
-  }
-
-  public static String getPageImg(String url){
-    String imgUrl="";
-    Document doc;
-    try {
-      doc = Jsoup.connect(url).userAgent(Const.USER_AGENT).get();
-      Elements images = doc.select("img[src~=(?i)\\.(png|jpe?g|gif)]");
-      for(Element image : images){
-        imgUrl=image.attr("src");
-        if(StringUtils.isNotEmpty(imgUrl) ){
-          if(imgUrl.startsWith("//")){
-            imgUrl = "http:" + imgUrl;
-          }else if(!imgUrl.startsWith("http") && !imgUrl.startsWith("/")){
-            imgUrl = URLUtil.getDomainUrl(url) + "/" + imgUrl;
-          }else if(!imgUrl.startsWith("http")){
-            imgUrl = URLUtil.getDomainUrl(url)+imgUrl;
-          }
-        }
-        // 判断图片大小
-        String fileUrl = download(imgUrl);
-        if(fileUrl!=null){
-          File picture = new File(fileUrl);
-          FileInputStream in = new FileInputStream(picture);
-          BufferedImage sourceImg = ImageIO.read(in);
-          String weight = String.format("%.1f",picture.length()/1024.0);
-          int width = sourceImg.getWidth();
-          int height = sourceImg.getHeight();
-          // 删除临时文件
-          if(picture.exists()){
-            in.close();
-            picture.delete();
-          }
-          if(Double.parseDouble(weight) <= 0 || width <=0 || height <= 0){
-            logger.info("当前图片大小为0，继续获取图片链接");
-            imgUrl="";
-          }else{
-            break;
-          }
-        }
-      }
-    } catch (Exception e) {
-      // TODO: handle exception
-      logger.warn("getPageImg  失败,url:"+url,e.getMessage());
-    }
-    return imgUrl;
-  }
-
-  // 图片下载
-  private static String download(String url) {
-    try {
-
-      final StrBuilder uploadPath = new StrBuilder(System.getProperties().getProperty("user.home"));
-      uploadPath.append("/couldr/");
-      uploadPath.append("upload/icon/");
-      uploadPath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
-
-      URL uri = new URL(url);
-      InputStream in = uri.openStream();
-
-      String dateString = DateUtil.format(DateUtil.date(), "yyyyMMddHHmmss");
-      final StrBuilder nameWithOutSuffix = new StrBuilder(uri.getHost().substring(0, uri.getHost().lastIndexOf('.')).replace(".", "_").replaceAll(" ", "_").replaceAll(",", ""));
-      nameWithOutSuffix.append(dateString);
-      nameWithOutSuffix.append(new Random().nextInt(1000));
-
-      //文件后缀
-      final String fileSuffix = uri.toString().substring(uri.toString().lastIndexOf('.') + 1);
-
-      //带后缀
-      final StrBuilder fileName = new StrBuilder(nameWithOutSuffix);
-      fileName.append(".");
-      fileName.append(fileSuffix);
-
-      //映射路径
-      final StrBuilder filePath = new StrBuilder("/upload/icon/");
-      filePath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
-      filePath.append(fileName);
-
-      File dirFile = new File(uploadPath.toString());
-      if (!dirFile.exists()) {
-        if(!dirFile.mkdirs()){
-          return filePath.toString();
-        }
-      }
-
-      File file = new File(dirFile,fileName.toString());
-      FileOutputStream fo = new FileOutputStream(file);
-      byte[] buf = new byte[1024];
-      int length = 0;
-      while ((length = in.read(buf, 0, buf.length)) != -1) {
-        fo.write(buf, 0, length);
-      }
-      in.close();
-      fo.close();
-      return filePath.toString();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
   }
 }

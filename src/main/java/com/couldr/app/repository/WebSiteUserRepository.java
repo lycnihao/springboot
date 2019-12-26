@@ -39,6 +39,6 @@ public interface WebSiteUserRepository extends BaseRepository<WebSiteUser, Integ
   @Transactional
   @Modifying
   @Query(value = "insert into website_user(sort,user_id,website_category,website_icon,website_title,website_url)"
-      + "select sort,?,website_category,website_icon,website_title,website_url from website_user where user_id = 0",nativeQuery =true)
+      + "select sort,?,website_category,website_icon,website_title,website_url from website_user where user_id = -1",nativeQuery =true)
   void initUserWeb(long userId);
 }

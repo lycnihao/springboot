@@ -1,5 +1,6 @@
 package com.couldr.app.web.controller.api;
 
+import com.couldr.app.exception.NotFoundException;
 import com.couldr.app.model.dto.JsonResult;
 import com.couldr.app.model.entity.Attachment;
 import com.couldr.app.model.entity.AuthUser;
@@ -29,7 +30,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -110,7 +110,7 @@ public class ApiUserController {
     user.setCreateTime(new Date());
     user.setStatus(1);
     user.setIp(CouldrUtil.getIp(request));
-    user.setUserAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
+    user.setUserAvatar("https://www.168dh.cn/favicon.ico");
     user = userService.create(user);
     webSiteUserService.initUserWeb(user.getUserId().intValue());
     logger.info("用户[{}]注册成功。注册ip:[{}]",user.getUsername(),user.getIp());
@@ -234,10 +234,13 @@ public class ApiUserController {
   @ResponseBody
   public JsonResult removeSite(@PathVariable("siteId") String siteId, HttpServletRequest request){
     Object userId = request.getAttribute("userId");
-
-    WebSiteUser webSiteUser = webSiteUserService.fetchById(Integer.valueOf(siteId)).orElse(new WebSiteUser());
-    webSiteUserService.updateSortAll(Integer.valueOf(userId.toString()),webSiteUser.getSort());
-    webSiteUserService.removeById(Integer.valueOf(siteId));
+    try {
+      WebSiteUser webSiteUser = webSiteUserService.fetchById(Integer.valueOf(siteId)).orElse(new WebSiteUser());
+      webSiteUserService.updateSortAll(Integer.valueOf(userId.toString()),webSiteUser.getSort());
+      webSiteUserService.removeById(Integer.valueOf(siteId));
+    }catch (NotFoundException e){
+      return new JsonResult(0, "网址已删除请勿重复提交。");
+    }
     return new JsonResult(1, "删除成功~");
   }
 

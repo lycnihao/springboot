@@ -1,5 +1,6 @@
 package com.couldr.app.web.controller.api;
 
+import cn.hutool.crypto.SecureUtil;
 import com.couldr.app.model.dto.Const;
 import com.couldr.app.model.entity.User;
 import com.couldr.app.oauth.config.AuthConfig;
@@ -118,7 +119,7 @@ public class ApiAuthController {
         String uuid = UuidUtils.getUUID();
         User user = User.builder()
             .username(uuid)
-            .password(uuid)
+            .password(SecureUtil.md5("123456"))
             .status(0).isAdmin(0)
             .qq(authUser.getUuid())
             .createTime(new Date())

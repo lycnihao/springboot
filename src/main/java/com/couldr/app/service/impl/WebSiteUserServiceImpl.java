@@ -74,7 +74,7 @@ public class WebSiteUserServiceImpl  extends
     map.keySet().forEach(key -> {
       String name = map.get(key);
       System.out.println(name);
-      WebSite webSite = HtmlUtil.getCollectFromUrl(key);
+      WebSite webSite = HtmlUtil.getCollectFromUrl(name,key);
       WebSiteUser webSiteUser = new WebSiteUser();
       webSiteUser.setUserId(userId);
       webSiteUser.setWebsiteUrl(webSite.getUrl());
