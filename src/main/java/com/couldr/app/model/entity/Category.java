@@ -63,4 +63,10 @@ public class Category implements Serializable {
      */
     @Column(name = "parent_id")
     private Integer parentId;
+
+    /**
+     * 分类类型  顶部/中部
+     */
+    @Column(name = "cate_type")
+    private Integer cateType;
 }

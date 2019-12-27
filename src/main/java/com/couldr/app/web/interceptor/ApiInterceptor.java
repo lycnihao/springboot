@@ -37,16 +37,22 @@ public class ApiInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws CouldrException {
         String token = null;
         Cookie[] cookies = request.getCookies();
-        System.out.println("cookies size:" + cookies.length);
-        for (Cookie cookie : cookies){
-            if (cookie.getName().equals(Const.USER_TOKEN_KEY))
-                token = cookie.getValue();
+        if (cookies != null){
+            for (Cookie cookie : cookies){
+                if (cookie.getName().equals(Const.USER_TOKEN_KEY))
+                    token = cookie.getValue();
+            }
         }
         System.out.println("token--"+token);
         //注册或登陆放行
         if (token == null && request.getRequestURI().contains("oauth/callback")){
             return true;
+        } else
+        if (token == null &&  request.getRequestURI().equals("/api/webSite/user")){
+            request.setAttribute("user",null);
+            return true;
         }
+
         // 执行认证
         if (token == null) {
             System.out.println("无token，请重新登录");
@@ -72,8 +78,6 @@ public class ApiInterceptor implements HandlerInterceptor {
         }
 
         request.setAttribute("user",user);
-        request.setAttribute("userId",user.getUserId());
-
         return true;
     }
 

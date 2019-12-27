@@ -15,7 +15,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 /**
  * Filter for CORS.
  *
- * @author johnniang
  */
 public class CorsFilter extends GenericFilterBean {
 
