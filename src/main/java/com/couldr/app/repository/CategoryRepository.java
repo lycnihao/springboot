@@ -25,9 +25,10 @@ public interface CategoryRepository extends BaseRepository<Category, Integer> {
 
     Category findCategoryBySlugName(String slugName);
 
-    Category findCategoriesByName(String name);
-
     @Query("from Category  c join websiteCategory  wc on c.categoryId = wc.categoryId where wc.websiteId = ?1")
     @NonNull
     List<Category> findByWebsiteId(@NonNull Integer websiteId);
+
+    @Query("from Category  c where c.userId = ?1 and  c.cateType = ?2")
+    List<Category> getUserCategoryList(Long userId,Integer cateType);
 }

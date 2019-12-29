@@ -72,11 +72,6 @@ public class CategoryServiceImpl extends AbstractCrudService<Category, Integer> 
         return categoryRepository.findCategoryBySlugName(slugName);
     }
 
-    @Override
-    public Category findByName(String name) {
-        return categoryRepository.findCategoriesByName(name);
-    }
-
   @Override
   public List<Category> findByWebsiteId(Integer websiteId) {
     return categoryRepository.findByWebsiteId(websiteId);
@@ -108,5 +103,10 @@ public class CategoryServiceImpl extends AbstractCrudService<Category, Integer> 
                 return categoryWithPostCountDTO;
             })
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Category> getUserCategoryList(Long userId) {
+        return categoryRepository.getUserCategoryList(userId,1);
     }
 }

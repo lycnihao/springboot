@@ -46,6 +46,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
          */
         registry.addInterceptor(apiInterceptor)
             .addPathPatterns("/api/user/**")
+            .addPathPatterns("/api/cate/**")
             .addPathPatterns("/api/webSite/**")
             .addPathPatterns("/oauth/callback")
             .excludePathPatterns("/api/webSite/list")

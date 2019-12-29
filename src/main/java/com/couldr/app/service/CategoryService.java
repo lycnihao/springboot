@@ -15,10 +15,10 @@ public interface CategoryService extends CrudService<Category, Integer> {
 
     Category findBySlugName(String slugName);
 
-    Category findByName(String name);
-
     @NonNull
     List<Category> findByWebsiteId(@NonNull Integer websiteId);
 
     List<CategoryWithWebSiteCountDTO> listCategoryWithWebSiteCount();
+
+    List<Category> getUserCategoryList(Long userId);
 }
