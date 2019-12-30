@@ -9,7 +9,7 @@ import org.springframework.lang.NonNull;
 
 public interface CategoryService extends CrudService<Category, Integer> {
 
-    List<Category> list();
+    List<Category> categoryListByType(Long userId,Integer cateType);
 
     List<Category> convertSubList();
 

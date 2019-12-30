@@ -15,6 +15,10 @@ public interface CategoryRepository extends BaseRepository<Category, Integer> {
     @NonNull
     List<Category> list();
 
+    @Query("from Category where parentId = 0 and userId = ?1 and cateType = ?2 order by ordered")
+    @NonNull
+    List<Category> parenListByCateType(long userId,Integer cateType);
+
     @Query("from Category where parentId = 0 order by ordered")
     @NonNull
     List<Category> parenList();

@@ -79,10 +79,13 @@ public class WebSiteCategoryServiceImpl extends AbstractCrudService<WebSiteCateg
     // Fetch category ids
     Set<Integer> websiteIdIds = ServiceUtils.fetchProperty(webSiteCategories, WebSiteCategory::getWebsiteId);
 
-    List<WebSite> categories = webSiteRepository.findAllById(websiteIdIds);
+    List<WebSite> webSites = webSiteRepository.findAllById(websiteIdIds);
+
+    /*//排序
+    webSites.sort(Comparator.comparing(WebSite::getOrdered));*/
 
     // Convert to category map
-    Map<Integer, WebSite> webSiteMap = ServiceUtils.convertToMap(categories, WebSite::getWebsiteId);
+    Map<Integer, WebSite> webSiteMap = ServiceUtils.convertToMap(webSites, WebSite::getWebsiteId);
 
     // Create category list map
     Map<Integer, List<WebSite>> websiteListMap = new HashMap<>();

@@ -37,14 +37,11 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
 
     private final WebSiteCategoryService webSiteCategoryService;
 
-    private final WebSiteUserService webSiteUserService;
-
-    public WebSiteServiceImpl(WebSiteRepository webSiteRepository,WebSiteCategoryService webSiteCategoryService,CategoryService categoryService,WebSiteUserService webSiteUserService) {
+    public WebSiteServiceImpl(WebSiteRepository webSiteRepository,WebSiteCategoryService webSiteCategoryService,CategoryService categoryService) {
         super(webSiteRepository);
         this.webSiteRepository = webSiteRepository;
         this.webSiteCategoryService = webSiteCategoryService;
         this.categoryService = categoryService;
-        this.webSiteUserService = webSiteUserService;
     }
 
     @Override
@@ -80,23 +77,9 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
 
     @Override
     public void save(WebSite webSite, Set<Integer> categoryIds) {
-
-        if (webSite.getOrdered() == 0){
-             Integer max = webSiteRepository.findMaxOrdered();
-             if (max != null){
-                 webSite.setOrdered(max);
-             }else {
-                 webSite.setOrdered(0);
-             }
-        }
-
-
-
         webSite.setType(WebsiteTypeEnum.PUBLIC.getDesc());
         WebSite  bWebSite = webSiteRepository.save(webSite);
-
         List<Category> categories = categoryService.listAllByIds(categoryIds);
-
         webSiteCategoryService.mergeOrCreateByIfAbsent(bWebSite.getWebsiteId(),ServiceUtils.fetchProperty(categories, Category::getCategoryId));
     }
 
@@ -128,7 +111,41 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
     }
 
     @Override
-    public  List<WebSiteUser> listWebSiteListByUserId(Integer userId) {
-        return webSiteUserService.ListByUserId(userId);
+    public Integer findMaxSort(Integer categoryId) {
+        return webSiteRepository.findMaxOrdered();
+    }
+
+    @Override
+    public void updateSortAll(Integer categoryId, Integer sort) {
+        webSiteRepository.updateSortAll(categoryId,sort);
+    }
+
+    @Override
+    public void updateSort(Integer categoryId, Integer oldIndex, Integer newIndex) {
+        if (newIndex < oldIndex){
+            webSiteRepository.updateSortIncrease(categoryId, newIndex, oldIndex);
+        } else {
+            webSiteRepository.updateSortReduce(categoryId, oldIndex, newIndex);
+        }
+    }
+
+    @Override
+    public void initUserWeb(long userId) {
+        List<WebSiteCategory> webSiteCategories = new ArrayList<>();
+        List<Category> categories = categoryService.getUserCategoryList(0L);
+        categories.forEach(category -> {
+            List<WebSite> webSites = webSiteRepository.findNotIdByCategoryId(category.getCategoryId());
+            webSites.forEach(webSite -> webSite.setWebsiteId(null));
+            /*createInBatch(webSites);*/
+            webSites.forEach(webSite -> {
+                System.out.println(webSite);
+                /*WebSiteCategory webSiteCategory = new WebSiteCategory();
+                webSiteCategory.setWebsiteId(webSite.getWebsiteId());
+                webSiteCategory.setCategoryId(category.getCategoryId());
+                webSiteCategories.add(webSiteCategory);*/
+            });
+            /*webSiteCategoryService.createInBatch(webSiteCategories);*/
+        });
+        /*categoryService.createInBatch(categories);*/
     }
 }

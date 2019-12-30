@@ -2,6 +2,7 @@ package com.couldr.app.repository;
 
 import com.couldr.app.model.entity.WebSite;
 import com.couldr.app.repository.base.BaseRepository;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -18,10 +19,47 @@ public interface WebSiteRepository extends BaseRepository<WebSite, Integer> {
     @Query(value = "select MAX(ordered) from webSite", nativeQuery = true)
     Integer findMaxOrdered();
 
+
+
     @Transactional
     @Modifying
     @Query(value = "update website set  visits = visits + 1 where website_id = ?",nativeQuery =true)
     Integer updateVisitsByLinkId(Integer linkId);
 
     Page<WebSite> findAll(Specification specification, Pageable pageable);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update website set ordered = ordered - 1 "
+        + "where website_id in "
+        + "(select a.website_id from "
+        + "(select w.website_id from website w join website_category wc on w.website_id = wc.website_id where wc.category_id = ?)"
+        + "a)and ordered > ?",nativeQuery =true)
+    void updateSortAll(Integer categoryId, Integer sort);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update website "
+        + "set ordered = ordered + 1 where "
+        + "website_id in "
+        + "(select a.website_id from "
+        + "(select w.website_id from website w join website_category wc on w.website_id = wc.website_id where wc.category_id = ?) "
+        + "a) "
+        + "and ordered between ? and ?",nativeQuery =true)
+    int updateSortIncrease(Integer categoryId,Integer oldIndex,Integer newIndex);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update website "
+        + "set ordered = ordered - 1 where "
+        + "website_id in "
+        + "(select a.website_id from "
+        + "(select w.website_id from website w join website_category wc on w.website_id = wc.website_id where wc.category_id = ?) "
+        + "a) "
+        + "and ordered between ? and ?",nativeQuery =true)
+    int updateSortReduce(Integer categoryId,Integer newIndex,Integer oldIndex);
+
+
+    @Query(value = "select w.* from website w join website_category wc on w.website_id = wc.website_id where wc.category_id = ?",nativeQuery =true)
+    List<WebSite> findNotIdByCategoryId(Integer categoryId);
 }

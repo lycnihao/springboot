@@ -40,30 +40,6 @@ public class WebSiteUserServiceImpl  extends
   }
 
   @Override
-  public List<WebSiteUser> ListByUserId(Integer userId) {
-    return webSiteUserRepository.findAllByUserId(userId);
-  }
-
-  @Override
-  public void updateSort(Integer userId, Integer oldIndex, Integer newIndex) {
-    if (newIndex < oldIndex){
-      webSiteUserRepository.updateSortIncrease(userId, newIndex, oldIndex);
-    } else {
-      webSiteUserRepository.updateSortReduce(userId, oldIndex, newIndex);
-    }
-  }
-
-  @Override
-  public void updateSortAll(Integer userId,Integer sort) {
-    webSiteUserRepository.updateSortAll(userId,sort);
-  }
-
-  @Override
-  public Integer findMaxSort(Integer userId) {
-    return webSiteUserRepository.findMaxSort(userId);
-  }
-
-  @Override
   public void initUserWeb(long userId) {
     webSiteUserRepository.initUserWeb(userId);
   }

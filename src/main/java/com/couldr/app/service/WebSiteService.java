@@ -31,8 +31,11 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
     @NonNull
     Map<Integer, List<WebSite>> convertToListMapByCategory(@NonNull List<Category> categories);
 
-    @NonNull
-    List<WebSiteUser> listWebSiteListByUserId(@NonNull Integer userId);
+    Integer findMaxSort(Integer categoryId);
 
+    void updateSortAll(Integer categoryId,Integer sort);
 
+    void updateSort(Integer categoryId, Integer oldIndex,Integer newIndex);
+
+    void initUserWeb(long userId);
 }

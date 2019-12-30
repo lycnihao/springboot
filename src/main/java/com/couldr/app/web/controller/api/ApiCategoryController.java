@@ -22,9 +22,7 @@ public class ApiCategoryController  extends BaseController {
     @RequestMapping("getUserCategoryList")
     @ResponseBody
     public List<Category> getCategoryList() {
-        System.out.println(getUser());
-        List<Category> categories =  categoryService.getUserCategoryList(getUserId());
-        return categories;
+        return categoryService.getUserCategoryList(getUserId());
     }
 
 }

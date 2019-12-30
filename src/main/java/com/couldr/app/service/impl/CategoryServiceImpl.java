@@ -34,18 +34,19 @@ public class CategoryServiceImpl extends AbstractCrudService<Category, Integer> 
      * 转换子分类特殊显示格式
      */
     @Override
-    public List<Category> list() {
+    public List<Category> categoryListByType(Long userId,Integer cateType) {
         List<Category> list = new ArrayList<>();
-        categoryRepository.parenList().forEach(category ->{
-            if (category.getParentId().equals(0)){
-                list.add(category);
-                categoryRepository.subList().forEach(subCategory ->{
-                    if (subCategory.getParentId().equals(category.getCategoryId())){
-                        list.add(subCategory);
-                    }
-                });
-            }
-        });
+        List<Category> parenList = cateType == 0 ? categoryRepository.parenListByCateType(userId,0) : categoryRepository.parenListByCateType(userId,1);
+        parenList.forEach(category ->{
+              if (category.getParentId().equals(0)){
+                  list.add(category);
+                  categoryRepository.subList().forEach(subCategory ->{
+                      if (subCategory.getParentId().equals(category.getCategoryId())){
+                          list.add(subCategory);
+                      }
+                  });
+              }
+          });
         return list;
     }
 
@@ -109,4 +110,5 @@ public class CategoryServiceImpl extends AbstractCrudService<Category, Integer> 
     public List<Category> getUserCategoryList(Long userId) {
         return categoryRepository.getUserCategoryList(userId,1);
     }
+
 }

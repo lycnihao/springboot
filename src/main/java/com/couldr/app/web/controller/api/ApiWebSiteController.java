@@ -11,6 +11,7 @@ import com.couldr.app.model.vo.CategoryWebSiteVo;
 import com.couldr.app.service.AttachmentService;
 import com.couldr.app.service.CategoryService;
 import com.couldr.app.service.UserService;
+import com.couldr.app.service.WebSiteCategoryService;
 import com.couldr.app.service.WebSiteService;
 import com.couldr.app.service.WebSiteUserService;
 import com.couldr.app.utils.HtmlUtil;
@@ -21,8 +22,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -53,29 +56,32 @@ public class ApiWebSiteController extends BaseController {
 
   private WebSiteService webSiteService;
 
-  public ApiWebSiteController(UserService userService,AttachmentService attachmentService,WebSiteUserService webSiteUserService,CategoryService categoryService,WebSiteService webSiteService) {
+  private WebSiteCategoryService webSiteCategoryService;
+
+  public ApiWebSiteController(UserService userService,AttachmentService attachmentService,WebSiteUserService webSiteUserService,CategoryService categoryService,WebSiteService webSiteService,WebSiteCategoryService webSiteCategoryService) {
     this.userService = userService;
     this.attachmentService = attachmentService;
     this.webSiteUserService = webSiteUserService;
     this.categoryService = categoryService;
     this.webSiteService = webSiteService;
+    this.webSiteCategoryService = webSiteCategoryService;
   }
 
 
   @RequestMapping("list")
   @ResponseBody
   public CategoryWebSiteVo getList() {
-    List<Category> categories = categoryService.list();
+    List<Category> categories = categoryService.categoryListByType(0L,0);
     Map<Integer, List<WebSite>> webSites = webSiteService.convertToListMapByCategory(categories);
     return new CategoryWebSiteVo(categories,webSites);
   }
 
   @RequestMapping("user")
   @ResponseBody
-  public List<WebSiteUser> getUserWebSite() {
-    List<WebSiteUser> webSiteList = webSiteService.listWebSiteListByUserId((int)getUserId());
-    Collections.sort(webSiteList, Comparator.comparing(WebSiteUser::getSort));
-    return webSiteList;
+  public CategoryWebSiteVo getUserWebSite() {
+    List<Category> categories = categoryService.categoryListByType(getUserId(),1);
+    Map<Integer, List<WebSite>> webSites = webSiteService.convertToListMapByCategory(categories);
+    return new CategoryWebSiteVo(categories,webSites);
   }
 
   @RequestMapping("user/{siteId}")
@@ -113,41 +119,37 @@ public class ApiWebSiteController extends BaseController {
 
   @RequestMapping("/saveSite")
   @ResponseBody
-  public JsonResult saveSite(WebSiteUser webSiteUser){
-    webSiteUser.setUserId((int) getUserId());
-    if (webSiteUser.getId() == null){
-      Integer maxSort = webSiteUserService.findMaxSort((int) getUserId());
-      webSiteUser.setSort(maxSort == null ? 1 : maxSort + 1);
-    }
-    webSiteUserService.create(webSiteUser);
+  public JsonResult saveSite(WebSite webSite,Integer categoryId){
+    Set<Integer> categoryIds = new HashSet<>();
+    categoryIds.add(categoryId);
+    webSiteService.save(webSite,categoryIds);
     return new JsonResult(1, "保存成功~");
   }
 
-  @RequestMapping("/removeSite/{siteId}")
+  @RequestMapping("/removeSite/{categoryId}/{siteId}")
   @ResponseBody
-  public JsonResult removeSite(@PathVariable("siteId") String siteId){
-    Object userId = (int) getUserId();
+  public JsonResult removeSite(@PathVariable("categoryId") Integer categoryId,@PathVariable("siteId") Integer siteId){
     try {
-      WebSiteUser webSiteUser = webSiteUserService.fetchById(Integer.valueOf(siteId)).orElse(new WebSiteUser());
-      webSiteUserService.updateSortAll(Integer.valueOf(userId.toString()),webSiteUser.getSort());
-      webSiteUserService.removeById(Integer.valueOf(siteId));
+      WebSite webSite = webSiteService.fetchById(siteId).orElse(new WebSite());
+      webSiteService.updateSortAll(categoryId,webSite.getOrdered());
+      webSiteCategoryService.removeWebsiteId(siteId);
+      webSiteService.removeById(siteId);
     }catch (NotFoundException e){
       return new JsonResult(0, "网址已删除请勿重复提交。");
     }
     return new JsonResult(1, "删除成功~");
   }
 
-  @RequestMapping("/sortSite/{siteId}")
+  @RequestMapping("/sortSite/{categoryId}/{siteId}")
   @ResponseBody
-  public JsonResult sort(@PathVariable("siteId") Integer siteId, @RequestParam(name = "oldIndex") Integer oldIndex,
+  public JsonResult sort(@PathVariable("categoryId") Integer categoryId,@PathVariable("siteId") Integer siteId, @RequestParam(name = "oldIndex") Integer oldIndex,
       @RequestParam(name = "newIndex") Integer newIndex){
-    Object userId = (int) getUserId();
 
-    webSiteUserService.updateSort(Integer.valueOf(userId.toString()), oldIndex, newIndex);
+    webSiteService.updateSort( categoryId, oldIndex, newIndex);
 
-    WebSiteUser webSiteUser = webSiteUserService.fetchById(siteId).orElse(new WebSiteUser());
-    webSiteUser.setSort(newIndex);
-    webSiteUserService.update(webSiteUser);
+    WebSite webSite = webSiteService.fetchById(siteId).orElse(new WebSite());
+    webSite.setOrdered(newIndex);
+    webSiteService.update(webSite);
 
     return new JsonResult(1, "排序保存成功~");
   }
@@ -156,9 +158,9 @@ public class ApiWebSiteController extends BaseController {
   @RequestMapping("/active")
   @ResponseBody
   public JsonResult active(String userName){
-    Object userId = (int) getUserId();
+    long userId =  getUserId();
 
-    User user = userService.fetchById((Long) userId).orElse(new User());
+    User user = userService.fetchById(userId).orElse(new User());
     if (user.getStatus() == 0){
       user.setStatus(1);
       user.setUsername(userName);
@@ -166,8 +168,9 @@ public class ApiWebSiteController extends BaseController {
       user.setLastLoginTime(new Date());
       //状态修改为正常
       userService.update(user);
+
       //初始化常用网站
-      webSiteUserService.initUserWeb((long)  userId);
+      webSiteService.initUserWeb(userId);
       return new JsonResult(1,"注册成功。开始您的旅程吧。");
     }
 
