@@ -7,7 +7,7 @@ import com.couldr.app.model.params.LoginQuery;
 import com.couldr.app.model.vo.UserVo;
 import com.couldr.app.service.AuthUserService;
 import com.couldr.app.service.UserService;
-import com.couldr.app.service.WebSiteUserService;
+import com.couldr.app.service.WebSiteService;
 import com.couldr.app.utils.AuthTokenUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.crypto.SecureUtil;
@@ -33,13 +33,13 @@ public class ApiUserController extends BaseController {
 
   private UserService userService;
 
-  private WebSiteUserService webSiteUserService;
+  private WebSiteService webSiteService;
 
   private AuthUserService authUserService;
 
-  public ApiUserController(UserService userService,WebSiteUserService webSiteUserService,AuthUserService authUserService) {
+  public ApiUserController(UserService userService,WebSiteService webSiteService,AuthUserService authUserService) {
     this.userService = userService;
-    this.webSiteUserService = webSiteUserService;
+    this.webSiteService = webSiteService;
     this.authUserService = authUserService;
   }
 
@@ -92,11 +92,10 @@ public class ApiUserController extends BaseController {
     user.setIp(getUserIp());
     user.setUserAvatar("https://www.168dh.cn/favicon.ico");
     user = userService.create(user);
-    webSiteUserService.initUserWeb(user.getUserId().intValue());
+    webSiteService.initUserWeb(user.getUserId());
     logger.info("用户[{}]注册成功。注册ip:[{}]",user.getUsername(),user.getIp());
     return new JsonResult(1, "注册成功");
   }
-
 
   @RequestMapping("/info")
   public JsonResult info(){

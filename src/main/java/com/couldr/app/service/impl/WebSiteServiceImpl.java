@@ -13,11 +13,14 @@ import com.couldr.app.service.WebSiteService;
 import com.couldr.app.service.WebSiteUserService;
 import com.couldr.app.service.base.AbstractCrudService;
 import com.couldr.app.utils.ServiceUtils;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 import javax.persistence.criteria.*;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -131,21 +134,29 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
 
     @Override
     public void initUserWeb(long userId) {
-        List<WebSiteCategory> webSiteCategories = new ArrayList<>();
+        System.out.println(userId);
         List<Category> categories = categoryService.getUserCategoryList(0L);
         categories.forEach(category -> {
-            List<WebSite> webSites = webSiteRepository.findNotIdByCategoryId(category.getCategoryId());
-            webSites.forEach(webSite -> webSite.setWebsiteId(null));
-            /*createInBatch(webSites);*/
+            List<WebSite> webSites = webSiteRepository.findNotIdByCategoryId(category.getCategoryId()); //查询默认分类网站集合
+            Category c_cate = new Category();
+            BeanUtils.copyProperties(category, c_cate);
+            c_cate.setCategoryId(null);
+            c_cate.setUserId(userId);
+            System.out.println(c_cate);
+            categoryService.create(c_cate); //创建分类
             webSites.forEach(webSite -> {
-                System.out.println(webSite);
-                /*WebSiteCategory webSiteCategory = new WebSiteCategory();
-                webSiteCategory.setWebsiteId(webSite.getWebsiteId());
-                webSiteCategory.setCategoryId(category.getCategoryId());
-                webSiteCategories.add(webSiteCategory);*/
+                WebSite c_webSite = new WebSite();
+                BeanUtils.copyProperties(webSite, c_webSite);
+                c_webSite.setWebsiteId(null);
+                c_webSite.setCreateTime(new Date());
+                create(c_webSite);
+                //建立网站与分类关系
+                WebSiteCategory webSiteCategory = new WebSiteCategory();
+                webSiteCategory.setWebsiteId(c_webSite.getWebsiteId());
+                webSiteCategory.setCategoryId(c_cate.getCategoryId());
+                webSiteCategoryService.create(webSiteCategory);
             });
-            /*webSiteCategoryService.createInBatch(webSiteCategories);*/
         });
-        /*categoryService.createInBatch(categories);*/
+
     }
 }

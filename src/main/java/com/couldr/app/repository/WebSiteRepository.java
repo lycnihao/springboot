@@ -62,4 +62,11 @@ public interface WebSiteRepository extends BaseRepository<WebSite, Integer> {
 
     @Query(value = "select w.* from website w join website_category wc on w.website_id = wc.website_id where wc.category_id = ?",nativeQuery =true)
     List<WebSite> findNotIdByCategoryId(Integer categoryId);
+
+/*    @Transactional
+    @Modifying
+    @Query(value = "insert into website(create_time,icon,ordered,summary,title,type,url,visits)\n"
+        + "(select w.create_time,w.icon,w.ordered,w.summary,w.title,w.type,w.url,w.visits from website w join website_category wc on w.website_id = wc.website_id where wc.category_id = ?)",nativeQuery =true)
+    void initWeb(Integer categoryId);*/
+
 }

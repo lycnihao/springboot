@@ -97,6 +97,4 @@ public class WebSite implements Serializable {
         this.visits = visits;
         this.createTime = createTime;
     }
-
-
 }
