@@ -5,6 +5,7 @@ import com.couldr.app.model.entity.Category;
 import com.couldr.app.service.CategoryService;
 import com.couldr.app.web.controller.api.base.BaseController;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,5 +37,21 @@ public class ApiCategoryController  extends BaseController {
         categoryService.create(category);
         return new JsonResult(1,"创建成功！");
     }
+
+    @RequestMapping("{cateId}")
+    @ResponseBody
+    public JsonResult getCate(@PathVariable Integer cateId) {
+        Category category = categoryService.fetchById(cateId).orElse(new Category());
+        return new JsonResult(1,category);
+    }
+
+    @RequestMapping("/remove/{cateId}")
+    @ResponseBody
+    public JsonResult remove(@PathVariable Integer cateId) {
+        categoryService.removeById(cateId);
+        return new JsonResult(1,"删除成功！");
+    }
+
+
 
 }
