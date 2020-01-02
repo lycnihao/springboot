@@ -137,7 +137,7 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
         System.out.println(userId);
         List<Category> categories = categoryService.getUserCategoryList(0L);
         categories.forEach(category -> {
-            List<WebSite> webSites = webSiteRepository.findNotIdByCategoryId(category.getCategoryId()); //查询默认分类网站集合
+            List<WebSite> webSites = webSiteRepository.findByCategoryId(category.getCategoryId()); //查询默认分类网站集合
             Category c_cate = new Category();
             BeanUtils.copyProperties(category, c_cate);
             c_cate.setCategoryId(null);
@@ -158,5 +158,10 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
             });
         });
 
+    }
+
+    @Override
+    public List<WebSite> getUserWebSiteList(Integer cateId) {
+        return webSiteRepository.findByCategoryId(cateId);
     }
 }

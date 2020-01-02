@@ -21,4 +21,6 @@ public interface CategoryService extends CrudService<Category, Integer> {
     List<CategoryWithWebSiteCountDTO> listCategoryWithWebSiteCount();
 
     List<Category> getUserCategoryList(Long userId);
+
+    void updateSort(Integer categoryId, Integer oldIndex,Integer newIndex);
 }

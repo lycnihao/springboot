@@ -120,6 +120,10 @@ public class ApiWebSiteController extends BaseController {
   @RequestMapping("/saveSite")
   @ResponseBody
   public JsonResult saveSite(WebSite webSite,Integer categoryId){
+    Category category = categoryService.getById(categoryId);
+    if (category.getUserId() != getUserId()){
+      return new JsonResult(0, "error");
+    }
     Set<Integer> categoryIds = new HashSet<>();
     categoryIds.add(categoryId);
     webSiteService.save(webSite,categoryIds);
@@ -129,6 +133,10 @@ public class ApiWebSiteController extends BaseController {
   @RequestMapping("/removeSite/{categoryId}/{siteId}")
   @ResponseBody
   public JsonResult removeSite(@PathVariable("categoryId") Integer categoryId,@PathVariable("siteId") Integer siteId){
+    Category category = categoryService.getById(categoryId);
+    if (category.getUserId() != getUserId()){
+      return new JsonResult(0, "error");
+    }
     try {
       WebSite webSite = webSiteService.fetchById(siteId).orElse(new WebSite());
       webSiteService.updateSortAll(categoryId,webSite.getOrdered());

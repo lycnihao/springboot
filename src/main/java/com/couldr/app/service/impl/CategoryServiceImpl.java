@@ -111,4 +111,13 @@ public class CategoryServiceImpl extends AbstractCrudService<Category, Integer> 
         return categoryRepository.getUserCategoryList(userId,1);
     }
 
+  @Override
+  public void updateSort(Integer categoryId, Integer oldIndex, Integer newIndex) {
+    if (newIndex < oldIndex){
+      categoryRepository.updateSortIncrease(categoryId, newIndex, oldIndex);
+    } else {
+      categoryRepository.updateSortReduce(categoryId, oldIndex, newIndex);
+    }
+  }
+
 }

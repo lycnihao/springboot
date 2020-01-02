@@ -38,4 +38,6 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
     void updateSort(Integer categoryId, Integer oldIndex,Integer newIndex);
 
     void initUserWeb(long userId);
+
+    List<WebSite> getUserWebSiteList(Integer cateId);
 }
