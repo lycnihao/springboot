@@ -33,6 +33,7 @@ public class ApiCategoryController  extends BaseController {
     public List<Category> getCategoryList() {
         List<Category>  categories =  categoryService.getUserCategoryList(getUserId());
         categories.sort(Comparator.comparing(Category::getOrdered));
+        System.out.println(getUserId());
         return categories;
     }
 

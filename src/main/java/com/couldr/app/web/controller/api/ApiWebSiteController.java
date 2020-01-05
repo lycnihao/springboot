@@ -1,19 +1,11 @@
 package com.couldr.app.web.controller.api;
 
+import com.alibaba.fastjson.JSONObject;
 import com.couldr.app.exception.NotFoundException;
 import com.couldr.app.model.dto.JsonResult;
-import com.couldr.app.model.entity.Attachment;
-import com.couldr.app.model.entity.Category;
-import com.couldr.app.model.entity.User;
-import com.couldr.app.model.entity.WebSite;
-import com.couldr.app.model.entity.WebSiteUser;
+import com.couldr.app.model.entity.*;
 import com.couldr.app.model.vo.CategoryWebSiteVo;
-import com.couldr.app.service.AttachmentService;
-import com.couldr.app.service.CategoryService;
-import com.couldr.app.service.UserService;
-import com.couldr.app.service.WebSiteCategoryService;
-import com.couldr.app.service.WebSiteService;
-import com.couldr.app.service.WebSiteUserService;
+import com.couldr.app.service.*;
 import com.couldr.app.utils.HtmlUtil;
 import com.couldr.app.web.controller.api.base.BaseController;
 import java.io.IOException;
@@ -58,13 +50,16 @@ public class ApiWebSiteController extends BaseController {
 
   private WebSiteCategoryService webSiteCategoryService;
 
-  public ApiWebSiteController(UserService userService,AttachmentService attachmentService,WebSiteUserService webSiteUserService,CategoryService categoryService,WebSiteService webSiteService,WebSiteCategoryService webSiteCategoryService) {
+  private WebSiteLibraryService webSiteLibraryService;
+
+  public ApiWebSiteController(UserService userService,AttachmentService attachmentService,WebSiteUserService webSiteUserService,CategoryService categoryService,WebSiteService webSiteService,WebSiteCategoryService webSiteCategoryService,WebSiteLibraryService webSiteLibraryService) {
     this.userService = userService;
     this.attachmentService = attachmentService;
     this.webSiteUserService = webSiteUserService;
     this.categoryService = categoryService;
     this.webSiteService = webSiteService;
     this.webSiteCategoryService = webSiteCategoryService;
+    this.webSiteLibraryService = webSiteLibraryService;
   }
 
 
@@ -84,7 +79,7 @@ public class ApiWebSiteController extends BaseController {
     return new CategoryWebSiteVo(categories,webSites);
   }
 
-  @RequestMapping("user/{siteId}")
+/*  @RequestMapping("user/{siteId}")
   @ResponseBody
   public JsonResult getUserWebSite( @PathVariable("siteId") Integer siteId){
     WebSite webSite = webSiteService.fetchById(siteId).orElse(new WebSite());
@@ -93,33 +88,53 @@ public class ApiWebSiteController extends BaseController {
     result.put("webSite",webSite);
     result.put("categories",categories);
     return new JsonResult(1,result);
-  }
+  }*/
 
   @PostMapping("/icon/upload")
   @ResponseBody
-  public JsonResult upload(@RequestParam("file") MultipartFile file,
+  public JsonResult upload(@RequestParam("file") MultipartFile file,@RequestParam(value = "url") String url,
       HttpServletRequest request) {
+
     Map<String, String> resultMap = null;
-    if (!file.isEmpty()) {
-      resultMap = attachmentService.upload(file, request);
+
+
+    WebSiteLibrary webSiteLibrary =  webSiteLibraryService.findByUrl(url);
+    if (webSiteLibrary != null){
+      resultMap = new HashMap<>();
+      resultMap.put("filePath",webSiteLibrary.getIcon());
+    } else {
+      if (!file.isEmpty()) {
+        resultMap = attachmentService.upload(file, request);
+      }
+      //保存在数据库
+      Attachment attachment = new Attachment();
+      attachment.setAttachName(resultMap.get("fileName"));
+      attachment.setAttachPath(resultMap.get("filePath"));
+      attachment.setAttachSmallPath(resultMap.get("smallPath"));
+      attachment.setAttachType(file.getContentType());
+      attachment.setAttachSuffix(resultMap.get("suffix"));
+      attachment.setAttachSize(resultMap.get("size"));
+      attachment.setAttachWh(resultMap.get("wh"));
+      attachment.setAttachLocation(resultMap.get("location"));
+      attachmentService.create(attachment);
     }
-    //保存在数据库
-    Attachment attachment = new Attachment();
-    attachment.setAttachName(resultMap.get("fileName"));
-    attachment.setAttachPath(resultMap.get("filePath"));
-    attachment.setAttachSmallPath(resultMap.get("smallPath"));
-    attachment.setAttachType(file.getContentType());
-    attachment.setAttachSuffix(resultMap.get("suffix"));
-    attachment.setAttachSize(resultMap.get("size"));
-    attachment.setAttachWh(resultMap.get("wh"));
-    attachment.setAttachLocation(resultMap.get("location"));
-    attachmentService.create(attachment);
+
     return new JsonResult(1,"图标上传成功", resultMap);
   }
 
   @RequestMapping("/saveSite")
   @ResponseBody
   public JsonResult saveSite(WebSite webSite,Integer categoryId){
+/*    WebSiteLibrary webSiteLibrary = webSiteLibraryService.findByUrl(webSite.getUrl());
+    if(webSiteLibrary == null){
+      webSiteLibrary = new WebSiteLibrary();
+      webSiteLibrary.setTitle(webSite.getTitle());
+      webSiteLibrary.setUrl(webSite.getUrl());
+      webSiteLibrary.setIcon(webSite.getIcon());
+      webSiteLibrary.setDescription(webSite.getSummary());
+      webSiteLibrary.setCreateTime(new Date());
+      webSiteLibraryService.create(webSiteLibrary);
+    }*/
     Category category = categoryService.getById(categoryId);
     if (category.getUserId() != getUserId()){
       return new JsonResult(0, "error");
@@ -190,8 +205,8 @@ public class ApiWebSiteController extends BaseController {
   @ResponseBody
   private JsonResult inport(@RequestParam("file") MultipartFile file){
     try {
-      Map<String, String>  resultMap = HtmlUtil.parseHtmlOne(file.getInputStream());
-      webSiteUserService.inportHtml(resultMap,(int)getUserId());
+      Map<String, Map<String, String>>  resultMap = HtmlUtil.parseHtmlTwo(file.getInputStream());
+      webSiteService.inportHtml(resultMap,(int)getUserId());
     } catch (IOException e) {
       e.printStackTrace();
       logger.error("导入html异常:",e);

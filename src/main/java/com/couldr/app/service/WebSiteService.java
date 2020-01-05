@@ -40,4 +40,6 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
     void initUserWeb(long userId);
 
     List<WebSite> getUserWebSiteList(Integer cateId);
+
+    void inportHtml(Map<String, Map<String, String>> map,Integer userId);
 }

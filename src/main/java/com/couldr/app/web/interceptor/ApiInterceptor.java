@@ -51,6 +51,10 @@ public class ApiInterceptor implements HandlerInterceptor {
         if (token == null &&  request.getRequestURI().equals("/api/webSite/user")){
             request.setAttribute("user",null);
             return true;
+        } else
+        if (token == null &&  request.getRequestURI().equals("/api/cate/getUserCategoryList")){
+            request.setAttribute("user",null);
+            return true;
         }
 
         // 执行认证

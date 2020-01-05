@@ -164,4 +164,15 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
     public List<WebSite> getUserWebSiteList(Integer cateId) {
         return webSiteRepository.findByCategoryId(cateId);
     }
+
+    @Override
+    public void inportHtml(Map<String, Map<String, String>> map, Integer userId) {
+        map.forEach((s, sMap) -> {
+            System.out.println(s);
+            System.out.println("---------------------");
+            sMap.forEach((w, wMap )-> {
+                System.out.println(w);
+            });
+        });
+    }
 }
