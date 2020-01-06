@@ -19,6 +19,18 @@ spring:
     ehcache:
       config: classpath:/ehcache.xml
 
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 60000
+    password:
+    jedis:
+      pool:
+        minIdle: 1
+        maxIdle: 300
+        maxWait: -1
+        maxActive: 8
+
 qiniu:
   qiniu_access_key: fflJ8zBJwUJpDRzLuQbddw5BB_1tdIXQuvXM7t_b
   qiniu_secret_key: 8vGtdr_knUcvAI8aqzTEtAmczTkYLo26OVq6L_rG

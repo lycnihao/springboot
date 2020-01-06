@@ -12,6 +12,7 @@ import com.couldr.app.service.WebSiteCategoryService;
 import com.couldr.app.service.WebSiteService;
 import com.couldr.app.service.WebSiteUserService;
 import com.couldr.app.service.base.AbstractCrudService;
+import com.couldr.app.utils.RedisUtil;
 import com.couldr.app.utils.ServiceUtils;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -40,11 +41,14 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
 
     private final WebSiteCategoryService webSiteCategoryService;
 
-    public WebSiteServiceImpl(WebSiteRepository webSiteRepository,WebSiteCategoryService webSiteCategoryService,CategoryService categoryService) {
+    private final RedisUtil redisUtil;
+
+    public WebSiteServiceImpl(WebSiteRepository webSiteRepository,WebSiteCategoryService webSiteCategoryService,CategoryService categoryService,RedisUtil redisUtil) {
         super(webSiteRepository);
         this.webSiteRepository = webSiteRepository;
         this.webSiteCategoryService = webSiteCategoryService;
         this.categoryService = categoryService;
+        this.redisUtil = redisUtil;
     }
 
     @Override
@@ -167,12 +171,33 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
 
     @Override
     public void inportHtml(Map<String, Map<String, String>> map, Integer userId) {
+        List<WebSite> webSites = new ArrayList<>();
         map.forEach((s, sMap) -> {
-            System.out.println(s);
+            List<WebSiteCategory> webSiteCategories  = new ArrayList<>();
+            Category category = new Category();
+            category.setName(s);
+            category.setSlugName(s);
+            category.setCateType(1);
+            category.setUserId(Long.valueOf(userId));
+            categoryService.create(category);
             System.out.println("---------------------");
+            //创建category
             sMap.forEach((w, wMap )-> {
-                System.out.println(w);
+                WebSiteCategory webSiteCategory = new WebSiteCategory();
+                WebSite webSite = new WebSite();
+                webSite.setTitle(wMap);
+                webSite.setUrl(w);
+                webSite.setType(WebsiteTypeEnum.PUBLIC.getDesc());
+                webSite.setCreateTime(new Date());
+                super.create(webSite);
+                webSites.add(webSite);
+                webSiteCategory.setCategoryId(category.getCategoryId());
+                webSiteCategory.setWebsiteId(webSite.getWebsiteId());
+                webSiteCategories.add(webSiteCategory);
             });
+            webSiteCategoryService.createInBatch(webSiteCategories);
         });
+        //队列
+        /*redisUtil.lSet("inportHtml",webSites);*/
     }
 }
