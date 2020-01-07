@@ -30,6 +30,11 @@ spring:
         maxIdle: 300
         maxWait: -1
         maxActive: 8
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 
 qiniu:
   qiniu_access_key: fflJ8zBJwUJpDRzLuQbddw5BB_1tdIXQuvXM7t_b

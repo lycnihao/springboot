@@ -1,9 +1,10 @@
 package com.couldr.app.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.couldr.app.model.entity.Category;
 import com.couldr.app.model.entity.WebSite;
 import com.couldr.app.model.entity.WebSiteCategory;
-import com.couldr.app.model.entity.WebSiteUser;
 import com.couldr.app.model.enums.WebsiteTypeEnum;
 import com.couldr.app.model.params.WebSiteQuery;
 import com.couldr.app.repository.WebSiteRepository;
@@ -14,13 +15,14 @@ import com.couldr.app.service.WebSiteUserService;
 import com.couldr.app.service.base.AbstractCrudService;
 import com.couldr.app.utils.RedisUtil;
 import com.couldr.app.utils.ServiceUtils;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 import javax.persistence.criteria.*;
 
+import com.google.gson.JsonArray;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,12 +45,15 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
 
     private final RedisUtil redisUtil;
 
-    public WebSiteServiceImpl(WebSiteRepository webSiteRepository,WebSiteCategoryService webSiteCategoryService,CategoryService categoryService,RedisUtil redisUtil) {
+    private final RabbitTemplate rabbitTemplate;
+
+    public WebSiteServiceImpl(WebSiteRepository webSiteRepository,WebSiteCategoryService webSiteCategoryService,CategoryService categoryService,RedisUtil redisUtil,RabbitTemplate rabbitTemplate) {
         super(webSiteRepository);
         this.webSiteRepository = webSiteRepository;
         this.webSiteCategoryService = webSiteCategoryService;
         this.categoryService = categoryService;
         this.redisUtil = redisUtil;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Override
@@ -178,6 +183,7 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
             category.setName(s);
             category.setSlugName(s);
             category.setCateType(1);
+            category.setParentId(0);
             category.setUserId(Long.valueOf(userId));
             categoryService.create(category);
             System.out.println("---------------------");
@@ -197,7 +203,11 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
             });
             webSiteCategoryService.createInBatch(webSiteCategories);
         });
-        //队列
+        Object jsonData = JSON.toJSON(webSites);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("userId",userId);
+        jsonObject.put("data",jsonData);
+        rabbitTemplate.convertAndSend("CouldrExchange", "WebSitRouting", jsonObject);
         /*redisUtil.lSet("inportHtml",webSites);*/
     }
 }

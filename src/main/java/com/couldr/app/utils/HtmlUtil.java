@@ -1,31 +1,22 @@
 package com.couldr.app.utils;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.text.StrBuilder;
-import com.couldr.app.model.dto.Const;
 import com.couldr.app.model.entity.WebSite;
 import com.couldr.app.oauth.utils.StringUtils;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.MalformedURLException;
+import java.io.*;
 import java.net.URL;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Random;
-import javax.imageio.ImageIO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 public class HtmlUtil {
+
 
   private static Logger logger =  LoggerFactory.getLogger(HtmlUtil.class);
 
@@ -119,4 +110,32 @@ public class HtmlUtil {
     }
     return webSite;
   }
+
+  public static String getIcon(String url){
+    Document doc = RequestUtil.requestSite(url,false, "");
+    String resultUrl = "";
+    if (doc != null){
+      Element headElement = doc.head();
+      Elements links = headElement.select("link");
+      for (Element element : links){
+        if (element.attr("rel").contains("icon")){
+          resultUrl = element.attr("abs:href");
+          break;
+        }
+      }
+    }
+    return resultUrl;
+  }
+
+  public static MultipartFile getIconFile(String url){
+    MultipartFile multipartFile = null;
+    try {
+      URL uri = new URL(url);
+      multipartFile = new MockMultipartFile(uri.getFile(),uri.getFile(),null, uri.openStream());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return multipartFile;
+  }
+
 }
