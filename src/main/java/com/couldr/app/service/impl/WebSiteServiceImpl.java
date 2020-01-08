@@ -11,7 +11,6 @@ import com.couldr.app.repository.WebSiteRepository;
 import com.couldr.app.service.CategoryService;
 import com.couldr.app.service.WebSiteCategoryService;
 import com.couldr.app.service.WebSiteService;
-import com.couldr.app.service.WebSiteUserService;
 import com.couldr.app.service.base.AbstractCrudService;
 import com.couldr.app.utils.RedisUtil;
 import com.couldr.app.utils.ServiceUtils;
@@ -21,7 +20,6 @@ import java.util.Map;
 import java.util.Set;
 import javax.persistence.criteria.*;
 
-import com.google.gson.JsonArray;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -35,6 +33,7 @@ import org.springframework.util.StringUtils;
 
 @Service
 public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> implements WebSiteService {
+
 
 
     private final WebSiteRepository webSiteRepository;
@@ -209,5 +208,24 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
         jsonObject.put("data",jsonData);
         rabbitTemplate.convertAndSend("CouldrExchange", "WebSitRouting", jsonObject);
         /*redisUtil.lSet("inportHtml",webSites);*/
+    }
+
+    @Override
+    public StringBuilder exportToHtml(Category category) {
+        try {
+            StringBuilder sb = new StringBuilder();
+            List<WebSite> webSites = webSiteRepository.findByCategoryId(category.getCategoryId());
+            StringBuilder sbc = new StringBuilder();
+            webSites.forEach(webSite -> sbc.append("<DT><A HREF=\"").append(webSite.getUrl()).append("\" TARGET=\"_blank\">").append(webSite.getTitle()).append("</A></DT>"));
+            sb.append("<DL><P></P><DT><H3>");
+            sb.append(category.getName());
+            sb.append("</H3><DL><P></P>");
+            sb.append(sbc);
+            sb.append("</DL></DT></DL>");
+            return sb;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

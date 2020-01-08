@@ -47,3 +47,4 @@ admin:
   domain: http://localhost:8080
   username: iksen
   password: iksen22.
+  attachLoc: server

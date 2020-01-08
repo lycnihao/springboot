@@ -67,14 +67,13 @@ public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long>
   @Value("${qiniu.qiniu_small_url}")
   private String qiniuSmallUrl;
 
+  @Value("${admin.attachLoc}")
+  private String attachLoc = "";
+
 
   @Override
   public Map<String, String> upload(MultipartFile file, HttpServletRequest request) {
     Map<String, String> resultMap;
-    String attachLoc = "";
-    if (StrUtil.isEmpty(attachLoc)) {
-      attachLoc = "qiniu";
-    }
     switch (attachLoc) {
       case "server":
         resultMap = this.attachUpload(file, request);

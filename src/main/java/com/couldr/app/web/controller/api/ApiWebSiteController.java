@@ -1,6 +1,5 @@
 package com.couldr.app.web.controller.api;
 
-import com.alibaba.fastjson.JSONObject;
 import com.couldr.app.exception.NotFoundException;
 import com.couldr.app.model.dto.JsonResult;
 import com.couldr.app.model.entity.*;
@@ -10,8 +9,6 @@ import com.couldr.app.utils.HtmlUtil;
 import com.couldr.app.web.controller.api.base.BaseController;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -42,8 +39,6 @@ public class ApiWebSiteController extends BaseController {
 
   private AttachmentService attachmentService;
 
-  private WebSiteUserService webSiteUserService;
-
   private CategoryService categoryService;
 
   private WebSiteService webSiteService;
@@ -52,10 +47,9 @@ public class ApiWebSiteController extends BaseController {
 
   private WebSiteLibraryService webSiteLibraryService;
 
-  public ApiWebSiteController(UserService userService,AttachmentService attachmentService,WebSiteUserService webSiteUserService,CategoryService categoryService,WebSiteService webSiteService,WebSiteCategoryService webSiteCategoryService,WebSiteLibraryService webSiteLibraryService) {
+  public ApiWebSiteController(UserService userService,AttachmentService attachmentService,CategoryService categoryService,WebSiteService webSiteService,WebSiteCategoryService webSiteCategoryService,WebSiteLibraryService webSiteLibraryService) {
     this.userService = userService;
     this.attachmentService = attachmentService;
-    this.webSiteUserService = webSiteUserService;
     this.categoryService = categoryService;
     this.webSiteService = webSiteService;
     this.webSiteCategoryService = webSiteCategoryService;
@@ -220,8 +214,11 @@ public class ApiWebSiteController extends BaseController {
       String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
       String fileName= "couldr_" + date + ".html";
       StringBuilder sb = new StringBuilder();
+      List<Category>  categories =  categoryService.getUserCategoryList(getUserId());
       try {
-        sb = sb.append(webSiteUserService.exportToHtml((int)getUserId()));
+        for (Category category : categories) {
+          sb.append(webSiteService.exportToHtml(category));
+        }
       } catch (Exception e) {
         logger.error("异常：",e);
       }

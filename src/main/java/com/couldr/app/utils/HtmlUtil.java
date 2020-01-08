@@ -3,6 +3,7 @@ package com.couldr.app.utils;
 import com.couldr.app.model.entity.WebSite;
 import com.couldr.app.oauth.utils.StringUtils;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -87,10 +88,10 @@ public class HtmlUtil {
     StringBuilder sb = new StringBuilder();
     sb.append("<HTML>");
     sb.append("<HEAD>");
-    sb.append("<TITLE>"+title+"</TITLE>");
+    sb.append("<TITLE>").append(title).append("</TITLE>");
     sb.append("<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=utf-8\" />");
     sb.append("</HEAD>");
-    sb.append("<BODY><H1>"+title+"</H1>");
+    sb.append("<BODY><H1>").append(title).append("</H1>");
     sb.append(body);
     sb.append("</BODY>");
 
@@ -113,7 +114,7 @@ public class HtmlUtil {
 
   public static String getIcon(String url){
     Document doc = RequestUtil.requestSite(url,false, "");
-    String resultUrl = "";
+    String resultUrl = null;
     if (doc != null){
       Element headElement = doc.head();
       Elements links = headElement.select("link");
@@ -130,8 +131,23 @@ public class HtmlUtil {
   public static MultipartFile getIconFile(String url){
     MultipartFile multipartFile = null;
     try {
+      System.out.println("fileUrl:"+url);
       URL uri = new URL(url);
       multipartFile = new MockMultipartFile(uri.getFile(),uri.getFile(),null, uri.openStream());
+      if (multipartFile.isEmpty() || uri.getFile().isEmpty() || uri.openConnection().getContentType().contains("html")){
+        System.out.println("空:"+url);
+        multipartFile = null;
+        try {
+          url = getIcon(url);
+          if (url != null){
+            URL url_ = new URL(url);
+            multipartFile = new MockMultipartFile(url_.getFile(),uri.getFile(),null, url_.openStream());
+          }
+        }catch (Exception e){
+          e.printStackTrace();
+          return null;
+        }
+      }
     } catch (IOException e) {
       e.printStackTrace();
     }
