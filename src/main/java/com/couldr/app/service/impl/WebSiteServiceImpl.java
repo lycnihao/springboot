@@ -228,4 +228,9 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
         }
         return null;
     }
+
+    @Override
+    public List<WebSite> findRecommend() {
+        return webSiteRepository.findByType(WebsiteTypeEnum.PUBLIC.getDesc());
+    }
 }

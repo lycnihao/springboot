@@ -44,4 +44,6 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
     void inportHtml(Map<String, Map<String, String>> map,Integer userId);
 
     StringBuilder exportToHtml(Category category);
+
+    List<WebSite> findRecommend();
 }

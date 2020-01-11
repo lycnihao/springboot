@@ -19,7 +19,7 @@ public interface WebSiteRepository extends BaseRepository<WebSite, Integer> {
     @Query(value = "select MAX(ordered) from webSite", nativeQuery = true)
     Integer findMaxOrdered();
 
-
+    List<WebSite> findByType(String type);
 
     @Transactional
     @Modifying
