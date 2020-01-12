@@ -2,7 +2,6 @@ package com.couldr.app.service;
 
 import com.couldr.app.model.entity.Category;
 import com.couldr.app.model.entity.WebSite;
-import com.couldr.app.model.entity.WebSiteUser;
 import com.couldr.app.model.params.WebSiteQuery;
 import com.couldr.app.service.base.CrudService;
 
