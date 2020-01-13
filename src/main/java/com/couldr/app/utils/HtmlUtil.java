@@ -133,23 +133,33 @@ public class HtmlUtil {
     try {
       System.out.println("fileUrl:"+url);
       URL uri = new URL(url);
+      System.out.println(uri.openStream());
       multipartFile = new MockMultipartFile(uri.getFile(),uri.getFile(),null, uri.openStream());
       if (multipartFile.isEmpty() || uri.getFile().isEmpty() || uri.openConnection().getContentType().contains("html")){
         System.out.println("空:"+url);
         multipartFile = null;
-        try {
-          url = getIcon(url);
-          if (url != null){
-            URL url_ = new URL(url);
-            multipartFile = new MockMultipartFile(url_.getFile(),uri.getFile(),null, url_.openStream());
-          }
-        }catch (Exception e){
-          e.printStackTrace();
-          return null;
-        }
       }
     } catch (IOException e) {
       e.printStackTrace();
+    }
+    return multipartFile;
+  }
+
+  public  static  MultipartFile getRequestIcon(String url){
+    MultipartFile multipartFile = null;
+    try {
+      URL uri = new URL(url);
+      url = getIcon(url);
+      if (url != null){
+        URL url_ = new URL(url);
+        System.out.println("-------");
+        System.out.println(url_);
+        System.out.println("-------");
+        multipartFile = new MockMultipartFile(url_.getFile(),uri.getFile(),null, url_.openStream());
+      }
+    }catch (Exception e){
+      e.printStackTrace();
+      return null;
     }
     return multipartFile;
   }

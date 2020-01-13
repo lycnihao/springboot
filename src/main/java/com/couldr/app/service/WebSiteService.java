@@ -45,4 +45,6 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
     StringBuilder exportToHtml(Category category);
 
     List<WebSite> findRecommend();
+
+    List<WebSite> findByIconIsNull();
 }

@@ -15,9 +15,13 @@ import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
+import java.net.*;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -42,9 +46,10 @@ public class DemoApplicationTests {
 	WebSiteLibraryService webSiteLibraryService;
 
 	@Test
-	public void contextLoads() {
-		/*rabbitTemplate.convertAndSend("TestDirectExchange", "TestDirectRouting", "hello world");*/
-		this.getWebSite();
+	public void contextLoads() throws IOException, URISyntaxException {
+		/*this.setIcon();*/
+		URL uri = new URL("https://www.upwork.com");
+		System.out.println(uri.openStream());
 	}
 
 
@@ -204,6 +209,17 @@ public class DemoApplicationTests {
 
 			}
 		}
+	}
+
+
+	public void setIcon(){
+
+		List<WebSite> webSites = webSiteService.findByIconIsNull();
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("userId","");
+		jsonObject.put("data",webSites);
+		rabbitTemplate.convertAndSend("CouldrExchange", "WebSitRouting", jsonObject);
 	}
 
 }

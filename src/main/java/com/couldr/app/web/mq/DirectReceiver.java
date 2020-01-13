@@ -44,13 +44,19 @@ public class DirectReceiver {
             try {
                 URL url = new URL(webSite.getUrl());
                 MultipartFile iconFile = HtmlUtil.getIconFile(url.getProtocol()+"://"+ url.getHost()+"/favicon.ico");
+                if (iconFile == null){
+                    iconFile = HtmlUtil.getRequestIcon(url.getProtocol()+"://"+ url.getHost());
+                }
                 if (iconFile != null){
+                    System.out.println(iconFile);
                     Map<String, String> resultMap = attachmentService.upload(iconFile,null);
                     webSite.setIcon(resultMap.get("filePath"));
                     System.out.println(webSite.toString());
                     webSiteService.create(webSite);
+                }else {
+                    System.out.println("null");
                 }
-            } catch (MalformedURLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 

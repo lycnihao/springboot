@@ -72,11 +72,11 @@ public class ApiInterceptor implements HandlerInterceptor {
         }
         User user = userService.fetchById(Long.valueOf(userId)).orElse(new User());
 
-        // 验证 token
-        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
         try {
+            // 验证 token
+            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
             jwtVerifier.verify(token);
-        } catch (JWTVerificationException e) {
+        } catch (Exception e) {
             System.out.println("token解析失败");
             throw new AuthException("token解析失败",e);
         }
