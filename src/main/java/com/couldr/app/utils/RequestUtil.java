@@ -39,7 +39,6 @@ public class RequestUtil {
     document = connect.get();
 
     } catch (Exception e) {
-      e.printStackTrace();
       return null;
     }
 

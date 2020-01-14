@@ -10,6 +10,7 @@ import com.couldr.app.model.entity.WebSiteLibrary;
 import com.couldr.app.model.enums.WebsiteTypeEnum;
 import com.couldr.app.service.*;
 import com.couldr.app.utils.HtmlUtil;
+import java.util.Map;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.net.*;
 import java.util.Date;
 import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -47,9 +49,19 @@ public class DemoApplicationTests {
 
 	@Test
 	public void contextLoads() throws IOException, URISyntaxException {
-		/*this.setIcon();*/
-		URL uri = new URL("https://www.upwork.com");
-		System.out.println(uri.openStream());
+		String href = "http://www.upwork.com/";
+		URL rootUrl = new URL(href);
+		String rootStr = rootUrl.getProtocol()+"://"+ rootUrl.getHost();
+		MultipartFile iconFile = HtmlUtil.getIconFile(rootStr+"/favicon.ico");
+		if (iconFile == null){
+			iconFile = HtmlUtil.getRequestIcon(rootStr);
+		}
+		if (iconFile != null){
+			Map<String, String> resultMap = attachmentService.upload(iconFile,null);
+			resultMap.forEach((s, s2) -> System.out.println(s + "--->" + s2));
+		}else {
+			System.out.println("null");
+		}
 	}
 
 

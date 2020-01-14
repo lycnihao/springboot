@@ -42,13 +42,13 @@ public class DirectReceiver {
         List<WebSite> webSiteList = JSONObject.parseArray(jsonArray.toJSONString(), WebSite.class);
         webSiteList.forEach(webSite -> {
             try {
-                URL url = new URL(webSite.getUrl());
-                MultipartFile iconFile = HtmlUtil.getIconFile(url.getProtocol()+"://"+ url.getHost()+"/favicon.ico");
+                URL rootUrl = new URL(webSite.getUrl());
+                String rootStr = rootUrl.getProtocol()+"://"+ rootUrl.getHost();
+                MultipartFile iconFile = HtmlUtil.getIconFile(rootStr+"/favicon.ico");
                 if (iconFile == null){
-                    iconFile = HtmlUtil.getRequestIcon(url.getProtocol()+"://"+ url.getHost());
+                    iconFile = HtmlUtil.getRequestIcon(rootStr);
                 }
                 if (iconFile != null){
-                    System.out.println(iconFile);
                     Map<String, String> resultMap = attachmentService.upload(iconFile,null);
                     webSite.setIcon(resultMap.get("filePath"));
                     System.out.println(webSite.toString());

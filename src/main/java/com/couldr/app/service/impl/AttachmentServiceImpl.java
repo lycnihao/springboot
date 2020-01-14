@@ -1,6 +1,7 @@
 package com.couldr.app.service.impl;
 
 import com.couldr.app.model.dto.QiNiuPutSet;
+import com.couldr.app.model.dto.UploadResult;
 import com.couldr.app.model.entity.Attachment;
 import com.couldr.app.model.enums.AttachLocationEnum;
 import com.couldr.app.repository.AttachmentRepository;
@@ -10,6 +11,7 @@ import com.couldr.app.utils.CouldrUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrBuilder;
 import cn.hutool.core.util.StrUtil;
+import com.couldr.app.utils.FilenameUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.qiniu.common.QiniuException;
@@ -20,14 +22,20 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.persistent.FileRecorder;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import net.coobird.thumbnailator.Thumbnails;
 import org.slf4j.Logger;
@@ -35,7 +43,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -55,6 +65,20 @@ public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long>
     super(attachmentRepository);
     this.attachmentRepository = attachmentRepository;
   }
+
+
+  /**
+   * 上传的子目录。
+   */
+  private final static String UPLOAD_SUB_DIR = "upload/";
+
+  private final String workDir = System.getProperties().getProperty("user.home") + "/couldr/";
+
+  /**
+   * 路径分隔符
+   */
+  /*public static final String FILE_SEPARATOR = File.separator;*/
+  private static final String FILE_SEPARATOR = "/";
 
   @Value("${qiniu.qiniu_access_key}")
   private String qiniuAccessKey;
@@ -100,85 +124,80 @@ public class AttachmentServiceImpl extends AbstractCrudService<Attachment, Long>
    */
   @Override
   public Map<String, String> attachUpload(MultipartFile file, HttpServletRequest request) {
+    Assert.notNull(file, "Multipart file must not be null");
     final Map<String, String> resultMap = new HashMap<>(6);
-    final String dateString = DateUtil.format(DateUtil.date(), "yyyyMMddHHmmss");
+
+    // 获取当前时间
+    Calendar current = Calendar.getInstance();
+    // 获得月份和日期
+    int year = current.get(Calendar.YEAR);
+    int month = current.get(Calendar.MONTH) + 1;
+
+
+    // 构建目录
+    String subDir = UPLOAD_SUB_DIR + year + FILE_SEPARATOR + month + FILE_SEPARATOR;
+
+    String originalBasename = FilenameUtils.getBasename(file.getOriginalFilename());
+    //去除url多余目录
+    originalBasename = originalBasename.lastIndexOf("/") == -1 ? originalBasename : originalBasename.substring(originalBasename.lastIndexOf("/"),originalBasename.length());
+
+    // Get basename
+    String basename = originalBasename + '-' + CouldrUtil.randomUUIDWithoutDash();
+
+    // Get extension
+    String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+
+    logger.debug("Base name: [{}], extension: [{}] of original filename: [{}]", basename, extension, file.getOriginalFilename());
+
+    // Build sub file path
+    String subFilePath = subDir + basename + '.' + extension;
+
+    // Get upload path
+    Path uploadPath = Paths.get(workDir, subFilePath);
+
+    logger.info("Uploading to directory: [{}]", uploadPath.toString());
+
     try {
-      //用户目录
-      final StrBuilder uploadPath = new StrBuilder(System.getProperties().getProperty("user.home"));
-      uploadPath.append("/couldr/");
-      uploadPath.append("upload/img/");
+      // TODO Synchronize here
+      // Create directory
+      Files.createDirectories(uploadPath.getParent());
+      Files.createFile(uploadPath);
 
-      //获取当前年月以创建目录，如果没有该目录则创建
-      uploadPath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
-      final File mediaPath = new File(uploadPath.toString());
-      if (!mediaPath.exists()) {
-        if (!mediaPath.mkdirs()) {
-          resultMap.put("success", "0");
-          return resultMap;
-        }
+      // Upload this file
+      file.transferTo(uploadPath);
+
+      // Build upload result
+      UploadResult uploadResult = new UploadResult();
+      uploadResult.setFilename(originalBasename);
+      uploadResult.setFilePath(subFilePath);
+      uploadResult.setKey(subFilePath);
+      uploadResult.setSuffix(extension);
+      /*uploadResult.setMediaType(MediaType.valueOf(Objects.requireNonNull(file.getContentType())));*/
+      uploadResult.setSize(file.getSize());
+
+      // Check file type
+      if (uploadResult.getMediaType() != null && MediaType.valueOf("image/*").includes(uploadResult.getMediaType())) {
+
+        // Read as image
+        BufferedImage image = ImageIO.read(Files.newInputStream(uploadPath));
+
+        // Set width and height
+        uploadResult.setWidth(image.getWidth());
+        uploadResult.setHeight(image.getHeight());
+
       }
-
-      //不带后缀
-      final StrBuilder nameWithOutSuffix = new StrBuilder(file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf('.')).replaceAll(" ", "_").replaceAll(",", ""));
-      nameWithOutSuffix.append(dateString);
-      nameWithOutSuffix.append(new Random().nextInt(1000));
-
-      //文件后缀
-      final String fileSuffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.') + 1);
-
-      //带后缀
-      final StrBuilder fileName = new StrBuilder(nameWithOutSuffix);
-      fileName.append(".");
-      fileName.append(fileSuffix);
-
-      file.transferTo(new File(mediaPath.getAbsoluteFile(), fileName.toString()));
-
-      //文件原路径
-      final StrBuilder fullPath = new StrBuilder(mediaPath.getAbsolutePath());
-      fullPath.append("/");
-      fullPath.append(fileName);
-
-      //压缩文件路径
-      final StrBuilder fullSmallPath = new StrBuilder(mediaPath.getAbsolutePath());
-      fullSmallPath.append("/");
-      fullSmallPath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
-      fullSmallPath.append(nameWithOutSuffix);
-      fullSmallPath.append("_small.");
-      fullSmallPath.append(fileSuffix);
-
-      //映射路径
-      final StrBuilder filePath = new StrBuilder("/upload/img/");
-      filePath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
-      filePath.append(fileName);
-
-      //缩略图映射路径
-      final StrBuilder fileSmallPath = new StrBuilder("/upload/img/");
-      fileSmallPath.append(DateUtil.thisYear()).append("/").append(DateUtil.thisMonth()).append("/");
-      fileSmallPath.append(nameWithOutSuffix);
-      fileSmallPath.append("_small.");
-      fileSmallPath.append(fileSuffix);
-
-      try {
-        //压缩图片
-        Thumbnails.of(fullPath.toString()).size(256, 256).keepAspectRatio(true).toFile(fullSmallPath.toString());
-
-      } catch (Exception e){
-        logger.error(e.getMessage());
-      }
-
-      final String size = String.valueOf(new File(fullPath.toString()).length());
-      final String wh = "**";
-      resultMap.put("fileName", fileName.toString());
-      resultMap.put("filePath", filePath.toString());
-      resultMap.put("smallPath", fileSmallPath.toString());
-      resultMap.put("suffix", fileSuffix);
-      resultMap.put("size", size);
-      resultMap.put("wh", wh);
+      resultMap.put("fileName", uploadResult.getFilename());
+      resultMap.put("filePath", uploadResult.getFilePath());
+      resultMap.put("smallPath", uploadResult.getThumbPath());
+      resultMap.put("suffix", uploadResult.getSuffix());
+      resultMap.put("size", CouldrUtil.parseSize(file.getSize()));
+      resultMap.put("wh", uploadResult.getWidth() + "x" + uploadResult.getHeight());
       resultMap.put("location", AttachLocationEnum.SERVER.getDesc());
+      return resultMap;
     } catch (IOException e) {
-      e.printStackTrace();
+      logger.error("Failed to upload file to local: " + uploadPath, e);
     }
-    return resultMap;
+  return resultMap;
   }
 
 

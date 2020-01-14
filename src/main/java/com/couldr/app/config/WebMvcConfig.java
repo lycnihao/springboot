@@ -50,6 +50,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
             .addPathPatterns("/api/webSite/**")
             .addPathPatterns("/oauth/callback")
             .excludePathPatterns("/api/webSite/list")
+            .excludePathPatterns("/api/webSite/recommend")
             .excludePathPatterns("/api/user/login")
             .excludePathPatterns("/api/user/register")
             .excludePathPatterns("/api/user/fail");

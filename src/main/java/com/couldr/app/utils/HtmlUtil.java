@@ -3,6 +3,7 @@ package com.couldr.app.utils;
 import com.couldr.app.model.entity.WebSite;
 import com.couldr.app.oauth.utils.StringUtils;
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -132,12 +133,14 @@ public class HtmlUtil {
     MultipartFile multipartFile = null;
     try {
       System.out.println("fileUrl:"+url);
-      URL uri = new URL(url);
-      System.out.println(uri.openStream());
-      multipartFile = new MockMultipartFile(uri.getFile(),uri.getFile(),null, uri.openStream());
-      if (multipartFile.isEmpty() || uri.getFile().isEmpty() || uri.openConnection().getContentType().contains("html")){
-        System.out.println("空:"+url);
-        multipartFile = null;
+      URL url_ = new URL(url);
+      if (!url_.getFile().isEmpty() && !url_.openConnection().getContentType().contains("html")){
+        multipartFile = new MockMultipartFile("couldr_com.png","couldr_com.png","image/png", getInputStream(url));
+      }
+
+      if (multipartFile == null || multipartFile.isEmpty()){
+          System.out.println("空:"+url);
+        return null;
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -146,22 +149,40 @@ public class HtmlUtil {
   }
 
   public  static  MultipartFile getRequestIcon(String url){
-    MultipartFile multipartFile = null;
+    MultipartFile multipartFile;
     try {
-      URL uri = new URL(url);
       url = getIcon(url);
-      if (url != null){
-        URL url_ = new URL(url);
-        System.out.println("-------");
-        System.out.println(url_);
-        System.out.println("-------");
-        multipartFile = new MockMultipartFile(url_.getFile(),uri.getFile(),null, url_.openStream());
+      if (url == null){
+        return null;
       }
+      URL url_ = new URL(url);
+      if (url_.getFile().isEmpty() && url_.openConnection().getContentType().contains("html")){
+        return null;
+      }
+      multipartFile = new MockMultipartFile("couldr_com_.png","couldr_com_.png","image/png", getInputStream(url));
     }catch (Exception e){
       e.printStackTrace();
       return null;
     }
     return multipartFile;
+  }
+
+  public static InputStream getInputStream(String imgUrl) {
+    InputStream inputStream = null;
+    try{
+      HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(imgUrl).openConnection();
+      httpURLConnection.setRequestMethod("GET");
+      httpURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36");
+      httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
+      httpURLConnection.setRequestProperty("Referer","no-referrer");
+      httpURLConnection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+      httpURLConnection.setConnectTimeout(15000);
+      httpURLConnection.setReadTimeout(20000);
+      inputStream = httpURLConnection.getInputStream();
+    }catch (IOException e){
+      e.printStackTrace();
+    }
+    return inputStream;
   }
 
 }

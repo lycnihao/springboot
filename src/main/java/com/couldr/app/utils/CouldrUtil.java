@@ -3,6 +3,7 @@ package com.couldr.app.utils;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.UUID;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.lang.NonNull;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +44,16 @@ public class CouldrUtil {
       }
     }
     return ipAddress;
+  }
+
+  /**
+   * 获得没有破折号的随机uuid。
+   *
+   * @return 没有破折号的随机uuid。
+   */
+  @NonNull
+  public static String randomUUIDWithoutDash() {
+    return StringUtils.remove(UUID.randomUUID().toString(), '-');
   }
 
   /**
