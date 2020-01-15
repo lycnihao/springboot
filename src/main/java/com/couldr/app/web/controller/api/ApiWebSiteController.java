@@ -79,6 +79,12 @@ public class ApiWebSiteController extends BaseController {
     return webSiteService.findRecommend();
   }
 
+  @RequestMapping("recommend/r")
+  @ResponseBody
+  public List<WebSite> recommendRefresh() {
+    return webSiteService.findRecommendByRandom();
+  }
+
 /*  @RequestMapping("user/{siteId}")
   @ResponseBody
   public JsonResult getUserWebSite( @PathVariable("siteId") Integer siteId){

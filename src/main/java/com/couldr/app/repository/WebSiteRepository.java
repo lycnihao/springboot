@@ -71,4 +71,10 @@ public interface WebSiteRepository extends BaseRepository<WebSite, Integer> {
 
     List<WebSite> findByIconIsNull();
 
+
+    @Query(value = "SELECT * FROM `website` "
+        + "WHERE website_id >= (SELECT floor( RAND() * ((SELECT MAX(website_id) FROM `website`)-(SELECT MIN(website_id) FROM `website`)) + (SELECT MIN(website_id) FROM `website`))) "
+        + "ORDER BY website_id LIMIT 12;",nativeQuery =true)
+    List<WebSite> findRecommendByRandom();
+
 }

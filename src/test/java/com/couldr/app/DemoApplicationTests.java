@@ -49,7 +49,8 @@ public class DemoApplicationTests {
 
 	@Test
 	public void contextLoads() throws IOException, URISyntaxException {
-		String href = "http://www.upwork.com/";
+		setIcon();
+	/*	String href = "http://www.upwork.com/";
 		URL rootUrl = new URL(href);
 		String rootStr = rootUrl.getProtocol()+"://"+ rootUrl.getHost();
 		MultipartFile iconFile = HtmlUtil.getIconFile(rootStr+"/favicon.ico");
@@ -61,7 +62,7 @@ public class DemoApplicationTests {
 			resultMap.forEach((s, s2) -> System.out.println(s + "--->" + s2));
 		}else {
 			System.out.println("null");
-		}
+		}*/
 	}
 
 

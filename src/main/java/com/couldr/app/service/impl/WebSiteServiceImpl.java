@@ -235,6 +235,11 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
     }
 
     @Override
+    public List<WebSite> findRecommendByRandom() {
+        return webSiteRepository.findRecommendByRandom();
+    }
+
+    @Override
     public List<WebSite> findByIconIsNull() {
         return webSiteRepository.findByIconIsNull();
     }
