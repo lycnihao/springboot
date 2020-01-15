@@ -50,7 +50,7 @@ public class DemoApplicationTests {
 	@Test
 	public void contextLoads() throws IOException, URISyntaxException {
 		setIcon();
-		/*String href = "http://www.upwork.com/";
+	/*	String href = "http://www.upwork.com/";
 		URL rootUrl = new URL(href);
 		String rootStr = rootUrl.getProtocol()+"://"+ rootUrl.getHost();
 		MultipartFile iconFile = HtmlUtil.getIconFile(rootStr+"/favicon.ico");

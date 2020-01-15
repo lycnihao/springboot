@@ -79,6 +79,12 @@ public class ApiWebSiteController extends BaseController {
     return webSiteService.findRecommend();
   }
 
+  @RequestMapping("recommend/r")
+  @ResponseBody
+  public List<WebSite> recommendRefresh() {
+    return webSiteService.findRecommendByRandom();
+  }
+
 /*  @RequestMapping("user/{siteId}")
   @ResponseBody
   public JsonResult getUserWebSite( @PathVariable("siteId") Integer siteId){
@@ -125,7 +131,7 @@ public class ApiWebSiteController extends BaseController {
   @RequestMapping("/saveSite")
   @ResponseBody
   public JsonResult saveSite(WebSite webSite,Integer categoryId){
-/*    WebSiteLibrary webSiteLibrary = webSiteLibraryService.findByUrl(webSite.getUrl());
+    WebSiteLibrary webSiteLibrary = webSiteLibraryService.findByUrl(webSite.getUrl());
     if(webSiteLibrary == null){
       webSiteLibrary = new WebSiteLibrary();
       webSiteLibrary.setTitle(webSite.getTitle());
@@ -134,7 +140,7 @@ public class ApiWebSiteController extends BaseController {
       webSiteLibrary.setDescription(webSite.getSummary());
       webSiteLibrary.setCreateTime(new Date());
       webSiteLibraryService.create(webSiteLibrary);
-    }*/
+    }
     Category category = categoryService.getById(categoryId);
     if (category.getUserId() != getUserId()){
       return new JsonResult(0, "error");

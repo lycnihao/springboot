@@ -1,7 +1,9 @@
 package com.couldr.app.service.impl;
 
 import com.couldr.app.model.dto.WebContent;
+import com.couldr.app.service.AttachmentService;
 import com.couldr.app.service.RequestService;
+import com.couldr.app.utils.HtmlUtil;
 import com.couldr.app.utils.RequestUtil;
 
 import java.util.ArrayList;
@@ -13,8 +15,10 @@ import com.alibaba.fastjson.JSONObject;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 描述
@@ -24,6 +28,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RequestServiceImpl implements RequestService {
+
+  @Autowired
+  private AttachmentService attachmentService;
 
   @Cacheable(value="hotList",key="'hotList'")
   @Override
@@ -67,22 +74,15 @@ public class RequestServiceImpl implements RequestService {
     Document doc = RequestUtil.requestSite(url,false, "");
 
     if (doc != null){
-
       webContent.setUrl(url);
       webContent.setName(doc.title());
-
-      Elements elements= doc.head().select("link");
-      elements.forEach(element ->{
-        if ("image/x-icon".equals(element.attr("type")) ||  "icon".equals(element.attr("rel"))){
-          String href = element.attr("abs:href");
-          if (href.indexOf("/") == 0){
-            webContent.setIconFile(href);
-          } else {
-            webContent.setIconFile(href);
-          }
-
-        }
-      });
+      MultipartFile iconFile = HtmlUtil.IcoFile(url);
+      if (iconFile != null){
+        Map<String, String> resultMap = attachmentService.upload(iconFile,null);
+        webContent.setIconFile(resultMap.get("filePath"));
+      }else {
+        webContent.setIconFile("https://168dh.cn/favicon.ico");
+      }
       return webContent;
     }
     return null;

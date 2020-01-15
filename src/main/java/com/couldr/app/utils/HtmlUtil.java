@@ -113,6 +113,25 @@ public class HtmlUtil {
     return webSite;
   }
 
+  public static MultipartFile IcoFile(String url){
+    MultipartFile iconFile = null;
+    try {
+      URL rootUrl = new URL(url);
+      String rootStr = rootUrl.getProtocol()+"://"+ rootUrl.getHost();
+      iconFile = HtmlUtil.getIconFile(rootStr+"/favicon.ico");
+      if (iconFile == null){
+        iconFile = HtmlUtil.getRequestIconFile(rootStr);
+      }
+      if (iconFile == null){
+        System.out.println("null");
+      }
+    }catch (Exception e){
+      logger.error("获取图片错误:"+e);
+      e.printStackTrace();
+    }
+    return iconFile;
+  }
+
   public static String getIcon(String url){
     Document doc = RequestUtil.requestSite(url,false, "");
     String resultUrl = null;
@@ -120,7 +139,7 @@ public class HtmlUtil {
       Element headElement = doc.head();
       Elements links = headElement.select("link");
       for (Element element : links){
-        if (element.attr("rel").contains("icon")){
+        if ("image/x-icon".equals(element.attr("type")) ||  "icon".equals(element.attr("rel")) || element.attr("rel").contains("icon")){
           resultUrl = element.attr("abs:href");
           break;
         }
@@ -148,7 +167,7 @@ public class HtmlUtil {
     return multipartFile;
   }
 
-  public  static  MultipartFile getRequestIcon(String url){
+  public  static  MultipartFile getRequestIconFile(String url){
     MultipartFile multipartFile;
     try {
       url = getIcon(url);

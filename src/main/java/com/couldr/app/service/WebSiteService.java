@@ -46,5 +46,7 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
 
     List<WebSite> findRecommend();
 
+    List<WebSite> findRecommendByRandom();
+
     List<WebSite> findByIconIsNull();
 }

@@ -41,24 +41,16 @@ public class DirectReceiver {
         JSONArray jsonArray = jsonObject.getJSONArray("data");
         List<WebSite> webSiteList = JSONObject.parseArray(jsonArray.toJSONString(), WebSite.class);
         webSiteList.forEach(webSite -> {
-            try {
-                URL rootUrl = new URL(webSite.getUrl());
-                String rootStr = rootUrl.getProtocol()+"://"+ rootUrl.getHost();
-                MultipartFile iconFile = HtmlUtil.getIconFile(rootStr+"/favicon.ico");
-                if (iconFile == null){
-                    iconFile = HtmlUtil.getRequestIcon(rootStr);
-                }
-                if (iconFile != null){
-                    Map<String, String> resultMap = attachmentService.upload(iconFile,null);
-                    webSite.setIcon(resultMap.get("filePath"));
-                    System.out.println(webSite.toString());
-                    webSiteService.create(webSite);
-                }else {
-                    System.out.println("null");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            MultipartFile iconFile = HtmlUtil.IcoFile(webSite.getUrl());
+            if (iconFile != null){
+                Map<String, String> resultMap = attachmentService.upload(iconFile,null);
+                webSite.setIcon(resultMap.get("filePath"));
+                System.out.println(webSite.toString());
+                webSiteService.create(webSite);
+            }else {
+                System.out.println("null");
             }
+
 
         });
     }
