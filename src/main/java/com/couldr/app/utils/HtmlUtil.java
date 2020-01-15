@@ -173,9 +173,13 @@ public class HtmlUtil {
       HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(imgUrl).openConnection();
       httpURLConnection.setRequestMethod("GET");
       httpURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36");
-      httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
       httpURLConnection.setRequestProperty("Referer","no-referrer");
-      httpURLConnection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+      httpURLConnection.setRequestProperty("Accept-ranges", "bytes");
+      httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
+      httpURLConnection.setRequestProperty("Access-control-allow-origin", "*");
+      httpURLConnection.setRequestProperty("Access-control-max-age", "10000");
+      httpURLConnection.setRequestProperty("Referer","no-referrer");
+      httpURLConnection.setRequestProperty("Content-Type","image/*");
       httpURLConnection.setConnectTimeout(15000);
       httpURLConnection.setReadTimeout(20000);
       inputStream = httpURLConnection.getInputStream();
