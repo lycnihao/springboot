@@ -151,6 +151,13 @@ public class ApiWebSiteController extends BaseController {
     return new JsonResult(1, "保存成功~");
   }
 
+  @RequestMapping("/moveSite")
+  @ResponseBody
+  public JsonResult moveSite(String webSiteIds,Integer categoryId){
+    webSiteService.moveSite(webSiteIds,categoryId);
+    return new JsonResult(1, "网址已经移动到目标分类~");
+  }
+
   @RequestMapping("/removeSite/{categoryId}/{siteId}")
   @ResponseBody
   public JsonResult removeSite(@PathVariable("categoryId") Integer categoryId,@PathVariable("siteId") Integer siteId){

@@ -16,6 +16,7 @@ import com.couldr.app.utils.RedisUtil;
 import com.couldr.app.utils.ServiceUtils;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.persistence.criteria.*;
@@ -242,5 +243,22 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
     @Override
     public List<WebSite> findByIconIsNull() {
         return webSiteRepository.findByIconIsNull();
+    }
+
+    @Override
+    public void moveSite(String webSiteIds, Integer categoryId) {
+        Set<Integer> ids = new HashSet<>();
+        if (webSiteIds.contains(",")){
+           String[] strObj = webSiteIds.split(",");
+           for (String str : strObj){
+               ids.add(Integer.valueOf(str));
+           }
+        }else {
+            ids.add(Integer.valueOf(webSiteIds));
+        }
+        System.out.println(ids);
+        List<WebSiteCategory> webSiteCategories = webSiteCategoryService.findByWebsiteIdIn(ids);
+        webSiteCategories.forEach(webSiteCategory -> webSiteCategory.setCategoryId(categoryId));
+        webSiteCategoryService.createInBatch(webSiteCategories);
     }
 }

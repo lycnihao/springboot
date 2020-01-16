@@ -49,4 +49,6 @@ public interface WebSiteService extends CrudService<WebSite, Integer> {
     List<WebSite> findRecommendByRandom();
 
     List<WebSite> findByIconIsNull();
+
+    void moveSite(String webSiteIds,Integer categoryId);
 }

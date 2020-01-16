@@ -4,7 +4,6 @@ import com.couldr.app.model.entity.WebSite;
 import com.couldr.app.oauth.utils.StringUtils;
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -122,9 +121,6 @@ public class HtmlUtil {
       if (iconFile == null){
         iconFile = HtmlUtil.getRequestIconFile(rootStr);
       }
-      if (iconFile == null){
-        System.out.println("null");
-      }
     }catch (Exception e){
       logger.error("获取图片错误:"+e);
       e.printStackTrace();
@@ -152,33 +148,31 @@ public class HtmlUtil {
     MultipartFile multipartFile = null;
     try {
       System.out.println("fileUrl:"+url);
-      URL url_ = new URL(url);
-      if (!url_.getFile().isEmpty() && !url_.openConnection().getContentType().contains("html")){
-        multipartFile = new MockMultipartFile("couldr_com.png","couldr_com.png","image/png", getInputStream(url));
+      InputStream inputStream = getInputStream(url);
+      if (inputStream != null){
+        multipartFile = new MockMultipartFile("couldr_com_.png","couldr_com_.png","image/png", inputStream);
       }
-
       if (multipartFile == null || multipartFile.isEmpty()){
           System.out.println("空:"+url);
         return null;
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      return null;
     }
     return multipartFile;
   }
 
   public  static  MultipartFile getRequestIconFile(String url){
-    MultipartFile multipartFile;
+    MultipartFile multipartFile = null;
     try {
       url = getIcon(url);
       if (url == null){
         return null;
       }
-      URL url_ = new URL(url);
-      if (url_.getFile().isEmpty() && url_.openConnection().getContentType().contains("html")){
-        return null;
+      InputStream inputStream = getInputStream(url);
+      if (inputStream != null){
+        multipartFile = new MockMultipartFile("couldr_com_.png","couldr_com_.png","image/png", inputStream);
       }
-      multipartFile = new MockMultipartFile("couldr_com_.png","couldr_com_.png","image/png", getInputStream(url));
     }catch (Exception e){
       e.printStackTrace();
       return null;
@@ -192,16 +186,21 @@ public class HtmlUtil {
       HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(imgUrl).openConnection();
       httpURLConnection.setRequestMethod("GET");
       httpURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36");
-      httpURLConnection.setRequestProperty("Referer","no-referrer");
+      /*httpURLConnection.setRequestProperty("Referer","no-referrer");
       httpURLConnection.setRequestProperty("Accept-ranges", "bytes");
       httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
       httpURLConnection.setRequestProperty("Access-control-allow-origin", "*");
       httpURLConnection.setRequestProperty("Access-control-max-age", "10000");
       httpURLConnection.setRequestProperty("Referer","no-referrer");
-      httpURLConnection.setRequestProperty("Content-Type","image/*");
+      httpURLConnection.setRequestProperty("Content-Type","image/*");*/
       httpURLConnection.setConnectTimeout(15000);
       httpURLConnection.setReadTimeout(20000);
       inputStream = httpURLConnection.getInputStream();
+
+      if (httpURLConnection.getContentType().contains("html")) {
+        return null;
+      }
+
     }catch (IOException e){
       e.printStackTrace();
     }

@@ -44,4 +44,8 @@ public interface WebSiteCategoryService  extends CrudService<WebSiteCategory, In
 
   @NonNull
   Integer findWebSiteCountByCategoryId(@NonNull Integer categoryId);
+
+  @NonNull
+  List<WebSiteCategory> findByWebsiteIdIn(@NonNull Set<Integer> websiteId);
+
 }

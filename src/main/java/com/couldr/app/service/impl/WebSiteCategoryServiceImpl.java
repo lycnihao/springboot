@@ -147,4 +147,9 @@ public class WebSiteCategoryServiceImpl extends AbstractCrudService<WebSiteCateg
   public Integer findWebSiteCountByCategoryId(Integer categoryId){
     return webSiteCategoryRepository.countByCategoryId(categoryId);
   }
+
+  @Override
+  public List<WebSiteCategory> findByWebsiteIdIn(Set<Integer> websiteId) {
+    return webSiteCategoryRepository.findByWebsiteIdIn(websiteId);
+  }
 }

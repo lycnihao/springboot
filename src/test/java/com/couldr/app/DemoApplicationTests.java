@@ -48,21 +48,17 @@ public class DemoApplicationTests {
 	WebSiteLibraryService webSiteLibraryService;
 
 	@Test
-	public void contextLoads() throws IOException, URISyntaxException {
+	public void contextLoads(){
 		setIcon();
-	/*	String href = "http://www.upwork.com/";
-		URL rootUrl = new URL(href);
-		String rootStr = rootUrl.getProtocol()+"://"+ rootUrl.getHost();
-		MultipartFile iconFile = HtmlUtil.getIconFile(rootStr+"/favicon.ico");
-		if (iconFile == null){
-			iconFile = HtmlUtil.getRequestIcon(rootStr);
-		}
-		if (iconFile != null){
-			Map<String, String> resultMap = attachmentService.upload(iconFile,null);
-			resultMap.forEach((s, s2) -> System.out.println(s + "--->" + s2));
-		}else {
-			System.out.println("null");
+		/*MultipartFile multipartFile = HtmlUtil.IcoFile("https://www.mobileaction.co/");
+		if (multipartFile != null){
+			System.out.println("是否为空:"+multipartFile.isEmpty());
+			System.out.println("文件名："+multipartFile.getOriginalFilename());
+			System.out.println("文件名:"+multipartFile.getName());
+			System.out.println("文件类型:"+multipartFile.getContentType());
+			attachmentService.attachUpload(multipartFile,null);
 		}*/
+
 	}
 
 

@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -47,11 +45,9 @@ public class DirectReceiver {
                 webSite.setIcon(resultMap.get("filePath"));
                 System.out.println(webSite.toString());
                 webSiteService.create(webSite);
-            }else {
-                System.out.println("null");
             }
-
-
         });
+        System.out.println("-------------------");
+        System.out.println("队列处理完成");
     }
 }

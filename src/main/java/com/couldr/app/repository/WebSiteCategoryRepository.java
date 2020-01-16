@@ -5,6 +5,7 @@ import com.couldr.app.model.entity.WebSiteCategory;
 import com.couldr.app.repository.base.BaseRepository;
 import java.util.List;
 
+import java.util.Set;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.lang.NonNull;
@@ -36,4 +37,7 @@ public interface WebSiteCategoryRepository  extends BaseRepository<WebSiteCatego
 
   @NonNull
   Integer countByCategoryId(@NonNull Integer categoryId);
+
+  @NonNull
+  List<WebSiteCategory> findByWebsiteIdIn(@NonNull Set<Integer> websiteId);
 }
