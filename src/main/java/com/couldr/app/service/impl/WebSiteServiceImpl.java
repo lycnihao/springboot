@@ -89,7 +89,8 @@ public class WebSiteServiceImpl extends AbstractCrudService<WebSite, Integer> im
 
     @Override
     public void save(WebSite webSite, Set<Integer> categoryIds) {
-        webSite.setType(WebsiteTypeEnum.PUBLIC.getDesc());
+        webSite.setCreateTime(new Date());
+        webSite.setType(WebsiteTypeEnum.PRIVATE.getDesc());
         WebSite  bWebSite = webSiteRepository.save(webSite);
         List<Category> categories = categoryService.listAllByIds(categoryIds);
         webSiteCategoryService.mergeOrCreateByIfAbsent(bWebSite.getWebsiteId(),ServiceUtils.fetchProperty(categories, Category::getCategoryId));
