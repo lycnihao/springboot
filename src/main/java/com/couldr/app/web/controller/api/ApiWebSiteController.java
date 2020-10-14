@@ -105,10 +105,10 @@ public class ApiWebSiteController extends BaseController {
 
 
     WebSiteLibrary webSiteLibrary =  webSiteLibraryService.findByUrl(url);
-    if (webSiteLibrary != null){
-      resultMap = new HashMap<>();
-      resultMap.put("filePath",webSiteLibrary.getIcon());
-    } else {
+//    if (webSiteLibrary != null){
+//      resultMap = new HashMap<>();
+//      resultMap.put("filePath",webSiteLibrary.getIcon());
+//    } else {
       if (!file.isEmpty()) {
         resultMap = attachmentService.upload(file, request);
       }
@@ -123,7 +123,7 @@ public class ApiWebSiteController extends BaseController {
       attachment.setAttachWh(resultMap.get("wh"));
       attachment.setAttachLocation(resultMap.get("location"));
       attachmentService.create(attachment);
-    }
+    //}
 
     return new JsonResult(1,"图标上传成功", resultMap);
   }

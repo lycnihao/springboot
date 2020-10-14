@@ -44,7 +44,8 @@ public class ApiDataController extends BaseController {
     @ResponseBody
     public JsonResult getWeather() {
         System.out.println(getUserIp());
-        Object resultObj = requestService.getWeather(getUserIp());
+        //Object resultObj = requestService.getWeather(getUserIp());
+        Object resultObj = requestService.getWeather("222.247.64.28");
         if (resultObj == null){
             return new JsonResult(0,"什么都没抓取到~");
         }
