@@ -4,3 +4,4 @@
 之前由于域名备案问题导致项目没有继续开发了
 前端 链接https://github.com/lycnihao/vue
 前后端都启动后访问 http://localhost:8080/ 进入主页
+效果图 https://github.com/lycnihao/springboot/tree/master/doc/img
